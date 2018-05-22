@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Asopalav", "Asopalav\Asopalav.csproj", "{F8179405-8704-45C0-8300-052995F67352}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccessLayer", "DataAccessLayer\DataAccessLayer.csproj", "{47CBDE54-6A09-48DA-901C-9DC897C81A8C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F8179405-8704-45C0-8300-052995F67352}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F8179405-8704-45C0-8300-052995F67352}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F8179405-8704-45C0-8300-052995F67352}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F8179405-8704-45C0-8300-052995F67352}.Release|Any CPU.Build.0 = Release|Any CPU
+		{47CBDE54-6A09-48DA-901C-9DC897C81A8C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{47CBDE54-6A09-48DA-901C-9DC897C81A8C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{47CBDE54-6A09-48DA-901C-9DC897C81A8C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{47CBDE54-6A09-48DA-901C-9DC897C81A8C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

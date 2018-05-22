@@ -1,0 +1,512 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="AsopalavDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="MenuMaster">
+          <Key>
+            <PropertyRef Name="MenuID" />
+          </Key>
+          <Property Name="MenuID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MenuName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="MenuTarget" Type="nvarchar" MaxLength="100" />
+          <Property Name="ParentMenuID" Type="int" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProductMaster">
+          <Key>
+            <PropertyRef Name="ProductID" />
+          </Key>
+          <Property Name="ProductID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductCode" Type="varchar" MaxLength="20" />
+          <Property Name="ProductName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="ProductTypeID" Type="int" />
+          <Property Name="WeightInGms" Type="decimal" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="Height_width_inch" Type="varchar" MaxLength="15" />
+          <Property Name="Price" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="IsOffer" Type="bit" Nullable="false" />
+          <Property Name="OfferPrice" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="SmallImage" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="BigImage" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="Description" Type="varchar(max)" />
+          <Property Name="Creation_Date" Type="datetime" />
+        </EntityType>
+        <EntityType Name="ProductTypeMaster">
+          <Key>
+            <PropertyRef Name="ProductTypeID" />
+          </Key>
+          <Property Name="ProductTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductType" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="Creation_Date" Type="datetime" />
+        </EntityType>
+        <EntityType Name="RoleMaster">
+          <Key>
+            <PropertyRef Name="RoleID" />
+          </Key>
+          <Property Name="RoleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RoleName" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RoleMenuPermission">
+          <Key>
+            <PropertyRef Name="RoleID" />
+            <PropertyRef Name="MenuID" />
+          </Key>
+          <Property Name="RoleID" Type="int" Nullable="false" />
+          <Property Name="MenuID" Type="int" Nullable="false" />
+          <Property Name="Permission" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserAddressDetails">
+          <Key>
+            <PropertyRef Name="Address_id" />
+          </Key>
+          <Property Name="Address_id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Login_Id" Type="bigint" Nullable="false" />
+          <Property Name="Bill_Name" Type="varchar" MaxLength="150" />
+          <Property Name="Bill_Email" Type="varchar" MaxLength="60" />
+          <Property Name="Bill_Mobile" Type="varchar" MaxLength="15" />
+          <Property Name="Bill_Addr_Line1" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Bill_Addr_Line2" Type="varchar" MaxLength="100" />
+          <Property Name="Bill_City" Type="varchar" MaxLength="60" Nullable="false" />
+          <Property Name="Bill_State" Type="varchar" MaxLength="60" Nullable="false" />
+          <Property Name="Bill_Country" Type="varchar" MaxLength="60" />
+          <Property Name="Bill_Pin" Type="int" Nullable="false" />
+          <Property Name="Ship_Name" Type="varchar" MaxLength="150" />
+          <Property Name="Ship_Email" Type="varchar" MaxLength="60" />
+          <Property Name="Ship_Mobile" Type="varchar" MaxLength="15" />
+          <Property Name="Ship_Addr_Line1" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Ship_Addr_Line2" Type="varchar" MaxLength="100" />
+          <Property Name="Ship_City" Type="varchar" MaxLength="60" Nullable="false" />
+          <Property Name="Ship_State" Type="varchar" MaxLength="60" Nullable="false" />
+          <Property Name="Ship_Country" Type="varchar" MaxLength="60" />
+          <Property Name="Ship_Pin" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserProfileMaster">
+          <Key>
+            <PropertyRef Name="Login_Id" />
+          </Key>
+          <Property Name="Login_Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Primary_Email" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="User_Fname" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="User_Mname" Type="varchar" MaxLength="50" />
+          <Property Name="User_Lname" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Secondary_Email" Type="varchar" MaxLength="100" />
+          <Property Name="Mobile" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="Alternate_Mobile" Type="varchar" MaxLength="25" />
+          <Property Name="Gender" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="User_DOB" Type="date" />
+          <Property Name="User_Anniversary" Type="date" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="RoleID" Type="int" Nullable="false" />
+          <Property Name="Registration_From_Device" Type="bit" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_ProductMaster_ProductTypeMaster">
+          <End Role="ProductTypeMaster" Type="Self.ProductTypeMaster" Multiplicity="0..1" />
+          <End Role="ProductMaster" Type="Self.ProductMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductTypeMaster">
+              <PropertyRef Name="ProductTypeID" />
+            </Principal>
+            <Dependent Role="ProductMaster">
+              <PropertyRef Name="ProductTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Address_Details_User_Profile_Master">
+          <End Role="UserProfileMaster" Type="Self.UserProfileMaster" Multiplicity="1" />
+          <End Role="UserAddressDetails" Type="Self.UserAddressDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserProfileMaster">
+              <PropertyRef Name="Login_Id" />
+            </Principal>
+            <Dependent Role="UserAddressDetails">
+              <PropertyRef Name="Login_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="AddProduct" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ProductCode" Type="varchar" Mode="In" />
+          <Parameter Name="ProductName" Type="varchar" Mode="In" />
+          <Parameter Name="ProductTypeID" Type="int" Mode="In" />
+          <Parameter Name="WeightInGms" Type="decimal" Mode="In" />
+          <Parameter Name="Height_width_inch" Type="varchar" Mode="In" />
+          <Parameter Name="Price" Type="decimal" Mode="In" />
+          <Parameter Name="IsOffer" Type="bit" Mode="In" />
+          <Parameter Name="OfferPrice" Type="decimal" Mode="In" />
+          <Parameter Name="SmallImage" Type="varchar" Mode="In" />
+          <Parameter Name="BigImage" Type="varchar" Mode="In" />
+          <Parameter Name="IsActive" Type="bit" Mode="In" />
+          <Parameter Name="Description" Type="varchar(max)" Mode="In" />
+        </Function>
+        <Function Name="AddUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Primary_Email" Type="varchar" Mode="In" />
+          <Parameter Name="Password" Type="varchar" Mode="In" />
+          <Parameter Name="User_Fname" Type="varchar" Mode="In" />
+          <Parameter Name="User_Mname" Type="varchar" Mode="In" />
+          <Parameter Name="User_Lname" Type="varchar" Mode="In" />
+          <Parameter Name="Secondary_Email" Type="varchar" Mode="In" />
+          <Parameter Name="Mobile" Type="varchar" Mode="In" />
+          <Parameter Name="Alternate_Mobile" Type="varchar" Mode="In" />
+          <Parameter Name="Gender" Type="char" Mode="In" />
+          <Parameter Name="User_DOB" Type="date" Mode="In" />
+          <Parameter Name="User_Anniversary" Type="date" Mode="In" />
+        </Function>
+        <Function Name="ValidateUserAndMenu" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserName" Type="varchar" Mode="In" />
+          <Parameter Name="Password" Type="varchar" Mode="In" />
+        </Function>
+        <EntityContainer Name="AsopalavDBModelStoreContainer">
+          <EntitySet Name="MenuMaster" EntityType="Self.MenuMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductMaster" EntityType="Self.ProductMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductTypeMaster" EntityType="Self.ProductTypeMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RoleMaster" EntityType="Self.RoleMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RoleMenuPermission" EntityType="Self.RoleMenuPermission" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserAddressDetails" EntityType="Self.UserAddressDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserProfileMaster" EntityType="Self.UserProfileMaster" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_ProductMaster_ProductTypeMaster" Association="Self.FK_ProductMaster_ProductTypeMaster">
+            <End Role="ProductTypeMaster" EntitySet="ProductTypeMaster" />
+            <End Role="ProductMaster" EntitySet="ProductMaster" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Address_Details_User_Profile_Master" Association="Self.FK_User_Address_Details_User_Profile_Master">
+            <End Role="UserProfileMaster" EntitySet="UserProfileMaster" />
+            <End Role="UserAddressDetails" EntitySet="UserAddressDetails" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="AsopalavDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="MenuMaster">
+          <Key>
+            <PropertyRef Name="MenuID" />
+          </Key>
+          <Property Name="MenuID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MenuName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MenuTarget" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ParentMenuID" Type="Int32" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProductMaster">
+          <Key>
+            <PropertyRef Name="ProductID" />
+          </Key>
+          <Property Name="ProductID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductCode" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ProductName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ProductTypeID" Type="Int32" />
+          <Property Name="WeightInGms" Type="Decimal" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="Height_width_inch" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="Price" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="IsOffer" Type="Boolean" Nullable="false" />
+          <Property Name="OfferPrice" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="SmallImage" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="BigImage" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Creation_Date" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="ProductTypeMaster" Relationship="Self.FK_ProductMaster_ProductTypeMaster" FromRole="ProductMaster" ToRole="ProductTypeMaster" />
+        </EntityType>
+        <EntityType Name="ProductTypeMaster">
+          <Key>
+            <PropertyRef Name="ProductTypeID" />
+          </Key>
+          <Property Name="ProductTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductType" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="Creation_Date" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="ProductMasters" Relationship="Self.FK_ProductMaster_ProductTypeMaster" FromRole="ProductTypeMaster" ToRole="ProductMaster" />
+        </EntityType>
+        <EntityType Name="RoleMaster">
+          <Key>
+            <PropertyRef Name="RoleID" />
+          </Key>
+          <Property Name="RoleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RoleName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RoleMenuPermission">
+          <Key>
+            <PropertyRef Name="RoleID" />
+            <PropertyRef Name="MenuID" />
+          </Key>
+          <Property Name="RoleID" Type="Int32" Nullable="false" />
+          <Property Name="MenuID" Type="Int32" Nullable="false" />
+          <Property Name="Permission" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserAddressDetail">
+          <Key>
+            <PropertyRef Name="Address_id" />
+          </Key>
+          <Property Name="Address_id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Login_Id" Type="Int64" Nullable="false" />
+          <Property Name="Bill_Name" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="Bill_Email" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="Bill_Mobile" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="Bill_Addr_Line1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Bill_Addr_Line2" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Bill_City" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Bill_State" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Bill_Country" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="Bill_Pin" Type="Int32" Nullable="false" />
+          <Property Name="Ship_Name" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="Ship_Email" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="Ship_Mobile" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="Ship_Addr_Line1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Ship_Addr_Line2" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Ship_City" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Ship_State" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Ship_Country" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="Ship_Pin" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="UserProfileMaster" Relationship="Self.FK_User_Address_Details_User_Profile_Master" FromRole="UserAddressDetails" ToRole="UserProfileMaster" />
+        </EntityType>
+        <EntityType Name="UserProfileMaster">
+          <Key>
+            <PropertyRef Name="Login_Id" />
+          </Key>
+          <Property Name="Login_Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Primary_Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="User_Fname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="User_Mname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="User_Lname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Secondary_Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Mobile" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Alternate_Mobile" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="Gender" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="User_DOB" Type="DateTime" Precision="0" />
+          <Property Name="User_Anniversary" Type="DateTime" Precision="0" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="RoleID" Type="Int32" Nullable="false" />
+          <Property Name="Registration_From_Device" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="UserAddressDetails" Relationship="Self.FK_User_Address_Details_User_Profile_Master" FromRole="UserProfileMaster" ToRole="UserAddressDetails" />
+        </EntityType>
+        <Association Name="FK_ProductMaster_ProductTypeMaster">
+          <End Role="ProductTypeMaster" Type="Self.ProductTypeMaster" Multiplicity="0..1" />
+          <End Role="ProductMaster" Type="Self.ProductMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductTypeMaster">
+              <PropertyRef Name="ProductTypeID" />
+            </Principal>
+            <Dependent Role="ProductMaster">
+              <PropertyRef Name="ProductTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Address_Details_User_Profile_Master">
+          <End Role="UserProfileMaster" Type="Self.UserProfileMaster" Multiplicity="1" />
+          <End Role="UserAddressDetails" Type="Self.UserAddressDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserProfileMaster">
+              <PropertyRef Name="Login_Id" />
+            </Principal>
+            <Dependent Role="UserAddressDetails">
+              <PropertyRef Name="Login_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="AsopalavDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="MenuMasters" EntityType="Self.MenuMaster" />
+          <EntitySet Name="ProductMasters" EntityType="Self.ProductMaster" />
+          <EntitySet Name="ProductTypeMasters" EntityType="Self.ProductTypeMaster" />
+          <EntitySet Name="RoleMasters" EntityType="Self.RoleMaster" />
+          <EntitySet Name="RoleMenuPermissions" EntityType="Self.RoleMenuPermission" />
+          <EntitySet Name="UserAddressDetails" EntityType="Self.UserAddressDetail" />
+          <EntitySet Name="UserProfileMasters" EntityType="Self.UserProfileMaster" />
+          <AssociationSet Name="FK_ProductMaster_ProductTypeMaster" Association="Self.FK_ProductMaster_ProductTypeMaster">
+            <End Role="ProductTypeMaster" EntitySet="ProductTypeMasters" />
+            <End Role="ProductMaster" EntitySet="ProductMasters" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Address_Details_User_Profile_Master" Association="Self.FK_User_Address_Details_User_Profile_Master">
+            <End Role="UserProfileMaster" EntitySet="UserProfileMasters" />
+            <End Role="UserAddressDetails" EntitySet="UserAddressDetails" />
+          </AssociationSet>
+          <FunctionImport Name="AddProduct">
+            <Parameter Name="ProductCode" Mode="In" Type="String" />
+            <Parameter Name="ProductName" Mode="In" Type="String" />
+            <Parameter Name="ProductTypeID" Mode="In" Type="Int32" />
+            <Parameter Name="WeightInGms" Mode="In" Type="Decimal" />
+            <Parameter Name="Height_width_inch" Mode="In" Type="String" />
+            <Parameter Name="Price" Mode="In" Type="Decimal" />
+            <Parameter Name="IsOffer" Mode="In" Type="Boolean" />
+            <Parameter Name="OfferPrice" Mode="In" Type="Decimal" />
+            <Parameter Name="SmallImage" Mode="In" Type="String" />
+            <Parameter Name="BigImage" Mode="In" Type="String" />
+            <Parameter Name="IsActive" Mode="In" Type="Boolean" />
+            <Parameter Name="Description" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="AddUser">
+            <Parameter Name="Primary_Email" Mode="In" Type="String" />
+            <Parameter Name="Password" Mode="In" Type="String" />
+            <Parameter Name="User_Fname" Mode="In" Type="String" />
+            <Parameter Name="User_Mname" Mode="In" Type="String" />
+            <Parameter Name="User_Lname" Mode="In" Type="String" />
+            <Parameter Name="Secondary_Email" Mode="In" Type="String" />
+            <Parameter Name="Mobile" Mode="In" Type="String" />
+            <Parameter Name="Alternate_Mobile" Mode="In" Type="String" />
+            <Parameter Name="Gender" Mode="In" Type="String" />
+            <Parameter Name="User_DOB" Mode="In" Type="DateTime" />
+            <Parameter Name="User_Anniversary" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="ValidateUserAndMenu" ReturnType="Collection(AsopalavDBModel.ValidateUserAndMenu_Result)">
+            <Parameter Name="UserName" Mode="In" Type="String" />
+            <Parameter Name="Password" Mode="In" Type="String" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="ValidateUserAndMenu_Result">
+          <Property Type="Boolean" Name="IsLoginValid" Nullable="false" />
+          <Property Type="String" Name="RoleName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="UserFullName" Nullable="true" MaxLength="250" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="AsopalavDBModelStoreContainer" CdmEntityContainer="AsopalavDBEntities">
+          <EntitySetMapping Name="MenuMasters">
+            <EntityTypeMapping TypeName="AsopalavDBModel.MenuMaster">
+              <MappingFragment StoreEntitySet="MenuMaster">
+                <ScalarProperty Name="MenuID" ColumnName="MenuID" />
+                <ScalarProperty Name="MenuName" ColumnName="MenuName" />
+                <ScalarProperty Name="MenuTarget" ColumnName="MenuTarget" />
+                <ScalarProperty Name="ParentMenuID" ColumnName="ParentMenuID" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductMasters">
+            <EntityTypeMapping TypeName="AsopalavDBModel.ProductMaster">
+              <MappingFragment StoreEntitySet="ProductMaster">
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="ProductCode" ColumnName="ProductCode" />
+                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+                <ScalarProperty Name="ProductTypeID" ColumnName="ProductTypeID" />
+                <ScalarProperty Name="WeightInGms" ColumnName="WeightInGms" />
+                <ScalarProperty Name="Height_width_inch" ColumnName="Height_width_inch" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="IsOffer" ColumnName="IsOffer" />
+                <ScalarProperty Name="OfferPrice" ColumnName="OfferPrice" />
+                <ScalarProperty Name="SmallImage" ColumnName="SmallImage" />
+                <ScalarProperty Name="BigImage" ColumnName="BigImage" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Creation_Date" ColumnName="Creation_Date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductTypeMasters">
+            <EntityTypeMapping TypeName="AsopalavDBModel.ProductTypeMaster">
+              <MappingFragment StoreEntitySet="ProductTypeMaster">
+                <ScalarProperty Name="ProductTypeID" ColumnName="ProductTypeID" />
+                <ScalarProperty Name="ProductType" ColumnName="ProductType" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Creation_Date" ColumnName="Creation_Date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RoleMasters">
+            <EntityTypeMapping TypeName="AsopalavDBModel.RoleMaster">
+              <MappingFragment StoreEntitySet="RoleMaster">
+                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RoleMenuPermissions">
+            <EntityTypeMapping TypeName="AsopalavDBModel.RoleMenuPermission">
+              <MappingFragment StoreEntitySet="RoleMenuPermission">
+                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+                <ScalarProperty Name="MenuID" ColumnName="MenuID" />
+                <ScalarProperty Name="Permission" ColumnName="Permission" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserAddressDetails">
+            <EntityTypeMapping TypeName="AsopalavDBModel.UserAddressDetail">
+              <MappingFragment StoreEntitySet="UserAddressDetails">
+                <ScalarProperty Name="Address_id" ColumnName="Address_id" />
+                <ScalarProperty Name="Login_Id" ColumnName="Login_Id" />
+                <ScalarProperty Name="Bill_Name" ColumnName="Bill_Name" />
+                <ScalarProperty Name="Bill_Email" ColumnName="Bill_Email" />
+                <ScalarProperty Name="Bill_Mobile" ColumnName="Bill_Mobile" />
+                <ScalarProperty Name="Bill_Addr_Line1" ColumnName="Bill_Addr_Line1" />
+                <ScalarProperty Name="Bill_Addr_Line2" ColumnName="Bill_Addr_Line2" />
+                <ScalarProperty Name="Bill_City" ColumnName="Bill_City" />
+                <ScalarProperty Name="Bill_State" ColumnName="Bill_State" />
+                <ScalarProperty Name="Bill_Country" ColumnName="Bill_Country" />
+                <ScalarProperty Name="Bill_Pin" ColumnName="Bill_Pin" />
+                <ScalarProperty Name="Ship_Name" ColumnName="Ship_Name" />
+                <ScalarProperty Name="Ship_Email" ColumnName="Ship_Email" />
+                <ScalarProperty Name="Ship_Mobile" ColumnName="Ship_Mobile" />
+                <ScalarProperty Name="Ship_Addr_Line1" ColumnName="Ship_Addr_Line1" />
+                <ScalarProperty Name="Ship_Addr_Line2" ColumnName="Ship_Addr_Line2" />
+                <ScalarProperty Name="Ship_City" ColumnName="Ship_City" />
+                <ScalarProperty Name="Ship_State" ColumnName="Ship_State" />
+                <ScalarProperty Name="Ship_Country" ColumnName="Ship_Country" />
+                <ScalarProperty Name="Ship_Pin" ColumnName="Ship_Pin" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserProfileMasters">
+            <EntityTypeMapping TypeName="AsopalavDBModel.UserProfileMaster">
+              <MappingFragment StoreEntitySet="UserProfileMaster">
+                <ScalarProperty Name="Login_Id" ColumnName="Login_Id" />
+                <ScalarProperty Name="Primary_Email" ColumnName="Primary_Email" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="User_Fname" ColumnName="User_Fname" />
+                <ScalarProperty Name="User_Mname" ColumnName="User_Mname" />
+                <ScalarProperty Name="User_Lname" ColumnName="User_Lname" />
+                <ScalarProperty Name="Secondary_Email" ColumnName="Secondary_Email" />
+                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+                <ScalarProperty Name="Alternate_Mobile" ColumnName="Alternate_Mobile" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="User_DOB" ColumnName="User_DOB" />
+                <ScalarProperty Name="User_Anniversary" ColumnName="User_Anniversary" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+                <ScalarProperty Name="Registration_From_Device" ColumnName="Registration_From_Device" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="AddProduct" FunctionName="AsopalavDBModel.Store.AddProduct" />
+          <FunctionImportMapping FunctionImportName="AddUser" FunctionName="AsopalavDBModel.Store.AddUser" />
+          <FunctionImportMapping FunctionImportName="ValidateUserAndMenu" FunctionName="AsopalavDBModel.Store.ValidateUserAndMenu">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="AsopalavDBModel.ValidateUserAndMenu_Result">
+                <ScalarProperty Name="IsLoginValid" ColumnName="IsLoginValid" />
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+                <ScalarProperty Name="UserFullName" ColumnName="UserFullName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
