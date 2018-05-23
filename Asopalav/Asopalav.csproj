@@ -202,6 +202,10 @@
     <Content Include="Content\images\ico_plus.png" />
     <Content Include="Content\images\logo%402x-Old.png" />
     <Content Include="Content\images\logo%402x.png" />
+    <Content Include="Content\images\original\01_b_car.jpg" />
+    <Content Include="Content\images\original\02_o_car.jpg" />
+    <Content Include="Content\images\original\03_r_car.jpg" />
+    <Content Include="Content\images\original\04_g_car.jpg" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\style.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
