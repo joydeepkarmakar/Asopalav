@@ -69,4 +69,55 @@ textarea,
     font-weight:bold;
 }
 
+/*------------------About Us-----------------------*/
+
+.about-margin-top {
+    margin: 110px auto 20px auto;
+    width: 70%;
+    font-weight:bold;
+    font-size:20px;
+    text-align:center;
+}
+
+.about-content {
+    width:60%;
+     margin:0 auto;
+     text-align:justify;
+}
+
+/*-----------------Contact Us---------------------*/
+
+.contact-margin-top {
+    margin: 110px auto 20px auto;
+    width: 90%;
+    font-weight:bold;
+    font-size:20px;
+    text-align:center;
+}
+
+    .contact-margin-top >div > input {
+    max-width:100% !important;
+    margin-bottom:7px;
+    }
+
+        .contact-margin-top >div > textarea {
+    max-width:100% !important;
+    margin-top:7px;
+    margin-bottom:15px;
+    }
+
+.corporate {
+    color:#696763;
+    font-size:20px;
+    font-weight:300;
+    text-align:left;
+}
+
+.corporate-address {
+    color:#696763;
+    font-size:14px;
+    text-align:left;
+}
+
+
 

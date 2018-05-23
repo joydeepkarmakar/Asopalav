@@ -17,13 +17,13 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Administration Control Panel", "#"@*, "Home"*@, new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Administration Control Panel", "#", new { area = "" }, new { @class = "navbar-brand" })
             </div>
-            <div class="navbar-collapse collapse">
+            <div class="navbar-collapse collapse" style="background:#ffd800">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Masters", "#"@*, "Home"*@)</li>
-                    <li>@Html.ActionLink("Orders", "#"@*, "Home"*@)</li>
-                    <li>@Html.ActionLink("Security", "#"@*, "Home"*@)</li>
+                    <li>@Html.ActionLink("Masters", "#")</li>
+                    <li>@Html.ActionLink("Orders", "#")</li>
+                    <li>@Html.ActionLink("Security", "#")</li>
                     <li>@Html.ActionLink("Others", "#")</li>
                 </ul>
                 @Html.Partial("_LoginPartial")

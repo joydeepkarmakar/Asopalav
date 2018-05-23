@@ -946,7 +946,7 @@ h1 {
 
     .entry .nav .active {
         position: relative;
-        z-index: 99;
+        z-index: 0;
         background: #fff;
         border-bottom-color: #fff;
     }

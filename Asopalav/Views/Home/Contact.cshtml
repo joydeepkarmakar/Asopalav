@@ -1,33 +1,32 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Contact";
 }
+<h2>@ViewBag.Title.</h2>
+<h3>@ViewBag.Message</h3>
 
-<div id="body">
-    <h2>Contact</h2>
-
-    <div class="col media" style="margin-top:0 !important">
-        <h3>Social media</h3>
-        <ul class="social">
-            <li><a href="#"><span class="ico ico-fb"></span>Facebook</a></li>
-            <li><a href="#"><span class="ico ico-tw"></span>Twitter</a></li>
-            <li><a href="#"><span class="ico ico-gp"></span>Google+</a></li>
-            <li><a href="#"><span class="ico ico-pi"></span>Linkedin</a></li>
-        </ul>
+<div class="row contact-margin-top">
+    <div class="col-sm-6">
+        <input type="text" value="" class="form-control" placeholder="From (Email)*">
+        <input type="text" value="" class="form-control" placeholder="Mobile Number*">
+        <select id="FAQDD" name="FAQSubject" class="form-control" onchange="OnChangeFAQDD()">
+            <option selected="selected" value="0">---- Select Subject ------</option>
+            <option value="9999">---- Others ------</option>
+        </select>
+        <textarea cols="55" class="form-control" ata-val="true" data-val-length="The Message exceeds maximum characters" data-val-length-max="4000" data-val-required="Please provide your Message" placeholder="Message *" rows="7" style="resize: none; width:100%;"></textarea>
+        <input type="submit" value="Submit" class="btn btn-primary form-control" />
     </div>
-    <div class="col contact">
-        <h3>Contact us</h3>
-        <p>Asopalav Jewellers Pvt Ltd in Vadodara<br>India</p>
-        <p><span class="ico ico-em"></span><a href="#">contact@asopalavjewellers.com</a></p>
-        <p><span class="ico ico-ph"></span>99000000</p>
+    <div class="col-sm-6">
+        <p class="corporate">
+            Our Corporate Office
+        </p>
+        <iframe scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.co.in/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=Asopalav+Jewellers,+23%2F39,+Alkapuri,+ Vadodara&amp;aq=&amp;sll=22.514845,88.367133&amp;sspn=0.019901,0.0421&amp;ie=UTF8&amp;hq=Anjali+Jewellers,+23%2F39,+Gariahat+Road,Kolkata+-+700+029&amp;t=m&amp;ll=22.514845,88.367133&amp;spn=0.020615,0.032015&amp;output=embed" frameborder="0" height="200" width="100%"></iframe>
+        <br>
+        <small><a href="https://maps.google.co.in/maps?f=q&amp;source=embed&amp;hl=en&amp;geocode=&amp;q=Anjali+Jewellers,+23%2F39,+Gariahat+Road,Kolkata+-+700+029&amp;aq=&amp;sll=22.514845,88.367133&amp;sspn=0.019901,0.0421&amp;ie=UTF8&amp;hq=Anjali+Jewellers,+23%2F39,+Gariahat+Road,Kolkata+-+700+029&amp;t=m&amp;ll=22.514845,88.367133&amp;spn=0.020615,0.032015" style="color: #0000FF; text-align: left" target="_blank">View Larger Map</a></small>
+        <br>
+        <br>
+        <p class="corporate-address">
+            <strong>Asopalav Jewellers Pvt Ltd.,</strong>
+            Alkapuri, Vadodara
+        </p>
     </div>
-    <div class="col newsletter">
-        <h3>Join our newsletter</h3>
-        <!--<p>Sed ut perspiciatis unde omnis iste natus sit voluptatem accusantium doloremque laudantium.</p>-->
-        <form action="#">
-            <input type="text" placeholder="Your email address...">
-            <button type="submit"></button>
-        </form>
-    </div>
-
 </div>
