@@ -26,6 +26,10 @@ namespace Asopalav
                       //"~/Scripts/jquery.js",
                       "~/Scripts/xzoom.min.js",
                       "~/Scripts/main.js",
+                      "~/Scripts/jquery-1.11.3.min.js.download.js",
+                      "~/Scripts/bootstrap.min.js.download.js",
+                      "~/Scripts/jquery.smartmenus.js.download.js",
+                      "~/Scripts/jquery.smartmenus.bootstrap.js.download.js",
                       "~/Scripts/plugins.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
@@ -35,7 +39,8 @@ namespace Asopalav
                       // "~/Content/example.css",
                       //"~/Content/pygments.css",
                       "~/Content/style.css",
-                      "~/Content/xzoom.css"));
+                      "~/Content/xzoom.css",
+                      "~/Content/jquery.smartmenus.bootstrap.css.css"));
         }
     }
 }

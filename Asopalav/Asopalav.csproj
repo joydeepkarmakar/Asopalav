@@ -285,6 +285,7 @@
     <Content Include="Content\images\thumbs\02_o_car.jpg" />
     <Content Include="Content\images\thumbs\03_r_car.jpg" />
     <Content Include="Content\images\thumbs\04_g_car.jpg" />
+    <Content Include="Content\jquery.smartmenus.bootstrap.css" />
     <Content Include="Content\pygments.css" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\style.css" />
@@ -332,11 +333,15 @@
     <Content Include="bin\roslyn\Microsoft.CSharp.Core.targets" />
     <Content Include="bin\roslyn\Microsoft.VisualBasic.Core.targets" />
     <Content Include="bin\roslyn\VBCSCompiler.exe.config" />
+    <Content Include="Scripts\bootstrap.min.js.download" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\easyzoom.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <Content Include="Scripts\jquery-1.11.1.min.js" />
+    <Content Include="Scripts\jquery.smartmenus.bootstrap.js.download" />
+    <Content Include="Scripts\jquery.smartmenus.js.download" />
+    <Content Include="Scripts\jquery-1.11.3.min.js.download" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery-3.1.1.min.js" />
     <Content Include="Scripts\jquery.js" />

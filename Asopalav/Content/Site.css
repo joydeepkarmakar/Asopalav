@@ -119,5 +119,14 @@ textarea,
     text-align:left;
 }
 
+#input-width >div>div>div> input {
+    max-width:100% !important;
+}
+
+.admin-margin-top {
+    margin: 110px auto 50px auto;
+    width: 90%;
+}
+
 
 
