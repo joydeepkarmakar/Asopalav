@@ -1157,7 +1157,7 @@ h1 {
     color: #a5a5aa;
     font-size: 14px;
     line-height: 30px;
-    background:#525456;
+    background: #525456;
 }
 
     #footer h3 {
@@ -1921,4 +1921,31 @@ h1 {
 
 .product-margin-top {
     margin: 120px auto 0 auto;
+}
+
+.gifts-submenu {
+    border: solid 1px #000;
+    border-top: 0px;
+    border-radius: 0 0 10px 10px;
+    background-color: #fff;
+    border-color: #c2c2c2;
+    padding: 5px 30px;
+    font-weight: bold;
+    list-style-type: none;
+    position: absolute;
+    left: 1px;
+    z-index: 1;
+    width: 100%;
+}
+
+.gifts-submenu li {
+    margin: 5px 0;
+}
+
+.gifts-submenu li a {
+    color: #666666;
+}
+
+.gifts-submenu li a:hover {
+    color: #359cfb;
 }

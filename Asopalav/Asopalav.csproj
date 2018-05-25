@@ -25,6 +25,7 @@
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
     <WebGreaseLibPath>..\packages\WebGrease.1.5.2\lib</WebGreaseLibPath>
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -285,6 +286,8 @@
     <Content Include="Content\images\thumbs\02_o_car.jpg" />
     <Content Include="Content\images\thumbs\03_r_car.jpg" />
     <Content Include="Content\images\thumbs\04_g_car.jpg" />
+    <Content Include="Content\jquery-ui.structure.css" />
+    <Content Include="Content\jquery-ui.theme.css" />
     <Content Include="Content\jquery.smartmenus.bootstrap.css" />
     <Content Include="Content\pygments.css" />
     <Content Include="Content\Site.css" />
@@ -339,6 +342,7 @@
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <Content Include="Scripts\jquery-1.11.1.min.js" />
+    <Content Include="Scripts\jquery-ui.js" />
     <Content Include="Scripts\jquery.smartmenus.bootstrap.js.download" />
     <Content Include="Scripts\jquery.smartmenus.js.download" />
     <Content Include="Scripts\jquery-1.11.3.min.js.download" />

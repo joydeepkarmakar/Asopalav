@@ -39,9 +39,17 @@
                 <div class="trigger"></div>
                 <ul>
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li><a href="#">Silverware</a></li>
-                    <li><a href="#">Gifts</a></li>
-                    <li><a href="#">Fine Metal</a></li>
+                    <li><a href="javascript:void(0);">Silverware</a></li>
+                    <li>
+                        <a href="javascript:void(0);" id="mnuGifts">Gifts</a>
+                        @*<ul id="ulGiftsSubmenu" class="gifts-submenu" style="display:none;">
+                            <li><a href="javascript:void(0);">Personalize</a></li>
+                            <li><a href="javascript:void(0);">Corporate</a></li>
+                            <li><a href="javascript:void(0);">Kids</a></li>
+                            <li><a href="javascript:void(0);">Festive</a></li>
+                        </ul>*@
+                    </li>
+                    <li><a href="javascript:void(0);">Fine Metal</a></li>
                     <li>@Html.ActionLink("About us", "About", "Home")</li>
                     <li>@Html.ActionLink("Contact us", "Contact", "Home")</li>
                 </ul>

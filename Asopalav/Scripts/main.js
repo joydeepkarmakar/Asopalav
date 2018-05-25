@@ -52,5 +52,42 @@ $(document).ready(function() {
 	mobileCheck();
 	$(window).resize(function() {
 		mobileCheck();
-	});
+    });
+
+    /*Gifts Submenu*/
+    var isGiftsSubMenuVisible = false;
+    var isGiftsMenuClicked = false;
+
+    $(document).on('click', '#mnuGifts', function () {
+        isGiftsMenuClicked = true;
+        if (!$("#ulGiftsSubmenu").is(":visible")) {
+            $('#ulGiftsSubmenu').slideDown();
+            isGiftsSubMenuVisible = true;
+        }
+        else {
+            $('#ulGiftsSubmenu').slideUp();
+            isGiftsSubMenuVisible = false;
+        }
+    });
+
+    $(document).click(function () {
+        if ((!isGiftsMenuClicked) && (isGiftsSubMenuVisible)) {
+            $('#ulGiftsSubmenu').slideUp();
+        }
+        else {
+            if (!isGiftsSubMenuVisible)
+                $('#ulGiftsSubmenu').slideUp();
+        }
+        isGiftsMenuClicked = false;
+
+    });
+
+    /*Datepicker*/
+    $(".ui-date-picker").datepicker({
+        dateFormat: 'yy-mm-dd',
+        changeMonth: true,
+        changeYear: true,
+        autoclose: true,
+        yearRange: '1950:' + new Date().getFullYear().toString()
+    });
 });

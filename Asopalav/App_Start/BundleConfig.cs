@@ -21,6 +21,7 @@ namespace Asopalav
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js",
+                      "~/Scripts/jquery-ui.js",
                       //"~/Scripts/jquery-3.1.1.min.js",
                       "~/Scripts/respond.js",
                       //"~/Scripts/jquery.js",
@@ -35,6 +36,8 @@ namespace Asopalav
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css",
+                      "~/Content/jquery-ui.structure.css",
+                      "~/Content/jquery-ui.theme.css",
                       // "~/Content/easyzoom.css",
                       // "~/Content/example.css",
                       //"~/Content/pygments.css",
