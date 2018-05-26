@@ -188,7 +188,7 @@ a {
     height: auto;
     padding-top: 5px;
     padding-bottom: 5px;
-    border-bottom: 1px solid #dcdcdc;
+    border-bottom: 1px solid #525456;
 }
 
 #header .right-links {
@@ -326,9 +326,9 @@ a {
 
     #slider li {
         color: #fff;
-        height: 686px;
+        height: 450px;
         background: no-repeat 50% 0;
-        background-size: cover;
+        background-size: 100% 100%;
     }
 
     #slider h3 {
@@ -1157,7 +1157,7 @@ h1 {
     color: #a5a5aa;
     font-size: 14px;
     line-height: 30px;
-    background:#525456;
+    background: #525456;
 }
 
     #footer h3 {
@@ -1292,7 +1292,7 @@ h1 {
 #footer .copy {
     color: #a2a2a2;
     font-size: 14px;
-    padding: 28px 0;
+    padding: 8px 0;
     clear: both;
     border-top: 1px solid #b6b6b9;
 }
@@ -1911,7 +1911,7 @@ h1 {
     }
 
 .hd-background {
-    background: #949697;
+    background: #525456;
     color: #fff;
 }
 
@@ -1921,4 +1921,16 @@ h1 {
 
 .product-margin-top {
     margin: 120px auto 0 auto;
+}
+
+#chb > input {
+    position: inherit !important;
+    left: -9999em;
+    margin-top: 13px;
+}
+
+#chb-offer > input {
+    position: inherit !important;
+    left: -9999em;
+    margin-top: 13px;
 }
