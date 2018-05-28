@@ -1827,7 +1827,7 @@ h1 {
 
 .hd-fix {
     position: fixed;
-    z-index: 99;
+    z-index: 999;
     background: #fff;
     width: 100%;
 }
@@ -1914,7 +1914,7 @@ h1 {
     }
 
 .hd-background {
-    background: #525456;
+    background: #a5322c;
     color: #fff;
 }
 
@@ -1963,4 +1963,9 @@ h1 {
 
 .gifts-submenu li a:hover {
     color: #359cfb;
+}
+
+.nav > li > a:hover, .nav > li > a:focus {
+    text-decoration: none;
+    background-color: #ea645d !important;
 }
