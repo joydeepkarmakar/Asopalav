@@ -1,9 +1,4 @@
 ﻿@model Asopalav.Models.RegisterViewModel
-@{
-    ViewBag.Title = "Register";
-}
-
-<h2>@ViewBag.Title.</h2>
 
 @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
@@ -34,6 +29,7 @@
                 @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-5 control-label" })
                 <div class="col-md-7">
                     @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.ConfirmPassword, "", new { @style = "color:red" })
                 </div>
             </div>
         </div>
@@ -42,6 +38,7 @@
                 @Html.LabelFor(m => m.User_Fname, new { @class = "col-xs-5 col-md-3 control-label" })
                 <div class="col-md-7">
                     @Html.TextBoxFor(m => m.User_Fname, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.User_Fname, "", new { @style = "color:red" })
                 </div>
             </div>
         </div>
@@ -58,6 +55,7 @@
                 @Html.LabelFor(m => m.User_Lname, new { @class = "col-xs-5 col-md-3 control-label" })
                 <div class="col-md-7">
                     @Html.TextBoxFor(m => m.User_Lname, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.User_Lname, "", new { @style = "color:red" })
                 </div>
             </div>
         </div>
@@ -74,6 +72,7 @@
                 @Html.LabelFor(m => m.Mobile, new { @class = "col-xs-5 col-md-3 control-label" })
                 <div class="col-md-7">
                     @Html.TextBoxFor(m => m.Mobile, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.Mobile, "", new { @style = "color:red" })
                 </div>
             </div>
         </div>
@@ -89,7 +88,7 @@
             <div class="form-group">
                 @Html.LabelFor(m => m.Gender, new { @class = "col-xs-5 col-md-3 control-label" })
                 <div class="col-md-7">
-                    @Html.DropDownListFor(m => m.Gender, ViewData["Gender"] as List<SelectListItem>, "Choose...", new { @class = "form-control gender-width" })
+                    @Html.DropDownListFor(m => m.Gender, ViewData["Gender"] as List<SelectListItem>, "Choose...", new { @class = "form-control gender-width", tabindex = 10 })
                     @Html.ValidationMessageFor(model => model.Gender, "", new { @style = "color:red" })
                 </div>
             </div>
@@ -98,7 +97,7 @@
             <div class="form-group">
                 @Html.LabelFor(m => m.User_DOB, new { @class = "col-md-5 control-label" })
                 <div class="col-md-7">
-                    @Html.TextBoxFor(m => m.User_DOB, new { @class = "form-control" })
+                    @Html.TextBoxFor(m => m.User_DOB, new { @class = "form-control ui-date-picker" })
                 </div>
             </div>
         </div>
@@ -106,7 +105,7 @@
             <div class="form-group">
                 @Html.LabelFor(m => m.User_Anniversary, new { @class = "col-xs-5 col-md-3 control-label" })
                 <div class="col-md-7">
-                    @Html.TextBoxFor(m => m.User_Anniversary, new { @class = "form-control" })
+                    @Html.TextBoxFor(m => m.User_Anniversary, new { @class = "form-control ui-date-picker" })
                 </div>
             </div>
         </div>

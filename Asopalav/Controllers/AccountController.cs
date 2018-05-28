@@ -36,24 +36,31 @@ namespace Asopalav.Controllers
                 return View(model);
             }
 
-            ValidateUserAndMenu_Result objValidateUserAndMenu_Result = new ValidateUserAndMenu_Result();
-            objValidateUserAndMenu_Result = objAsopalavDBEntities.ValidateUserAndMenu(model.Email, model.Password).FirstOrDefault();
-
-            if (objValidateUserAndMenu_Result.IsLoginValid)
+            try
             {
-                Session["IsLoginValid"] = true;
-                Session["UserFullName"] = objValidateUserAndMenu_Result.UserFullName;
+                ValidateUserAndMenu_Result objValidateUserAndMenu_Result = new ValidateUserAndMenu_Result();
+                objValidateUserAndMenu_Result = objAsopalavDBEntities.ValidateUserAndMenu(model.Email, model.Password).FirstOrDefault();
 
-                if (objValidateUserAndMenu_Result.RoleName == "Admin")
-                    return RedirectToAction("Index", "Product", new { area = "Admin" });
+                if (objValidateUserAndMenu_Result.IsLoginValid)
+                {
+                    Session["IsLoginValid"] = true;
+                    Session["UserFullName"] = objValidateUserAndMenu_Result.UserFullName;
+
+                    if (objValidateUserAndMenu_Result.RoleName == "Admin")
+                        return RedirectToAction("Index", "Product", new { area = "Admin" });
+                    else
+                        return RedirectToAction("Index", "Home");
+                }
+
                 else
-                    return RedirectToAction("Index", "Home");
+                {
+                    ModelState.AddModelError("", "Invalid login attempt.");
+                    return View(model);
+                }
             }
-
-            else
+            catch (Exception)
             {
-                ModelState.AddModelError("", "Invalid login attempt.");
-                return View(model);
+                throw;
             }
         }
 

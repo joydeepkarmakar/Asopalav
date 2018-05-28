@@ -1937,3 +1937,30 @@ h1 {
     left: -9999em;
     margin-top: 13px;
 }
+
+.gifts-submenu {
+    border: solid 1px #000;
+    border-top: 0px;
+    border-radius: 0 0 10px 10px;
+    background-color: #fff;
+    border-color: #c2c2c2;
+    padding: 5px 30px;
+    font-weight: bold;
+    list-style-type: none;
+    position: absolute;
+    left: 1px;
+    z-index: 1;
+    width: 100%;
+}
+
+.gifts-submenu li {
+    margin: 5px 0;
+}
+
+.gifts-submenu li a {
+    color: #666666;
+}
+
+.gifts-submenu li a:hover {
+    color: #359cfb;
+}
