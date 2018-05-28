@@ -42,6 +42,7 @@ img {
 
 ol, ul {
     list-style: none;
+    font-family:"Novecentowide";
 }
 
 blockquote, q {
@@ -326,7 +327,7 @@ a {
 
     #slider li {
         color: #fff;
-        height: 450px;
+        height: 500px;
         background: no-repeat 50% 0;
         background-size: 100% 100%;
     }
@@ -458,6 +459,7 @@ a {
     border: 1px solid #d3d3d3;
     margin: 12px 0 30px;
     position: relative;
+    font-family:"Novecentowide" !important;
 }
 
     .last-products .products article {
@@ -526,11 +528,12 @@ a {
         color: #3e3e3e;
         border-bottom: 1px solid #d3d3d3;
         font-weight: bold;
-        font-size: 24px;
+        font-size: 20px;
         font-family: 'Times New Roman';
         font-weight: 500;
-        padding: 12px 30px;
+        padding: 6px 30px;
         background: #ded9d9;
+        font-family:"Novecentowide";
     }
 
 .quick-links {
