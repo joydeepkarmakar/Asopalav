@@ -42,7 +42,7 @@ img {
 
 ol, ul {
     list-style: none;
-    font-family:"Novecentowide";
+    font-family: "Novecentowide";
 }
 
 blockquote, q {
@@ -253,6 +253,13 @@ a {
         font-family: "Novecentowide";
     }
 
+        #menu li:hover {
+            padding: 9px 19px 9px;
+            display: inline-block;
+            font-family: "Novecentowide";
+            background: #efefef;
+        }
+
     #menu a {
         color: #737375;
     }
@@ -459,7 +466,7 @@ a {
     border: 1px solid #d3d3d3;
     margin: 12px 0 30px;
     position: relative;
-    font-family:"Novecentowide" !important;
+    font-family: "Novecentowide" !important;
 }
 
     .last-products .products article {
@@ -533,7 +540,7 @@ a {
         font-weight: 500;
         padding: 6px 30px;
         background: #ded9d9;
-        font-family:"Novecentowide";
+        font-family: "Novecentowide";
     }
 
 .quick-links {
@@ -1356,7 +1363,7 @@ h1 {
 ------------------------------------------------------------------------------*/
 
 
-@media (-webkit-min-device-pixel-ratio: 2), (min-reso#lution: 192dpi) {
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
 
     #logo {
         background-image: url(../Content/images/logo@2x.png);
@@ -1525,6 +1532,21 @@ h1 {
 
 @media screen and (max-width: 760px) {
 
+    .gifts-submenu {
+        border: solid 1px #000;
+        border-top: 0px;
+        border-radius: 0 0 10px 10px;
+        background-color: #efefef;
+        border-color: #dcdcdc;
+        padding: 5px 0px;
+        font-weight: bold;
+        list-style-type: none;
+        position: absolute;
+        left: 0;
+        z-index: 1;
+        width: 100%;
+    }
+
     .middle-con-margin {
         margin-top: 100px;
     }
@@ -1689,6 +1711,7 @@ h1 {
         position: absolute;
         padding-bottom: 10px;
         border-bottom: 1px solid #333;
+        width: 100%;
     }
 
         #menu ul.active {
@@ -1700,6 +1723,14 @@ h1 {
         display: block;
         overflow: hidden;
         text-align: center;
+    }
+
+    #menu li:hover {
+        padding: 5px 20px;
+        display: block;
+        overflow: hidden;
+        text-align: center;
+        background: #efefef;
     }
 
     #menu .container {
@@ -1771,6 +1802,21 @@ h1 {
     #header .right-links li {
         padding: 0;
     }
+
+    .gifts-submenu {
+        border: solid 1px #000;
+        border-top: 0px;
+        border-radius: 0 0 10px 10px;
+        background-color: #efefef;
+        border-color: #dcdcdc;
+        padding: 5px 0px;
+        font-weight: bold;
+        list-style-type: none;
+        position: absolute;
+        left: 0;
+        z-index: 1;
+        width: 100%;
+    }
 }
 
 @media screen and (max-width: 520px) {
@@ -1782,9 +1828,40 @@ h1 {
     .last-products .products article {
         border: 0;
     }
+
+    .gifts-submenu {
+        border: solid 1px #000;
+        border-top: 0px;
+        border-radius: 0 0 10px 10px;
+        background-color: #efefef;
+        border-color: #dcdcdc;
+        padding: 5px 0px;
+        font-weight: bold;
+        list-style-type: none;
+        position: absolute;
+        left: 0;
+        z-index: 1;
+        width: 100%;
+    }
 }
 
 @media screen and (max-width: 480px) {
+
+    .gifts-submenu {
+        border: solid 1px #000;
+        border-top: 0px;
+        border-radius: 0 0 10px 10px;
+        background-color: #efefef;
+        border-color: #dcdcdc;
+        padding: 5px 0px;
+        font-weight: bold;
+        list-style-type: none;
+        position: absolute;
+        left: 0;
+        z-index: 1;
+        width: 100%;
+    }
+
     #sidebar {
         padding-bottom: 40px;
     }
@@ -1804,6 +1881,21 @@ h1 {
     #footer .col {
         width: 100% !important;
     }
+
+    .gifts-submenu {
+        border: solid 1px #000;
+        border-top: 0px;
+        border-radius: 0 0 10px 10px;
+        background-color: #efefef;
+        border-color: #dcdcdc;
+        padding: 5px 0px;
+        font-weight: bold;
+        list-style-type: none;
+        position: absolute;
+        left: 0;
+        z-index: 1;
+        width: 100%;
+    }
 }
 
 @media screen and (max-width: 320px) {
@@ -1822,6 +1914,21 @@ h1 {
 
     #footer .col:nth-child(2) {
         width: 49% !important;
+    }
+
+    .gifts-submenu {
+        border: solid 1px #000;
+        border-top: 0px;
+        border-radius: 0 0 10px 10px;
+        background-color: #efefef;
+        border-color: #dcdcdc;
+        padding: 5px 0px;
+        font-weight: bold;
+        list-style-type: none;
+        position: absolute;
+        left: 0;
+        z-index: 1;
+        width: 100%;
     }
 }
 
@@ -1932,40 +2039,49 @@ h1 {
     margin-top: 13px;
 }
 
-#chb-offer > input {
+#chb-offer > label > input {
     position: inherit !important;
     left: -9999em;
-    margin-top: 13px;
+    margin-top: 8px;
 }
 
 .gifts-submenu {
     border: solid 1px #000;
     border-top: 0px;
     border-radius: 0 0 10px 10px;
-    background-color: #fff;
-    border-color: #c2c2c2;
-    padding: 5px 30px;
+    background-color: #efefef !important;
+    border-color: #dcdcdc;
+    padding: 5px 0px;
     font-weight: bold;
     list-style-type: none;
     position: absolute;
-    left: 1px;
+    left: 30%;
     z-index: 1;
-    width: 100%;
+    width: 35%;
 }
 
-.gifts-submenu li {
-    margin: 5px 0;
-}
+    .gifts-submenu li {
+        margin: 5px 0;
+    }
 
-.gifts-submenu li a {
-    color: #666666;
-}
+        .gifts-submenu li a {
+            color: #666666;
+        }
 
-.gifts-submenu li a:hover {
-    color: #359cfb;
-}
+            .gifts-submenu li a:hover {
+                color: #359cfb;
+            }
 
 .nav > li > a:hover, .nav > li > a:focus {
     text-decoration: none;
     background-color: #ea645d !important;
+}
+
+.dropdown-menu {
+    left: 15px !important;
+    width: 92.5% !important;
+}
+
+.navbar-brand {
+    margin-left: 0px !important;
 }

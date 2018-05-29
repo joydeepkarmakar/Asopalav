@@ -19,7 +19,6 @@
 /* Set width on the form input elements since they're 100% wide by default */
 input,
 select,
-textarea,
 .gender-width {
     max-width: 280px;
 }
@@ -125,6 +124,11 @@ textarea,
 
 .admin-margin-top {
     margin: 130px auto 50px auto;
+    width: 90%;
+}
+
+.admin-margin-top-pro {
+    margin: 60px auto 50px auto;
     width: 90%;
 }
 
