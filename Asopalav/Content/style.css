@@ -1725,13 +1725,13 @@ h1 {
         text-align: center;
     }
 
-    #menu li:hover {
-        padding: 5px 20px;
-        display: block;
-        overflow: hidden;
-        text-align: center;
-        background: #efefef;
-    }
+        #menu li:hover {
+            padding: 5px 20px;
+            display: block;
+            overflow: hidden;
+            text-align: center;
+            background: #efefef;
+        }
 
     #menu .container {
         position: static;
@@ -2084,4 +2084,8 @@ h1 {
 
 .navbar-brand {
     margin-left: 0px !important;
+}
+
+.caret {
+    margin-top: 6px;
 }
