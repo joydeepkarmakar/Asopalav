@@ -14,13 +14,6 @@
                     @Html.ValidationMessageFor(m => m.Primary_Email, "", new { @style = "color:red" })
                 </div>
             </div>
-            @*<div class="form-group">
-                    @Html.LabelFor(m => m.Primary_Email, new { @class = "col-md-5 control-label" })
-                    <div class="col-md-7">
-                        @Html.TextBoxFor(m => m.Primary_Email, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(m => m.Primary_Email, "", new { @style = "color:red" })
-                    </div>
-                </div>*@
             <div class="form-group">
                 @Html.LabelFor(m => m.Password, new { @class = "col-sm-4 control-label" })
                 <div class="col-sm-8">
@@ -79,15 +72,8 @@
             <div class="form-group">
                 @Html.LabelFor(m => m.Gender, new { @class = "col-sm-4 control-label" })
                 <div class="col-sm-8">
-                    <button class="btn btn-default dropdown-toggle form-control" style="text-align:left;width:80%" type="button" data-toggle="dropdown">
-                        Choose...
-                        <span class="caret pull-right"></span>
-                    </button>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">HTML</a></li>
-                        <li><a href="#">CSS</a></li>
-                        <li><a href="#">JavaScript</a></li>
-                    </ul>
+                    @Html.DropDownListFor(m => m.Gender, ViewData["Gender"] as List<SelectListItem>
+                                       , "Choose...", new { @class = "form-control gender-width" })
                     @Html.ValidationMessageFor(model => model.Gender, "", new { @style = "color:red" })
                 </div>
             </div>
@@ -104,105 +90,6 @@
                 </div>
             </div>
         </div>
-        @*<div class="col-xs-12 col-md-6">
-                <div class="form-group">
-                    @Html.LabelFor(m => m.Password, new { @class = "col-xs-5 col-md-3 control-label" })
-                    <div class="col-md-7">
-                        @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(m => m.Password, "", new { @style = "color:red" })
-                    </div>
-                </div>
-            </div>*@
-        @*<div class="col-xs-12 col-md-6">
-                <div class="form-group">
-                    @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-5 control-label" })
-                    <div class="col-md-7">
-                        @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(m => m.ConfirmPassword, "", new { @style = "color:red" })
-                    </div>
-                </div>
-            </div>*@
-        @*<div class="col-xs-12 col-md-6">
-                <div class="form-group">
-                    @Html.LabelFor(m => m.User_Fname, new { @class = "col-xs-5 col-md-3 control-label" })
-                    <div class="col-md-7">
-                        @Html.TextBoxFor(m => m.User_Fname, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(m => m.User_Fname, "", new { @style = "color:red" })
-                    </div>
-                </div>
-            </div>*@
-        @*<div class="col-xs-12 col-md-6">
-                <div class="form-group">
-                    @Html.LabelFor(m => m.User_Mname, new { @class = "col-md-5 control-label" })
-                    <div class="col-md-7">
-                        @Html.TextBoxFor(m => m.User_Mname, new { @class = "form-control" })
-                    </div>
-                </div>
-            </div>*@
-        @*<div class="col-xs-12 col-md-6">
-                <div class="form-group">
-                    @Html.LabelFor(m => m.User_Lname, new { @class = "col-xs-5 col-md-3 control-label" })
-                    <div class="col-md-7">
-                        @Html.TextBoxFor(m => m.User_Lname, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(m => m.User_Lname, "", new { @style = "color:red" })
-                    </div>
-                </div>
-            </div>*@
-
-
-
-
-
-        @*<div class="col-xs-12 col-md-6">
-                <div class="form-group">
-                    @Html.LabelFor(m => m.Secondary_Email, new { @class = "col-md-5 control-label" })
-                    <div class="col-md-7">
-                        @Html.TextBoxFor(m => m.Secondary_Email, new { @class = "form-control" })
-                    </div>
-                </div>
-            </div>*@
-        @*<div class="col-xs-12 col-md-6">
-                <div class="form-group">
-                    @Html.LabelFor(m => m.Mobile, new { @class = "col-xs-5 col-md-3 control-label" })
-                    <div class="col-md-7">
-                        @Html.TextBoxFor(m => m.Mobile, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(m => m.Mobile, "", new { @style = "color:red" })
-                    </div>
-                </div>
-            </div>*@
-        @*<div class="col-xs-12 col-md-6">
-                <div class="form-group">
-                    @Html.LabelFor(m => m.Alternate_Mobile, new { @class = "col-md-5 control-label" })
-                    <div class="col-md-7">
-                        @Html.TextBoxFor(m => m.Alternate_Mobile, new { @class = "form-control" })
-                    </div>
-                </div>
-            </div>*@
-        @*<div class="col-xs-12 col-md-6">
-                <div class="form-group">
-                    @Html.LabelFor(m => m.Gender, new { @class = "col-xs-5 col-md-3 control-label" })
-                    <div class="col-md-7">
-                        @Html.DropDownListFor(m => m.Gender, ViewData["Gender"] as List<SelectListItem>, "Choose...", new { @class = "form-control gender-width", tabindex = 10 })
-                        @Html.ValidationMessageFor(model => model.Gender, "", new { @style = "color:red" })
-                    </div>
-                </div>
-            </div>*@
-        @*<div class="col-xs-12 col-md-6">
-                <div class="form-group">
-                    @Html.LabelFor(m => m.User_DOB, new { @class = "col-md-5 control-label" })
-                    <div class="col-md-7">
-                        @Html.TextBoxFor(m => m.User_DOB, new { @class = "form-control ui-date-picker" })
-                    </div>
-                </div>
-            </div>*@
-        @*<div class="col-xs-12 col-md-6">
-                <div class="form-group">
-                    @Html.LabelFor(m => m.User_Anniversary, new { @class = "col-xs-5 col-md-3 control-label" })
-                    <div class="col-md-7">
-                        @Html.TextBoxFor(m => m.User_Anniversary, new { @class = "form-control ui-date-picker" })
-                    </div>
-                </div>
-            </div>*@
     </div>
     <div class="row">
         <div class="col-xs-12 col-md-12">

@@ -8,8 +8,8 @@ function mobileCheck(){
 }
 
 $(document).ready(function() {
-	$("input[type=checkbox]").crfi();
-	$("select").crfs();
+	//$("input[type=checkbox]").crfi();
+	//$("select").crfs();
 	$("#slider ul").bxSlider({
 		controls: false,
 		auto: true,
@@ -90,4 +90,14 @@ $(document).ready(function() {
         autoclose: true,
         yearRange: '1950:' + new Date().getFullYear().toString()
     });
+
+    /*Dropzone for Images*/
+    //Dropzone.options.dropzoneForm = {
+    //    init: function () {
+    //        this.on("complete", function (data) {
+    //            //var res = eval('(' + data.xhr.responseText + ')');
+    //            var res = JSON.parse(data.xhr.responseText);
+    //        });
+    //    }
+    //};
 });

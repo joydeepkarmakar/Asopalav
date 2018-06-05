@@ -2039,7 +2039,7 @@ h1 {
     margin-top: 13px;
 }
 
-#chb-offer > label > input {
+.chb-offer > label > input {
     position: inherit !important;
     left: -9999em;
     margin-top: 8px;

@@ -66,6 +66,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AsopalavDataModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="FeedbackMaster.cs">
+      <DependentUpon>AsopalavDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Image.cs">
+      <DependentUpon>AsopalavDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="MenuMaster.cs">
       <DependentUpon>AsopalavDataModel.tt</DependentUpon>
     </Compile>

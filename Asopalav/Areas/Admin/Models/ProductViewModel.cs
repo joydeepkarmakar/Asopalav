@@ -3,12 +3,15 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Web;
 using System.Web.Mvc;
 
 namespace Asopalav.Models
 {
     public class ProductModel
     {
+        public long ProductID { get; set; }
+
         [Required(ErrorMessage = "Product Code is required")]
         [DisplayName("Product Code")]
         public string ProductCode { get; set; }
@@ -27,31 +30,29 @@ namespace Asopalav.Models
 
         [Required(ErrorMessage = "Product Dimension is required")]
         [DisplayName("Height X Width(Inch)")]
-        public string Height_width_inch { get; set; }
+        public string HeightInInch { get; set; }
+        public string WidthInInch { get; set; }
 
-        public int? Price { get; set; }
+        public decimal Price { get; set; }
 
-        [Required(ErrorMessage = "Set Offer is required")]
         [DisplayName("Set Offer")]
         public bool IsOffer { get; set; }
 
-        [Required(ErrorMessage = "Offer Price is required")]
         [DisplayName("Offer Price")]
-        public decimal OfferPrice { get; set; }
+        public decimal? OfferPrice { get; set; }
 
-        [Required(ErrorMessage = "Small Image Path is required")]
-        [DisplayName("Small Image Path")]
-        public string SmallImage { get; set; }
+        [Required(ErrorMessage = "Image Path is required")]
+        [DisplayName("Upload Image")]
+        public string ImagePath { get; set; }
 
-        [Required(ErrorMessage = "Large Image Path is required")]
-        [DisplayName("Large Image Path")]
-        public string BigImage { get; set; }
-
-        [Required(ErrorMessage = "Active is required")]
-        [DisplayName("Active")]
+        [Required(ErrorMessage = "Set Active is required")]
+        [DisplayName("Set Active")]
         public bool IsActive { get; set; }
 
+        [Required(ErrorMessage = "Product Description is required")]
         public string Description { get; set; }
+
+        public DateTime? ModifyDate { get; set; }
 
         public List<SelectListItem> ProductType { get; set; }
     }
@@ -62,4 +63,13 @@ namespace Asopalav.Models
         public string ProductType { get; set; }
         public bool IsActive { get; set; }
     }
+
+    //public class UploadImageModel
+    //{
+    //    public HttpPostedFileBase File { get; set; }
+    //    public int X { get; set; }
+    //    public int Y { get; set; }
+    //    public int Width { get; set; }
+    //    public int Height { get; set; }
+    //}
 }

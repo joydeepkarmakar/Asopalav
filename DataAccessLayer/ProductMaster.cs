@@ -14,21 +14,29 @@ namespace DataAccessLayer
     
     public partial class ProductMaster
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public ProductMaster()
+        {
+            this.Images = new HashSet<Image>();
+        }
+    
         public long ProductID { get; set; }
         public string ProductCode { get; set; }
         public string ProductName { get; set; }
         public Nullable<int> ProductTypeID { get; set; }
         public decimal WeightInGms { get; set; }
-        public string Height_width_inch { get; set; }
-        public Nullable<decimal> Price { get; set; }
-        public bool IsOffer { get; set; }
-        public decimal OfferPrice { get; set; }
-        public string SmallImage { get; set; }
-        public string BigImage { get; set; }
+        public string HeightInInch { get; set; }
+        public string WidthInInch { get; set; }
+        public decimal Price { get; set; }
+        public Nullable<bool> IsOffer { get; set; }
+        public Nullable<decimal> OfferPrice { get; set; }
         public bool IsActive { get; set; }
         public string Description { get; set; }
-        public Nullable<System.DateTime> Creation_Date { get; set; }
+        public System.DateTime CreationDate { get; set; }
+        public Nullable<System.DateTime> ModifyDate { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Image> Images { get; set; }
         public virtual ProductTypeMaster ProductTypeMaster { get; set; }
     }
 }

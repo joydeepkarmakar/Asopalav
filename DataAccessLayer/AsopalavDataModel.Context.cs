@@ -28,65 +28,14 @@ namespace DataAccessLayer
         }
     
         public virtual DbSet<MenuMaster> MenuMasters { get; set; }
-        public virtual DbSet<ProductMaster> ProductMasters { get; set; }
         public virtual DbSet<ProductTypeMaster> ProductTypeMasters { get; set; }
         public virtual DbSet<RoleMaster> RoleMasters { get; set; }
         public virtual DbSet<RoleMenuPermission> RoleMenuPermissions { get; set; }
         public virtual DbSet<UserAddressDetail> UserAddressDetails { get; set; }
         public virtual DbSet<UserProfileMaster> UserProfileMasters { get; set; }
-    
-        public virtual int AddProduct(string productCode, string productName, Nullable<int> productTypeID, Nullable<decimal> weightInGms, string height_width_inch, Nullable<decimal> price, Nullable<bool> isOffer, Nullable<decimal> offerPrice, string smallImage, string bigImage, Nullable<bool> isActive, string description)
-        {
-            var productCodeParameter = productCode != null ?
-                new ObjectParameter("ProductCode", productCode) :
-                new ObjectParameter("ProductCode", typeof(string));
-    
-            var productNameParameter = productName != null ?
-                new ObjectParameter("ProductName", productName) :
-                new ObjectParameter("ProductName", typeof(string));
-    
-            var productTypeIDParameter = productTypeID.HasValue ?
-                new ObjectParameter("ProductTypeID", productTypeID) :
-                new ObjectParameter("ProductTypeID", typeof(int));
-    
-            var weightInGmsParameter = weightInGms.HasValue ?
-                new ObjectParameter("WeightInGms", weightInGms) :
-                new ObjectParameter("WeightInGms", typeof(decimal));
-    
-            var height_width_inchParameter = height_width_inch != null ?
-                new ObjectParameter("Height_width_inch", height_width_inch) :
-                new ObjectParameter("Height_width_inch", typeof(string));
-    
-            var priceParameter = price.HasValue ?
-                new ObjectParameter("Price", price) :
-                new ObjectParameter("Price", typeof(decimal));
-    
-            var isOfferParameter = isOffer.HasValue ?
-                new ObjectParameter("IsOffer", isOffer) :
-                new ObjectParameter("IsOffer", typeof(bool));
-    
-            var offerPriceParameter = offerPrice.HasValue ?
-                new ObjectParameter("OfferPrice", offerPrice) :
-                new ObjectParameter("OfferPrice", typeof(decimal));
-    
-            var smallImageParameter = smallImage != null ?
-                new ObjectParameter("SmallImage", smallImage) :
-                new ObjectParameter("SmallImage", typeof(string));
-    
-            var bigImageParameter = bigImage != null ?
-                new ObjectParameter("BigImage", bigImage) :
-                new ObjectParameter("BigImage", typeof(string));
-    
-            var isActiveParameter = isActive.HasValue ?
-                new ObjectParameter("IsActive", isActive) :
-                new ObjectParameter("IsActive", typeof(bool));
-    
-            var descriptionParameter = description != null ?
-                new ObjectParameter("Description", description) :
-                new ObjectParameter("Description", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AddProduct", productCodeParameter, productNameParameter, productTypeIDParameter, weightInGmsParameter, height_width_inchParameter, priceParameter, isOfferParameter, offerPriceParameter, smallImageParameter, bigImageParameter, isActiveParameter, descriptionParameter);
-        }
+        public virtual DbSet<FeedbackMaster> FeedbackMasters { get; set; }
+        public virtual DbSet<Image> Images { get; set; }
+        public virtual DbSet<ProductMaster> ProductMasters { get; set; }
     
         public virtual int AddUser(string primary_Email, string password, string user_Fname, string user_Mname, string user_Lname, string secondary_Email, string mobile, string alternate_Mobile, string gender, Nullable<System.DateTime> user_DOB, Nullable<System.DateTime> user_Anniversary)
         {
@@ -148,6 +97,67 @@ namespace DataAccessLayer
                 new ObjectParameter("Password", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ValidateUserAndMenu_Result>("ValidateUserAndMenu", userNameParameter, passwordParameter);
+        }
+    
+        public virtual int AddUpdateProduct(Nullable<long> productID, string productCode, string productName, Nullable<int> productTypeID, Nullable<decimal> weightInGms, string heightInInch, string widthInInch, Nullable<decimal> price, Nullable<bool> isOffer, Nullable<decimal> offerPrice, string imagePath, Nullable<bool> isActive, string description, Nullable<System.DateTime> modifyDate)
+        {
+            var productIDParameter = productID.HasValue ?
+                new ObjectParameter("ProductID", productID) :
+                new ObjectParameter("ProductID", typeof(long));
+    
+            var productCodeParameter = productCode != null ?
+                new ObjectParameter("ProductCode", productCode) :
+                new ObjectParameter("ProductCode", typeof(string));
+    
+            var productNameParameter = productName != null ?
+                new ObjectParameter("ProductName", productName) :
+                new ObjectParameter("ProductName", typeof(string));
+    
+            var productTypeIDParameter = productTypeID.HasValue ?
+                new ObjectParameter("ProductTypeID", productTypeID) :
+                new ObjectParameter("ProductTypeID", typeof(int));
+    
+            var weightInGmsParameter = weightInGms.HasValue ?
+                new ObjectParameter("WeightInGms", weightInGms) :
+                new ObjectParameter("WeightInGms", typeof(decimal));
+    
+            var heightInInchParameter = heightInInch != null ?
+                new ObjectParameter("HeightInInch", heightInInch) :
+                new ObjectParameter("HeightInInch", typeof(string));
+    
+            var widthInInchParameter = widthInInch != null ?
+                new ObjectParameter("WidthInInch", widthInInch) :
+                new ObjectParameter("WidthInInch", typeof(string));
+    
+            var priceParameter = price.HasValue ?
+                new ObjectParameter("Price", price) :
+                new ObjectParameter("Price", typeof(decimal));
+    
+            var isOfferParameter = isOffer.HasValue ?
+                new ObjectParameter("IsOffer", isOffer) :
+                new ObjectParameter("IsOffer", typeof(bool));
+    
+            var offerPriceParameter = offerPrice.HasValue ?
+                new ObjectParameter("OfferPrice", offerPrice) :
+                new ObjectParameter("OfferPrice", typeof(decimal));
+    
+            var imagePathParameter = imagePath != null ?
+                new ObjectParameter("ImagePath", imagePath) :
+                new ObjectParameter("ImagePath", typeof(string));
+    
+            var isActiveParameter = isActive.HasValue ?
+                new ObjectParameter("IsActive", isActive) :
+                new ObjectParameter("IsActive", typeof(bool));
+    
+            var descriptionParameter = description != null ?
+                new ObjectParameter("Description", description) :
+                new ObjectParameter("Description", typeof(string));
+    
+            var modifyDateParameter = modifyDate.HasValue ?
+                new ObjectParameter("ModifyDate", modifyDate) :
+                new ObjectParameter("ModifyDate", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AddUpdateProduct", productIDParameter, productCodeParameter, productNameParameter, productTypeIDParameter, weightInGmsParameter, heightInInchParameter, widthInInchParameter, priceParameter, isOfferParameter, offerPriceParameter, imagePathParameter, isActiveParameter, descriptionParameter, modifyDateParameter);
         }
     }
 }
