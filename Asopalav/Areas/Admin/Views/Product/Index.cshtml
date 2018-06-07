@@ -76,10 +76,10 @@
                 <div class="form-group">
                     @*@Html.LabelFor(m => m.ImagePath, new { @class = "control-label col-sm-4" })*@
                     <div class="col-sm-8">
-                        <input type="file" class="form-control-file" id="ImagePath" name="ImagePath" aria-describedby="fileHelp" required>
-                        @*<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Upload Images</button>
+                        @*<input type="file" class="form-control-file" id="ImagePath" name="ImagePath" aria-describedby="fileHelp" required>
+                       <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Upload Images</button>
 
-        <!-- Modal -->
+                       <!-- Modal -->
         <div class="modal fade" id="myModal" role="dialog" data-backdrop="static">
             <div class="modal-dialog">
 
@@ -100,9 +100,9 @@
                 </div>
 
             </div>
-        </div>
+        </div>*@
 
-                        @Html.ActionLink("Upload Images", "UploadImage", "Product", "", new { target = "_new", width = "200px", height = "300px", @class = "btn btn-info" })*@
+                        @Html.ActionLink("Upload Images", "UploadImage", "Product", "", new { target = "_new", width = "200px", height = "300px", @class = "btn btn-info" })
                         @Html.ValidationMessageFor(m => m.ImagePath, "", new { @style = "color:red" })
                     </div>
                 </div>

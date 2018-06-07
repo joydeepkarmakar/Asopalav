@@ -25,6 +25,16 @@
           <Property Name="ImagePath" Type="varchar(max)" Nullable="false" />
           <Property Name="ProductID" Type="bigint" />
         </EntityType>
+        <EntityType Name="MarketTracker">
+          <Key>
+            <PropertyRef Name="CurrentDate" />
+            <PropertyRef Name="IsActive" />
+          </Key>
+          <Property Name="CurrentDate" Type="datetime" Nullable="false" />
+          <Property Name="DollarRate" Type="varchar" MaxLength="50" />
+          <Property Name="SilverRate" Type="varchar" MaxLength="50" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+        </EntityType>
         <EntityType Name="MenuMaster">
           <Key>
             <PropertyRef Name="MenuID" />
@@ -190,6 +200,7 @@
           <Parameter Name="User_DOB" Type="date" Mode="In" />
           <Parameter Name="User_Anniversary" Type="date" Mode="In" />
         </Function>
+        <Function Name="GetDollarSilverRate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="ValidateUserAndMenu" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="UserName" Type="varchar" Mode="In" />
           <Parameter Name="Password" Type="varchar" Mode="In" />
@@ -197,6 +208,7 @@
         <EntityContainer Name="AsopalavDBModelStoreContainer">
           <EntitySet Name="FeedbackMaster" EntityType="Self.FeedbackMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Images" EntityType="Self.Images" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MarketTracker" EntityType="Self.MarketTracker" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MenuMaster" EntityType="Self.MenuMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProductMaster" EntityType="Self.ProductMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProductTypeMaster" EntityType="Self.ProductTypeMaster" Schema="dbo" store:Type="Tables" />
@@ -372,6 +384,8 @@
             <End Role="ProductTypeMaster" EntitySet="ProductTypeMasters" />
             <End Role="ProductMaster" EntitySet="ProductMasters" />
           </AssociationSet>
+          <EntitySet Name="MarketTrackers" EntityType="AsopalavDBModel.MarketTracker" />
+          <FunctionImport Name="GetDollarSilverRate" ReturnType="Collection(AsopalavDBModel.GetDollarSilverRate_Result)" />
         </EntityContainer>
         <ComplexType Name="ValidateUserAndMenu_Result">
           <Property Type="Boolean" Name="IsLoginValid" Nullable="false" />
@@ -444,6 +458,20 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="MarketTracker">
+          <Key>
+            <PropertyRef Name="CurrentDate" />
+            <PropertyRef Name="IsActive" />
+          </Key>
+          <Property Name="CurrentDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DollarRate" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SilverRate" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <ComplexType Name="GetDollarSilverRate_Result">
+          <Property Type="String" Name="DollarRate" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="SilverRate" Nullable="true" MaxLength="50" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -589,6 +617,24 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="MarketTrackers">
+            <EntityTypeMapping TypeName="AsopalavDBModel.MarketTracker">
+              <MappingFragment StoreEntitySet="MarketTracker">
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="SilverRate" ColumnName="SilverRate" />
+                <ScalarProperty Name="DollarRate" ColumnName="DollarRate" />
+                <ScalarProperty Name="CurrentDate" ColumnName="CurrentDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="GetDollarSilverRate" FunctionName="AsopalavDBModel.Store.GetDollarSilverRate">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="AsopalavDBModel.GetDollarSilverRate_Result">
+                <ScalarProperty Name="DollarRate" ColumnName="DollarRate" />
+                <ScalarProperty Name="SilverRate" ColumnName="SilverRate" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

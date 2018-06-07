@@ -13,11 +13,15 @@ using DataAccessLayer;
 
 namespace Asopalav.Areas.Admin.Controllers
 {
-    [Route("[area]/[controller]/[action]")]
+    //[Route("[area]/[controller]/[action]")]
+    [RouteArea("Admin")]
+    [RoutePrefix("Product")]
+    [Route("{action}")]
     public class ProductController : Controller
     {
         AsopalavDBEntities objAsopalavDBEntities = new AsopalavDBEntities();
 
+        [Route("")]
         public ActionResult Index()
         {
             ViewData["ProductTypeID"] = GetProductTypeList();
@@ -28,13 +32,31 @@ namespace Asopalav.Areas.Admin.Controllers
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
         [ActionName("Products")]
-        public ActionResult AddProduct(ProductMaster model)
+        public ActionResult AddProduct(ProductMaster objProductMaster, IEnumerable<HttpPostedFileBase> images)
         {
             if (ModelState.IsValid)
             {
-                int result = 0;
+                objAsopalavDBEntities.ProductMasters.Add(objProductMaster);
+                if (images != null)
+                {
+                    var imageList = new List<DataAccessLayer.Image>();
+                    foreach (var image in images)
+                    {
+                        using (var br = new BinaryReader(image.InputStream))
+                        {
+                            var data = br.ReadBytes(image.ContentLength);
+                            var img = new DataAccessLayer.Image { ProductID = objProductMaster.ProductID };
+                            img.ImageName = "qwerty";
+                            img.ImagePath = "~/Uploads/qazwsx";
+                            imageList.Add(img);
+                        }
+                    }
+                    objProductMaster.Images = imageList;
+                }
+                objAsopalavDBEntities.SaveChanges();
+                return RedirectToAction("Index");
             }
-            return View(model);
+            return View(objProductMaster);
         }
 
         public ActionResult UploadImage()

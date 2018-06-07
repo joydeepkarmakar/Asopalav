@@ -18,6 +18,7 @@ namespace Asopalav.Controllers
         //
         // GET: /Account/Login
         [AllowAnonymous]
+        //[Route("~/Login")]
         public ActionResult Login(string returnUrl)
         {
             ViewBag.ReturnUrl = returnUrl;
@@ -66,6 +67,7 @@ namespace Asopalav.Controllers
 
         [HttpGet]
         [AllowAnonymous]
+        [Route("~/Register")]
         public ActionResult Register()
         {
             ViewData["Gender"] = GetGenderList();

@@ -69,7 +69,13 @@
     <Compile Include="FeedbackMaster.cs">
       <DependentUpon>AsopalavDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="GetDollarSilverRate_Result.cs">
+      <DependentUpon>AsopalavDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Image.cs">
+      <DependentUpon>AsopalavDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MarketTracker.cs">
       <DependentUpon>AsopalavDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="MenuMaster.cs">

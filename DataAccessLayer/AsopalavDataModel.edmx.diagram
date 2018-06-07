@@ -17,6 +17,7 @@
         <EntityTypeShape EntityType="AsopalavDBModel.ProductMaster" Width="1.5" PointX="8" PointY="1" />
         <AssociationConnector Association="AsopalavDBModel.FK_Images_ProductMaster" />
         <AssociationConnector Association="AsopalavDBModel.FK_ProductMaster_ProductTypeMaster" />
+        <EntityTypeShape EntityType="AsopalavDBModel.MarketTracker" Width="1.5" PointX="8.375" PointY="6.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
