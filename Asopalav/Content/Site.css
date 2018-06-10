@@ -64,8 +64,8 @@ select,
 .register-margin-top {
     margin: 140px auto 40px auto;
     width: 40%;
-    text-align:center;
-    font-weight:bold;
+    text-align: center;
+    font-weight: bold;
 }
 
 /*------------------About Us-----------------------*/
@@ -73,15 +73,15 @@ select,
 .about-margin-top {
     margin: 110px auto 20px auto;
     width: 88%;
-    font-weight:bold;
-    font-size:20px;
-    text-align:left;
+    font-weight: bold;
+    font-size: 20px;
+    text-align: left;
 }
 
 .about-content {
-    width:80%;
-     margin:0 auto;
-     text-align:justify;
+    width: 80%;
+    margin: 0 auto;
+    text-align: justify;
 }
 
 /*-----------------Contact Us---------------------*/
@@ -89,37 +89,37 @@ select,
 .contact-margin-top {
     margin: 110px auto 20px auto;
     width: 90%;
-    font-weight:bold;
-    font-size:20px;
-    text-align:center;
+    font-weight: bold;
+    font-size: 20px;
+    text-align: center;
 }
 
-    .contact-margin-top >div > input {
-    max-width:100% !important;
-    margin-bottom:7px;
+    .contact-margin-top > div > input {
+        max-width: 100% !important;
+        margin-bottom: 7px;
     }
 
-        .contact-margin-top >div > textarea {
-    max-width:100% !important;
-    margin-top:7px;
-    margin-bottom:15px;
+    .contact-margin-top > div > textarea {
+        max-width: 100% !important;
+        margin-top: 7px;
+        margin-bottom: 15px;
     }
 
 .corporate {
-    color:#696763;
-    font-size:20px;
-    font-weight:300;
-    text-align:left;
+    color: #696763;
+    font-size: 20px;
+    font-weight: 300;
+    text-align: left;
 }
 
 .corporate-address {
-    color:#696763;
-    font-size:14px;
-    text-align:left;
+    color: #696763;
+    font-size: 14px;
+    text-align: left;
 }
 
-#input-width >div>div>div> input {
-    max-width:100% !important;
+#input-width > div > div > div > input {
+    max-width: 100% !important;
 }
 
 .admin-margin-top {
@@ -132,5 +132,31 @@ select,
     width: 90%;
 }
 
+/*Dropzone Div Starts*/
+.dropDiv {
+    height: 150px;
+    width: 250px;
+    border: 1px solid black;
+    position: relative;
+}
 
+.drophyperspan {
+    background: blue;
+    opacity: .3;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    z-index: 1;
+}
 
+.dz-preview .dz-processing .dz-image-preview .dz-success .dz-complete {
+    display: none !important;
+}
+
+.dz-default .dz-message {
+    display: none !important;
+}
+
+/*Dropzone Div Ends*/

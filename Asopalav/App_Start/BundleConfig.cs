@@ -32,7 +32,8 @@ namespace Asopalav
                       "~/Scripts/jquery.smartmenus.js.download.js",
                       "~/Scripts/jquery.smartmenus.bootstrap.js.download.js",
                       "~/Scripts/plugins.js",
-                       "~/Scripts/dropzone.js"
+                      "~/Scripts/dropzone.js",
+                      "~/Scripts/toastr.min.js"
                       ));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
@@ -47,7 +48,8 @@ namespace Asopalav
                       "~/Content/xzoom.css",
                       "~/Content/jquery.smartmenus.bootstrap.css",
                       "~/Content/basic.css",
-                      "~/Content/dropzone.css"
+                      "~/Content/dropzone.css",
+                      "~/Content/toastr.min.css"
                       ));
         }
     }

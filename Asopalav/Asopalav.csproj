@@ -295,6 +295,7 @@
     <Content Include="Content\pygments.css" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\style.css" />
+    <Content Include="Content\toastr.min.css" />
     <Content Include="Content\xzoom.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="fonts\Novecentowide-Bold.svg" />
@@ -366,6 +367,7 @@
     <Content Include="Scripts\respond.min.js" />
     <None Include="Scripts\_references.js" />
     <Content Include="Scripts\setup.js" />
+    <Content Include="Scripts\toastr.min.js" />
     <Content Include="Scripts\xzoom.min.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>

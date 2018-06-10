@@ -55,6 +55,7 @@ namespace Asopalav.Models
         public DateTime? ModifyDate { get; set; }
 
         public List<SelectListItem> ProductType { get; set; }
+        public Dictionary<string, string> ImageDetailsList { get; set; }
     }
 
     public class ProductTypeModel

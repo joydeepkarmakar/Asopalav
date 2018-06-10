@@ -50,8 +50,8 @@
             <PropertyRef Name="ProductID" />
           </Key>
           <Property Name="ProductID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="ProductCode" Type="varchar" MaxLength="20" Nullable="false" />
-          <Property Name="ProductName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="ProductCode" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="ProductName" Type="varchar" MaxLength="250" Nullable="false" />
           <Property Name="ProductTypeID" Type="int" />
           <Property Name="WeightInGms" Type="decimal" Precision="18" Scale="3" Nullable="false" />
           <Property Name="HeightInInch" Type="varchar" MaxLength="15" />
@@ -200,6 +200,7 @@
           <Parameter Name="User_DOB" Type="date" Mode="In" />
           <Parameter Name="User_Anniversary" Type="date" Mode="In" />
         </Function>
+        <Function Name="DailyRate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="GetDollarSilverRate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="ValidateUserAndMenu" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="UserName" Type="varchar" Mode="In" />
@@ -386,6 +387,7 @@
           </AssociationSet>
           <EntitySet Name="MarketTrackers" EntityType="AsopalavDBModel.MarketTracker" />
           <FunctionImport Name="GetDollarSilverRate" ReturnType="Collection(AsopalavDBModel.GetDollarSilverRate_Result)" />
+          <FunctionImport Name="GetDailyDollarSilverRate" />
         </EntityContainer>
         <ComplexType Name="ValidateUserAndMenu_Result">
           <Property Type="Boolean" Name="IsLoginValid" Nullable="false" />
@@ -418,8 +420,8 @@
             <PropertyRef Name="ProductID" />
           </Key>
           <Property Name="ProductID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ProductCode" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="ProductName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ProductCode" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ProductName" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
           <Property Name="ProductTypeID" Type="Int32" />
           <Property Name="WeightInGms" Type="Decimal" Nullable="false" Precision="18" Scale="3" />
           <Property Name="HeightInInch" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
@@ -635,6 +637,7 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetDailyDollarSilverRate" FunctionName="AsopalavDBModel.Store.DailyRate" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

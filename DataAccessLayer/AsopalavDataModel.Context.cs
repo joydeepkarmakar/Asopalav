@@ -165,5 +165,10 @@ namespace DataAccessLayer
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetDollarSilverRate_Result>("GetDollarSilverRate");
         }
+    
+        public virtual int GetDailyDollarSilverRate()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("GetDailyDollarSilverRate");
+        }
     }
 }

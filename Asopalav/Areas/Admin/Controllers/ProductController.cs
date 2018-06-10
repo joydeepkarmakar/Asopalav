@@ -13,75 +13,82 @@ using DataAccessLayer;
 
 namespace Asopalav.Areas.Admin.Controllers
 {
-    //[Route("[area]/[controller]/[action]")]
     [RouteArea("Admin")]
     [RoutePrefix("Product")]
     [Route("{action}")]
     public class ProductController : Controller
     {
         AsopalavDBEntities objAsopalavDBEntities = new AsopalavDBEntities();
+        public static Dictionary<string, string> imageUrlList = new Dictionary<string, string>();
+        ProductModel objProductModel = new ProductModel();
 
         [Route("")]
         public ActionResult Index()
         {
             ViewData["ProductTypeID"] = GetProductTypeList();
-            return View();
+            return View(objProductModel);
         }
 
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        [ActionName("Products")]
-        public ActionResult AddProduct(ProductMaster objProductMaster, IEnumerable<HttpPostedFileBase> images)
+        public ActionResult Add(ProductMaster objProductMaster)
         {
-            if (ModelState.IsValid)
+            try
             {
-                objAsopalavDBEntities.ProductMasters.Add(objProductMaster);
-                if (images != null)
+                if (ModelState.IsValid)
                 {
-                    var imageList = new List<DataAccessLayer.Image>();
-                    foreach (var image in images)
+                    objProductMaster.CreationDate = DateTime.Now;
+                    objAsopalavDBEntities.ProductMasters.Add(objProductMaster);
+                    if (imageUrlList != null)
                     {
-                        using (var br = new BinaryReader(image.InputStream))
+                        var imageList = new List<DataAccessLayer.Image>();
+                        foreach (var image in imageUrlList)
                         {
-                            var data = br.ReadBytes(image.ContentLength);
                             var img = new DataAccessLayer.Image { ProductID = objProductMaster.ProductID };
-                            img.ImageName = "qwerty";
-                            img.ImagePath = "~/Uploads/qazwsx";
+                            img.ImageName = image.Key;
+                            img.ImagePath = GetUploadImageUrl(image.Value, objProductMaster.ProductCode);
                             imageList.Add(img);
                         }
+                        objProductMaster.Images = imageList;
                     }
-                    objProductMaster.Images = imageList;
+                    objAsopalavDBEntities.SaveChanges();
+                    imageUrlList.Clear();
+                    TempData["isSaved"] = "true";
+                    TempData["Msg"] = "Record Saved. (Item Name : " + objProductMaster.ProductCode + " )";
+                    return RedirectToAction("Index");
                 }
-                objAsopalavDBEntities.SaveChanges();
-                return RedirectToAction("Index");
             }
-            return View(objProductMaster);
-        }
-
-        public ActionResult UploadImage()
-        {
-            return View();
+            catch (Exception ex)
+            {
+                if (ex.InnerException != null)
+                {
+                    TempData["Msg"] = (ex.InnerException).Message.Substring(0, (ex.InnerException).Message.IndexOf('\r'));
+                }
+                else
+                {
+                    TempData["Msg"] = ex.Message;
+                }
+            }
+            return View(objProductModel);
         }
 
         [HttpPost]
-        [ActionName("UploadImage")]
+        [Route("~/Admin/Product/UploadImage")]
         public ActionResult Upload()
         {
             bool isSavedSuccessfully = true;
-            string fName = "";
+            string imgFileName = string.Empty, imageUrl = string.Empty;
             Bitmap original = null;
-            var imageUrlList = new List<DataAccessLayer.Image>();
+
             try
             {
                 foreach (string fileName in Request.Files)
                 {
                     HttpPostedFileBase file = Request.Files[fileName];
-                    fName = file.FileName;
+                    imgFileName = file.FileName;
                     if (file != null && file.ContentLength > 0)
                     {
-                        //var path = Path.Combine(Server.MapPath("~/Uploads/Temp"));
-                        //string pathString = System.IO.Path.Combine(path.ToString());
                         var fileNameWithoutExtension = Path.GetFileNameWithoutExtension(file.FileName);
                         original = Bitmap.FromStream(file.InputStream) as Bitmap;
                         if (original != null)
@@ -90,18 +97,15 @@ namespace Asopalav.Areas.Admin.Controllers
                             var fn = Server.MapPath("~/Uploads/Temp/" + fileNameWithoutExtension + ".png");
                             img.Save(fn, System.Drawing.Imaging.ImageFormat.Png);
                             var host = System.Web.HttpContext.Current.Request.Url.OriginalString.Replace(System.Web.HttpContext.Current.Request.Url.PathAndQuery, "");
-                            //imageUrlList.Add(1, host + "\\" + fn.Substring(fn.IndexOf("Uploads"))).Replace(@"\", "/");
-                            //TempData["imageUrl"] = (host + "\\" + fn.Substring(fn.IndexOf("Uploads"))).Replace(@"\", "/");
+                            imageUrl = (host + "\\" + fn.Substring(fn.IndexOf("Uploads"))).Replace(@"\", "/");
                         }
-
-                        //bool isExists = System.IO.Directory.Exists(pathString);
-                        //if (!isExists)
-                        //    System.IO.Directory.CreateDirectory(pathString);
-                        //var uploadpath = string.Format("{0}\\{1}", pathString, file.FileName);
-                        //file.SaveAs(uploadpath);
+                        imageUrlList.Add(fileNameWithoutExtension, imageUrl);
                     }
                 }
-                return RedirectToAction("ClosePreview");
+
+                ViewData["ProductTypeID"] = GetProductTypeList();
+                objProductModel.ImageDetailsList = imageUrlList;
+                return View("Index", objProductModel);
             }
             catch (Exception)
             {
@@ -111,7 +115,7 @@ namespace Asopalav.Areas.Admin.Controllers
             {
                 return Json(new
                 {
-                    Message = fName
+                    Message = imgFileName
                 });
             }
             else
@@ -121,14 +125,6 @@ namespace Asopalav.Areas.Admin.Controllers
                     Message = "Error in saving file"
                 });
             }
-        }
-
-        public ActionResult ClosePreview()
-        {
-            //MediaAssetUploadModel objMediaAssetUploadModel = new MediaAssetUploadModel();
-            //objMediaAssetUploadModel.Filename = TempData["imageUrl"].ToString();
-            //return View("ClosePreview", objMediaAssetUploadModel);
-            return View("ClosePreview");
         }
 
         private List<SelectListItem> GetProductTypeList()
@@ -141,6 +137,32 @@ namespace Asopalav.Areas.Admin.Controllers
                                    Text = producttype.ProductType
                                }).ToList();
             return listProductType;
+        }
+
+        private string GetUploadImageUrl(string tempImagePath, string productCode)
+        {
+            string uploadImageUrl = string.Empty;
+            var uploadFolder = "~/Uploads/" + productCode.Replace(" ", "_").Replace("/", "_").Replace(":", "_").ToLower();
+            DirectoryInfo di = new DirectoryInfo(Server.MapPath(uploadFolder));
+            if (!di.Exists)
+            {
+                di.Create();
+            }
+            if (tempImagePath != "")
+            {
+                var actfileName = GetUrlFileName(tempImagePath);
+                var fileName = Path.GetFileName(tempImagePath.Replace(actfileName, actfileName + "_" + DateTime.Now.ToString("yyyyMMddHHmmssffff")));
+                if (fileName != "")
+                {
+                    uploadImageUrl = uploadFolder.Remove(0, 2) + "/" + fileName;
+                    var destinationPath = Server.MapPath(uploadFolder) + "\\" + fileName;
+                    var host = System.Web.HttpContext.Current.Request.Url.OriginalString.Replace(System.Web.HttpContext.Current.Request.Url.PathAndQuery, "");
+                    var sourcePhysicalPath = Server.MapPath(tempImagePath.Replace(host, "~").Replace(@"/", "\\"));
+                    System.IO.File.Copy(sourcePhysicalPath, destinationPath, true);
+                    System.IO.File.Delete(sourcePhysicalPath);
+                }
+            }
+            return uploadImageUrl;
         }
 
         /// <summary>

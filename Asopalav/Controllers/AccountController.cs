@@ -18,7 +18,7 @@ namespace Asopalav.Controllers
         //
         // GET: /Account/Login
         [AllowAnonymous]
-        //[Route("~/Login")]
+        [Route("~/Login")]
         public ActionResult Login(string returnUrl)
         {
             ViewBag.ReturnUrl = returnUrl;
@@ -30,6 +30,7 @@ namespace Asopalav.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
+        [Route("~/Login")]
         public ActionResult Login(LoginViewModel model)
         {
             if (!ModelState.IsValid)

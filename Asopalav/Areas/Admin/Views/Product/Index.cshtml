@@ -1,6 +1,6 @@
 ﻿@model Asopalav.Models.ProductModel
 
-@using (Html.BeginForm("Products", "Product", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+@using (Html.BeginForm("Add", "Product", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
     @Html.AntiForgeryToken()
 
@@ -27,8 +27,7 @@
                 <div class="form-group">
                     @Html.LabelFor(m => m.ProductTypeID, new { @class = "col-sm-4 control-label" })
                     <div class="col-sm-8">
-                        @Html.DropDownListFor(m => m.ProductTypeID, ViewData["Gender"] as List<SelectListItem>
-                                                                                 , "Choose...", new { @class = "form-control gender-width" })
+                        @Html.DropDownListFor(m => m.ProductTypeID, ViewData["ProductTypeID"] as List<SelectListItem>, "Choose...", new { @class = "form-control gender-width" })
                         @Html.ValidationMessageFor(model => model.ProductTypeID, "", new { @style = "color:red" })
                     </div>
                 </div>
@@ -73,36 +72,15 @@
                         @Html.TextBoxFor(m => m.OfferPrice, new { @class = "form-control" })
                     </div>
                 </div>
+                
                 <div class="form-group">
-                    @*@Html.LabelFor(m => m.ImagePath, new { @class = "control-label col-sm-4" })*@
                     <div class="col-sm-8">
-                        @*<input type="file" class="form-control-file" id="ImagePath" name="ImagePath" aria-describedby="fileHelp" required>
-                       <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Upload Images</button>
-
-                       <!-- Modal -->
-        <div class="modal fade" id="myModal" role="dialog" data-backdrop="static">
-            <div class="modal-dialog">
-
-                <!-- Modal content-->
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">Modal Header</h4>
-                    </div>
-                    <div class="modal-body">
-                        <div>
-                            @Html.Partial("_UploadImages")
+                        <div id="divDropImages" class="fallback dropzone dropDiv">
+                            Upload Image
+                            <a href="#">
+                                <span class="drophyperspan"></span>
+                            </a>
                         </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    </div>
-                </div>
-
-            </div>
-        </div>*@
-
-                        @Html.ActionLink("Upload Images", "UploadImage", "Product", "", new { target = "_new", width = "200px", height = "300px", @class = "btn btn-info" })
                         @Html.ValidationMessageFor(m => m.ImagePath, "", new { @style = "color:red" })
                     </div>
                 </div>

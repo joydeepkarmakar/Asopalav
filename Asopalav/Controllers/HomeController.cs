@@ -13,6 +13,7 @@ namespace Asopalav.Controllers
 
         public ActionResult Index()
         {
+            //var dailyRate = objAsopalavDBEntities.GetDailyDollarSilverRate();
             GetDollarSilverRate_Result objGetDollarSilverRate_Result = new GetDollarSilverRate_Result();
             objGetDollarSilverRate_Result = objAsopalavDBEntities.GetDollarSilverRate().FirstOrDefault();
             if (objGetDollarSilverRate_Result != null)
