@@ -341,8 +341,6 @@
     <Content Include="bin\roslyn\Microsoft.VisualBasic.Core.targets" />
     <Content Include="bin\roslyn\VBCSCompiler.exe.config" />
     <Content Include="Scripts\bootstrap.min.js.download" />
-    <Content Include="Areas\Admin\Views\Product\UploadImage.cshtml" />
-    <Content Include="Areas\Admin\Views\Product\ClosePreview.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\dropzone.js" />
     <Content Include="Scripts\easyzoom.js" />

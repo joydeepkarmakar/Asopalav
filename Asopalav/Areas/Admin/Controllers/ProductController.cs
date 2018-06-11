@@ -54,22 +54,24 @@ namespace Asopalav.Areas.Admin.Controllers
                     }
                     objAsopalavDBEntities.SaveChanges();
                     imageUrlList.Clear();
-                    TempData["isSaved"] = "true";
-                    TempData["Msg"] = "Record Saved. (Item Name : " + objProductMaster.ProductCode + " )";
+                    TempData["isProductSaved"] = "true";
+                    TempData["ProductSaveMsg"] = "Record Saved. (Item Name : " + objProductMaster.ProductCode + " )";
                     return RedirectToAction("Index");
                 }
             }
             catch (Exception ex)
             {
+                TempData["isSaved"] = "false";
                 if (ex.InnerException != null)
                 {
-                    TempData["Msg"] = (ex.InnerException).Message.Substring(0, (ex.InnerException).Message.IndexOf('\r'));
+                    TempData["ProductSaveMsg"] = ex.InnerException.Message;
                 }
                 else
                 {
-                    TempData["Msg"] = ex.Message;
+                    TempData["ProductSaveMsg"] = ex.Message;
                 }
             }
+            ViewData["ProductTypeID"] = GetProductTypeList();
             return View(objProductModel);
         }
 

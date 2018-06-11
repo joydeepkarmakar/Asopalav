@@ -104,4 +104,12 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript">
+        if ('@TempData["isNewRegistration"]'=="true") {
+            toastr.success('@TempData["NewRegistrationMsg"]');
+        }
+        else if ('@TempData["isNewRegistration"]'=="false") {
+            toastr.error('@TempData["NewRegistrationMsg"]');
+        }
+    </script>
 }

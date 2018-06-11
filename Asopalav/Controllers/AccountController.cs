@@ -56,14 +56,23 @@ namespace Asopalav.Controllers
 
                 else
                 {
-                    ModelState.AddModelError("", "Invalid login attempt.");
-                    return View(model);
+                    TempData["IsLogin"] = "false";
+                    TempData["LoginMsg"] = "Invalid login attempt.";
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                TempData["IsLogin"] = "false";
+                if (ex.InnerException != null)
+                {
+                    TempData["LoginMsg"] = ex.InnerException.Message;
+                }
+                else
+                {
+                    TempData["LoginMsg"] = ex.Message;
+                }
             }
+            return View(model);
         }
 
         [HttpGet]
@@ -81,15 +90,36 @@ namespace Asopalav.Controllers
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
         [ActionName("Register")]
+        [Route("~/Register")]
         public ActionResult NewRegistration(RegisterViewModel model)
         {
-            if (ModelState.IsValid)
+            try
             {
-                int result = objAsopalavDBEntities.AddUser(model.Primary_Email, model.Password, model.User_Fname, model.User_Mname, model.User_Lname, model.Secondary_Email, model.Mobile, model.Alternate_Mobile, model.Gender, model.User_DOB, model.User_Anniversary);
-
-                if (result == -1)
+                if (ModelState.IsValid)
                 {
-                    return RedirectToAction("Index", "Home");
+                    int result = objAsopalavDBEntities.AddUser(model.Primary_Email, model.Password, model.User_Fname, model.User_Mname, model.User_Lname, model.Secondary_Email, model.Mobile, model.Alternate_Mobile, model.Gender, model.User_DOB, model.User_Anniversary);
+
+                    if (result == -1)
+                    {
+                        Session["IsLoginValid"] = true;
+                        Session["UserFullName"] = model.User_Fname + model.User_Mname ?? ' ' + model.User_Lname;
+                        return RedirectToAction("Index", "Home");
+                    }
+                }
+
+                TempData["isNewRegistration"] = "true";
+                TempData["NewRegistrationMsg"] = "You have registered successfully.";
+            }
+            catch (Exception ex)
+            {
+                TempData["isNewRegistration"] = "false";
+                if (ex.InnerException != null)
+                {
+                    TempData["NewRegistrationMsg"] = ex.InnerException.Message;
+                }
+                else
+                {
+                    TempData["NewRegistrationMsg"] = ex.Message;
                 }
             }
             ViewData["Gender"] = GetGenderList();

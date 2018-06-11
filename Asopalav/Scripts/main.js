@@ -127,9 +127,4 @@ $(document).ready(function () {
     // Correct code
         alert('@(TempData["AlertMessage"])');
      */
-    if ('@(TempData["isSaved"])' == "true")
-        toastr.success('@(TempData["Msg"])');
-    //else
-    //    toastr.error('@(TempData["Msg"])');
-    //alert('@TempData["Msg"]');
 });
