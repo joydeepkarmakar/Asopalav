@@ -15,7 +15,7 @@
                 <a href="index.html" id="logo" title="Asopalav Jewellers">Asopalav Jewellers</a>
                 <div class="right-links pull-right">
                     <ul class="nav navbar-nav navbar-right">
-                        <li style="color:white;"><p>Re/US $ - @Session["DollarRate"]</p> <p>Silver(₹/gm) - @Session["SilverRate"]</p></li>
+                        <li style="color:white;"><p>Re/US $ - @Session["DollarRate"]</p> <p>Silver(₹/Kg) - @Session["SilverRate"]</p></li>
                         @if (Convert.ToBoolean(Session["IsLoginValid"]) == true)
                         {
                             @Html.AntiForgeryToken()

@@ -72,6 +72,9 @@
     <Compile Include="GetDollarSilverRate_Result.cs">
       <DependentUpon>AsopalavDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="GetLastAddedProducts_Result.cs">
+      <DependentUpon>AsopalavDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Image.cs">
       <DependentUpon>AsopalavDataModel.tt</DependentUpon>
     </Compile>

@@ -170,5 +170,29 @@ namespace DataAccessLayer
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("GetDailyDollarSilverRate");
         }
+    
+        public virtual int SilverRate()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SilverRate");
+        }
+    
+        [DbFunction("AsopalavDBEntities", "SplitString")]
+        public virtual IQueryable<string> SplitString(string input, string character)
+        {
+            var inputParameter = input != null ?
+                new ObjectParameter("Input", input) :
+                new ObjectParameter("Input", typeof(string));
+    
+            var characterParameter = character != null ?
+                new ObjectParameter("Character", character) :
+                new ObjectParameter("Character", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<string>("[AsopalavDBEntities].[SplitString](@Input, @Character)", inputParameter, characterParameter);
+        }
+    
+        public virtual ObjectResult<GetLastAddedProducts_Result> GetLastAddedProducts()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetLastAddedProducts_Result>("GetLastAddedProducts");
+        }
     }
 }

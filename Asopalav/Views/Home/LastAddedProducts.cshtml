@@ -1,0 +1,19 @@
+﻿<section class="products">
+    @foreach (var item in Model)
+    {
+        <article>
+            <div class="hovereffect">
+                <img src="@item.ImagePath" alt="@item.ProductName" width="235" height="275">
+                <div class="overlay">
+                    <h2>@item.ProductCode</h2>
+                    <p>
+                        <a href="@Url.Action("Index","ProductDetails", new { id = item.ProductID })">Details</a>
+                    </p>
+                </div>
+            </div>
+            <h3>@item.ProductName</h3>
+            <h4>$@item.Price</h4>
+            <a href="javascript:void(0);" class="btn-add">Add to cart</a>
+        </article>
+    }
+</section>

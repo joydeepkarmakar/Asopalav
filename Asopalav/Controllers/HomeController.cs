@@ -1,4 +1,5 @@
-﻿using DataAccessLayer;
+﻿using Asopalav.Models;
+using DataAccessLayer;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +14,7 @@ namespace Asopalav.Controllers
 
         public ActionResult Index()
         {
-            //var dailyRate = objAsopalavDBEntities.GetDailyDollarSilverRate();
+            #region Dollar Silver Rate Section
             GetDollarSilverRate_Result objGetDollarSilverRate_Result = new GetDollarSilverRate_Result();
             objGetDollarSilverRate_Result = objAsopalavDBEntities.GetDollarSilverRate().FirstOrDefault();
             if (objGetDollarSilverRate_Result != null)
@@ -21,7 +22,14 @@ namespace Asopalav.Controllers
                 Session["DollarRate"] = objGetDollarSilverRate_Result.DollarRate;
                 Session["SilverRate"] = objGetDollarSilverRate_Result.SilverRate;
             }
-            return View();
+            #endregion
+
+            #region Last Added Product Section
+            DashboardModel objDashboardModel = new DashboardModel();
+            objDashboardModel.objGetLastAddedProducts_Result = objAsopalavDBEntities.GetLastAddedProducts().ToList();
+            #endregion
+
+            return View(objDashboardModel);
         }
 
         [Route("~/About")]

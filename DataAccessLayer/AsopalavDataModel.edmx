@@ -202,6 +202,19 @@
         </Function>
         <Function Name="DailyRate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="GetDollarSilverRate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="GetLastAddedProducts" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="SilverRate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="SplitString" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Input" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="Character" Type="char" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="Item" Type="nvarchar" MaxLength="1000" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
         <Function Name="ValidateUserAndMenu" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="UserName" Type="varchar" Mode="In" />
           <Parameter Name="Password" Type="varchar" Mode="In" />
@@ -388,6 +401,12 @@
           <EntitySet Name="MarketTrackers" EntityType="AsopalavDBModel.MarketTracker" />
           <FunctionImport Name="GetDollarSilverRate" ReturnType="Collection(AsopalavDBModel.GetDollarSilverRate_Result)" />
           <FunctionImport Name="GetDailyDollarSilverRate" />
+          <FunctionImport Name="SilverRate" />
+          <FunctionImport Name="SplitString" IsComposable="true" ReturnType="Collection(String)">
+            <Parameter Name="Input" Mode="In" Type="String" />
+            <Parameter Name="Character" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GetLastAddedProducts" ReturnType="Collection(AsopalavDBModel.GetLastAddedProducts_Result)" />
         </EntityContainer>
         <ComplexType Name="ValidateUserAndMenu_Result">
           <Property Type="Boolean" Name="IsLoginValid" Nullable="false" />
@@ -473,6 +492,23 @@
         <ComplexType Name="GetDollarSilverRate_Result">
           <Property Type="String" Name="DollarRate" Nullable="true" MaxLength="50" />
           <Property Type="String" Name="SilverRate" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="GetLastAddedProducts_Result">
+          <Property Type="Int64" Name="ProductID" Nullable="false" />
+          <Property Type="String" Name="ProductCode" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="ProductName" Nullable="false" MaxLength="250" />
+          <Property Type="Int32" Name="ProductTypeID" Nullable="true" />
+          <Property Type="Decimal" Name="WeightInGms" Nullable="false" Precision="18" Scale="3" />
+          <Property Type="String" Name="HeightInInch" Nullable="true" MaxLength="15" />
+          <Property Type="String" Name="WidthInInch" Nullable="true" MaxLength="15" />
+          <Property Type="Decimal" Name="Price" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Boolean" Name="IsOffer" Nullable="true" />
+          <Property Type="Decimal" Name="OfferPrice" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Boolean" Name="IsActive" Nullable="false" />
+          <Property Type="String" Name="Description" Nullable="false" />
+          <Property Type="DateTime" Name="CreationDate" Nullable="false" Precision="23" />
+          <Property Type="String" Name="ImageName" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="ImagePath" Nullable="false" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -638,6 +674,29 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="GetDailyDollarSilverRate" FunctionName="AsopalavDBModel.Store.DailyRate" />
+          <FunctionImportMapping FunctionImportName="SilverRate" FunctionName="AsopalavDBModel.Store.SilverRate" />
+          <FunctionImportMapping FunctionImportName="SplitString" FunctionName="AsopalavDBModel.Store.SplitString" />
+          <FunctionImportMapping FunctionImportName="GetLastAddedProducts" FunctionName="AsopalavDBModel.Store.GetLastAddedProducts">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="AsopalavDBModel.GetLastAddedProducts_Result">
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="ProductCode" ColumnName="ProductCode" />
+                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+                <ScalarProperty Name="ProductTypeID" ColumnName="ProductTypeID" />
+                <ScalarProperty Name="WeightInGms" ColumnName="WeightInGms" />
+                <ScalarProperty Name="HeightInInch" ColumnName="HeightInInch" />
+                <ScalarProperty Name="WidthInInch" ColumnName="WidthInInch" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="IsOffer" ColumnName="IsOffer" />
+                <ScalarProperty Name="OfferPrice" ColumnName="OfferPrice" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="ImageName" ColumnName="ImageName" />
+                <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

@@ -73,12 +73,7 @@ namespace Asopalav.Models
 
         [Display(Name = "Anniversary Date")]
         [CustomDate(ErrorMessage = "Invalid date")]
-        public Nullable<System.DateTime> User_Anniversary
-        {
-            get; set;
-
-
-        }
+        public Nullable<System.DateTime> User_Anniversary { get; set; }
 
         public class CustomDateAttribute : ValidationAttribute
         {

@@ -102,7 +102,7 @@ namespace Asopalav.Controllers
                     if (result == -1)
                     {
                         Session["IsLoginValid"] = true;
-                        Session["UserFullName"] = model.User_Fname + model.User_Mname ?? ' ' + model.User_Lname;
+                        Session["UserFullName"] = model.User_Fname + ' ' + model.User_Mname ?? ' ' + model.User_Lname;
                         return RedirectToAction("Index", "Home");
                     }
                 }

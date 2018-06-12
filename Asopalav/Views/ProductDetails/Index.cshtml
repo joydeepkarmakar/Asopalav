@@ -1,14 +1,14 @@
-﻿@model Asopalav.Models.ProductModel
+﻿@model Asopalav.Models.ProductDetailsModel
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Product Details";
 }
 
 <div id="breadcrumbs" class="product-margin-top">
     <div class="container">
         <ul>
-            <li><a href="#">Home</a></li>
-            <li>Product page</li>
+            <li><a href="@Url.Action("Index","Home")">Home</a></li>
+            <li>Product Details</li>
         </ul>
     </div>
     <!-- / container -->
@@ -24,40 +24,37 @@
                             <div class="row">
                                 <div class="">
                                     <div class="xzoom-container">
-                                        <img class="xzoom" id="xzoom-default" src="/content/images/preview/01_b_car.jpg" xoriginal="/content/images/original/01_b_car.jpg" />
-                                        <div class="xzoom-thumbs">
-                                            <a href="/content/images/original/01_b_car.jpg"><img class="xzoom-gallery" width="80" src="/content/images/thumbs/01_b_car.jpg" xpreview="/content/images/preview/01_b_car.jpg" title="The description goes here"></a>
-                                            <a href="/content/images/original/02_o_car.jpg"><img class="xzoom-gallery" width="80" src="/content/images/preview/02_o_car.jpg" title="The description goes here"></a>
-                                            <a href="/content/images/original/03_r_car.jpg"><img class="xzoom-gallery" width="80" src="/content/images/preview/03_r_car.jpg" title="The description goes here"></a>
-                                            <a href="/content/images/original/04_g_car.jpg"><img class="xzoom-gallery" width="80" src="/content/images/preview/04_g_car.jpg" title="The description goes here"></a>
-                                        </div>
+                                        <img class="xzoom" id="xzoom-default" src="@Model.DefaultImagePath" xoriginal="@Model.DefaultImagePath" />
+                                        @foreach (var img in Model.objProductMaster.Images)
+                                        {
+                                            <div class="xzoom-thumbs">
+                                                <a href="@img.ImagePath"><img class="xzoom-gallery" width="80" src="@img.ImagePath" xpreview="@img.ImagePath" title="@img.ImageName"></a>
+
+                                            </div>
+                                        }
                                     </div>
                                 </div>
                             </div>
                         </section>
                     </div>
-                    </div>
+                </div>
                 <div class="col-sm-12 col-md-7">
                     <div class="details">
-                        <h1>Lorem ipsum dolor</h1>
-                        <h4>$990.00</h4>
+                        <h1>@Model.objProductMaster.ProductName</h1>
+                        <h4>$@Model.objProductMaster.Price</h4>
                         <div class="entry">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+                            <p></p>
                             <div class="tabs">
                                 <div class="nav" style="z-index:-10">
                                     <ul>
                                         <li class="active"><a href="#desc">Description</a></li>
-                                        <li><a href="#spec">Specification</a></li>
-                                        <li><a href="#ret">Returns</a></li>
+                                        <li style="display:none;"><a href="#spec">Specification</a></li>
                                     </ul>
                                 </div>
                                 <div class="tab-content active" id="desc">
-                                    <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</p>
+                                    <p>@Model.objProductMaster.Description</p>
                                 </div>
                                 <div class="tab-content" id="spec">
-                                    <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</p>
-                                </div>
-                                <div class="tab-content" id="ret">
                                     <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</p>
                                 </div>
                             </div>
@@ -65,7 +62,7 @@
                         <div class="actions">
                             <label>Quantity:</label>
                             <select><option>1</option></select>
-                            <a href="#" class="btn-grey">Add to cart</a>
+                            <a href="javascript:void(0);" class="btn-grey">Add to cart</a>
                         </div>
                     </div>
                     <div>
@@ -75,6 +72,6 @@
             </div>
             <!-- / content -->
         </div>
-        </div>
     </div>
+</div>
 <!-- / body -->
