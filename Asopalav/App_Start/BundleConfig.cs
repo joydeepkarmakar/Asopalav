@@ -8,42 +8,34 @@ namespace Asopalav
         // For more information on bundling, visit http://go.microsoft.com/fwlink/?LinkId=301862
         public static void RegisterBundles(BundleCollection bundles)
         {
-            bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                        "~/Scripts/jquery-{version}.js"));
+            bundles.Add(new ScriptBundle("~/Script/Common").Include(
+                "~/Scripts/jquery-{version}.js",
+                "~/Scripts/jquery.validate.min.js",
+                "~/Scripts/jquery.validate.unobtrusive.min.js",
+                "~/Scripts/modernizr-*",
+                "~/Scripts/bootstrap.js",
+                "~/Scripts/jquery-ui.js",
+                "~/Scripts/respond.js",
+                "~/Scripts/xzoom.min.js",
+                "~/Scripts/main.js",
+                "~/Scripts/jquery-1.11.3.min.js.download.js",
+                "~/Scripts/bootstrap.min.js.download.js",
+                "~/Scripts/jquery.smartmenus.js.download.js",
+                "~/Scripts/jquery.smartmenus.bootstrap.js.download.js",
+                "~/Scripts/plugins.js",
+                "~/Scripts/dropzone.js",
+                "~/Scripts/toastr.min.js"
+                ));
 
-            bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
-                        "~/Scripts/jquery.validate*"));
+            bundles.Add(new ScriptBundle("~/Script/Layout").Include(
+                "~/Scripts/setup.js"
+                ));
 
-            // Use the development version of Modernizr to develop with and learn from. Then, when you're
-            // ready for production, use the build tool at http://modernizr.com to pick only the tests you need.
-            bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
-                        "~/Scripts/modernizr-*"));
-
-            bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-                      "~/Scripts/bootstrap.js",
-                      "~/Scripts/jquery-ui.js",
-                      //"~/Scripts/jquery-3.1.1.min.js",
-                      "~/Scripts/respond.js",
-                      //"~/Scripts/jquery.js",
-                      "~/Scripts/xzoom.min.js",
-                      "~/Scripts/main.js",
-                      "~/Scripts/jquery-1.11.3.min.js.download.js",
-                      "~/Scripts/bootstrap.min.js.download.js",
-                      "~/Scripts/jquery.smartmenus.js.download.js",
-                      "~/Scripts/jquery.smartmenus.bootstrap.js.download.js",
-                      "~/Scripts/plugins.js",
-                      "~/Scripts/dropzone.js",
-                      "~/Scripts/toastr.min.js"
-                      ));
-
-            bundles.Add(new StyleBundle("~/Content/css").Include(
+            bundles.Add(new StyleBundle("~/Style/Common").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css",
                       "~/Content/jquery-ui.structure.css",
                       "~/Content/jquery-ui.theme.css",
-                      // "~/Content/easyzoom.css",
-                      // "~/Content/example.css",
-                      //"~/Content/pygments.css",
                       "~/Content/style.css",
                       "~/Content/xzoom.css",
                       "~/Content/jquery.smartmenus.bootstrap.css",

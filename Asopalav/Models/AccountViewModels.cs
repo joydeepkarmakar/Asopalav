@@ -93,17 +93,17 @@ namespace Asopalav.Models
     {
         [Required(ErrorMessage = "Email is required")]
         [RegularExpression(@"\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*", ErrorMessage = "Invalid Email")]
-        public string Email { get; set; }
+        public string EmailID { get; set; }
 
         [Required(ErrorMessage = "Mobile no. is required")]
         [DisplayName("Mobile no.")]
         [RegularExpression(@"^([0-9]{10})$", ErrorMessage = "Invalid Mobile")]
-        public string Mobile { get; set; }
+        public string MobileNo { get; set; }
 
         [Required(ErrorMessage = "Subject is required")]
-        public string Subject { get; set; }
+        public string FeedbackSubject { get; set; }
 
         [Required(ErrorMessage = "Queries are required")]
-        public string Queries { get; set; }
+        public string FeedbackMessage { get; set; }
     }
 }

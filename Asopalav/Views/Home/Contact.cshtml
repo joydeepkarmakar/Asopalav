@@ -2,50 +2,48 @@
 
 <div class="row contact-margin-top">
     <div class="col-sm-6">
-        <p class="corporate">Contact Asopalav Jewellers</p>
+        <p class="col-md-offset-1 col-md-11 corporate">Contact Asopalav Jewellers</p>
         @using (Html.BeginForm("Feedback", "Home", FormMethod.Post, new { id = "frmFeedback", name = "frmFeedback" }))
         {
             @Html.AntiForgeryToken()
 
             <div class="form-horizontal">
-                <h4>FeedbackModel</h4>
-                <hr />
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                 <div class="form-group">
-                    @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                    @Html.LabelFor(model => model.EmailID, htmlAttributes: new { @class = "control-label col-md-3" })
+                    <div class="col-md-9">
+                        @Html.EditorFor(model => model.EmailID, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.EmailID, "", new { @class = "text-danger" })
                     </div>
                 </div>
 
                 <div class="form-group">
-                    @Html.LabelFor(model => model.Mobile, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.Mobile, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.Mobile, "", new { @class = "text-danger" })
+                    @Html.LabelFor(model => model.MobileNo, htmlAttributes: new { @class = "control-label col-md-3" })
+                    <div class="col-md-9">
+                        @Html.EditorFor(model => model.MobileNo, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.MobileNo, "", new { @class = "text-danger" })
                     </div>
                 </div>
 
                 <div class="form-group">
-                    @Html.LabelFor(model => model.Subject, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.Subject, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.Subject, "", new { @class = "text-danger" })
+                    @Html.LabelFor(model => model.FeedbackSubject, htmlAttributes: new { @class = "control-label col-md-3" })
+                    <div class="col-md-9">
+                        @Html.EditorFor(model => model.FeedbackSubject, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.FeedbackSubject, "", new { @class = "text-danger" })
                     </div>
                 </div>
 
                 <div class="form-group">
-                    @Html.LabelFor(model => model.Queries, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.TextAreaFor(model => model.Queries, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.Queries, "", new { @class = "text-danger" })
+                    @Html.LabelFor(model => model.FeedbackMessage, htmlAttributes: new { @class = "control-label col-md-3" })
+                    <div class="col-md-9">
+                        @Html.TextAreaFor(model => model.FeedbackMessage, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.FeedbackMessage, "", new { @class = "text-danger" })
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" value="Create" class="btn btn-default" id="btnSubmit" />
+                    <div class="col-md-offset-3 col-md-9">
+                        <input type="submit" value="Submit" class="btn btn-primary form-control butt-color" id="btnSubmit" />
                     </div>
                 </div>
             </div>
@@ -55,7 +53,7 @@
         <p class="corporate">
             Our Corporate Office
         </p>
-        <iframe width="600" height="375" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?key=AIzaSyDn-81soapHaXkj1pV--ooRPXnZdPatfvE&q=Asopalav+Jewellers+Pvt+Ltd%2C10%2C+Darpan+Opposite%2C+R+C+Dutt+Road%2C+Alkapuri%2C+Hotel+Express%2C+Vadodara%2C+Gujarat+390007&center=22.3102004,73.1684574" allowfullscreen></iframe>
+        <iframe width="600" height="375" frameborder="0" style="border:0" class="form-horizontal" src="https://www.google.com/maps/embed/v1/place?key=AIzaSyDn-81soapHaXkj1pV--ooRPXnZdPatfvE&q=Asopalav+Jewellers+Pvt+Ltd%2C10%2C+Darpan+Opposite%2C+R+C+Dutt+Road%2C+Alkapuri%2C+Hotel+Express%2C+Vadodara%2C+Gujarat+390007&center=22.3102004,73.1684574" allowfullscreen></iframe>
         <br>
         <p class="corporate-address">
             <strong>Asopalav Jewellers Pvt Ltd.,</strong>

@@ -6,6 +6,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Net;
+using Asopalav.Helpers;
+using System.Configuration;
 
 namespace Asopalav.Controllers
 {
@@ -56,16 +58,77 @@ namespace Asopalav.Controllers
 
         [HttpPost]
         [Route("~/Contact")]
-        public ActionResult Feedback(FeedbackModel model)
+        public ActionResult Feedback(FeedbackMaster objFeedbackMaster)
         {
+            string errorMsg = string.Empty;
             if (!ModelState.IsValid)
             {
                 Response.StatusCode = (int)HttpStatusCode.BadRequest;
-                var errorMsg = "Not valid model";
+                errorMsg = "Not valid model";
                 return Json(new { IsSuccess = false, errorMsg }, JsonRequestBehavior.AllowGet);
             }
 
+            else
+            {
+                objFeedbackMaster.FeedbackDate = DateTime.Now;
+                objAsopalavDBEntities.FeedbackMasters.Add(objFeedbackMaster);
+                objAsopalavDBEntities.SaveChanges();
+
+                if (!SendAcknowledgementMail(objFeedbackMaster.EmailID))
+                    return Json(new { IsSuccess = false, errorMsg = TempData["SendAcknowledgementMailMsg"] }, JsonRequestBehavior.AllowGet);
+
+                if(!SendMailToAdmin(objFeedbackMaster))
+                    return Json(new { IsSuccess = false, errorMsg = TempData["SendMailToAdminMsg"] }, JsonRequestBehavior.AllowGet);
+            }
             return Json(new { IsSuccess = true }, JsonRequestBehavior.AllowGet);
+        }
+
+        private bool SendAcknowledgementMail(string emailId)
+        {
+            bool IsSendMail = false;
+            var host = System.Web.HttpContext.Current.Request.Url.OriginalString.Replace(System.Web.HttpContext.Current.Request.Url.PathAndQuery, "");
+            string imageName = host + "/Content/images/logo@2x.png";
+
+            //Mail For Contacted User
+            string msg = "<p><img src='" + imageName + "' alt='LogoName' border='0' width='95px' height='77px'/></p>" +
+                        "<p><em>Dear Visitor</em></p>" +
+                        "<p><em>Thank you for visiting our site and your valued feedback.</em></p>" +
+                        "<p><em>Your sincerely</em></p>" +
+                        "<p><em> - Asopalav Team</em></p>";
+            try
+            {
+                MailHelper.SendMailMessage(ConfigurationManager.AppSettings["MailFrom"], emailId, string.Empty, string.Empty, "Acknowledgement From Asopalav Jewellers", msg);
+                IsSendMail = true;
+            }
+            catch (Exception ex)
+            {
+                TempData["SendAcknowledgementMailMsg"] = ex.InnerException;
+            }
+            return IsSendMail;
+        }
+
+        private bool SendMailToAdmin(FeedbackMaster objFeedbackMaster)
+        {
+            bool IsSendMail = false;
+            var host = System.Web.HttpContext.Current.Request.Url.OriginalString.Replace(System.Web.HttpContext.Current.Request.Url.PathAndQuery, "");
+            string imageName = host + "/Content/images/logo@2x.png";
+
+            //Mail to Admin
+            string msg = "<p><img src='" + imageName + "' alt='LogoName' border='0' width='95px' height='77px'/></p>" +
+                                      "<p><em><strong>Subject:</strong> " + objFeedbackMaster.FeedbackSubject + "</em></p>" +
+                                      "<p><em><strong>Queries:</strong> " + objFeedbackMaster.FeedbackMessage + "</em></p>" +
+                                      "<p><em> - Asopalav Jewellers</em></p>";
+            try
+            {
+                MailHelper.SendMailMessage(ConfigurationManager.AppSettings["MailFrom"], ConfigurationManager.AppSettings["MailFrom"], string.Empty, string.Empty, "Feedback - Asopalav Jewellers", msg);
+                IsSendMail = true;
+            }
+            catch (Exception ex)
+            {
+                TempData["SendMailToAdminMsg"] = ex.InnerException;
+            }
+
+            return IsSendMail;
         }
     }
 }

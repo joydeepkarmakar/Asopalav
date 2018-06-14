@@ -73,7 +73,7 @@
                 @Html.LabelFor(m => m.Gender, new { @class = "col-sm-4 control-label" })
                 <div class="col-sm-8">
                     @Html.DropDownListFor(m => m.Gender, ViewData["Gender"] as List<SelectListItem>
-                                       , "Choose...", new { @class = "form-control gender-width" })
+                                            , "Choose...", new { @class = "form-control gender-width" })
                     @Html.ValidationMessageFor(model => model.Gender, "", new { @style = "color:red" })
                 </div>
             </div>
@@ -103,7 +103,6 @@
 }
 
 @section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
     <script type="text/javascript">
         if ('@TempData["isNewRegistration"]'=="true") {
             toastr.success('@TempData["NewRegistrationMsg"]');

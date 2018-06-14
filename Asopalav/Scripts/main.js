@@ -152,13 +152,14 @@ $(document).ready(function () {
                     if (response.IsSuccess)
                         toastr.success('Success!');
                     else
-                        toastr.error(errorMsg);
+                        toastr.error(response.errorMsg);
                 },
                 error: function (response) {
                     toastr.error('Error!');
                 },
                 complete: function () {
                     $('#btnSubmit').removeAttr('disabled');
+                    $("input[type=text], textarea").val("");
                 }
             })
         });

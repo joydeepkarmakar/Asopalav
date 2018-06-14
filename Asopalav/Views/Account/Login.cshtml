@@ -56,7 +56,6 @@
 </div>
 
 @section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
     <script type="text/javascript">
         if ('@TempData["IsLogin"]'=="false") {
             toastr.error('@TempData["LoginMsg"]');
