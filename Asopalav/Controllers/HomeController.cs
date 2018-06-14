@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Net;
 
 namespace Asopalav.Controllers
 {
@@ -46,6 +47,25 @@ namespace Asopalav.Controllers
             ViewBag.Message = "Your contact page.";
 
             return View();
+        }
+
+        public ActionResult Feedback()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [Route("~/Contact")]
+        public ActionResult Feedback(FeedbackModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                Response.StatusCode = (int)HttpStatusCode.BadRequest;
+                var errorMsg = "Not valid model";
+                return Json(new { IsSuccess = false, errorMsg }, JsonRequestBehavior.AllowGet);
+            }
+
+            return Json(new { IsSuccess = true }, JsonRequestBehavior.AllowGet);
         }
     }
 }
