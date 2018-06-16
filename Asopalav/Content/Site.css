@@ -31,7 +31,7 @@ select,
 /*-------- login ---------------*/
 
 .login-margin-top {
-    margin: 290px 30% 50px 27%;
+    margin: 170px 30% 50px 27%;
     width: 40%;
 }
 
@@ -56,11 +56,11 @@ select,
 }
 
 .log-bdr {
-    margin-bottom: 180px;
+    margin-bottom: 140px;
 }
 
 .product-margin-bott {
-    margin-bottom: 120px;
+    margin-bottom: 0;
 }
 
 /*----- Register -----*/
@@ -91,7 +91,7 @@ select,
 /*-----------------Contact Us---------------------*/
 
 .contact-margin-top {
-    margin: 270px auto 20px auto;
+    margin: 150px auto 20px auto;
     width: 90%;
     font-weight: bold;
     text-align: center;
@@ -183,4 +183,25 @@ label {
     padding: 2px 0 !important;
 }
 
+#mapDiv > div {
+    width: 90% !important;
+    height: 70% !important;
+}
+
+.actions > input {
+    margin-left: 6px;
+    width: 80px;
+    float: left;
+    height: 26px;
+}
+
+.xzoom-lens {
+    height:285px !important;
+}
+
+.details > h4 {
+    width: 100px;
+    display: inline-block;
+    margin-left: 8px;
+}
 /*Dropzone Div Ends*/
