@@ -41,6 +41,11 @@
                 <div class="col-sm-12 col-md-7">
                     <div class="details">
                         <h1>@Model.objProductMaster.ProductName</h1>
+                        <label>Currency:&nbsp;</label>
+                        <select>
+                            <option>$</option>
+                            <option>RS.</option>
+                        </select>
                         <h4>$@Model.objProductMaster.Price</h4>
                         <div class="entry">
                             <p></p>
@@ -60,8 +65,9 @@
                             </div>
                         </div>
                         <div class="actions">
-                            <label>Quantity:</label>
-                            <select><option>1</option></select>
+                            <label>Quantity:&nbsp;</label>
+                            <input class="form-control" data-val="true" id="Quantity" name="Quantity" type="text" value="">
+                            @*<select><option>1</option></select>*@
                             <a href="javascript:void(0);" class="btn-grey">Add to cart</a>
                         </div>
                     </div>

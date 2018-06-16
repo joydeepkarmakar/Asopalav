@@ -19,7 +19,7 @@
                             @Html.AntiForgeryToken()
 
                             <li>
-                                @Html.ActionLink("Welcome " + Session["UserFullName"] + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+                                @Html.ActionLink("Welcome " + Session["UserFullName"] + "!", "Index", "Home", routeValues: null, htmlAttributes: new { title = "Manage" })
                             </li>
                             <li>@Html.ActionLink("Log off", "LogOff", "Account", new { area = "" }, new { })</li>
                         }

@@ -36,7 +36,7 @@ namespace Asopalav.Models
         public string Password { get; set; }
 
         [DataType(DataType.Password)]
-        [Display(Name = "Confirm password")]
+        [Display(Name = "Confirm Password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
 
@@ -55,11 +55,11 @@ namespace Asopalav.Models
         public string Secondary_Email { get; set; }
 
         [Required(ErrorMessage = " Mobile no. is required")]
-        [DisplayName("Mobile no.")]
+        [DisplayName("Mobile No.")]
         [RegularExpression(@"^([0-9]{10})$", ErrorMessage = "Invalid Mobile")]
         public string Mobile { get; set; }
 
-        [DisplayName("Alternate Mobile no.")]
+        [DisplayName("Alternate Mobile No.")]
         public string Alternate_Mobile { get; set; }
 
         [Required(ErrorMessage = " Gender is required")]
@@ -92,18 +92,21 @@ namespace Asopalav.Models
     public class FeedbackModel
     {
         [Required(ErrorMessage = "Email is required")]
+        [DisplayName("Email")]
         [RegularExpression(@"\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*", ErrorMessage = "Invalid Email")]
         public string EmailID { get; set; }
 
         [Required(ErrorMessage = "Mobile no. is required")]
-        [DisplayName("Mobile no.")]
+        [DisplayName("Mobile No.")]
         [RegularExpression(@"^([0-9]{10})$", ErrorMessage = "Invalid Mobile")]
         public string MobileNo { get; set; }
 
         [Required(ErrorMessage = "Subject is required")]
+        [DisplayName("Subject")]
         public string FeedbackSubject { get; set; }
 
         [Required(ErrorMessage = "Queries are required")]
+        [DisplayName("Queries")]
         public string FeedbackMessage { get; set; }
     }
 }

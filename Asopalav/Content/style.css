@@ -906,7 +906,6 @@ h1 {
     }
 
 .entry .nav {
-    border-right: 1px solid #cecece;
     overflow: hidden;
     margin: 13px 0 0 0;
 }
@@ -944,13 +943,13 @@ h1 {
     .entry .nav a {
         display: block;
         line-height: 38px;
-        text-align: center;
+        text-align: left;
         padding: 0 20px;
         height: 38px;
         text-decoration: none;
         color: #656567;
         font-family: "Novecentowide";
-        font-size: 12px;
+        font-size: 16px;
         font-weight: 500;
     }
 
