@@ -12,37 +12,37 @@
                 @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
                 {
                     @Html.AntiForgeryToken()
-                    <h4 class="col-md-offset-2 col-md-10 login-pad">Login</h4>
+                    <h4 class="col-md-offset-3 col-md-9 login-pad">Login</h4>
                     <hr />
                     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                     <div class="form-group">
-                        @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
-                        <div class="col-md-10">
+                        @Html.LabelFor(m => m.Email, new { @class = "col-md-3 control-label" })
+                        <div class="col-md-9">
                             @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
                             @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
                         </div>
                     </div>
                     <div class="form-group">
-                        @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
-                        <div class="col-md-10">
+                        @Html.LabelFor(m => m.Password, new { @class = "col-md-3 control-label" })
+                        <div class="col-md-9">
                             @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
                             @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
                         </div>
                     </div>
                     <div class="form-group">
-                        <div class="col-md-offset-2 col-md-10">
+                        @*<div class="col-md-offset-2 col-md-10">
                             <div class="">
                                 @Html.CheckBoxFor(m => m.RememberMe, new { @class = "checkbox" })
                                 @Html.LabelFor(m => m.RememberMe, new { @class = "login-label" })
                             </div>
-                        </div>
+                        </div>*@
                     </div>
                     <div class="form-group">
-                        <div class="col-md-offset-2 col-md-10">
-                            <input type="submit" value="Log in" class="btn btn-primary form-control" />
+                        <div class="col-md-offset-3 col-md-9">
+                            <input type="submit" value="Log in" class="btn btn-primary butt-color form-control" />
                         </div>
                     </div>
-                    <div class="col-md-offset-2 col-md-10 left-pad">
+                    <div class="col-md-offset-3 col-md-8 left-pad">
                         @Html.ActionLink("Register as a new user", "Register")
                     </div>
                     @* Enable this once you have account confirmation enabled for password reset functionality
