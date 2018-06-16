@@ -238,6 +238,7 @@
     <Content Include="Content\images\corporate3.jpg" />
     <Content Include="Content\images\corporate4.jpg" />
     <Content Include="Content\images\corporate5.jpg" />
+    <Content Include="Content\images\favicon.ico" />
     <Content Include="Content\images\ico_arrow%402x.png" />
     <Content Include="Content\images\ico_arrow.png" />
     <Content Include="Content\images\ico_arrows%402x.png" />
