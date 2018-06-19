@@ -25,13 +25,12 @@
                                 <div class="">
                                     <div class="xzoom-container">
                                         <img class="xzoom" id="xzoom-default" src="@Model.DefaultImagePath" xoriginal="@Model.DefaultImagePath" />
-                                        @foreach (var img in Model.objProductMaster.Images)
-                                        {
-                                            <div class="xzoom-thumbs">
+                                        <div class="xzoom-thumbs">
+                                            @foreach (var img in Model.objProductMaster.Images)
+                                            {
                                                 <a href="@img.ImagePath"><img class="xzoom-gallery" width="80" src="@img.ImagePath" xpreview="@img.ImagePath" title="@img.ImageName"></a>
-
-                                            </div>
-                                        }
+                                            }
+                                        </div>
                                     </div>
                                 </div>
                             </div>
