@@ -1179,7 +1179,7 @@ h1 {
     }
 
     #footer li:before {
-        content: "- ";
+        content: "";
     }
 
     #footer .ico {
