@@ -221,6 +221,7 @@
     <Content Include="Content\images\6.jpg" />
     <Content Include="Content\images\61.jpg" />
     <Content Include="Content\images\62.jpg" />
+    <Content Include="Content\images\background.jpg" />
     <Content Include="Content\images\banner1.jpg" />
     <Content Include="Content\images\banner2.jpg" />
     <Content Include="Content\images\banner3.jpg" />
@@ -286,6 +287,7 @@
     <Content Include="Content\images\product-image\3_zoom_4.jpg" />
     <Content Include="Content\images\product-image\test_standard.jpg" />
     <Content Include="Content\images\product-image\test_zoom.jpg" />
+    <Content Include="Content\images\ShreeHari.gif" />
     <Content Include="Content\images\thumbs\01_b_car.jpg" />
     <Content Include="Content\images\thumbs\02_o_car.jpg" />
     <Content Include="Content\images\thumbs\03_r_car.jpg" />

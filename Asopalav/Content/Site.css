@@ -303,4 +303,20 @@ label {
 .fa-linkedin:before {
     content: "\f0e1";
 }
+
+.shree-hari {
+    width: 78px;
+    height: 25px;
+    border: 2px solid #ffffff;
+    background: #ffffff;
+    opacity: .8;
+    text-align: center;
+    float: right;
+    border-radius: 5px;
+    margin-top: 14px;
+}
+
+    .shree-hari > img {
+    vertical-align:initial;
+    }
 /*Dropzone Div Ends*/
