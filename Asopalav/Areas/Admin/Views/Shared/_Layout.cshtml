@@ -33,26 +33,26 @@
     </div>
     <div class="container body-content">
         @RenderBody()
-        <footer>
-            <div class="pull-left">
-                <p>&copy; @DateTime.Now.Year - Asopalav Jewellers Private Limited</p>
-            </div>
-            <div class="pull-right">
-                <div class="footer_socialIcons">
-                    <ul>
-                        <li class="socialIcons_link">
-                            <a class="fa fa-twitter" href="javascript:void(0)"></a>
-                        </li>
-                        <li class="socialIcons_link">
-                            <a class="fa fa-google-plus" href="javascript:void(0)"></a>
-                        </li>
-                        <li class="socialIcons_link">
-                            <a class="fa fa-facebook" href="javascript:void(0)"></a>
-                        </li>
-                    </ul>
+        @*<footer>
+                <div class="pull-left">
+                    <p>&copy; @DateTime.Now.Year - Asopalav Jewellers Private Limited</p>
                 </div>
-            </div>
-        </footer>
+                <div class="pull-right">
+                    <div class="footer_socialIcons">
+                        <ul>
+                            <li class="socialIcons_link">
+                                <a class="fa fa-twitter" href="javascript:void(0)"></a>
+                            </li>
+                            <li class="socialIcons_link">
+                                <a class="fa fa-google-plus" href="javascript:void(0)"></a>
+                            </li>
+                            <li class="socialIcons_link">
+                                <a class="fa fa-facebook" href="javascript:void(0)"></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </footer>*@
     </div>
     @Scripts.Render("~/Script/Common")
     @RenderSection("scripts", required: false)

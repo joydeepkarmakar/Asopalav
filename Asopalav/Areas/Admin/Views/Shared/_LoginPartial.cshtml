@@ -1,5 +1,5 @@
 ﻿<ul class="nav navbar-nav navbar-right">
-    <li>Re/US $ - @Session["DollarRate"] <br/> Silver(₹/gm) - @Session["SilverRate"]</li>
+    <li>Re/US $ - @Session["DollarRate"] <br /> Silver(₹/Kg) - @Session["SilverRate"]</li>
     @if (Convert.ToBoolean(Session["IsLoginValid"]) == true)
     {
         <li>@Html.ActionLink("Welcome " + Session["UserFullName"] + "!", "Index", "Product", routeValues: null, htmlAttributes: new { title = "Manage" })</li>

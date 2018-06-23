@@ -316,7 +316,56 @@ label {
     margin-top: 14px;
 }
 
-    .shree-hari > img {
-    vertical-align:initial;
-    }
+.shree-hari-middle {
+    width: 78px;
+    height: 25px;
+    border: 2px solid #ffffff;
+    background: #ffffff;
+    opacity: .8;
+    text-align: center;
+    float: left;
+    margin: 17px 0 0 350px;
+    border-radius: 5px;
+}
+
+.shree-hari > img {
+    vertical-align: initial;
+}
+
+.shree-hari-middle > img {
+    vertical-align: initial;
+}
+
+a:focus {
+    text-decoration: none !important;
+}
+
+a:hover {
+    text-decoration: none !important;
+    color: coral !important;
+}
+
+.overlay > p > a:hover {
+    text-decoration: none !important;
+    color: #eaea02 !important;
+}
+
+.socialIcons_link > a:hover {
+    color: #fff !important;
+}
+
+.bg-twitter:hover {
+    background: #1e88e5;
+    color: #fff;
+}
+
+.bg-gplus:hover {
+    background: #dd4b39;
+    color: #fff;
+}
+
+.bg-face:hover {
+    background: #3b5998;
+    color: #fff;
+}
 /*Dropzone Div Ends*/

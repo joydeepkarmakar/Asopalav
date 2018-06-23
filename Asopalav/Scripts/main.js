@@ -1,4 +1,4 @@
-function mobileCheck() {
+﻿function mobileCheck() {
     var winWidth = $(window).width();
     if (winWidth <= 768) {
         $("#sidebar").after($("#body .pagination:first"))
@@ -164,4 +164,25 @@ $(document).ready(function () {
             })
         });
     });
+
+    /*Product Details*/
+
+    if ($('#ddlCurrency').val() == "USD")
+        $("#dispCurrency").text("$");
+    else
+        $("#dispCurrency").text("₹");
+
+    var dispPrice = $("#dispPrice").text();
+
+    $("#ddlCurrency").change(function () {
+        if ($("#ddlCurrency option:selected").text() == "USD") {
+            $("#dispCurrency").text("$");
+            $("#dispPrice").text(dispPrice);
+        }
+        else {
+            $("#dispCurrency").text("₹");
+            $("#dispPrice").text((dollarRate * dispPrice).toFixed(2));
+        }
+    });
+
 });

@@ -639,6 +639,19 @@ a {
         box-shadow: inset 0 0 0 2px #d6cfc3;
     }
 
+.text:hover {
+    margin: auto;
+    padding: 2px 30px;
+    width: 252px;
+    border: 4px solid #fff;
+    background-color: #cecece;
+    box-shadow: inset 0 0 0 2px #d6cfc3;
+}
+
+    .text:hover > h4:hover {
+        color: coral !important;
+    }
+
 h1 {
     color: #656567;
     font-size: 36px;
@@ -1389,7 +1402,7 @@ h1 {
 
     #footer {
         background-image: none;
-        background-size:auto;
+        background-size: auto;
     }
 
     .pagination span {
@@ -1976,8 +1989,8 @@ h1 {
         position: relative;*/
         -webkit-transition: all 0.35s;
         transition: all 0.35s;
-        width:210px;
-        height:250px;
+        width: 210px;
+        height: 250px;
     }
 
     .hovereffect:hover img {
@@ -2074,6 +2087,8 @@ h1 {
 
 .nav > li > a:hover, .nav > li > a:focus {
     text-decoration: none;
+    color: #fff !important;
+    margin-top: 5px;
     background-color: #ea645d !important;
 }
 
@@ -2091,6 +2106,6 @@ h1 {
 }
 
 .video-container {
-    text-align:center;
-    margin-top:60px !important;
+    text-align: center;
+    margin-top: 60px !important;
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Asopalav.Helpers;
 using Asopalav.Models;
 using DataAccessLayer;
 
@@ -12,14 +13,15 @@ namespace Asopalav.Controllers
     {
         // GET: ProductDetails
         [Route("ProductDetails/{id}")]
-        public ActionResult Index(long id)
+        public ActionResult Index(string id)
         {
             var host = System.Web.HttpContext.Current.Request.Url.OriginalString.Replace(System.Web.HttpContext.Current.Request.Url.PathAndQuery, "");
             ProductDetailsModel objProductDetailsModel = new ProductDetailsModel();
             int counter = 0;
             using (var context = new AsopalavDBEntities())
             {
-                objProductDetailsModel.objProductMaster = context.ProductMasters.Include("Images").Where(p => p.ProductID == id).FirstOrDefault();
+                var decodedId = int.Parse(id.Base64Decode());
+                objProductDetailsModel.objProductMaster = context.ProductMasters.Include("Images").Where(p => p.ProductID == decodedId).FirstOrDefault();
                 if (objProductDetailsModel.objProductMaster.Images != null)
                 {
                     foreach (var item in objProductDetailsModel.objProductMaster.Images)
