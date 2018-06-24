@@ -18,8 +18,7 @@
 
 /* Set width on the form input elements since they're 100% wide by default */
 input,
-select,
-.gender-width {
+select {
     max-width: 80%;
 }
 
@@ -45,6 +44,7 @@ select,
 .checkbox {
     left: 15px !important;
     margin-top: 4px !important;
+    padding-left:0 !important;
 }
 
 .left-pad {
@@ -134,14 +134,14 @@ select,
 }
 
 .admin-margin-top-pro {
-    margin: 60px auto 50px auto;
+    margin: 140px auto 50px auto;
     width: 90%;
 }
 
 /*Dropzone Div Starts*/
 .dropDiv {
     height: 150px;
-    width: 250px;
+    width: 100%;
     border: 1px solid black;
     position: relative;
 }
@@ -367,5 +367,24 @@ a:hover {
 .bg-face:hover {
     background: #3b5998;
     color: #fff;
+}
+
+.form-group > div > span > input {
+    max-width:100%;
+}
+
+.pro-ad > select {
+    max-width:100%;
+}
+.size > input {
+    max-width: 100%;
+}
+
+input[type="radio"], input[type="checkbox"] {
+    margin: 8px 5px 0 0 !important;
+}
+
+.pro-admin-topspace {
+    margin-top:30px;
 }
 /*Dropzone Div Ends*/
