@@ -44,7 +44,7 @@ select {
 .checkbox {
     left: 15px !important;
     margin-top: 4px !important;
-    padding-left:0 !important;
+    padding-left: 0 !important;
 }
 
 .left-pad {
@@ -370,12 +370,13 @@ a:hover {
 }
 
 .form-group > div > span > input {
-    max-width:100%;
+    max-width: 100%;
 }
 
 .pro-ad > select {
-    max-width:100%;
+    max-width: 100%;
 }
+
 .size > input {
     max-width: 100%;
 }
@@ -385,6 +386,35 @@ input[type="radio"], input[type="checkbox"] {
 }
 
 .pro-admin-topspace {
-    margin-top:30px;
+    margin-top: 30px;
+}
+
+
+/* ------- product image ------------*/
+
+.dropzone .dz-preview .dz-details {
+    min-width: initial !important;
+    max-width: initial !important;
+}
+
+.dropzone .dz-preview .dz-image {
+    width: auto !important;
+    height: auto !important;
+}
+
+    .dropzone .dz-preview .dz-image img {
+        display: inline !important;
+    }
+
+.dropzone .dz-preview {
+    position: relative;
+    display: inline-block;
+    width: auto !important;
+    margin: 0.5em;
+    margin: 7px !important;
+}
+
+.dropzone {
+    display: table;
 }
 /*Dropzone Div Ends*/
