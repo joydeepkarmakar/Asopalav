@@ -65,9 +65,8 @@
                 <div class="form-group">
                     <div class="col-sm-offset-4 col-sm-8">
                         <div class="checkbox chb-prod">
-                            <label><input type="checkbox" name="remember">Set Offer</label>
-                            @*@Html.LabelFor(m => m.IsOffer)
-                            @Html.CheckBoxFor(m => m.IsOffer)*@
+                            @Html.LabelFor(m => m.IsOffer)
+                            @Html.CheckBoxFor(m => m.IsOffer)
                         </div>
                     </div>
                 </div>
@@ -99,8 +98,9 @@
                     <div class="col-sm-offset-4 col-sm-8">
                         <div id="divDropImages" class="fallback dropzone dropDiv">
                             Upload Image
-                            <a href="#">
-                                <span class="drophyperspan"></span>
+                            <a href="javascript:void(0);">
+                                <span class="drophyperspan">
+                                </span>
                             </a>
                         </div>
                         @Html.ValidationMessageFor(m => m.ImagePath, "", new { @style = "color:red" })
