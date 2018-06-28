@@ -189,7 +189,6 @@ a {
     height: auto;
     padding-top: 5px;
     padding-bottom: 5px;
-    border-bottom: 1px solid #525456;
 }
 
 #header .right-links {
@@ -216,19 +215,19 @@ a {
 
     #header .right-links li {
         float: left;
-        color: #656567;
+        color: #383838;
         font-weight: 500;
         padding-left: 37px;
         font-size: 12px;
     }
 
     #header .right-links a {
-        color: #fff;
+        color: #c63535;
     }
 
 #logo {
-    width: 256px;
-    height: 52px;
+    width: 287px;
+    height: 70px;
     display: block;
     float: left;
     cursor: pointer;
@@ -2034,8 +2033,9 @@ h1 {
     }
 
 .hd-background {
-    background: #a5322c;
-    color: #fff;
+    background: #fff;
+    color: #383838;
+    border-bottom:1px solid #517d23;
 }
 
 .media {
