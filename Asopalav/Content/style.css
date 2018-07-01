@@ -215,7 +215,7 @@ a {
 
     #header .right-links li {
         float: left;
-        color: #383838;
+        color: #000;
         font-weight: 500;
         padding-left: 37px;
         font-size: 12px;
@@ -2033,7 +2033,7 @@ h1 {
     }
 
 .hd-background {
-    background: #fff;
+    background: #e2e2e2;
     color: #383838;
     border-bottom:1px solid #517d23;
 }
