@@ -225,6 +225,7 @@
     <Content Include="Content\images\banner1.jpg" />
     <Content Include="Content\images\banner2.jpg" />
     <Content Include="Content\images\banner3.jpg" />
+    <Content Include="Content\images\bg.png" />
     <Content Include="Content\images\bg_footer%402x.png" />
     <Content Include="Content\images\bg_footer.png" />
     <Content Include="Content\images\btn_mobile_menu.png" />

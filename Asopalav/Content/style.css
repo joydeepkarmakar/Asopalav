@@ -150,16 +150,22 @@ textarea {
 ------------------------------------------------------------------------------*/
 
 body {
-    font: 16px/30px Arial, Helvetica, sans-serif;
+    font: 16px/30px Novecentowide, Helvetica, sans-serif;
     color: #949697;
-    background: #fff;
     -webkit-text-size-adjust: none;
     min-width: 320px;
+    background:#eaeaea;
+    background-image:url(/Content/images/bg.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height:100%;
+    
 }
 
 input, textarea, select, button {
     outline: none;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: Novecentowide, Helvetica, sans-serif;
 }
 
 a {
@@ -260,7 +266,7 @@ a {
         }
 
     #menu a {
-        color: #737375;
+        color: #232323;
     }
 
 
@@ -466,6 +472,7 @@ a {
     margin: 12px 0 30px;
     position: relative;
     font-family: "Novecentowide" !important;
+    background:#ffffff;
 }
 
     .last-products .products article {
