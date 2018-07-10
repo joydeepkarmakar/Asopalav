@@ -18,6 +18,8 @@ namespace Asopalav.Controllers
         public ActionResult Index()
         {
             #region Dollar Silver Rate Section
+            /*
+            //Scrapped due to admin permission issue in sql server//
             GetDollarSilverRate_Result objGetDollarSilverRate_Result = new GetDollarSilverRate_Result();
             objGetDollarSilverRate_Result = objAsopalavDBEntities.GetDollarSilverRate().FirstOrDefault();
             if (objGetDollarSilverRate_Result != null)
@@ -25,6 +27,10 @@ namespace Asopalav.Controllers
                 Session["DollarRate"] = objGetDollarSilverRate_Result.DollarRate;
                 Session["SilverRate"] = objGetDollarSilverRate_Result.SilverRate;
             }
+            */
+
+            Session["DollarRate"] = GetDollarToRupeeVal(ConfigurationManager.AppSettings["DollarToRupeeUrl"]) ?? "NA";
+            Session["SilverRate"] = GetSilverPrice(ConfigurationManager.AppSettings["SilverPriceUrl"]) ?? "NA";
             #endregion
 
             #region Last Added Product Section
@@ -77,7 +83,7 @@ namespace Asopalav.Controllers
                 if (!SendAcknowledgementMail(objFeedbackMaster.EmailID))
                     return Json(new { IsSuccess = false, errorMsg = TempData["SendAcknowledgementMailMsg"] }, JsonRequestBehavior.AllowGet);
 
-                if(!SendMailToAdmin(objFeedbackMaster))
+                if (!SendMailToAdmin(objFeedbackMaster))
                     return Json(new { IsSuccess = false, errorMsg = TempData["SendMailToAdminMsg"] }, JsonRequestBehavior.AllowGet);
             }
             return Json(new { IsSuccess = true }, JsonRequestBehavior.AllowGet);
@@ -129,6 +135,20 @@ namespace Asopalav.Controllers
             }
 
             return IsSendMail;
+        }
+
+        private string GetDollarToRupeeVal(string url)
+        {
+            var jsonData = JsonHelper.ReturnJsonData(url);
+            var dollarToRupeeVal = (from x in JsonHelper.DeserializeAndFlatten(jsonData) where x.Key == "results.USD_INR.val" select x.Value).FirstOrDefault();
+            return dollarToRupeeVal.ToString();
+        }
+
+        private string GetSilverPrice(string url)
+        {
+            var jsonData = JsonHelper.ReturnJsonData(url);
+            var silverPrice = (from x in JsonHelper.DeserializeAndFlatten(jsonData) where x.Key == "data.SELL_PRICE" select x.Value).FirstOrDefault();
+            return silverPrice.ToString();
         }
     }
 }
