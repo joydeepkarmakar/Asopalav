@@ -12,10 +12,10 @@
     <div class="hd-fix">
         <header id="header" class="hd-background">
             <div class="container">
-                <a href="javascript:void(0);" id="logo" title="Asopalav Jewellers">Asopalav Jewellers</a>
-                <div class="shree-hari-middle"><img src="~/Content/images/ShreeHari.gif" style="width:110px;" /></div>
+                <div class="col-xs-12 col-sm-5"><a href="javascript:void(0);" id="logo" title="Asopalav Jewellers">Asopalav Jewellers</a></div>
+                <div class="col-xs-12 col-sm-3 shree-hari-middle"><img src="~/Content/images/ShreeHari.gif" style="width:110px;" /></div>
                 @*<div class="shree-hari"><img src="~/Content/images/ShreeHari.gif" style="width:50px;" /></div>*@
-                <div class="right-links pull-right">
+                <div class="col-xs-12 col-sm-4 right-links pull-right">
                     <ul class="nav navbar-nav navbar-right">
                         <li><p>Re/US $ - @Session["DollarRate"]</p> <p>Silver(₹/Kg) - @Session["SilverRate"]</p></li>
                         @if (Convert.ToBoolean(Session["IsLoginValid"]) == true)

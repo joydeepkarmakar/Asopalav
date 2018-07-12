@@ -238,7 +238,7 @@ a {
     float: left;
     cursor: pointer;
     text-indent: -9999em;
-    background: url(../Content/images/logo@2x.png) no-repeat;
+    background: url(../Content/images/logo@2x.gif) no-repeat;
 }
 
 
@@ -1383,7 +1383,7 @@ h1 {
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
 
     #logo {
-        background-image: url(../Content/images/logo@2x.png);
+        background-image: url(../Content/images/logo@2x.gif);
     }
 
     #header .right-links span {
