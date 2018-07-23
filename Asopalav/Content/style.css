@@ -1435,6 +1435,10 @@ h1 {
     max-width: 100%;
 }
 
+    .middle-con-margin {
+        margin-top: 95px;
+    }
+
 }
 
 @media screen and (max-width: 1220px) {
@@ -1507,12 +1511,16 @@ h1 {
         width: 701px !important;
         margin: auto;
     }
+
+        .middle-con-margin {
+        margin-top: 95px;
+    }
 }
 
 @media screen and (max-width: 768px) {
 
     .middle-con-margin {
-        margin-top: 50px;
+        margin-top: 115px;
     }
 
     #sidebar .ui-slider {
@@ -1545,6 +1553,14 @@ h1 {
         margin: 0 0 30px;
         text-align: center;
     }
+
+        #header .right-links li {
+        float: left;
+        color: #000;
+        font-weight: 500;
+        padding-left: 0;
+        font-size: 12px;
+    }
 }
 
 @media screen and (max-width: 760px) {
@@ -1565,7 +1581,7 @@ h1 {
     }
 
     .middle-con-margin {
-        margin-top: 200px;
+        margin-top: 195px;
     }
 
     .last-products .bx-viewport {
@@ -1724,7 +1740,7 @@ h1 {
         right: 0;
         display: none;
         z-index: 999;
-        background: #fff;
+        background: #d68204;
         position: absolute;
         padding-bottom: 10px;
         border-bottom: 1px solid #333;
@@ -2076,7 +2092,8 @@ h1 {
     position: absolute;
     left: 30%;
     z-index: 1;
-    width: 35%;
+    width: 39%;
+    margin-top:9px;
 }
 
     .gifts-submenu li {
