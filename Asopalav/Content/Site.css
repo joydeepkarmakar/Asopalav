@@ -318,8 +318,8 @@ label {
 
 .shree-hari-middle {
     width: 134px;
-    height: 31px;
-    border: 2px solid #ffffff;
+    height: 37px;
+    border: 2px solid #dcdcdc;
     background: #ffffff;
     opacity: .8;
     text-align: center;
@@ -343,7 +343,7 @@ label {
         opacity: .8;
         text-align: center;
         float: left;
-        margin: 17px 0 0 100px;
+        margin: 5px 0 0 100px;
         border-radius: 5px;
         padding-top: 4px;
     }

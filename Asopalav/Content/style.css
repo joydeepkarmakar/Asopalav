@@ -1719,7 +1719,7 @@ h1 {
     }
 
     #menu ul {
-        top: 110px;
+        top: 83px;
         left: 0;
         right: 0;
         display: none;
@@ -2040,7 +2040,7 @@ h1 {
     }
 
 .hd-background {
-    background: #e2e2e2;
+    background: #ededed;
     color: #383838;
 }
 
