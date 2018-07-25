@@ -1,0 +1,6 @@
+﻿@model Asopalav.Models.DashboardModel
+@{
+    ViewBag.Title = "Festive";
+}
+
+@Html.Partial("~/Views/Shared/_ProductList.cshtml", Model.objGetProductsByProductType_Result)

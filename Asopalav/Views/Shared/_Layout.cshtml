@@ -13,7 +13,7 @@
         <header id="header" class="hd-background">
             <div class="container">
                 <div class="col-xs-12 col-sm-5"><a href="javascript:void(0);" id="logo" title="Asopalav Jewellers">Asopalav Jewellers</a></div>
-                <div class="col-xs-12 col-sm-3 shree-hari-middle"><img src="~/Content/images/ShreeHari.gif" style="width:110px;" /></div>
+                <div class="col-xs-12 col-sm-3 shree-hari-middle"><img src="~/Content/images/ShreeHari.gif" /></div>
                 @*<div class="shree-hari"><img src="~/Content/images/ShreeHari.gif" style="width:50px;" /></div>*@
                 <div class="col-xs-12 col-sm-4 right-links pull-right">
                     <ul class="nav navbar-nav navbar-right">
@@ -46,13 +46,13 @@
                     <li>
                         <a href="javascript:void(0);" id="mnuGifts">Gifts</a>
                         <ul id="ulGiftsSubmenu" class="gifts-submenu" style="display:none;">
-                            <li><a href="javascript:void(0);">Personalize</a></li>
-                            <li><a href="javascript:void(0);">Corporate</a></li>
-                            <li><a href="javascript:void(0);">Kids</a></li>
-                            <li><a href="javascript:void(0);">Festive</a></li>
+                            <li>@Html.ActionLink("Personalize", "Personalize", "Home", new { page = "Personalize" }, null)</li>
+                            <li>@Html.ActionLink("Corporate", "Corporate", "Home", new { page = "Corporate" }, null)</li>
+                            <li>@Html.ActionLink("Kids", "Kids", "Home", new { page = "Kids" }, null)</li>
+                            <li>@Html.ActionLink("Festive", "Festive", "Home", new { page = "Festive" }, null)</li>
                         </ul>
                     </li>
-                    <li><a href="javascript:void(0);">Fine Metal</a></li>
+                    <li>@Html.ActionLink("Fine Metal", "FineMetal", "Home", new { page = "FineMetal" }, null)</li>
                     <li>@Html.ActionLink("About us", "About", "Home")</li>
                     <li>@Html.ActionLink("Contact us", "Contact", "Home")</li>
                 </ul>
