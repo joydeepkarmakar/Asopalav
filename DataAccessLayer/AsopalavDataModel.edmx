@@ -182,7 +182,6 @@
           <Parameter Name="Price" Type="decimal" Mode="In" />
           <Parameter Name="IsOffer" Type="bit" Mode="In" />
           <Parameter Name="OfferPrice" Type="decimal" Mode="In" />
-          <Parameter Name="ImagePath" Type="varchar" Mode="In" />
           <Parameter Name="IsActive" Type="bit" Mode="In" />
           <Parameter Name="Description" Type="varchar(max)" Mode="In" />
           <Parameter Name="ModifyDate" Type="datetime" Mode="In" />
@@ -203,6 +202,9 @@
         <Function Name="DailyRate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="GetDollarSilverRate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="GetLastAddedProducts" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="GetProductsByProductType" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ProductType" Type="nvarchar" Mode="In" />
+        </Function>
         <Function Name="SilverRate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="SplitString" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Input" Type="nvarchar(max)" Mode="In" />
@@ -382,7 +384,6 @@
             <Parameter Name="Price" Mode="In" Type="Decimal" />
             <Parameter Name="IsOffer" Mode="In" Type="Boolean" />
             <Parameter Name="OfferPrice" Mode="In" Type="Decimal" />
-            <Parameter Name="ImagePath" Mode="In" Type="String" />
             <Parameter Name="IsActive" Mode="In" Type="Boolean" />
             <Parameter Name="Description" Mode="In" Type="String" />
             <Parameter Name="ModifyDate" Mode="In" Type="DateTime" />
@@ -407,6 +408,9 @@
             <Parameter Name="Character" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="GetLastAddedProducts" ReturnType="Collection(AsopalavDBModel.GetLastAddedProducts_Result)" />
+          <FunctionImport Name="GetProductsByProductType" ReturnType="Collection(AsopalavDBModel.GetProductsByProductType_Result)">
+            <Parameter Name="ProductType" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="ValidateUserAndMenu_Result">
           <Property Type="Boolean" Name="IsLoginValid" Nullable="false" />
@@ -494,6 +498,23 @@
           <Property Type="String" Name="SilverRate" Nullable="true" MaxLength="50" />
         </ComplexType>
         <ComplexType Name="GetLastAddedProducts_Result">
+          <Property Type="Int64" Name="ProductID" Nullable="false" />
+          <Property Type="String" Name="ProductCode" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="ProductName" Nullable="false" MaxLength="250" />
+          <Property Type="Int32" Name="ProductTypeID" Nullable="true" />
+          <Property Type="Decimal" Name="WeightInGms" Nullable="false" Precision="18" Scale="3" />
+          <Property Type="String" Name="HeightInInch" Nullable="true" MaxLength="15" />
+          <Property Type="String" Name="WidthInInch" Nullable="true" MaxLength="15" />
+          <Property Type="Decimal" Name="Price" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Boolean" Name="IsOffer" Nullable="true" />
+          <Property Type="Decimal" Name="OfferPrice" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Boolean" Name="IsActive" Nullable="false" />
+          <Property Type="String" Name="Description" Nullable="false" />
+          <Property Type="DateTime" Name="CreationDate" Nullable="false" Precision="23" />
+          <Property Type="String" Name="ImageName" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="ImagePath" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="GetProductsByProductType_Result">
           <Property Type="Int64" Name="ProductID" Nullable="false" />
           <Property Type="String" Name="ProductCode" Nullable="false" MaxLength="100" />
           <Property Type="String" Name="ProductName" Nullable="false" MaxLength="250" />
@@ -679,6 +700,27 @@
           <FunctionImportMapping FunctionImportName="GetLastAddedProducts" FunctionName="AsopalavDBModel.Store.GetLastAddedProducts">
             <ResultMapping>
               <ComplexTypeMapping TypeName="AsopalavDBModel.GetLastAddedProducts_Result">
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="ProductCode" ColumnName="ProductCode" />
+                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+                <ScalarProperty Name="ProductTypeID" ColumnName="ProductTypeID" />
+                <ScalarProperty Name="WeightInGms" ColumnName="WeightInGms" />
+                <ScalarProperty Name="HeightInInch" ColumnName="HeightInInch" />
+                <ScalarProperty Name="WidthInInch" ColumnName="WidthInInch" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="IsOffer" ColumnName="IsOffer" />
+                <ScalarProperty Name="OfferPrice" ColumnName="OfferPrice" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="ImageName" ColumnName="ImageName" />
+                <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetProductsByProductType" FunctionName="AsopalavDBModel.Store.GetProductsByProductType">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="AsopalavDBModel.GetProductsByProductType_Result">
                 <ScalarProperty Name="ProductID" ColumnName="ProductID" />
                 <ScalarProperty Name="ProductCode" ColumnName="ProductCode" />
                 <ScalarProperty Name="ProductName" ColumnName="ProductName" />

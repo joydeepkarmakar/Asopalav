@@ -9,6 +9,7 @@ namespace Asopalav.Models
     public class DashboardModel
     {
         public List<GetLastAddedProducts_Result> objGetLastAddedProducts_Result = new List<GetLastAddedProducts_Result>();
+        public List<GetProductsByProductType_Result> objGetProductsByProductType_Result = new List<GetProductsByProductType_Result>();
     }
 
     public class ProductDetailsModel

@@ -42,7 +42,7 @@
                 <div class="trigger"></div>
                 <ul>
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li><a href="javascript:void(0);">Silverware</a></li>
+                    <li>@Html.ActionLink("Silverware", "Silverware", "Home", new { page = "Silverware" }, null)</li>
                     <li>
                         <a href="javascript:void(0);" id="mnuGifts">Gifts</a>
                         <ul id="ulGiftsSubmenu" class="gifts-submenu" style="display:none;">

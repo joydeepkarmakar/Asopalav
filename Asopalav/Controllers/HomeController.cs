@@ -14,7 +14,7 @@ namespace Asopalav.Controllers
     public class HomeController : Controller
     {
         AsopalavDBEntities objAsopalavDBEntities = new AsopalavDBEntities();
-
+        DashboardModel objDashboardModel = new DashboardModel();
         public ActionResult Index()
         {
             #region Dollar Silver Rate Section
@@ -34,7 +34,6 @@ namespace Asopalav.Controllers
             #endregion
 
             #region Last Added Product Section
-            DashboardModel objDashboardModel = new DashboardModel();
             objDashboardModel.objGetLastAddedProducts_Result = objAsopalavDBEntities.GetLastAddedProducts().ToList();
             #endregion
 
@@ -47,6 +46,13 @@ namespace Asopalav.Controllers
             ViewBag.Message = "Your application description page.";
 
             return View();
+        }
+
+        [Route("~/Silverware")]
+        public ActionResult Silverware(string page)
+        {
+            objDashboardModel.objGetProductsByProductType_Result = objAsopalavDBEntities.GetProductsByProductType(page).ToList();
+            return View(objDashboardModel);
         }
 
         [Route("~/Contact")]

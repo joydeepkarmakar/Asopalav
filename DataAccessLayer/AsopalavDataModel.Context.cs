@@ -100,7 +100,7 @@ namespace DataAccessLayer
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ValidateUserAndMenu_Result>("ValidateUserAndMenu", userNameParameter, passwordParameter);
         }
     
-        public virtual int AddUpdateProduct(Nullable<long> productID, string productCode, string productName, Nullable<int> productTypeID, Nullable<decimal> weightInGms, string heightInInch, string widthInInch, Nullable<decimal> price, Nullable<bool> isOffer, Nullable<decimal> offerPrice, string imagePath, Nullable<bool> isActive, string description, Nullable<System.DateTime> modifyDate)
+        public virtual int AddUpdateProduct(Nullable<long> productID, string productCode, string productName, Nullable<int> productTypeID, Nullable<decimal> weightInGms, string heightInInch, string widthInInch, Nullable<decimal> price, Nullable<bool> isOffer, Nullable<decimal> offerPrice, Nullable<bool> isActive, string description, Nullable<System.DateTime> modifyDate)
         {
             var productIDParameter = productID.HasValue ?
                 new ObjectParameter("ProductID", productID) :
@@ -142,10 +142,6 @@ namespace DataAccessLayer
                 new ObjectParameter("OfferPrice", offerPrice) :
                 new ObjectParameter("OfferPrice", typeof(decimal));
     
-            var imagePathParameter = imagePath != null ?
-                new ObjectParameter("ImagePath", imagePath) :
-                new ObjectParameter("ImagePath", typeof(string));
-    
             var isActiveParameter = isActive.HasValue ?
                 new ObjectParameter("IsActive", isActive) :
                 new ObjectParameter("IsActive", typeof(bool));
@@ -158,7 +154,7 @@ namespace DataAccessLayer
                 new ObjectParameter("ModifyDate", modifyDate) :
                 new ObjectParameter("ModifyDate", typeof(System.DateTime));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AddUpdateProduct", productIDParameter, productCodeParameter, productNameParameter, productTypeIDParameter, weightInGmsParameter, heightInInchParameter, widthInInchParameter, priceParameter, isOfferParameter, offerPriceParameter, imagePathParameter, isActiveParameter, descriptionParameter, modifyDateParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AddUpdateProduct", productIDParameter, productCodeParameter, productNameParameter, productTypeIDParameter, weightInGmsParameter, heightInInchParameter, widthInInchParameter, priceParameter, isOfferParameter, offerPriceParameter, isActiveParameter, descriptionParameter, modifyDateParameter);
         }
     
         public virtual ObjectResult<GetDollarSilverRate_Result> GetDollarSilverRate()
@@ -193,6 +189,15 @@ namespace DataAccessLayer
         public virtual ObjectResult<GetLastAddedProducts_Result> GetLastAddedProducts()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetLastAddedProducts_Result>("GetLastAddedProducts");
+        }
+    
+        public virtual ObjectResult<GetProductsByProductType_Result> GetProductsByProductType(string productType)
+        {
+            var productTypeParameter = productType != null ?
+                new ObjectParameter("ProductType", productType) :
+                new ObjectParameter("ProductType", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetProductsByProductType_Result>("GetProductsByProductType", productTypeParameter);
         }
     }
 }
