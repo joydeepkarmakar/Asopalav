@@ -223,7 +223,7 @@ a {
         float: left;
         color: #000;
         font-weight: 500;
-        padding-left: 37px;
+        padding-left: 15px;
         font-size: 12px;
     }
 
@@ -241,6 +241,11 @@ a {
     background: url(../Content/images/logo@2x.gif) no-repeat;
 }
 
+.nav > li > a {
+    position: relative;
+    display: block;
+    padding: 10px 10px !important;
+}
 
 /* Navigation
 ------------------------------------------------------------------------------*/
