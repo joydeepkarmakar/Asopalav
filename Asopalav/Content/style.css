@@ -154,8 +154,8 @@ body {
     color: #949697;
     -webkit-text-size-adjust: none;
     min-width: 320px;
-    background:#eaeaea;
-    background-image:url(/Content/images/bg.png);
+    background:#fffff4;
+    /*background-image:url(/Content/images/bg.png);*/
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -1098,7 +1098,7 @@ h1 {
 
 #sidebar {
     float: left;
-    background: #383838;
+    background: #5c5b5b;
     width: 234px;
     padding: 28px 30px;
     padding-bottom: 950px;
@@ -2138,3 +2138,22 @@ h1 {
     text-align: center;
     margin-top: 60px !important;
 }
+
+.form-horizontal > div.form-group > div > input {
+    border: 0;
+    border-bottom: 1px solid #b6b6b4;
+}
+
+.form-horizontal > div.form-group > div > textarea {
+    border: 0;
+    border-bottom: 1px solid #b6b6b4;
+}
+
+.footer-bott {
+    bottom: 0;
+    left:0;
+    position: fixed;
+    width: 100%;
+    z-index:999;
+}
+    

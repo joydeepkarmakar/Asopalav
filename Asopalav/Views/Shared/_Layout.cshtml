@@ -17,7 +17,7 @@
                 @*<div class="shree-hari"><img src="~/Content/images/ShreeHari.gif" style="width:50px;" /></div>*@
                 <div class="col-xs-12 col-sm-4 right-links pull-right">
                     <ul class="nav navbar-nav navbar-right">
-                        <li><p>Re/US $ - @Session["DollarRate"]</p> <p>Silver(₹/Kg) - @Session["SilverRate"]</p></li>
+                        <li><p>1 Dollar = &nbsp;&nbsp;&nbsp; @Session["DollarRate"] INR </p> <p>Silver Rate = @Session["SilverRate"] INR/Kg</p></li>
                         @if (Convert.ToBoolean(Session["IsLoginValid"]) == true)
                         {
                             @Html.AntiForgeryToken()
@@ -38,7 +38,7 @@
         </header>
         <!-- / header -->
         <nav id="menu">
-            <div class="container" style="width:100% !important; background:#c6c6c7">
+            <div class="container" style="width:100% !important; background:#fff; margin-top:6px;">
                 <div class="trigger"></div>
                 <ul>
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
@@ -63,7 +63,7 @@
     <div class="container body-content">
         @RenderBody()
     </div>
-    <div>
+    <div class="footer-bott">
         <footer id="footer">
             <div class="container" style="width:100% !important">
                 <div class="cols" style="display:none;">

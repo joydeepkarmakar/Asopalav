@@ -91,7 +91,7 @@ select {
 /*-----------------Contact Us---------------------*/
 
 .contact-margin-top {
-    margin: 150px auto 20px auto;
+    margin: 190px auto 20px auto;
     width: 90%;
     font-weight: bold;
     text-align: center;
@@ -180,7 +180,6 @@ select {
 label {
     font-size: 14px !important;
     line-height: 15px !important;
-    padding: 2px 0 !important;
 }
 
 #mapDiv > div {
@@ -323,7 +322,7 @@ label {
     background: #ffffff;
     opacity: .8;
     text-align: center;
-    margin: 20px 3% 0 2.5%;
+    margin: 0 3% 0 2.5%;
     border-radius: 5px;
     padding: 0;
 }
@@ -486,6 +485,7 @@ fieldset > input {
 
 .product-list-top {
     margin-top:100px;
+    margin-bottom:70px;
 }
 
 
