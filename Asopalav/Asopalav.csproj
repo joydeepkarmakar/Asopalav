@@ -263,6 +263,8 @@
     <Content Include="Content\images\logo%402x.gif" />
     <Content Include="Content\images\logo%402x.png" />
     <Content Include="Content\images\mov_bbb.mp4" />
+    <Content Include="Content\images\no-magento-product-found.jpg" />
+    <Content Include="Content\images\no-product-image.jpg" />
     <Content Include="Content\images\original\01_b_car.jpg" />
     <Content Include="Content\images\original\02_o_car.jpg" />
     <Content Include="Content\images\original\03_r_car.jpg" />
@@ -346,6 +348,7 @@
     <Content Include="bin\roslyn\Microsoft.VisualBasic.Core.targets" />
     <Content Include="bin\roslyn\VBCSCompiler.exe.config" />
     <Content Include="Scripts\bootstrap.min.js.download" />
+    <Content Include="App_Code\Shared.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\dropzone.js" />
     <Content Include="Scripts\easyzoom.js" />
@@ -422,6 +425,11 @@
     <Content Include="Views\Home\LastAddedProducts.cshtml" />
     <Content Include="Views\Shared\_ProductList.cshtml" />
     <Content Include="Views\Home\Silverware.cshtml" />
+    <Content Include="Views\Home\Personalize.cshtml" />
+    <Content Include="Views\Home\Corporate.cshtml" />
+    <Content Include="Views\Home\Kids.cshtml" />
+    <Content Include="Views\Home\Festive.cshtml" />
+    <Content Include="Views\Home\FineMetal.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

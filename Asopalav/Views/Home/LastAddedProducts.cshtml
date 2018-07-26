@@ -1,14 +1,4 @@
-﻿@using Asopalav.Helpers;
-
-@functions{
-    public string EncriptValue(string value)
-    {
-        var encode = value.Base64Encode();
-        return encode;
-    }
-}
-
-<section class="products">
+﻿<section class="products">
     @foreach (var item in Model)
     {
         <article>
@@ -17,7 +7,7 @@
                 <div class="overlay">
                     <h2>@item.ProductCode</h2>
                     <p>
-                        <a href="@Url.Action("Index","ProductDetails", new { id = EncriptValue(item.ProductID.ToString()) })">Details</a>
+                        <a href="@Url.Action("Index","ProductDetails", new { id = @Shared.EncriptValue(item.ProductID.ToString()) })">Details</a>
                     </p>
                 </div>
             </div>

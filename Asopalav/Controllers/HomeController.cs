@@ -55,6 +55,41 @@ namespace Asopalav.Controllers
             return View(objDashboardModel);
         }
 
+        [Route("~/Personalize")]
+        public ActionResult Personalize(string page)
+        {
+            objDashboardModel.objGetProductsByProductType_Result = objAsopalavDBEntities.GetProductsByProductType(page).ToList();
+            return View(objDashboardModel);
+        }
+
+        [Route("~/Corporate")]
+        public ActionResult Corporate(string page)
+        {
+            objDashboardModel.objGetProductsByProductType_Result = objAsopalavDBEntities.GetProductsByProductType(page).ToList();
+            return View(objDashboardModel);
+        }
+
+        [Route("~/Kids")]
+        public ActionResult Kids(string page)
+        {
+            objDashboardModel.objGetProductsByProductType_Result = objAsopalavDBEntities.GetProductsByProductType(page).ToList();
+            return View(objDashboardModel);
+        }
+
+        [Route("~/Festive")]
+        public ActionResult Festive(string page)
+        {
+            objDashboardModel.objGetProductsByProductType_Result = objAsopalavDBEntities.GetProductsByProductType(page).ToList();
+            return View(objDashboardModel);
+        }
+
+        [Route("~/FineMetal")]
+        public ActionResult FineMetal(string page)
+        {
+            objDashboardModel.objGetProductsByProductType_Result = objAsopalavDBEntities.GetProductsByProductType(page).ToList();
+            return View(objDashboardModel);
+        }
+
         [Route("~/Contact")]
         public ActionResult Contact()
         {

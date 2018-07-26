@@ -1,0 +1,9 @@
+﻿@using Asopalav.Helpers;
+
+@functions{
+    public static string EncriptValue(string value)
+    {
+        var encode = value.Base64Encode();
+        return encode;
+    }
+}
