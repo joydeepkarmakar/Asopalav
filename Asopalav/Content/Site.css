@@ -259,7 +259,7 @@ label {
 .footer_socialIcons {
     opacity: 1;
     text-align: center;
-    margin: 6px 0;
+    margin: 4px 0 0 0;
 }
 
     .footer_socialIcons li {
@@ -330,7 +330,7 @@ label {
 .device-foot {
     width: auto;
     line-height: 20px;
-    padding: 13px 0;
+    padding: 7px 0;
 }
 
 @media screen and (max-width: 767px) {

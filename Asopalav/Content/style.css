@@ -264,10 +264,11 @@ a {
     }
 
         #menu li:hover {
-            padding: 9px 19px 9px;
+            padding: 9px 19px 5px;
             display: inline-block;
             font-family: "Novecentowide";
-            background: #efefef;
+            /*background: #efefef;*/
+            border-bottom: 2px solid #ff0000
         }
 
     #menu a {
