@@ -13,11 +13,17 @@
         <header id="header" class="hd-background">
             <div class="container">
                 <div class="col-xs-12 col-sm-5"><a href="javascript:void(0);" id="logo" title="Asopalav Jewellers">Asopalav Jewellers</a></div>
-                <div class="col-xs-12 col-sm-3 shree-hari-middle"><img src="~/Content/images/ShreeHari.gif" /></div>
+                <div class="col-xs-12 col-sm-3 shree-hari-middle">
+                    <img src="~/Content/images/ShreeHari.gif" />
+                </div>
+                <div class="col-xs-12 col-sm-4 right-links">
+                    <ul><li>Dollar Rate = @Session["DollarRate"] INR | Silver Rate = @Session["SilverRate"] INR/Kg</li></ul>
+                </div>
+
                 @*<div class="shree-hari"><img src="~/Content/images/ShreeHari.gif" style="width:50px;" /></div>*@
                 <div class="col-xs-12 col-sm-4 right-links pull-right">
                     <ul class="nav navbar-nav navbar-right">
-                        <li><p>1 Dollar = &nbsp;&nbsp;&nbsp; @Session["DollarRate"] INR </p> <p>Silver Rate = @Session["SilverRate"] INR/Kg</p></li>
+
                         @if (Convert.ToBoolean(Session["IsLoginValid"]) == true)
                         {
                             @Html.AntiForgeryToken()
