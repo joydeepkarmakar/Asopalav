@@ -1,6 +1,6 @@
 ﻿body {
-    padding-top: 50px;
-    padding-bottom: 20px;
+    padding-top: 0px;
+    padding-bottom: 0px;
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -484,6 +484,8 @@ fieldset > input {
     left: -9999em;
 }
 
+.product-list-top {
+    margin-top:100px;
 }
 
 
