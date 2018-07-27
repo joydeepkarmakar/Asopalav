@@ -91,7 +91,7 @@ select {
 /*-----------------Contact Us---------------------*/
 
 .contact-margin-top {
-    margin: 190px auto 20px auto;
+    margin: 190px auto 60px auto;
     width: 90%;
     font-weight: bold;
     text-align: center;
@@ -401,6 +401,11 @@ a:focus {
 }
 
 a:hover {
+    text-decoration: none !important;
+    color: coral !important;
+}
+
+a:focus {
     text-decoration: none !important;
     color: coral !important;
 }
