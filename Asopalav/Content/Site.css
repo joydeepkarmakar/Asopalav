@@ -86,6 +86,8 @@ select {
     width: 80%;
     margin: 0 auto;
     text-align: justify;
+    font-family: verdana;
+    font-size: 14px;
 }
 
 /*-----------------Contact Us---------------------*/
@@ -349,7 +351,6 @@ label {
     #header .right-links {
         float: left !important;
         padding: 0;
-        margin-left: 80px;
         font-family: "Novecentowide";
     }
 

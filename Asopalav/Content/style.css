@@ -206,8 +206,7 @@ a {
         float: left;
         width: 20px;
         height: 20px;
-        margin: 5px 12px 0 0;
-        background: url(../Content/images/ico_header.png) no-repeat;
+        margin: 0;
     }
 
         #header .right-links span.ico-account {
@@ -1400,10 +1399,10 @@ h1 {
         background-image: url(../Content/images/logo@2x.gif);
     }
 
-    #header .right-links span {
+    /*#header .right-links span {
         background-image: url(../Content/images/ico_header@2x.png);
         background-size: 60px 20px;
-    }
+    }*/
 
     #footer .ico {
         background-image: url(../Content/images/ico_footer@2x.png);
@@ -1609,7 +1608,7 @@ h1 {
     #header .right-links span {
         float: none;
         display: inline-block;
-        margin: -5px 8px;
+        margin: -5px 5px;
     }
 
     #slider .btn-more {
@@ -1754,7 +1753,7 @@ h1 {
         right: 0;
         display: none;
         z-index: 999;
-        background: #d68204;
+        background: #e2e2e2;
         position: absolute;
         padding-bottom: 10px;
         border-bottom: 1px solid #333;
@@ -1864,6 +1863,18 @@ h1 {
         z-index: 1;
         width: 100%;
     }
+
+    .device-login {
+        float: right;
+    }
+
+    .device-log-margin {
+        margin-left: 50px;
+    }
+
+    .device-price-margin {
+        margin-left: 10px;
+    }
 }
 
 @media screen and (max-width: 520px) {
@@ -1889,6 +1900,18 @@ h1 {
         left: 0;
         z-index: 1;
         width: 100%;
+    }
+
+    .device-login {
+        float: right;
+    }
+
+    .device-log-margin {
+        margin-left: 50px;
+    }
+
+    .device-price-margin {
+        margin-left: 10px;
     }
 }
 
@@ -1921,6 +1944,18 @@ h1 {
         right: auto;
         left: 10px;
     }
+
+    .device-login {
+        float: right;
+    }
+
+    .device-log-margin {
+        margin-left: 50px;
+    }
+
+    .device-price-margin {
+        margin-left: 10px;
+    }
 }
 
 @media screen and (max-width: 479px) {
@@ -1942,6 +1977,14 @@ h1 {
         left: 0;
         z-index: 1;
         width: 100%;
+    }
+
+    .device-login {
+        float: right;
+    }
+
+    .device-log-margin {
+        margin-left: 50px;
     }
 }
 
@@ -2127,14 +2170,41 @@ h1 {
 .nav > li > a:hover, .nav > li > a:focus {
     text-decoration: none;
     color: #fff !important;
-    margin-top: 5px;
     background-color: #ea645d !important;
 }
 
-.dropdown-menu {
-    left: 15px !important;
+#my-profile > .dropdown-menu {
+    left: 3px !important;
     width: 74% !important;
+    min-width: 142px !important;
 }
+
+.dropdown-menu {
+    left: 3px !important;
+    width: 74% !important;
+    min-width: 118px !important;
+}
+
+    .dropdown-menu > li {
+        float: left !important;
+    }
+
+        .dropdown-menu > li > a {
+            padding: 3px 8px 0 0 !important;
+            color: #656567 !important;
+        }
+
+            .dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus {
+                width: 78px !important;
+                padding: 0 0 5px 5px !important;
+                background-color: #efefef !important;
+            }
+
+            .dropdown-menu > li > a:hover, .dropdown-menu > li > a:hover {
+                width: 78px !important;
+                padding: 0 0 5px 5px !important;
+                background-color: #efefef !important;
+            }
 
 .navbar-brand {
     margin-left: 0px !important;
@@ -2165,4 +2235,51 @@ h1 {
     position: fixed;
     width: 100%;
     z-index: 999;
+}
+
+/*-------------- my profile -----------------------*/
+.profile-container {
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    height: 100%;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+._3NFO0d {
+    position: relative;
+}
+
+.JvUE0p {
+    height: 100%;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+}
+
+._1jJkOg {
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    line-height: 20px;
+    font-size: 16px;
+    margin: auto 20px;
+    letter-spacing: 0.1px;
+    font-weight: 500;
+    color: #656567;
+}
+
+._1-mlum {
+    width: 16px;
+    height: 16px;
+    margin: 0 6px 0 0;
 }
