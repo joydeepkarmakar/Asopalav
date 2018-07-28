@@ -68,7 +68,7 @@ select {
 .register-margin-top {
     margin: 160px auto 40px auto;
     width: 40%;
-    text-align: center;
+    text-align: center;50
     font-weight: bold;
 }
 
@@ -434,6 +434,11 @@ a:focus {
     background: #3b5998;
     color: #fff;
 }
+.dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus {
+    color: #ff0000 !important;
+    text-decoration: none;
+    background-color: #fff !important;
+} 
 
 .form-group > div > span > input {
     max-width: 100%;
@@ -448,7 +453,7 @@ a:focus {
 }
 
 input[type="radio"], input[type="checkbox"] {
-    margin: 8px 5px 0 0 !important;
+    margin: 2px 5px 0 0 !important;
 }
 
 .pro-admin-topspace {

@@ -15,43 +15,51 @@
         <div class="products-wrap">
             <aside id="sidebar">
                 <div class="widget">
-                                <h3>Products per page:</h3>
-                                <fieldset>
-                                    <input checked type="checkbox">
-                                    <label>8</label>
-                                    <input type="checkbox">
-                                    <label>16</label>
-                                    <input type="checkbox">
-                                    <label>32</label>
-                                </fieldset>
-                            </div>
-                            <div class="widget">
-                                <h3>Sort by:</h3>
-                                <fieldset>
-                                    <input checked type="checkbox">
-                                    <label>Popularity</label>
-                                    <input type="checkbox">
-                                    <label>Date</label>
-                                    <input type="checkbox">
-                                    <label>Price</label>
-                                </fieldset>
-                            </div>
-                            <div class="widget">
-                            <h3>Condition:</h3>
-                            <fieldset>
-                                <input checked type="checkbox">
-                                <label>New</label>
-                                <input type="checkbox">
-                                <label>Used</label>
-                            </fieldset>
+                    <h3>Products per page:</h3>
+                    <form>
+                        <div class="checkbox">
+                            <label><input type="checkbox" value="">8</label>
                         </div>
-                    <div class="widget">
-                        <h3>Price range:</h3>
-                        <fieldset>
-                            <div id="price-range"></div>
-                        </fieldset>
-                    </div>
-                    </aside>
+                        <div class="checkbox">
+                            <label><input type="checkbox" value="">16</label>
+                        </div>
+                        <div class="checkbox">
+                            <label><input type="checkbox" value="" disabled>32</label>
+                        </div>
+                    </form>
+                </div>
+                <div class="widget">
+                    <h3>Sort by:</h3>
+                    <form>
+                        <div class="checkbox">
+                            <label><input type="checkbox" value="">Popularity</label>
+                        </div>
+                        <div class="checkbox">
+                            <label><input type="checkbox" value="">Date</label>
+                        </div>
+                        <div class="checkbox">
+                            <label><input type="checkbox" value="" disabled>Price</label>
+                        </div>
+                    </form>
+                </div>
+                <div class="widget">
+                    <h3>Condition:</h3>
+                    <form>
+                        <div class="checkbox">
+                            <label><input type="checkbox" value="">New</label>
+                        </div>
+                        <div class="checkbox">
+                            <label><input type="checkbox" value="">Used<</label>
+                        </div>
+                    </form>
+                </div>
+                <div class="widget">
+                    <h3>Price range:</h3>
+                    <fieldset>
+                        <div id="price-range"></div>
+                    </fieldset>
+                </div>
+            </aside>
             <div id="content">
                 <section class="products">
                     @if (Model.Count != 0)
