@@ -259,6 +259,7 @@ a {
         padding: 9px 19px 9px;
         display: inline-block;
         font-family: "Novecentowide";
+        cursor:pointer;
     }
 
         #menu li:hover {
@@ -429,6 +430,7 @@ a {
 .products {
     padding-bottom: 1px;
     overflow: hidden;
+    text-align:center;
 }
 
     .products h4 {
@@ -2282,4 +2284,9 @@ h1 {
     width: 16px;
     height: 16px;
     margin: 0 6px 0 0;
+}
+
+input.text-box {
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
 }
