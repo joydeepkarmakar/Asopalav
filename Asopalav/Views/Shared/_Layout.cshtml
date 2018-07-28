@@ -51,17 +51,17 @@
                             </a>
                         </div>
                         @*<div style="float:right">
-                            <div class="btn-group" id="my-profile">
-                                <button class="btn">My Profile</button>
-                                <button class="btn dropdown-toggle" data-toggle="dropdown">
-                                    <span><i class="fa fa-caret-down" style="font-size:20px"></i></span>
-                                </button>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#">Profile</a></li>
-                                    <li><a href="#">Log Off</a></li>
-                                </ul>
-                            </div>
-                        </div>*@
+                                <div class="btn-group" id="my-profile">
+                                    <button class="btn">My Profile</button>
+                                    <button class="btn dropdown-toggle" data-toggle="dropdown">
+                                        <span><i class="fa fa-caret-down" style="font-size:20px"></i></span>
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="#">Profile</a></li>
+                                        <li><a href="#">Log Off</a></li>
+                                    </ul>
+                                </div>
+                            </div>*@
                         <div style="float:right; margin-right:5px">
                             <div class="btn-group">
                                 <button class="btn">Dollar</button>
@@ -85,8 +85,10 @@
             <div class="container" style="width:100% !important; background:#fff; margin-top:6px;border-bottom: 1px solid #ccc;">
                 <div class="trigger"></div>
                 <ul>
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    @*<li><a href="javascript:void(0);" id="HomeMenu">Home</a></li>*@
+                    <li>@Html.ActionLink("Home", "Index", "Home", routeValues: null, htmlAttributes: new { @id = "HomeMenu" })</li>
                     <li>@Html.ActionLink("Silverware", "Silverware", "Home", new { page = "Silverware" }, null)</li>
+                    @*<li><a href="javascript:void(0);">Silverware</a></li>*@
                     <li>
                         <a href="javascript:void(0);" id="mnuGifts">Gifts</a>
                         <ul id="ulGiftsSubmenu" class="gifts-submenu" style="display:none;">

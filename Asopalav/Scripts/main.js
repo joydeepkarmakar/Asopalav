@@ -10,6 +10,7 @@
 $(document).ready(function () {
     //$("input[type=checkbox]").crfi();
     //$("select").crfs();
+
     $("#slider ul").bxSlider({
         controls: false,
         auto: true,
@@ -52,6 +53,29 @@ $(document).ready(function () {
     mobileCheck();
     $(window).resize(function () {
         mobileCheck();
+    });
+
+    /*Menu*/
+    $("#HomeMenu").addClass("menu-selection");
+    if ($("#menu li a").hasClass("menu-selection")) {
+        //$(this).hover(function () { $(this).removeClass('#menu li:hover') });
+    }
+    $('#menu li a').on('click', function () {
+        //alert($(this).text());
+        var selectedMenu = $(this).text();
+        var url = "/" + selectedMenu;
+        if ($(this).hasClass("menu-selection")) {
+            //alert($(this).text());
+            $(this).removeClass("menu-selection");
+        }
+        /*
+        $('#menu li a').each(function () {
+            if ($(this).hasClass("menu-selection")) {
+                //alert($(this).text());
+                $(this).removeClass("menu-selection");
+            }
+        });*/
+        $(this).addClass("menu-selection");
     });
 
     /*Gifts Submenu*/
@@ -129,41 +153,41 @@ $(document).ready(function () {
      */
 
     /*Feedback Form*/
-    $(document).ready(function () {
-        $('#btnSubmit').click(function () {
-            if ($("#frmFeedback").valid()) {
-                $('#frmFeedback').submit();
-            }
-            else {
-                return false;
-            }
-        });
-        $("#frmFeedback").on("submit", function (event) {
-            event.preventDefault();
-            $('#btnSubmit').attr('disabled', 'disabled');
-            var url = $(this).attr("action");
-            var formData = $(this).serialize();
-            $.ajax({
-                url: url,
-                type: "POST",
-                data: formData,
-                dataType: "json",
-                success: function (response) {
-                    if (response.IsSuccess)
-                        toastr.success('Success!');
-                    else
-                        toastr.error(response.errorMsg);
-                },
-                error: function (response) {
-                    toastr.error('Error!');
-                },
-                complete: function () {
-                    $('#btnSubmit').removeAttr('disabled');
-                    $("input[type=text], textarea").val("");
-                }
-            })
-        });
+    //$(document).ready(function () {
+    $('#btnSubmit').click(function () {
+        if ($("#frmFeedback").valid()) {
+            $('#frmFeedback').submit();
+        }
+        else {
+            return false;
+        }
     });
+    $("#frmFeedback").on("submit", function (event) {
+        event.preventDefault();
+        $('#btnSubmit').attr('disabled', 'disabled');
+        var url = $(this).attr("action");
+        var formData = $(this).serialize();
+        $.ajax({
+            url: url,
+            type: "POST",
+            data: formData,
+            dataType: "json",
+            success: function (response) {
+                if (response.IsSuccess)
+                    toastr.success('Success!');
+                else
+                    toastr.error(response.errorMsg);
+            },
+            error: function (response) {
+                toastr.error('Error!');
+            },
+            complete: function () {
+                $('#btnSubmit').removeAttr('disabled');
+                $("input[type=text], textarea").val("");
+            }
+        })
+    });
+    //});
 
     /*Product Details*/
 
@@ -184,5 +208,6 @@ $(document).ready(function () {
             $("#dispPrice").text((dollarRate * dispPrice).toFixed(2));
         }
     });
+    
 
 });

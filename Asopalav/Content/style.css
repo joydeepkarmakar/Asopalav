@@ -262,15 +262,7 @@ a {
         cursor:pointer;
     }
 
-        #menu li:hover {
-            padding: 9px 19px 5px;
-            display: inline-block;
-            font-family: "Novecentowide";
-            /*background: #efefef;*/
-            border-bottom: 2px solid #ff0000;
-        }
-
-        #menu li:focus {
+        #menu li:hover, .menu-selection {
             padding: 9px 19px 5px;
             display: inline-block;
             font-family: "Novecentowide";
@@ -2223,6 +2215,7 @@ h1 {
 .video-container {
     text-align: center;
     margin-top: 60px !important;
+    margin-bottom:70px;
 }
 
 .form-horizontal > div.form-group > div > input {
@@ -2291,6 +2284,11 @@ h1 {
 }
 
 input.form-control {
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+}
+
+.form-control {
     -webkit-box-shadow: none !important;
     box-shadow: none !important;
 }

@@ -403,7 +403,7 @@ a:focus {
 
 a:hover {
     text-decoration: none !important;
-    color: coral !important;
+    color: #ff0000 !important;
 }
 
 a:focus {
