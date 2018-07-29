@@ -30,9 +30,8 @@
                                 @Html.AntiForgeryToken()
 
                                 <li>
-                                    @Html.ActionLink("Welcome " + Session["UserFullName"] + "!", "Index", "Home", routeValues: null, htmlAttributes: new { title = "Manage" })
+                                    <p>@Html.ActionLink("Welcome " + Session["UserFullName"] + "!", "Index", "Home", routeValues: null, htmlAttributes: new { title = "Manage" })</p> | <p>@Html.ActionLink("Log off", "LogOff", "Account", new { area = "" }, new { })</p>
                                 </li>
-                                <li>@Html.ActionLink("Log off", "LogOff", "Account", new { area = "" }, new { })</li>
                             }
                             else
                             {
@@ -50,31 +49,6 @@
                                 </div>
                             </a>
                         </div>
-                        @*<div style="float:right">
-                                <div class="btn-group" id="my-profile">
-                                    <button class="btn">My Profile</button>
-                                    <button class="btn dropdown-toggle" data-toggle="dropdown">
-                                        <span><i class="fa fa-caret-down" style="font-size:20px"></i></span>
-                                    </button>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="#">Profile</a></li>
-                                        <li><a href="#">Log Off</a></li>
-                                    </ul>
-                                </div>
-                            </div>*@
-                        <div style="float:right; margin-right:5px">
-                            <div class="btn-group">
-                                <button class="btn">Dollar</button>
-                                <button class="btn dropdown-toggle" data-toggle="dropdown">
-                                    <span><i class="fa fa-caret-down" style="font-size:20px"></i></span>
-                                </button>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#">Dollar</a></li>
-                                    <li><a href="#">Pound</a></li>
-                                    <li><a href="#">Euro</a></li>
-                                </ul>
-                            </div>
-                        </div>
                     </div>
 
                 </div>
@@ -84,11 +58,16 @@
         <nav id="menu">
             <div class="container" style="width:100% !important; background:#fff; margin-top:6px;border-bottom: 1px solid #ccc;">
                 <div class="trigger"></div>
-                <ul>
-                    @*<li><a href="javascript:void(0);" id="HomeMenu">Home</a></li>*@
+                <ul id="ulMenu">
+                    <li>
+                        <a href="@Url.Action("Index", "Home")" title="Asopalav" id="imgLogoThumb" style="display:none;">
+                            <img alt="Asopalav" src="@Url.Content("~/Content/images/logo_thumb.GIF")">
+                        </a>
+                    </li>
+                    @*<li><a href="javascript:void(0);" id="HomeMenu">Home</a></li>
+                        <li><a href="javascript:void(0);">Silverware</a></li>*@
                     <li>@Html.ActionLink("Home", "Index", "Home", routeValues: null, htmlAttributes: new { @id = "HomeMenu" })</li>
-                    <li>@Html.ActionLink("Silverware", "Silverware", "Home", new { page = "Silverware" }, null)</li>
-                    @*<li><a href="javascript:void(0);">Silverware</a></li>*@
+                    <li>@Html.ActionLink("Silverware", "Silverware", "Home", new { page = "Silverware" }, new { @id = "Silverware" })</li>
                     <li>
                         <a href="javascript:void(0);" id="mnuGifts">Gifts</a>
                         <ul id="ulGiftsSubmenu" class="gifts-submenu" style="display:none;">
@@ -96,11 +75,18 @@
                             <li>@Html.ActionLink("Corporate", "Corporate", "Home", new { page = "Corporate" }, null)</li>
                             <li>@Html.ActionLink("Kids", "Kids", "Home", new { page = "Kids" }, null)</li>
                             <li>@Html.ActionLink("Festive", "Festive", "Home", new { page = "Festive" }, null)</li>
+                            @*<li><a href="javascript:void(0);">Personalize</a></li>
+                                <li><a href="javascript:void(0);">Corporate</a></li>
+                                <li><a href="javascript:void(0);">Kids</a></li>
+                                <li><a href="javascript:void(0);">Festive</a></li>*@
                         </ul>
                     </li>
                     <li>@Html.ActionLink("Fine Metal", "FineMetal", "Home", new { page = "FineMetal" }, null)</li>
                     <li>@Html.ActionLink("About us", "About", "Home")</li>
                     <li>@Html.ActionLink("Contact us", "Contact", "Home")</li>
+                    @*<li><a href="javascript:void(0);">FineMetal</a></li>
+                        <li><a href="javascript:void(0);">About us</a></li>
+                        <li><a href="javascript:void(0);">Contact us</a></li>*@
                 </ul>
             </div>
         </nav>

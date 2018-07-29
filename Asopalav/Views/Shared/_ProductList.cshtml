@@ -1,4 +1,13 @@
-﻿<!-- / body -->
+﻿<div id="breadcrumbs" class="product-margin-top">
+    <div class="container">
+        <ul>
+            <li><a href="@Url.Action("Index","Home")">Home</a></li>
+            <li><a href="@Url.Action(ViewData["ProductListPage"].ToString(),"Home")">@ViewData["ProductListPage"]</a></li>
+        </ul>
+    </div>
+    <!-- / container -->
+</div>
+<!-- / body -->
 <div id="body">
     <div class="container product-list-top">
         <div class="pagination">
@@ -49,7 +58,7 @@
                             <label><input type="checkbox" value="">New</label>
                         </div>
                         <div class="checkbox">
-                            <label><input type="checkbox" value="">Used<</label>
+                            <label><input type="checkbox" value="">Used</label>
                         </div>
                     </form>
                 </div>

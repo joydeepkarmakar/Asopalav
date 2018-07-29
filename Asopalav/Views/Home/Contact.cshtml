@@ -1,8 +1,18 @@
 ﻿@model Asopalav.Models.FeedbackModel
 
+<div id="breadcrumbs" class="product-margin-top">
+    <div class="container">
+        <ul>
+            <li><a href="@Url.Action("Index","Home")">Home</a></li>
+            <li><a href="@Url.Action("Contact","Home")">Contact us</a></li>
+        </ul>
+    </div>
+    <!-- / container -->
+</div>
+
 <div class="row contact-margin-top">
     <div class="col-sm-6">
-        <p class="col-md-offset-1 col-md-11 corporate">Contact Asopalav Jewellers</p>
+        <p class="col-md-offset-1 col-md-11 corporate">GET IN TOUCH</p>
         @using (Html.BeginForm("Feedback", "Home", FormMethod.Post, new { id = "frmFeedback", name = "frmFeedback" }))
         {
             @Html.AntiForgeryToken()

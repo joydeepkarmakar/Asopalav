@@ -262,7 +262,7 @@ a {
         cursor:pointer;
     }
 
-        #menu li:hover, .menu-selection {
+        #menu li:hover, #menu li:focus, .menu-selection {
             padding: 9px 19px 5px;
             display: inline-block;
             font-family: "Novecentowide";

@@ -11,6 +11,10 @@ $(document).ready(function () {
     //$("input[type=checkbox]").crfi();
     //$("select").crfs();
 
+    $(window).bind("scroll", function () {
+        $(window).scrollTop() > 100 ? ($("#header").fadeOut(300), $("#imgLogoThumb").show()) : ($("#header").fadeIn(300), $("#imgLogoThumb").hide());
+    });
+
     $("#slider ul").bxSlider({
         controls: false,
         auto: true,
@@ -56,6 +60,12 @@ $(document).ready(function () {
     });
 
     /*Menu*/
+    //$('#menu li a').on('click', function () {
+    //alert($(this).text());
+    //$(this).addClass("menu-selection")
+    //});
+
+    /*
     $("#HomeMenu").addClass("menu-selection");
     if ($("#menu li a").hasClass("menu-selection")) {
         //$(this).hover(function () { $(this).removeClass('#menu li:hover') });
@@ -63,11 +73,19 @@ $(document).ready(function () {
     $('#menu li a').on('click', function () {
         //alert($(this).text());
         var selectedMenu = $(this).text();
+        if (selectedMenu == "Home")
+            selectedMenu = "Index";
         var url = "/" + selectedMenu;
         if ($(this).hasClass("menu-selection")) {
             //alert($(this).text());
             $(this).removeClass("menu-selection");
         }
+        $.ajax({
+            url: url,
+            type: "GET",
+            data: { page: selectedMenu },
+            success: function (response) { }
+        });
         /*
         $('#menu li a').each(function () {
             if ($(this).hasClass("menu-selection")) {
@@ -75,8 +93,18 @@ $(document).ready(function () {
                 $(this).removeClass("menu-selection");
             }
         });*/
-        $(this).addClass("menu-selection");
-    });
+    //  $(this).addClass("menu-selection");
+    //});
+
+    var header = document.getElementById("ulMenu");
+    var lis = document.querySelectorAll('#ulMenu li');
+    for (var i = 0; i < lis.length; i++) {
+        lis[i].addEventListener("click", function () {
+            var current = document.getElementsByClassName("menu-selection");
+            current[0].className = current[0].className.replace(" menu-selection", "");
+            this.className += " menu-selection";
+        });
+    }
 
     /*Gifts Submenu*/
     var isGiftsSubMenuVisible = false;
@@ -208,6 +236,6 @@ $(document).ready(function () {
             $("#dispPrice").text((dollarRate * dispPrice).toFixed(2));
         }
     });
-    
+
 
 });
