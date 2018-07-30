@@ -1,13 +1,8 @@
-﻿@{
-    ViewBag.Title = "About";
-}
-<h2>@ViewBag.Title.</h2>
-
-<div id="breadcrumbs" class="product-margin-top">
+﻿<div id="breadcrumbs" class="product-margin-top">
     <div class="container">
         <ul>
             <li><a href="@Url.Action("Index","Home")">Home</a></li>
-            <li><a href="@Url.Action("About","Home")">About us</a></li>
+            <li><a href="@Url.Action((string)Session["CurrentPage"],"Home")">About us</a></li>
         </ul>
     </div>
     <!-- / container -->

@@ -9,88 +9,119 @@
     @Styles.Render("~/Style/Common")
 </head>
 <body>
-    <div class="hd-fix">
-        <header id="header" class="hd-background">
-            <div class="container">
-                <div class="col-xs-12 col-sm-5"><a href="javascript:void(0);" id="logo" title="Asopalav Jewellers">Asopalav Jewellers</a></div>
-                <div class="col-xs-12 col-sm-3 shree-hari-middle">
-                    <img src="~/Content/images/ShreeHari.gif" />
-                </div>
-                <div class="col-xs-12 col-sm-5 right-links device-price-margin" style="margin-right:10px">
-                    <ul><li>Dollar Rate = @Session["DollarRate"] INR | Silver Rate = @Session["SilverRate"] INR/Kg</li></ul>
-                </div>
-
-                @*<div class="shree-hari"><img src="~/Content/images/ShreeHari.gif" style="width:50px;" /></div>*@
-                <div class="col-xs-12 col-sm-7 right-links pull-right">
-                    <div class="col-xs-9 col-sm-3 device-login pull-right" style="padding-left:0;padding-right:0;">
-                        <ul class="nav navbar-nav navbar-right device-log-margin">
-
-                            @if (Convert.ToBoolean(Session["IsLoginValid"]) == true)
-                            {
-                                @Html.AntiForgeryToken()
-
-                                <li>
-                                    <p>@Html.ActionLink("Welcome " + Session["UserFullName"] + "!", "Index", "Home", routeValues: null, htmlAttributes: new { title = "Manage" })</p> | <p>@Html.ActionLink("Log off", "LogOff", "Account", new { area = "" }, new { })</p>
-                                </li>
-                            }
-                            else
-                            {
-                                <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink", style = "font-size:14px;" }) </li>
-
-                            }
-                        </ul>
-                    </div>
-                    <div class="col-xs-12 col-sm-6 pull-right" style="padding:3px 0 0 0">
-                        <div class="profile-container device-card-margin" style="float:right; margin-top:7px;">
-                            <a class="_3NFO0d JvUE0p" href="/viewcart?otracker=Cart_Icon_Click">
-                                <div class="_1jJkOg">
-                                    <span class="glyphicon glyphicon-shopping-cart"></span>
-                                    <span>Cart</span>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-
-                </div>
+    <!--<div class="hd-fix">-->
+    <header id="header" class="hd-background">
+        <div class="container">
+            <div class="col-xs-12 col-sm-5"><a href="javascript:void(0);" id="logo" title="Asopalav Jewellers">Asopalav Jewellers</a></div>
+            <div class="col-xs-12 col-sm-3 shree-hari-middle">
+                <img src="~/Content/images/ShreeHari.gif" />
             </div>
-        </header>
-        <!-- / header -->
-        <nav id="menu">
-            <div class="container" style="width:100% !important; background:#fff; margin-top:6px;border-bottom: 1px solid #ccc;">
-                <div class="trigger"></div>
-                <ul id="ulMenu">
-                    <li>
-                        <a href="@Url.Action("Index", "Home")" title="Asopalav" id="imgLogoThumb" style="display:none;">
-                            <img alt="Asopalav" src="@Url.Content("~/Content/images/logo_thumb.GIF")">
+            <div class="col-xs-12 col-sm-5 right-links device-price-margin" style="margin-right:10px">
+                <ul><li>Dollar Rate = @Session["DollarRate"] INR | Silver Rate = @Session["SilverRate"] INR/Kg</li></ul>
+            </div>
+
+            @*<div class="shree-hari"><img src="~/Content/images/ShreeHari.gif" style="width:50px;" /></div>*@
+            <div class="col-xs-12 col-sm-7 right-links pull-right">
+                <div class="col-xs-9 col-sm-3 device-login pull-right" style="padding-left:0;padding-right:0;">
+                    <ul class="nav navbar-nav navbar-right device-log-margin">
+
+                        @if (Convert.ToBoolean(Session["IsLoginValid"]) == true)
+                        {
+                            @Html.AntiForgeryToken()
+
+                            <li>
+                                @Html.ActionLink("Welcome " + Session["UserFullName"] + "!", "Index", "Home", routeValues: null, htmlAttributes: new { title = "Manage" })
+                            </li>
+                            <li>@Html.ActionLink("Log off", "LogOff", "Account", new { area = "" }, new { })</li>
+                        }
+                        else
+                        {
+                            <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink", style = "font-size:14px;" }) </li>
+
+                        }
+                    </ul>
+                </div>
+                <div class="col-xs-12 col-sm-6 pull-right" style="padding:3px 0 0 0">
+                    <div class="profile-container device-card-margin" style="float:right; margin-top:7px;">
+                        <a class="_3NFO0d JvUE0p" href="/viewcart?otracker=Cart_Icon_Click">
+                            <div class="_1jJkOg">
+                                <span class="glyphicon glyphicon-shopping-cart"></span>
+                                <span>Cart</span>
+                            </div>
                         </a>
-                    </li>
-                    @*<li><a href="javascript:void(0);" id="HomeMenu">Home</a></li>
-                        <li><a href="javascript:void(0);">Silverware</a></li>*@
-                    <li>@Html.ActionLink("Home", "Index", "Home", routeValues: null, htmlAttributes: new { @id = "HomeMenu" })</li>
-                    <li>@Html.ActionLink("Silverware", "Silverware", "Home", new { page = "Silverware" }, new { @id = "Silverware" })</li>
-                    <li>
-                        <a href="javascript:void(0);" id="mnuGifts">Gifts</a>
-                        <ul id="ulGiftsSubmenu" class="gifts-submenu" style="display:none;">
-                            <li>@Html.ActionLink("Personalize", "Personalize", "Home", new { page = "Personalize" }, null)</li>
-                            <li>@Html.ActionLink("Corporate", "Corporate", "Home", new { page = "Corporate" }, null)</li>
-                            <li>@Html.ActionLink("Kids", "Kids", "Home", new { page = "Kids" }, null)</li>
-                            <li>@Html.ActionLink("Festive", "Festive", "Home", new { page = "Festive" }, null)</li>
-                            @*<li><a href="javascript:void(0);">Personalize</a></li>
-                                <li><a href="javascript:void(0);">Corporate</a></li>
-                                <li><a href="javascript:void(0);">Kids</a></li>
-                                <li><a href="javascript:void(0);">Festive</a></li>*@
-                        </ul>
-                    </li>
-                    <li>@Html.ActionLink("Fine Metal", "FineMetal", "Home", new { page = "FineMetal" }, null)</li>
-                    <li>@Html.ActionLink("About us", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact us", "Contact", "Home")</li>
-                    @*<li><a href="javascript:void(0);">FineMetal</a></li>
-                        <li><a href="javascript:void(0);">About us</a></li>
-                        <li><a href="javascript:void(0);">Contact us</a></li>*@
-                </ul>
+                    </div>
+                    @*<div style="float:right">
+                                <div class="btn-group" id="my-profile">
+                                    <button class="btn">My Profile</button>
+                                    <button class="btn dropdown-toggle" data-toggle="dropdown">
+                                        <span><i class="fa fa-caret-down" style="font-size:20px"></i></span>
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="#">Profile</a></li>
+                                        <li><a href="#">Log Off</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        <div style="float:right; margin-right:5px">
+                            <div class="btn-group">
+                                <button class="btn">Dollar</button>
+                                <button class="btn dropdown-toggle" data-toggle="dropdown">
+                                    <span><i class="fa fa-caret-down" style="font-size:20px"></i></span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#">Dollar</a></li>
+                                    <li><a href="#">Pound</a></li>
+                                    <li><a href="#">Euro</a></li>
+                                </ul>
+                            </div>
+                        </div>*@
+                </div>
+
             </div>
-        </nav>
-    </div>
+        </div>
+    </header>
+    <!-- / header -->
+    <nav id="menu">
+        <div class="container" style="width:100% !important; background:#fff; border-bottom: 1px solid #ccc;">
+            <div class="trigger"></div>
+            <ul>
+                <li class="shrink"><img src="~/Content/images/logo_thumb.gif" style="width:90%;display:none;" id="imgMenuLogo" /></li>
+                <li @((string)Session["CurrentPage"] == "Home" ? "class=menu-active" : "class=menu-hover")>
+                    <a href="@Url.Action("Index", "Home")">Home</a>
+                </li>
+                <li @((string)Session["CurrentPage"] == "Silverware" ? "class=menu-active" : "class=menu-hover")>
+                    <a href="@Url.Action("Silverware", "Home",new { page = "Silverware" })">Silverware</a>
+                </li>
+                <li>
+                    <a href="javascript:void(0);" id="mnuGifts">Gifts</a>
+                    <ul id="ulGiftsSubmenu" class="gifts-submenu" style="display:none;">
+                        <li @((string)Session["CurrentPage"] == "Personalize" ? "class=menu-active" : "class=menu-hover")>
+                            <a href="@Url.Action("Personalize", "Home",new { page = "Personalize" })">Personalize</a>
+                        </li>
+                        <li @((string)Session["CurrentPage"] == "Corporate" ? "class=menu-active" : "class=menu-hover")>
+                            <a href="@Url.Action("Corporate", "Home",new { page = "Corporate" })">Corporate</a>
+                        </li>
+                        <li @((string)Session["CurrentPage"] == "Kids" ? "class=menu-active" : "class=menu-hover")>
+                            <a href="@Url.Action("Kids", "Home",new { page = "Kids" })">Kids</a>
+                        </li>
+                        <li @((string)Session["CurrentPage"] == "Festive" ? "class=menu-active" : "class=menu-hover")>
+                            <a href="@Url.Action("Festive", "Home",new { page = "Festive" })">Festive</a>
+                        </li>
+                    </ul>
+                </li>
+                <li @((string)Session["CurrentPage"] == "FineMetal" ? "class=menu-active" : "class=menu-hover")>
+                    <a href="@Url.Action("FineMetal", "Home",new { page = "FineMetal" })">Fine Metal</a>
+                </li>
+                <li @((string)Session["CurrentPage"] == "About" ? "class=menu-active" : "class=menu-hover")>
+                    <a href="@Url.Action("About", "Home")">About us</a>
+                </li>
+                <li @((string)Session["CurrentPage"] == "Contact" ? "class=menu-active" : "class=menu-hover")>
+                    <a href="@Url.Action("Contact", "Home")">Contact us</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <!--</div>-->
     <!-- / navigation -->
     <div class="container body-content">
         @RenderBody()
@@ -155,6 +186,13 @@
             <!-- / container -->
         </footer>
     </div>
+
+    <script>
+
+
+
+
+    </script>
 
     @Scripts.Render("~/Script/Common")
     @RenderSection("scripts", required: false)

@@ -4,7 +4,7 @@
     <div class="container">
         <ul>
             <li><a href="@Url.Action("Index","Home")">Home</a></li>
-            <li><a href="@Url.Action("Contact","Home")">Contact us</a></li>
+            <li><a href="@Url.Action((string)Session["CurrentPage"],"Home")">Contact us</a></li>
         </ul>
     </div>
     <!-- / container -->

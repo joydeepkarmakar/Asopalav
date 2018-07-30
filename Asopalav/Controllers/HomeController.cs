@@ -17,6 +17,7 @@ namespace Asopalav.Controllers
         DashboardModel objDashboardModel = new DashboardModel();
         public ActionResult Index()
         {
+            Session["CurrentPage"] = "Home";
             #region Dollar Silver Rate Section
             /*
             //Scrapped due to admin permission issue in sql server//
@@ -43,6 +44,7 @@ namespace Asopalav.Controllers
         [Route("~/About")]
         public ActionResult About()
         {
+            Session["CurrentPage"] = "About";
             return View();
         }
 
@@ -98,6 +100,7 @@ namespace Asopalav.Controllers
         [Route("~/Contact")]
         public ActionResult Contact()
         {
+            Session["CurrentPage"] = "Contact";
             return View();
         }
 

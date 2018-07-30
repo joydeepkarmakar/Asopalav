@@ -221,6 +221,8 @@
     <Content Include="Content\images\6.jpg" />
     <Content Include="Content\images\61.jpg" />
     <Content Include="Content\images\62.jpg" />
+    <Content Include="Content\images\adcb.png" />
+    <Content Include="Content\images\ai-rewards.png" />
     <Content Include="Content\images\background.jpg" />
     <Content Include="Content\images\banner1.jpg" />
     <Content Include="Content\images\banner2.jpg" />
@@ -235,11 +237,13 @@
     <Content Include="Content\images\category4.jpg" />
     <Content Include="Content\images\category5.jpg" />
     <Content Include="Content\images\category6.jpg" />
+    <Content Include="Content\images\citi.png" />
     <Content Include="Content\images\corporate1.jpg" />
     <Content Include="Content\images\corporate2.jpg" />
     <Content Include="Content\images\corporate3.jpg" />
     <Content Include="Content\images\corporate4.jpg" />
     <Content Include="Content\images\corporate5.jpg" />
+    <Content Include="Content\images\emirates-nbd.jpg" />
     <Content Include="Content\images\favicon.ico" />
     <Content Include="Content\images\ico_arrow%402x.png" />
     <Content Include="Content\images\ico_arrow.png" />
@@ -292,7 +296,9 @@
     <Content Include="Content\images\product-image\3_zoom_4.jpg" />
     <Content Include="Content\images\product-image\test_standard.jpg" />
     <Content Include="Content\images\product-image\test_zoom.jpg" />
+    <Content Include="Content\images\rakbank.png" />
     <Content Include="Content\images\ShreeHari.gif" />
+    <Content Include="Content\images\shukran.png" />
     <Content Include="Content\images\thumbs\01_b_car.jpg" />
     <Content Include="Content\images\thumbs\02_o_car.jpg" />
     <Content Include="Content\images\thumbs\03_r_car.jpg" />
