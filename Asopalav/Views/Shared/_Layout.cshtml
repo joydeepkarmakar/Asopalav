@@ -9,7 +9,7 @@
     @Styles.Render("~/Style/Common")
 </head>
 <body>
-    <div class="hd-fix">
+    <!--<div class="hd-fix">-->
         <header id="header" class="hd-background">
             <div class="container">
                 <div class="col-xs-12 col-sm-5"><a href="javascript:void(0);" id="logo" title="Asopalav Jewellers">Asopalav Jewellers</a></div>
@@ -42,26 +42,27 @@
                         </ul>
                     </div>
                     <div class="col-xs-12 col-sm-6 pull-right" style="padding:3px 0 0 0">
-                        <div class="profile-container device-card-margin" style="float:right; margin-top:7px;">
+                        <div class="profile-container device-card-margin" style="float:right;">
                             <a class="_3NFO0d JvUE0p" href="/viewcart?otracker=Cart_Icon_Click">
                                 <div class="_1jJkOg">
-                                    <span class="glyphicon glyphicon-shopping-cart"></span>
-                                    <span>Cart</span>
-                                </div>
-                            </a>
-                        </div>
-                        @*<div style="float:right">
-                            <div class="btn-group" id="my-profile">
-                                <button class="btn">My Profile</button>
-                                <button class="btn dropdown-toggle" data-toggle="dropdown">
-                                    <span><i class="fa fa-caret-down" style="font-size:20px"></i></span>
-                                </button>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#">Profile</a></li>
-                                    <li><a href="#">Log Off</a></li>
-                                </ul>
-                            </div>
-                        </div>*@
+                                    @*<span class="glyphicon glyphicon-shopping-cart"></span>*@
+                                    <div class="cart-icon"><div class="cart-quantity">9</div></div>
+                <span>Cart</span>
+            </div>
+        </a>
+    </div>
+    @*<div style="float:right">
+        <div class="btn-group" id="my-profile">
+            <button class="btn">My Profile</button>
+            <button class="btn dropdown-toggle" data-toggle="dropdown">
+                <span><i class="fa fa-caret-down" style="font-size:20px"></i></span>
+            </button>
+            <ul class="dropdown-menu">
+                <li><a href="#">Profile</a></li>
+                <li><a href="#">Log Off</a></li>
+            </ul>
+        </div>
+    </div>*@
                         <div style="float:right; margin-right:5px">
                             <div class="btn-group">
                                 <button class="btn">Dollar</button>
@@ -82,9 +83,10 @@
         </header>
         <!-- / header -->
         <nav id="menu">
-            <div class="container" style="width:100% !important; background:#fff; margin-top:6px;border-bottom: 1px solid #ccc;">
+            <div class="container" style="width:100% !important; background:#fff; border-bottom: 1px solid #ccc;">
                 <div class="trigger"></div>
                 <ul>
+                    <li class="shrink"><img src="~/Content/images/Icon-leaf.gif" style="width:90%" /></li>
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("Silverware", "Silverware", "Home", new { page = "Silverware" }, null)</li>
                     <li>
@@ -102,7 +104,7 @@
                 </ul>
             </div>
         </nav>
-    </div>
+    <!--</div>-->
     <!-- / navigation -->
     <div class="container body-content">
         @RenderBody()
@@ -167,6 +169,30 @@
             <!-- / container -->
         </footer>
     </div>
+
+    <script>
+window.onscroll = function() {myFunction()};
+
+var navbar = document.getElementById("menu");
+var sticky = navbar.offsetTop;
+
+function myFunction() {
+  if (window.pageYOffset >= sticky) {
+    navbar.classList.add("sticky")
+  } else {
+    navbar.classList.remove("sticky");
+  }
+}
+
+
+//$(window).scroll(function () {
+//    if ($(document).scrollTop() > 50) {
+//        $('nav').addClass('shrink');
+//    } else {
+//        $('nav').removeClass('shrink').addClass('shrink-off');
+//    }
+//});
+    </script>
 
     @Scripts.Render("~/Script/Common")
     @RenderSection("scripts", required: false)
