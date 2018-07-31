@@ -257,7 +257,7 @@ a {
 }
 
     #menu li {
-        padding: 9px 19px 9px;
+        padding: 9px 24px 9px 19px;
         display: inline-block;
         font-family: "Novecentowide";
         cursor: pointer;
@@ -1983,7 +1983,7 @@ h1 {
     }
 
     .device-card-margin {
-        margin-right: 72px;
+        margin-top: 10px;
     }
 }
 
@@ -2121,7 +2121,7 @@ h1 {
 }
 
 .product-margin-top {
-    margin: 140px auto 0 auto;
+    margin: 20px auto 0 auto;
 }
 
 #chb > input {
@@ -2349,7 +2349,7 @@ input.form-control {
     }
 
 .shrink {
-    width: 70px;
+    width: 100px;
     opacity: 1;
     -webkit-transition: 0.5s;
     -moz-transition: 0.5s;

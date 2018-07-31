@@ -21,7 +21,7 @@ $(document).ready(function () {
     function menuHeaderScrollFunction() {
         if (window.pageYOffset >= sticky) {
             navbar.classList.add("sticky")
-            img.style.display = "block";
+            img.style.display = "inline-block";
         } else {
             navbar.classList.remove("sticky");
             img.style.display = "none";

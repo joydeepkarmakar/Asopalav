@@ -30,7 +30,7 @@ select {
 /*-------- login ---------------*/
 
 .login-margin-top {
-    margin: 200px 30% 50px 27%;
+    margin: 120px 30% 50px 27%;
     width: 40%;
 }
 
@@ -68,8 +68,8 @@ select {
 .register-margin-top {
     margin: 160px auto 40px auto;
     width: 40%;
-    text-align: center;50
-    font-weight: bold;
+    text-align: center;
+    50 font-weight: bold;
 }
 
 /*------------------About Us-----------------------*/
@@ -387,6 +387,11 @@ label {
         width: 350px !important;
         height: 350px;
     }
+
+    .login-margin-top {
+        margin: 70px 8% 50px 5%;
+        width: 94%;
+    }
 }
 
 .shree-hari > img {
@@ -434,11 +439,12 @@ a:focus {
     background: #3b5998;
     color: #fff;
 }
+
 .dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus {
     color: #ff0000 !important;
     text-decoration: none;
     background-color: #fff !important;
-} 
+}
 
 .form-group > div > span > input {
     max-width: 100%;
@@ -497,6 +503,20 @@ fieldset > input {
 .product-list-top {
     /* margin-top:100px;*/
     margin-bottom: 130px;
+}
+
+.cart-bg {
+    background-image: url(images/CartIcon.gif);
+    background-repeat: no-repeat;
+    background-position: bottom left;
+    width: 40px;
+    height: 36px;
+}
+
+.quantity {
+    position: absolute;
+    left: 32px;
+    font-size: 18px;
 }
 
 
