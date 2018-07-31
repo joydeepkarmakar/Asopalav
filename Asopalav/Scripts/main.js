@@ -10,6 +10,24 @@
 $(document).ready(function () {
     //$("input[type=checkbox]").crfi();
     //$("select").crfs();
+
+    window.onscroll = function () {
+        menuHeaderScrollFunction()
+    };
+    var navbar = document.getElementById("menu");
+    var sticky = navbar.offsetTop;
+    var img = document.getElementById("imgMenuLogo");
+
+    function menuHeaderScrollFunction() {
+        if (window.pageYOffset >= sticky) {
+            navbar.classList.add("sticky")
+            img.style.display = "block";
+        } else {
+            navbar.classList.remove("sticky");
+            img.style.display = "none";
+        }
+    }
+
     $("#slider ul").bxSlider({
         controls: false,
         auto: true,
@@ -129,41 +147,41 @@ $(document).ready(function () {
      */
 
     /*Feedback Form*/
-    $(document).ready(function () {
-        $('#btnSubmit').click(function () {
-            if ($("#frmFeedback").valid()) {
-                $('#frmFeedback').submit();
-            }
-            else {
-                return false;
-            }
-        });
-        $("#frmFeedback").on("submit", function (event) {
-            event.preventDefault();
-            $('#btnSubmit').attr('disabled', 'disabled');
-            var url = $(this).attr("action");
-            var formData = $(this).serialize();
-            $.ajax({
-                url: url,
-                type: "POST",
-                data: formData,
-                dataType: "json",
-                success: function (response) {
-                    if (response.IsSuccess)
-                        toastr.success('Success!');
-                    else
-                        toastr.error(response.errorMsg);
-                },
-                error: function (response) {
-                    toastr.error('Error!');
-                },
-                complete: function () {
-                    $('#btnSubmit').removeAttr('disabled');
-                    $("input[type=text], textarea").val("");
-                }
-            })
-        });
+    //$(document).ready(function () {
+    $('#btnSubmit').click(function () {
+        if ($("#frmFeedback").valid()) {
+            $('#frmFeedback').submit();
+        }
+        else {
+            return false;
+        }
     });
+    $("#frmFeedback").on("submit", function (event) {
+        event.preventDefault();
+        $('#btnSubmit').attr('disabled', 'disabled');
+        var url = $(this).attr("action");
+        var formData = $(this).serialize();
+        $.ajax({
+            url: url,
+            type: "POST",
+            data: formData,
+            dataType: "json",
+            success: function (response) {
+                if (response.IsSuccess)
+                    toastr.success('Success!');
+                else
+                    toastr.error(response.errorMsg);
+            },
+            error: function (response) {
+                toastr.error('Error!');
+            },
+            complete: function () {
+                $('#btnSubmit').removeAttr('disabled');
+                $("input[type=text], textarea").val("");
+            }
+        })
+    });
+    //});
 
     /*Product Details*/
 
@@ -184,5 +202,6 @@ $(document).ready(function () {
             $("#dispPrice").text((dollarRate * dispPrice).toFixed(2));
         }
     });
+
 
 });

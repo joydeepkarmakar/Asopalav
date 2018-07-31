@@ -17,6 +17,7 @@ namespace Asopalav.Controllers
         DashboardModel objDashboardModel = new DashboardModel();
         public ActionResult Index()
         {
+            Session["CurrentPage"] = "Home";
             #region Dollar Silver Rate Section
             /*
             //Scrapped due to admin permission issue in sql server//
@@ -43,15 +44,16 @@ namespace Asopalav.Controllers
         [Route("~/About")]
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
-
+            Session["CurrentPage"] = "About";
             return View();
         }
 
+        [HttpGet]
         [Route("~/Silverware")]
         public ActionResult Silverware(string page)
         {
             objDashboardModel.objGetProductsByProductType_Result = objAsopalavDBEntities.GetProductsByProductType(page).ToList();
+            objDashboardModel.ProductListPage = page;
             return View(objDashboardModel);
         }
 
@@ -59,6 +61,7 @@ namespace Asopalav.Controllers
         public ActionResult Personalize(string page)
         {
             objDashboardModel.objGetProductsByProductType_Result = objAsopalavDBEntities.GetProductsByProductType(page).ToList();
+            objDashboardModel.ProductListPage = page;
             return View(objDashboardModel);
         }
 
@@ -66,6 +69,7 @@ namespace Asopalav.Controllers
         public ActionResult Corporate(string page)
         {
             objDashboardModel.objGetProductsByProductType_Result = objAsopalavDBEntities.GetProductsByProductType(page).ToList();
+            objDashboardModel.ProductListPage = page;
             return View(objDashboardModel);
         }
 
@@ -73,6 +77,7 @@ namespace Asopalav.Controllers
         public ActionResult Kids(string page)
         {
             objDashboardModel.objGetProductsByProductType_Result = objAsopalavDBEntities.GetProductsByProductType(page).ToList();
+            objDashboardModel.ProductListPage = page;
             return View(objDashboardModel);
         }
 
@@ -80,6 +85,7 @@ namespace Asopalav.Controllers
         public ActionResult Festive(string page)
         {
             objDashboardModel.objGetProductsByProductType_Result = objAsopalavDBEntities.GetProductsByProductType(page).ToList();
+            objDashboardModel.ProductListPage = page;
             return View(objDashboardModel);
         }
 
@@ -87,14 +93,14 @@ namespace Asopalav.Controllers
         public ActionResult FineMetal(string page)
         {
             objDashboardModel.objGetProductsByProductType_Result = objAsopalavDBEntities.GetProductsByProductType(page).ToList();
+            objDashboardModel.ProductListPage = page;
             return View(objDashboardModel);
         }
 
         [Route("~/Contact")]
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
-
+            Session["CurrentPage"] = "Contact";
             return View();
         }
 

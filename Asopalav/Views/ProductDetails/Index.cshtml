@@ -8,6 +8,7 @@
     <div class="container">
         <ul>
             <li><a href="@Url.Action("Index","Home")">Home</a></li>
+            <li><a href="@Url.Action((string)Session["CurrentPage"],"Home")">@Session["CurrentPage"]</a></li>
             <li>Product Details</li>
         </ul>
     </div>

@@ -263,25 +263,17 @@ a {
         cursor: pointer;
     }
 
-        #menu li:hover {
-            padding: 9px 19px 5px;
-            display: inline-block;
-            font-family: "Novecentowide";
-            /*background: #efefef;*/
-            border-bottom: 2px solid #ff0000;
-        }
+.menu-hover:hover, .menu-active {
+    padding: 9px 19px 5px;
+    display: inline-block;
+    font-family: "Novecentowide";
+    /*background: #efefef;*/
+    border-bottom: 2px solid #ff0000;
+}
 
-        #menu li:focus {
-            padding: 9px 19px 5px;
-            display: inline-block;
-            font-family: "Novecentowide";
-            /*background: #efefef;*/
-            border-bottom: 2px solid #ff0000;
-        }
-
-    #menu a {
-        /*color: #232323;*/
-    }
+#menu a {
+    /*color: #232323;*/
+}
 
 
 /* Content
@@ -1455,13 +1447,13 @@ h1 {
     margin-top: 95px;
 }*/
 
-}
+
 
 @media screen and (max-width: 1220px) {
 
-    /* .middle-con-margin {
+    .middle-con-margin {
         margin-top: 50px;
-    }*/
+    }
 
     .container {
         width: auto;
@@ -1528,16 +1520,16 @@ h1 {
         margin: auto;
     }
 
-    /* .middle-con-margin {
+    .middle-con-margin {
         margin-top: 95px;
-    }*/
+    }
 }
 
 @media screen and (max-width: 768px) {
 
-    /*.middle-con-margin {
+    .middle-con-margin {
         margin-top: 115px;
-    }*/
+    }
 
     #sidebar .ui-slider {
         margin-right: 20px;
@@ -1596,9 +1588,9 @@ h1 {
         width: 100%;
     }
 
-    /* .middle-con-margin {
+    .middle-con-margin {
         margin-top: 195px;
-    }*/
+    }
 
     .last-products .bx-viewport {
         width: 466px !important;
@@ -1959,10 +1951,6 @@ h1 {
     .device-price-margin {
         margin-left: 10px;
     }
-
-    /*.shrink {
-    display:none !important;
-    }*/
 }
 
 @media screen and (max-width: 479px) {
@@ -2228,6 +2216,7 @@ h1 {
 .video-container {
     text-align: center;
     margin-top: 60px !important;
+    margin-bottom: 70px;
 }
 
 .form-horizontal > div.form-group > div > input {
@@ -2300,6 +2289,11 @@ input.form-control {
     box-shadow: none !important;
 }
 
+.form-control {
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+}
+
 .brand {
     position: relative;
     text-align: center;
@@ -2363,7 +2357,6 @@ input.form-control {
     transition: 0.5s;
     margin: 0;
     padding: 0;
-    display:none;
 }
 
 .shrink-off {
@@ -2373,19 +2366,4 @@ input.form-control {
     -moz-transition: 0.5s;
     -o-transition: 0.5s;
     transition: 0.5s;
-}
-
-.cart-icon {
-    background-image: url(images/CartIcon.gif);
-    background-repeat: no-repeat;
-    width: 44px;
-    height: 35px;
-    text-align: center;
-    background-position: bottom right; 
-}
-
-.cart-quantity {
-    position:absolute;
-    font-size:18px;
-    left:41px;
 }

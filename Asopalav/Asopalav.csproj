@@ -269,6 +269,7 @@
     <Content Include="Content\images\logo%402x-Old.png" />
     <Content Include="Content\images\logo%402x.gif" />
     <Content Include="Content\images\logo%402x.png" />
+    <Content Include="Content\images\logo_thumb.GIF" />
     <Content Include="Content\images\mov_bbb.mp4" />
     <Content Include="Content\images\no-magento-product-found.jpg" />
     <Content Include="Content\images\no-product-image.jpg" />
