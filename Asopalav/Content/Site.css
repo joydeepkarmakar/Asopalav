@@ -506,7 +506,7 @@ fieldset > input {
 }
 
 .cart-bg {
-    background-image: url(images/CartIcon.gif);
+    background-image: url(../Content/images/CartIcon.gif);
     background-repeat: no-repeat;
     background-position: bottom left;
     width: 40px;
