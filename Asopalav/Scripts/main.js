@@ -11,22 +11,7 @@ $(document).ready(function () {
     //$("input[type=checkbox]").crfi();
     //$("select").crfs();
 
-    window.onscroll = function () {
-        menuHeaderScrollFunction()
-    };
-    var navbar = document.getElementById("menu");
-    var sticky = navbar.offsetTop;
-    var img = document.getElementById("imgMenuLogo");
-
-    function menuHeaderScrollFunction() {
-        if (window.pageYOffset >= sticky) {
-            navbar.classList.add("sticky")
-            img.style.display = "inline-block";
-        } else {
-            navbar.classList.remove("sticky");
-            img.style.display = "none";
-        }
-    }
+    
 
     $("#slider ul").bxSlider({
         controls: false,
