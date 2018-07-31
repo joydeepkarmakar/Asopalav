@@ -265,6 +265,12 @@
     <Content Include="Content\images\ico_pagination.png" />
     <Content Include="Content\images\ico_plus%402x.png" />
     <Content Include="Content\images\ico_plus.png" />
+    <Content Include="Content\images\image01.jpg" />
+    <Content Include="Content\images\image02.jpg" />
+    <Content Include="Content\images\image03.jpg" />
+    <Content Include="Content\images\image04.jpg" />
+    <Content Include="Content\images\image05.jpg" />
+    <Content Include="Content\images\image06.jpg" />
     <Content Include="Content\images\jetprivilege.png" />
     <Content Include="Content\images\logo%402x-Old.png" />
     <Content Include="Content\images\logo%402x.gif" />
@@ -313,6 +319,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="Content\style.css" />
     <Content Include="Content\toastr.min.css" />
+    <Content Include="Content\webslidemenu.css" />
     <Content Include="Content\xzoom.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="fonts\Novecentowide-Bold.svg" />
@@ -369,6 +376,7 @@
     <Content Include="Scripts\jquery.smartmenus.bootstrap.js.download" />
     <Content Include="Scripts\jquery.smartmenus.js.download" />
     <Content Include="Scripts\jquery-1.11.3.min.js.download" />
+    <Content Include="Scripts\jquery-3.2.1.min.js.download" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery-3.1.1.min.js" />
     <Content Include="Scripts\jquery.js" />
@@ -381,6 +389,7 @@
     <Content Include="Scripts\plugins.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\webslidemenu.js.download" />
     <None Include="Scripts\_references.js" />
     <Content Include="Scripts\setup.js" />
     <Content Include="Scripts\toastr.min.js" />
