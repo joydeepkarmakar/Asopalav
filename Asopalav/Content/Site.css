@@ -66,10 +66,10 @@ select {
 /*----- Register -----*/
 
 .register-margin-top {
-    margin: 160px auto 40px auto;
+    margin: 160px auto 80px auto;
     width: 40%;
     text-align: center;
-    50 font-weight: bold;
+    font-weight: bold;
 }
 
 /*------------------About Us-----------------------*/
@@ -93,7 +93,7 @@ select {
 /*-----------------Contact Us---------------------*/
 
 .contact-margin-top {
-    margin: 60px auto 60px auto;
+    margin: 60px auto 100px auto;
     width: 90%;
     font-weight: bold;
     text-align: center;
