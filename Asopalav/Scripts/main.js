@@ -85,6 +85,19 @@ $(document).ready(function () {
 
     });
 
+    $('.row ul li').hover(
+        function () {
+            //we get our current filename and use it for the src
+            var linkIndex = $(this).attr("imgName");
+            $(this).addClass('hover');
+            $('.box img').attr('src', linkIndex + '.jpg');
+        },
+        function () {
+            $(this).removeClass('hover');
+            $('.row carousel-item img').attr('src', 'image1.jpg');
+        }
+    );
+
     /*Datepicker*/
     $(".ui-date-picker").datepicker({
         dateFormat: 'yy-mm-dd',

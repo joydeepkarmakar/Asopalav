@@ -89,7 +89,7 @@
             <div class="trigger"></div>
 
             <ul id="desktop-submenu">
-                <li class="shrink"><img src="~/Content/images/logo_thumb.gif" style="width:90%;display:none;" id="imgMenuLogo" /></li>
+                <li class="shrink"><img src="~/Content/images/logo_thumb.gif" style="width:90%;display:none;" id="desktopImgMenuLogo" /></li>
                 <li @((string)Session["CurrentPage"] == "Home" ? "class=menu-active" : "class=menu-hover")>
                     <a href="@Url.Action("Index", "Home")">Home</a>
                 </li>
@@ -125,50 +125,58 @@
             </ul>
 
 
-                <ul class="wsmenu-list" id="device-submenu">
-                    <li class="shrink"><img src="~/Content/images/logo_thumb.gif" style="width:90%;" id="imgMenuLogo" /></li>
-                    <li @((string)Session["CurrentPage"] == "Home" ? "class=menu-active" : "class=menu-hover")>
-                        <a href="@Url.Action("Index", "Home")">Home</a>
-                    </li>
-                    <li @((string)Session["CurrentPage"] == "Silverware" ? "class=menu-active" : "class=menu-hover")>
-                        <a href="@Url.Action("Silverware", "Home",new { page = "Silverware" })">Silverware</a>
-                    </li>
-                    <li>
-                        <a href="javascript:void(0);" id="mnuGifts">Gifts</a>
-                        <div class="megamenu clearfix selectorarrow">
-                            <div class="container-fluid">
-                                <div class="row">
-                                    <ul class="col-lg-5 col-md-12 col-xs-12 link-list" style="display:grid">
-                                        <li class="title">Product Header</li>
-                                        <li><a href="#">Personalize</a></li>
-                                        <li><a href="#">Corporate</a></li>
-                                        <li><a href="#">Kids</a></li>
-                                        <li><a href="#">Festive</a></li>
-                                    </ul>
-                                    <div class="col-lg-6 col-md-12 col-xs-12">
-                                                <div class="carousel-item active">
-                                                    <img src="~/Content/images/image01.jpg" alt="">
-                                                </div>
+            <ul class="wsmenu-list" id="device-submenu">
+                <li class="shrink"><img src="~/Content/images/logo_thumb.gif" style="width:90%;display:none;" id="deviceImgMenuLogo" /></li>
+                <li @((string)Session["CurrentPage"] == "Home" ? "class=menu-active" : "class=menu-hover")>
+                    <a href="@Url.Action("Index", "Home")">Home</a>
+                </li>
+                <li @((string)Session["CurrentPage"] == "Silverware" ? "class=menu-active" : "class=menu-hover")>
+                    <a href="@Url.Action("Silverware", "Home",new { page = "Silverware" })">Silverware</a>
+                </li>
+                <li>
+                    <a href="javascript:void(0);" id="mnuGifts">Gifts</a>
+                    <div class="megamenu clearfix selectorarrow">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <ul class="col-lg-5 col-md-12 col-xs-12 link-list" style="display:grid">
+                                    <li class="title">Gift Items</li>
+                                    <li @((string)Session["CurrentPage"] == "Personalize" ? "class=menu-active" : "class=menu-hover") imgName="image1">
+                                        <a href="@Url.Action("Personalize", "Home",new { page = "Personalize" } )">Personalize</a>
+                                    </li>
+                                    <li @((string)Session["CurrentPage"] == "Corporate" ? "class=menu-active" : "class=menu-hover") imgName="image2">
+                                        <a href="@Url.Action("Corporate", "Home",new { page = "Corporate" })">Corporate</a>
+                                    </li>
+                                    <li @((string)Session["CurrentPage"] == "Kids" ? "class=menu-active" : "class=menu-hover") imgName="image3">
+                                        <a href="@Url.Action("Kids", "Home",new { page = "Kids" })">Kids</a>
+                                    </li>
+                                    <li @((string)Session["CurrentPage"] == "Festive" ? "class=menu-active" : "class=menu-hover") imgName="image4">
+                                        <a href="@Url.Action("Festive", "Home",new { page = "Festive" })">Festive</a>
+                                    </li>
+                                </ul>
+                                <div class="col-lg-6 col-md-12 col-xs-12">
+                                    <div class="carousel-item active">
+                                        <img src="~/Content/images/image1.jpg" alt="">
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </li>
-                    <li @((string)Session["CurrentPage"] == "FineMetal" ? "class=menu-active" : "class=menu-hover")>
-                        <a href="@Url.Action("FineMetal", "Home",new { page = "FineMetal" })">Fine Metal</a>
-                    </li>
-                    <li @((string)Session["CurrentPage"] == "About" ? "class=menu-active" : "class=menu-hover")>
-                        <a href="@Url.Action("About", "Home")">About us</a>
-                    </li>
-                    <li @((string)Session["CurrentPage"] == "Contact" ? "class=menu-active" : "class=menu-hover")>
-                        <a href="@Url.Action("Contact", "Home")">Contact us</a>
-                    </li>
-                </ul>
+                    </div>
+                </li>
+                <li @((string)Session["CurrentPage"] == "FineMetal" ? "class=menu-active" : "class=menu-hover")>
+                    <a href="@Url.Action("FineMetal", "Home",new { page = "FineMetal" })">Fine Metal</a>
+                </li>
+                <li @((string)Session["CurrentPage"] == "About" ? "class=menu-active" : "class=menu-hover")>
+                    <a href="@Url.Action("About", "Home")">About us</a>
+                </li>
+                <li @((string)Session["CurrentPage"] == "Contact" ? "class=menu-active" : "class=menu-hover")>
+                    <a href="@Url.Action("Contact", "Home")">Contact us</a>
+                </li>
+            </ul>
         </div>
     </nav>
     <!--</div>-->
     <!-- / navigation -->
-    <div class="container body-content">
+    <div class="container body-content cart-bg">
         @RenderBody()
     </div>
     <div class="footer-bott">
@@ -238,15 +246,18 @@
         };
         var navbar = document.getElementById("menu");
         var sticky = navbar.offsetTop;
-        var img = document.getElementById("imgMenuLogo");
+        var desktopImg = document.getElementById("desktopImgMenuLogo");
+        var deviceImg = document.getElementById("deviceImgMenuLogo");
 
         function menuHeaderScrollFunction() {
             if (window.pageYOffset >= sticky) {
                 navbar.classList.add("sticky")
-                img.style.display = "inline-block";
+                desktopImg.style.display = "inline-block";
+                deviceImg.style.display = "inline-block";
             } else {
                 navbar.classList.remove("sticky");
-                img.style.display = "none";
+                desktopImg.style.display = "none";
+                deviceImg.style.display = "none";
             }
         }
     </script>
