@@ -89,7 +89,6 @@
 }
 
 .wsmenu-list {
-  text-align: left;
   margin: 0 auto 0 auto;
   width: 100%;
   display: table;
@@ -142,7 +141,7 @@
 
 .wsmenu-list>li>a {
   display: block;
-  color: #999;
+  color: #666;
   padding: 0px 14px;
   line-height: 40px;
   text-decoration: none;
@@ -174,17 +173,18 @@
 }
 
 .megamenu {
-  width: auto;
-  left: 35%;
+  width: 60%;
+  left: 20%;
   position: absolute;
-  top: 40px;
+  top: 140px;
   color: #000;
   z-index: 1000;
-  margin: 0px;
   text-align: left;
   font-size: 15px;
   background-color: #fff;
   display: none;
+  border: 1px solid #e5e5e5;
+  padding:6px 0;
 }
 
 .megamenu .title {
@@ -535,7 +535,6 @@
 .wsmenu-list>li>a:hover {
   /*background-color: rgba(0, 0, 0, 0.08) !important;*/
   text-decoration: none;
-  border-bottom: 2px solid #ff0000;
 }
 
 .wsmenu-list>li>a.active {
