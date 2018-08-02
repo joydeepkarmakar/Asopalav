@@ -66,10 +66,10 @@ select {
 /*----- Register -----*/
 
 .register-margin-top {
-    margin: 160px auto 40px auto;
+    margin: 160px auto 80px auto;
     width: 40%;
     text-align: center;
-    50 font-weight: bold;
+    font-weight: bold;
 }
 
 /*------------------About Us-----------------------*/
@@ -506,7 +506,7 @@ fieldset > input {
 }
 
 .cart-bg {
-    background-image: url(images/CartIcon.gif);
+    background-image: url(../Content/images/CartIcon.gif);
     background-repeat: no-repeat;
     background-position: bottom left;
     width: 40px;
