@@ -22,7 +22,7 @@
 
             @*<div class="shree-hari"><img src="~/Content/images/ShreeHari.gif" style="width:50px;" /></div>*@
             <div class="col-xs-12 col-sm-7 right-links pull-right">
-                <div class="col-xs-9 col-sm-3 device-login pull-right" style="padding-left:0;padding-right:0;">
+                <div class="col-xs-9 col-sm-5 device-login pull-right" style="padding-left:0;padding-right:0;">
                     <ul class="nav navbar-nav navbar-right device-log-margin">
 
                         @if (Convert.ToBoolean(Session["IsLoginValid"]) == true)
@@ -43,7 +43,7 @@
                         }
                     </ul>
                 </div>
-                <div class="col-xs-3 col-sm-6 pull-right" style="padding:3px 0 0 0">
+                <div class="col-xs-3 col-sm-4 pull-right" style="padding:3px 0 0 0">
                     <div class="profile-container device-card-margin" style="float:right">
                         <a class="_3NFO0d JvUE0p" href="/viewcart?otracker=Cart_Icon_Click">
                             <div class="_1jJkOg">
@@ -87,7 +87,8 @@
     <nav id="menu">
         <div class="container" style="width:100% !important; background:#fff; border-bottom: 1px solid #ccc;">
             <div class="trigger"></div>
-            <ul>
+
+            <ul id="desktop-submenu">
                 <li class="shrink"><img src="~/Content/images/logo_thumb.gif" style="width:90%;display:none;" id="imgMenuLogo" /></li>
                 <li @((string)Session["CurrentPage"] == "Home" ? "class=menu-active" : "class=menu-hover")>
                     <a href="@Url.Action("Index", "Home")">Home</a>
@@ -122,6 +123,47 @@
                     <a href="@Url.Action("Contact", "Home")">Contact us</a>
                 </li>
             </ul>
+
+
+                <ul class="wsmenu-list" id="device-submenu">
+                    <li class="shrink"><img src="~/Content/images/logo_thumb.gif" style="width:90%;" id="imgMenuLogo" /></li>
+                    <li @((string)Session["CurrentPage"] == "Home" ? "class=menu-active" : "class=menu-hover")>
+                        <a href="@Url.Action("Index", "Home")">Home</a>
+                    </li>
+                    <li @((string)Session["CurrentPage"] == "Silverware" ? "class=menu-active" : "class=menu-hover")>
+                        <a href="@Url.Action("Silverware", "Home",new { page = "Silverware" })">Silverware</a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0);" id="mnuGifts">Gifts</a>
+                        <div class="megamenu clearfix selectorarrow">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <ul class="col-lg-5 col-md-12 col-xs-12 link-list" style="display:grid">
+                                        <li class="title">Product Header</li>
+                                        <li><a href="#">Personalize</a></li>
+                                        <li><a href="#">Corporate</a></li>
+                                        <li><a href="#">Kids</a></li>
+                                        <li><a href="#">Festive</a></li>
+                                    </ul>
+                                    <div class="col-lg-6 col-md-12 col-xs-12">
+                                                <div class="carousel-item active">
+                                                    <img src="~/Content/images/image01.jpg" alt="">
+                                                </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li @((string)Session["CurrentPage"] == "FineMetal" ? "class=menu-active" : "class=menu-hover")>
+                        <a href="@Url.Action("FineMetal", "Home",new { page = "FineMetal" })">Fine Metal</a>
+                    </li>
+                    <li @((string)Session["CurrentPage"] == "About" ? "class=menu-active" : "class=menu-hover")>
+                        <a href="@Url.Action("About", "Home")">About us</a>
+                    </li>
+                    <li @((string)Session["CurrentPage"] == "Contact" ? "class=menu-active" : "class=menu-hover")>
+                        <a href="@Url.Action("Contact", "Home")">Contact us</a>
+                    </li>
+                </ul>
         </div>
     </nav>
     <!--</div>-->

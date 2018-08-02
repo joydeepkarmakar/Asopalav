@@ -1434,6 +1434,10 @@ h1 {
         background-image: url(../Content/images/ico_arrows@2x.png);
         background-size: 16px 16px;
     }
+
+        #desktop-submenu {
+        display: none;
+    }
 }
 
 @media (min-width: 1200px) {
@@ -1442,6 +1446,10 @@ h1 {
 .container {
     max-width: 100%;
 }
+
+    #desktop-submenu {
+        display: none;
+    }
 
 /*.middle-con-margin {
     margin-top: 95px;
@@ -1523,6 +1531,10 @@ h1 {
     .middle-con-margin {
         margin-top: 95px;
     }
+
+        #desktop-submenu {
+        display: none;
+    }
 }
 
 @media screen and (max-width: 768px) {
@@ -1568,6 +1580,10 @@ h1 {
         font-weight: 500;
         padding-left: 0;
         font-size: 12px;
+    }
+
+    #device-submenu {
+        display: none;
     }
 }
 
@@ -1743,7 +1759,7 @@ h1 {
     }
 
     #menu ul {
-        top: 83px;
+        top: 0;
         left: 0;
         right: 0;
         display: none;
@@ -1837,6 +1853,10 @@ h1 {
     .crf-s {
         padding: 0 15px;
     }
+
+    #device-submenu {
+        display: none;
+    }
 }
 
 @media screen and (max-width: 600px) {
@@ -1869,6 +1889,19 @@ h1 {
 
     .device-price-margin {
         margin-left: 10px;
+    }
+
+    #device-submenu {
+        display: none;
+    }
+
+     #menu li.shrink {
+        padding: 5px 20px;
+        display: block;
+        overflow: hidden;
+        text-align: center;
+        margin:0 auto;
+        width:80px !important;
     }
 }
 
@@ -1907,6 +1940,19 @@ h1 {
 
     .device-price-margin {
         margin-left: 10px;
+    }
+
+    #device-submenu {
+        display: none;
+    }
+
+      #menu li.shrink {
+        padding: 5px 20px;
+        display: block;
+        overflow: hidden;
+        text-align: center;
+        margin:0 auto;
+        width:80px !important;
     }
 }
 
@@ -1951,6 +1997,19 @@ h1 {
     .device-price-margin {
         margin-left: 10px;
     }
+
+    #device-submenu {
+        display: none;
+    }
+
+      #menu li.shrink {
+        padding: 5px 20px;
+        display: block;
+        overflow: hidden;
+        text-align: center;
+        margin:0 auto;
+        width:80px !important;
+    }
 }
 
 @media screen and (max-width: 479px) {
@@ -1985,12 +2044,38 @@ h1 {
     .device-card-margin {
         margin-top: 10px;
     }
+
+    #device-submenu {
+        display: none;
+    }
+
+     #menu li.shrink {
+        padding: 5px 20px;
+        display: block;
+        overflow: hidden;
+        text-align: center;
+        margin:0 auto;
+        width:80px !important;
+    }
 }
 
 @media screen and (max-width: 320px) {
     .last-products .bx-prev {
         right: auto;
         left: 10px;
+    }
+
+    #device-submenu {
+        display: none;
+    }
+
+       #menu li.shrink {
+        padding: 5px 20px;
+        display: block;
+        overflow: hidden;
+        text-align: center;
+        margin:0 auto;
+        width:80px !important;
     }
 }
 
@@ -2018,6 +2103,10 @@ h1 {
         left: 0;
         z-index: 1;
         width: 100%;
+    }
+
+    #device-submenu {
+        display: none;
     }
 }
 
@@ -2232,7 +2321,7 @@ h1 {
 .footer-bott {
     bottom: 0;
     left: 0;
-    position: fixed;
+    position:relative;
     width: 100%;
     z-index: 999;
 }
