@@ -1585,6 +1585,14 @@ h1 {
     #device-submenu {
         display: none;
     }
+
+        #header .right-links li {
+        float: right;
+        color: #000;
+        font-weight: 500;
+        padding-left: 15px;
+        font-size: 12px;
+    }
 }
 
 @media screen and (max-width: 760px) {
@@ -1903,6 +1911,14 @@ h1 {
         margin:0 auto;
         width:80px !important;
     }
+
+         #header .right-links li {
+        float: right;
+        color: #000;
+        font-weight: 500;
+        padding-left: 15px;
+        font-size: 12px;
+    }
 }
 
 @media screen and (max-width: 520px) {
@@ -1953,6 +1969,14 @@ h1 {
         text-align: center;
         margin:0 auto;
         width:80px !important;
+    }
+
+          #header .right-links li {
+        float: right;
+        color: #000;
+        font-weight: 500;
+        padding-left: 15px;
+        font-size: 12px;
     }
 }
 
@@ -2010,6 +2034,14 @@ h1 {
         margin:0 auto;
         width:80px !important;
     }
+
+          #header .right-links li {
+        float: right;
+        color: #000;
+        font-weight: 500;
+        padding-left: 15px;
+        font-size: 12px;
+    }
 }
 
 @media screen and (max-width: 479px) {
@@ -2038,7 +2070,7 @@ h1 {
     }
 
     .device-log-margin {
-        margin-left: 50px;
+        margin-left: 0;
     }
 
     .device-card-margin {
@@ -2056,6 +2088,14 @@ h1 {
         text-align: center;
         margin:0 auto;
         width:80px !important;
+    }
+
+         #header .right-links li {
+        float: right;
+        color: #000;
+        font-weight: 500;
+        padding-left: 15px;
+        font-size: 12px;
     }
 }
 

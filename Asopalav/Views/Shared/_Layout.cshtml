@@ -40,11 +40,11 @@ func = function(id){
                         @if (Convert.ToBoolean(Session["IsLoginValid"]) == true)
                         {
                             @Html.AntiForgeryToken()
-
+                            
+                            <li>@Html.ActionLink("Log off", "LogOff", "Account", new { area = "" }, new { })</li>
                             <li>
                                 @Html.ActionLink("Welcome " + Session["UserFullName"] + "!", "Index", "Home", routeValues: null, htmlAttributes: new { title = "Manage" })
                             </li>
-                            <li>@Html.ActionLink("Log off", "LogOff", "Account", new { area = "" }, new { })</li>
                         }
                         else
                         {
@@ -101,7 +101,7 @@ func = function(id){
             <div class="trigger"></div>
 
             <ul id="desktop-submenu">
-                <li class="shrink"><img src="~/Content/images/logo_thumb.gif" style="width:90%;display:none;" id="desktopImgMenuLogo" /></li>
+                <li class="shrink"><img src="~/Content/images/logo_thumb.gif" style="width:90%;display:none;" id="deviceImgMenuLogo" /></li>
                 <li @((string)Session["CurrentPage"] == "Home" ? "class=menu-active" : "class=menu-hover")>
                     <a href="@Url.Action("Index", "Home")">Home</a>
                 </li>
@@ -138,7 +138,7 @@ func = function(id){
 
 
             <ul class="wsmenu-list" id="device-submenu">
-                <li class="shrink"><img src="~/Content/images/logo_thumb.gif" style="width:90%; display:none;" id="imgMenuLogo1" /></li>
+                <li class="shrink"><img src="~/Content/images/logo_thumb.gif" style="width:90%; display:none;" id="desktopImgMenuLogo1" /></li>
                 <li @((string)Session["CurrentPage"] == "Home" ? "class=menu-active" : "class=menu-hover")>
                     <a href="@Url.Action("Index", "Home")">Home</a>
                 </li>
@@ -260,7 +260,7 @@ func = function(id){
         var navbar = document.getElementById("menu");
         var sticky = navbar.offsetTop;
         var desktopImg = document.getElementById("desktopImgMenuLogo");
-        var deviceImg = document.getElementById("deviceImgMenuLogo");
+        var deviceImg = document.getElementById("deviceImgMenuLogo1");
 
         function menuHeaderScrollFunction() {
             if (window.pageYOffset >= sticky) {
