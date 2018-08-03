@@ -101,7 +101,7 @@ func = function(id){
             <div class="trigger"></div>
 
             <ul id="desktop-submenu">
-                <li class="shrink"><img src="~/Content/images/logo_thumb.gif" style="width:90%;display:none;" id="imgMenuLogo" /></li>
+                <li class="shrink"><img src="~/Content/images/logo_thumb.gif" style="width:90%;display:none;" id="desktopImgMenuLogo" /></li>
                 <li @((string)Session["CurrentPage"] == "Home" ? "class=menu-active" : "class=menu-hover")>
                     <a href="@Url.Action("Index", "Home")">Home</a>
                 </li>
@@ -259,16 +259,18 @@ func = function(id){
         };
         var navbar = document.getElementById("menu");
         var sticky = navbar.offsetTop;
-        var img = document.getElementById("imgMenuLogo");
-        var img = document.getElementById("imgMenuLogo1");
+        var desktopImg = document.getElementById("desktopImgMenuLogo");
+        var deviceImg = document.getElementById("deviceImgMenuLogo");
 
         function menuHeaderScrollFunction() {
             if (window.pageYOffset >= sticky) {
                 navbar.classList.add("sticky")
-                img.style.display = "inline-block";
+                desktopImg.style.display = "inline-block";
+                deviceImg.style.display = "inline-block";
             } else {
                 navbar.classList.remove("sticky");
-                img.style.display = "none";
+                desktopImg.style.display = "none";
+                deviceImg.style.display = "none";
             }
         }
     </script>
