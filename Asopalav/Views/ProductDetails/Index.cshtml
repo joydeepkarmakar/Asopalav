@@ -8,7 +8,9 @@
     <div class="container">
         <ul>
             <li><a href="@Url.Action("Index","Home")">Home</a></li>
-            <li><a href="@Url.Action((string)Session["CurrentPage"],"Home")">@Session["CurrentPage"]</a></li>
+            <li @((string)Session["CurrentPage"] == "Home" ? "style=display:none" : "style=inline-block")>
+                <a href="@Url.Action((string)Session["CurrentPage"],"Home")">@Session["CurrentPage"]</a>
+            </li>
             <li>Product Details</li>
         </ul>
     </div>
@@ -67,7 +69,7 @@
                         <div class="actions">
                             <label>Quantity:&nbsp;</label>
                             <input class="form-control" data-val="true" id="Quantity" name="Quantity" type="text" value="">
-                            <a href="javascript:void(0);" class="btn-grey">Add to cart</a>
+                            <a href="@Url.Action("Index", "CartDetails")" class="btn-grey">Add to cart</a>
                         </div>
                     </div>
                     <div>

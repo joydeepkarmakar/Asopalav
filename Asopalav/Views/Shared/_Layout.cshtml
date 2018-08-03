@@ -7,18 +7,6 @@
     <title>Asopalav Jewellers</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     @Styles.Render("~/Style/Common")
-    <script>
-
-func = function(id){
-
-	document.getElementById('divImg1').style.display = "none";
-	document.getElementById('divImg2').style.display = "none";
-	document.getElementById('divImg3').style.display = "none";
-	document.getElementById('divImg4').style.display = "none";
-	document.getElementById(id).style.display = "block";
-}
-
-    </script>
 </head>
 <body>
     <!--<div class="hd-fix">-->
@@ -40,11 +28,11 @@ func = function(id){
                         @if (Convert.ToBoolean(Session["IsLoginValid"]) == true)
                         {
                             @Html.AntiForgeryToken()
-                            
-                            <li>@Html.ActionLink("Log off", "LogOff", "Account", new { area = "" }, new { })</li>
+
                             <li>
                                 @Html.ActionLink("Welcome " + Session["UserFullName"] + "!", "Index", "Home", routeValues: null, htmlAttributes: new { title = "Manage" })
                             </li>
+                            <li>@Html.ActionLink("Log off", "LogOff", "Account", new { area = "" }, new { })</li>
                         }
                         else
                         {
@@ -101,7 +89,7 @@ func = function(id){
             <div class="trigger"></div>
 
             <ul id="desktop-submenu">
-                <li class="shrink"><img src="~/Content/images/logo_thumb.gif" style="width:90%;display:none;" id="deviceImgMenuLogo" /></li>
+                <li class="shrink"><img src="~/Content/images/logo_thumb.gif" style="width:90%;display:none;" id="desktopImgMenuLogo" /></li>
                 <li @((string)Session["CurrentPage"] == "Home" ? "class=menu-active" : "class=menu-hover")>
                     <a href="@Url.Action("Index", "Home")">Home</a>
                 </li>
@@ -138,7 +126,7 @@ func = function(id){
 
 
             <ul class="wsmenu-list" id="device-submenu">
-                <li class="shrink"><img src="~/Content/images/logo_thumb.gif" style="width:90%; display:none;" id="desktopImgMenuLogo1" /></li>
+                <li class="shrink"><img src="~/Content/images/logo_thumb.gif" style="width:90%; display:none;" id="deviceImgMenuLogo" /></li>
                 <li @((string)Session["CurrentPage"] == "Home" ? "class=menu-active" : "class=menu-hover")>
                     <a href="@Url.Action("Index", "Home")">Home</a>
                 </li>
@@ -151,11 +139,15 @@ func = function(id){
                         <div class="container-fluid">
                             <div class="row">
                                 <ul class="col-lg-5 col-md-12 col-xs-12 link-list" style="display:grid">
-                                    <li class="title">Product Header</li>
-                                    <li onmouseover = "func('divImg1');"><a href="#">Personalize</a></li>
-                                    <li onmouseover = "func('divImg2');"><a href="#">Corporate</a></li>
-                                    <li onmouseover = "func('divImg3');"><a href="#">Kids</a></li>
-                                    <li onmouseover = "func('divImg4');"><a href="#">Festive</a></li>
+                                    <li class="title">Gift Items</li>
+                                    <li @((string)Session["CurrentPage"] == "Personalize" ? "class=menu-active" : "class=menu-hover")
+                                        onmouseover="func('divImg1');"><a href="@Url.Action("Personalize", "Home",new { page = "Personalize" } )">Personalize</a></li>
+                                    <li @((string)Session["CurrentPage"] == "Corporate" ? "class=menu-active" : "class=menu-hover")
+                                        onmouseover="func('divImg2');"><a href="@Url.Action("Corporate", "Home",new { page = "Corporate" })">Corporate</a></li>
+                                    <li @((string)Session["CurrentPage"] == "Kids" ? "class=menu-active" : "class=menu-hover")
+                                        onmouseover="func('divImg3');"><a href="@Url.Action("Kids", "Home",new { page = "Kids" })">Kids</a></li>
+                                    <li @((string)Session["CurrentPage"] == "Festive" ? "class=menu-active" : "class=menu-hover")
+                                        onmouseover="func('divImg4');"><a href="@Url.Action("Festive", "Home",new { page = "Festive" })">Festive</a></li>
                                 </ul>
                                 <div class="col-lg-6 col-md-12 col-xs-12">
                                     <div id="divImg1" style="display:block;">
@@ -260,7 +252,7 @@ func = function(id){
         var navbar = document.getElementById("menu");
         var sticky = navbar.offsetTop;
         var desktopImg = document.getElementById("desktopImgMenuLogo");
-        var deviceImg = document.getElementById("deviceImgMenuLogo1");
+        var deviceImg = document.getElementById("deviceImgMenuLogo");
 
         function menuHeaderScrollFunction() {
             if (window.pageYOffset >= sticky) {
@@ -272,6 +264,14 @@ func = function(id){
                 desktopImg.style.display = "none";
                 deviceImg.style.display = "none";
             }
+        }
+
+        func = function (id) {
+            document.getElementById('divImg1').style.display = "none";
+            document.getElementById('divImg2').style.display = "none";
+            document.getElementById('divImg3').style.display = "none";
+            document.getElementById('divImg4').style.display = "none";
+            document.getElementById(id).style.display = "block";
         }
     </script>
 
