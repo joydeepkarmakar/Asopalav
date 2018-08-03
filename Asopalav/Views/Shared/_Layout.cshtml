@@ -138,7 +138,7 @@ func = function(id){
 
 
             <ul class="wsmenu-list" id="device-submenu">
-                <li class="shrink"><img src="~/Content/images/logo_thumb.gif" style="width:90%;" id="imgMenuLogo1" /></li>
+                <li class="shrink"><img src="~/Content/images/logo_thumb.gif" style="width:90%; display:none;" id="imgMenuLogo1" /></li>
                 <li @((string)Session["CurrentPage"] == "Home" ? "class=menu-active" : "class=menu-hover")>
                     <a href="@Url.Action("Index", "Home")">Home</a>
                 </li>
@@ -189,7 +189,7 @@ func = function(id){
     </nav>
     <!--</div>-->
     <!-- / navigation -->
-    <div class="container body-content cart-bg">
+    <div class="container body-content body-bg">
         @RenderBody()
     </div>
     <div class="footer-bott">
@@ -260,6 +260,7 @@ func = function(id){
         var navbar = document.getElementById("menu");
         var sticky = navbar.offsetTop;
         var img = document.getElementById("imgMenuLogo");
+        var img = document.getElementById("imgMenuLogo1");
 
         function menuHeaderScrollFunction() {
             if (window.pageYOffset >= sticky) {
