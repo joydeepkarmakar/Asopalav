@@ -404,6 +404,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductController.cs" />
+    <Compile Include="Controllers\CartDetailsController.cs" />
     <Compile Include="Helpers\JsonHelper.cs" />
     <Compile Include="Helpers\MailHelper.cs" />
     <Compile Include="Helpers\SecurityHelper.cs" />
@@ -450,6 +451,7 @@
     <Content Include="Views\Home\Kids.cshtml" />
     <Content Include="Views\Home\Festive.cshtml" />
     <Content Include="Views\Home\FineMetal.cshtml" />
+    <Content Include="Views\CartDetails\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
