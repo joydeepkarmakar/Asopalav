@@ -7,6 +7,18 @@
     <title>Asopalav Jewellers</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     @Styles.Render("~/Style/Common")
+    <script>
+
+func = function(id){
+
+	document.getElementById('divImg1').style.display = "none";
+	document.getElementById('divImg2').style.display = "none";
+	document.getElementById('divImg3').style.display = "none";
+	document.getElementById('divImg4').style.display = "none";
+	document.getElementById(id).style.display = "block";
+}
+
+    </script>
 </head>
 <body>
     <!--<div class="hd-fix">-->
@@ -125,45 +137,54 @@
             </ul>
 
 
-                <ul class="wsmenu-list" id="device-submenu">
-                    <li class="shrink"><img src="~/Content/images/logo_thumb.gif" style="width:90%;" id="imgMenuLogo" /></li>
-                    <li @((string)Session["CurrentPage"] == "Home" ? "class=menu-active" : "class=menu-hover")>
-                        <a href="@Url.Action("Index", "Home")">Home</a>
-                    </li>
-                    <li @((string)Session["CurrentPage"] == "Silverware" ? "class=menu-active" : "class=menu-hover")>
-                        <a href="@Url.Action("Silverware", "Home",new { page = "Silverware" })">Silverware</a>
-                    </li>
-                    <li>
-                        <a href="javascript:void(0);" id="mnuGifts">Gifts</a>
-                        <div class="megamenu clearfix selectorarrow">
-                            <div class="container-fluid">
-                                <div class="row">
-                                    <ul class="col-lg-5 col-md-12 col-xs-12 link-list" style="display:grid">
-                                        <li class="title">Product Header</li>
-                                        <li><a href="#">Personalize</a></li>
-                                        <li><a href="#">Corporate</a></li>
-                                        <li><a href="#">Kids</a></li>
-                                        <li><a href="#">Festive</a></li>
-                                    </ul>
-                                    <div class="col-lg-6 col-md-12 col-xs-12">
-                                                <div class="carousel-item active">
-                                                    <img src="~/Content/images/image01.jpg" alt="">
-                                                </div>
+            <ul class="wsmenu-list" id="device-submenu">
+                <li class="shrink"><img src="~/Content/images/logo_thumb.gif" style="width:90%;" id="imgMenuLogo1" /></li>
+                <li @((string)Session["CurrentPage"] == "Home" ? "class=menu-active" : "class=menu-hover")>
+                    <a href="@Url.Action("Index", "Home")">Home</a>
+                </li>
+                <li @((string)Session["CurrentPage"] == "Silverware" ? "class=menu-active" : "class=menu-hover")>
+                    <a href="@Url.Action("Silverware", "Home",new { page = "Silverware" })">Silverware</a>
+                </li>
+                <li>
+                    <a href="javascript:void(0);" id="mnuGifts">Gifts</a>
+                    <div class="megamenu clearfix selectorarrow">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <ul class="col-lg-5 col-md-12 col-xs-12 link-list" style="display:grid">
+                                    <li class="title">Product Header</li>
+                                    <li onmouseover = "func('divImg1');"><a href="#">Personalize</a></li>
+                                    <li onmouseover = "func('divImg2');"><a href="#">Corporate</a></li>
+                                    <li onmouseover = "func('divImg3');"><a href="#">Kids</a></li>
+                                    <li onmouseover = "func('divImg4');"><a href="#">Festive</a></li>
+                                </ul>
+                                <div class="col-lg-6 col-md-12 col-xs-12">
+                                    <div id="divImg1" style="display:block;">
+                                        <img src="~/Content/images/image01.jpg" alt="Personalize">
+                                    </div>
+                                    <div id="divImg2" style="display:none;">
+                                        <img src="~/Content/images/image02.jpg" alt="Corporate">
+                                    </div>
+                                    <div id="divImg3" style="display:none;">
+                                        <img src="~/Content/images/image03.jpg" alt="Kids">
+                                    </div>
+                                    <div id="divImg4" style="display:none;">
+                                        <img src="~/Content/images/image04.jpg" alt="Festive">
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </li>
-                    <li @((string)Session["CurrentPage"] == "FineMetal" ? "class=menu-active" : "class=menu-hover")>
-                        <a href="@Url.Action("FineMetal", "Home",new { page = "FineMetal" })">Fine Metal</a>
-                    </li>
-                    <li @((string)Session["CurrentPage"] == "About" ? "class=menu-active" : "class=menu-hover")>
-                        <a href="@Url.Action("About", "Home")">About us</a>
-                    </li>
-                    <li @((string)Session["CurrentPage"] == "Contact" ? "class=menu-active" : "class=menu-hover")>
-                        <a href="@Url.Action("Contact", "Home")">Contact us</a>
-                    </li>
-                </ul>
+                    </div>
+                </li>
+                <li @((string)Session["CurrentPage"] == "FineMetal" ? "class=menu-active" : "class=menu-hover")>
+                    <a href="@Url.Action("FineMetal", "Home",new { page = "FineMetal" })">Fine Metal</a>
+                </li>
+                <li @((string)Session["CurrentPage"] == "About" ? "class=menu-active" : "class=menu-hover")>
+                    <a href="@Url.Action("About", "Home")">About us</a>
+                </li>
+                <li @((string)Session["CurrentPage"] == "Contact" ? "class=menu-active" : "class=menu-hover")>
+                    <a href="@Url.Action("Contact", "Home")">Contact us</a>
+                </li>
+            </ul>
         </div>
     </nav>
     <!--</div>-->
