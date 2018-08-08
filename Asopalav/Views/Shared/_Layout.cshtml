@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     @Styles.Render("~/Style/Common")
 </head>
-<body>
+<body class="body-bg">
     <!--<div class="hd-fix">-->
     <header id="header" class="hd-background">
         <div class="container">
@@ -17,7 +17,7 @@
                 <img src="~/Content/images/ShreeHari.gif" />
             </div>
             <div class="col-xs-12 col-sm-5 right-links device-price-margin" style="margin-right:10px">
-                <ul><li>Dollar Rate = @Session["DollarRate"] INR | Silver Rate = @Session["SilverRate"] INR/Kg</li></ul>
+                <ul><li>Gold Rate = @Session["DollarRate"] INR | Silver Rate = @Session["SilverRate"] INR/Kg</li></ul>
             </div>
 
             @*<div class="shree-hari"><img src="~/Content/images/ShreeHari.gif" style="width:50px;" /></div>*@
@@ -85,7 +85,7 @@
     </header>
     <!-- / header -->
     <nav id="menu">
-        <div class="container" style="width:100% !important; background:#fff; border-bottom: 1px solid #ccc;">
+        <div class="container" style="width:100% !important; border-bottom: 1px solid #ccc;">
             <div class="trigger"></div>
 
             <ul id="desktop-submenu">
@@ -181,7 +181,7 @@
     </nav>
     <!--</div>-->
     <!-- / navigation -->
-    <div class="container body-content body-bg">
+    <div class="container body-content">
         @RenderBody()
     </div>
     <div class="footer-bott">
