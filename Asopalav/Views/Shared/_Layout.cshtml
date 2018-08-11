@@ -132,10 +132,23 @@
                 </li>
                 <li @((string)Session["CurrentPage"] == "Silverware" ? "class=menu-active" : "class=menu-hover")>
                     <a href="@Url.Action("Silverware", "Home",new { page = "Silverware" })">Silverware</a>
+                    <div id="submenu-sticky1" class="megamenu clearfix selectorarrow">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6 col-xs-6">
+                                    <div style="display:flex;">
+                                        <img src="~/Content/images/category3.jpg" alt="Personalize">
+                                        <img src="~/Content/images/category6.jpg" alt="Corporate">
+                                        <img src="~/Content/images/category4.jpg" alt="Kids">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </li>
                 <li>
                     <a href="javascript:void(0);" id="mnuGifts">Gifts</a>
-                    <div class="megamenu clearfix selectorarrow">
+                    <div id="submenu-sticky" class="megamenu clearfix selectorarrow">
                         <div class="container-fluid">
                             <div class="row">
                                 <ul class="col-lg-5 col-md-12 col-xs-12 link-list" style="display:grid">
@@ -169,6 +182,19 @@
                 </li>
                 <li @((string)Session["CurrentPage"] == "FineMetal" ? "class=menu-active" : "class=menu-hover")>
                     <a href="@Url.Action("FineMetal", "Home",new { page = "FineMetal" })">Fine Metal</a>
+                    <div id="submenu-sticky2" class="megamenu clearfix selectorarrow">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6 col-xs-6">
+                                    <div style="display:flex;">
+                                        <img src="~/Content/images/category3.jpg" alt="Personalize">
+                                        <img src="~/Content/images/category6.jpg" alt="Corporate">
+                                        <img src="~/Content/images/category4.jpg" alt="Kids">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </li>
                 <li @((string)Session["CurrentPage"] == "About" ? "class=menu-active" : "class=menu-hover")>
                     <a href="@Url.Action("About", "Home")">About us</a>
@@ -250,16 +276,25 @@
             menuHeaderScrollFunction()
         };
         var navbar = document.getElementById("menu");
+        var subnav = document.getElementById("submenu-sticky");
+        var silver = document.getElementById("submenu-sticky1");
+        var metal = document.getElementById("submenu-sticky2");
         var sticky = navbar.offsetTop;
         var desktopImg = document.getElementById("desktopImgMenuLogo");
         var deviceImg = document.getElementById("deviceImgMenuLogo");
 
         function menuHeaderScrollFunction() {
             if (window.pageYOffset >= sticky) {
+                metal.classList.add("megamenu-sticky")
+                silver.classList.add("megamenu-sticky")
+                subnav.classList.add("megamenu-sticky")
                 navbar.classList.add("sticky")
                 desktopImg.style.display = "inline-block";
                 deviceImg.style.display = "inline-block";
             } else {
+                metal.classList.remove("megamenu-sticky")
+                silver.classList.remove("megamenu-sticky")
+                subnav.classList.remove("megamenu-sticky")
                 navbar.classList.remove("sticky");
                 desktopImg.style.display = "none";
                 deviceImg.style.display = "none";

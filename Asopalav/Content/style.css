@@ -2497,3 +2497,13 @@ input.form-control {
     -o-transition: 0.5s;
     transition: 0.5s;
 }
+
+.cart-head {
+    background: #ded9d9;
+    color: #666;
+    font-size: 14px;
+    overflow: hidden;
+    padding: 5px 10px;
+    width: 100%;
+    margin-bottom:15px;
+}

@@ -543,5 +543,9 @@ fieldset > input {
     position: absolute;
 }
 
+.card-information > div > input {
+    max-width:100%;
+}
+
 
 /*Dropzone Div Ends*/
