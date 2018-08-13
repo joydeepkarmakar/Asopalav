@@ -86,8 +86,8 @@
                                     </div>
                                 </div>
                                 <h3>@item.ProductName</h3>
-                                <h4>$@item.Price</h4>
-                                <a href="javascript:void(0);" class="btn-add">Add to cart</a>
+                                <h4>$@item.Price.ToString("0.00")</h4>
+                                <a href="@Url.Action("Index", "CartDetails")" class="btn-add">Add to cart</a>
                             </article>
                         }
                     }

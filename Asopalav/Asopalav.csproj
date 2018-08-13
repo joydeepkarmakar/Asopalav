@@ -94,6 +94,8 @@
       <HintPath>..\packages\Newtonsoft.Json.5.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -194,6 +196,30 @@
     <Content Include="bin\System.Web.Webpages.Razor.xml" />
     <Content Include="bin\System.Web.Webpages.xml" />
     <Content Include="bin\WebGrease.dll" />
+    <Content Include="Connected Services\GetDailyGoldRateServiceReference\Asopalav.GetDailyGoldRateServiceReference.ArrayOfString.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\GetDailyGoldRateServiceReference\Asopalav.GetDailyGoldRateServiceReference.GetCurrentGoldPriceResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <None Include="Connected Services\GetDailyGoldRateServiceReference\GetGoldPrice.disco" />
+    <None Include="Connected Services\GetDailyGoldRateServiceReference\configuration91.svcinfo" />
+    <None Include="Connected Services\GetDailyGoldRateServiceReference\configuration.svcinfo" />
+    <None Include="Connected Services\GetDailyGoldRateServiceReference\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <Content Include="Connected Services\GetDailySilverRateServiceReference\Asopalav.GetDailySilverRateServiceReference.GetCurrentSilverPriceResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <None Include="Connected Services\GetDailyGoldRateServiceReference\GetGoldPrice.wsdl" />
+    <None Include="Connected Services\GetDailySilverRateServiceReference\GetSilverPrice.disco" />
+    <None Include="Connected Services\GetDailySilverRateServiceReference\configuration91.svcinfo" />
+    <None Include="Connected Services\GetDailySilverRateServiceReference\configuration.svcinfo" />
+    <None Include="Connected Services\GetDailySilverRateServiceReference\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
     <Content Include="Content\basic.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
@@ -367,6 +393,7 @@
     <Content Include="bin\roslyn\VBCSCompiler.exe.config" />
     <Content Include="Scripts\bootstrap.min.js.download" />
     <Content Include="App_Code\Shared.cshtml" />
+    <None Include="Connected Services\GetDailySilverRateServiceReference\GetSilverPrice.wsdl" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\dropzone.js" />
     <Content Include="Scripts\easyzoom.js" />
@@ -374,6 +401,7 @@
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <Content Include="Scripts\jquery-1.11.1.min.js" />
     <Content Include="Scripts\jquery-ui.js" />
+    <Content Include="Scripts\jquery.currencies.min.js" />
     <Content Include="Scripts\jquery.smartmenus.bootstrap.js.download" />
     <Content Include="Scripts\jquery.smartmenus.js.download" />
     <Content Include="Scripts\jquery-1.11.3.min.js.download" />
@@ -404,6 +432,16 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductController.cs" />
+    <Compile Include="Connected Services\GetDailyGoldRateServiceReference\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Connected Services\GetDailySilverRateServiceReference\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Controllers\CartDetailsController.cs" />
     <Compile Include="Helpers\JsonHelper.cs" />
     <Compile Include="Helpers\MailHelper.cs" />
@@ -469,6 +507,13 @@
       <Project>{47cbde54-6a09-48da-901c-9dc897c81a8c}</Project>
       <Name>DataAccessLayer</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Connected Services\GetDailyGoldRateServiceReference\" />
+    <WCFMetadataStorage Include="Connected Services\GetDailySilverRateServiceReference\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

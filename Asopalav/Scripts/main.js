@@ -184,20 +184,20 @@ $(document).ready(function () {
     /*Product Details*/
 
     if ($('#ddlCurrency').val() == "USD")
-        $("#dispCurrency").text("$");
+        $(".dispCurrency").text("$");
     else
-        $("#dispCurrency").text("₹");
+        $(".dispCurrency").text("₹");
 
-    var dispPrice = $("#dispPrice").text();
+    var dispPrice = $(".dispPrice").text();
 
     $("#ddlCurrency").change(function () {
         if ($("#ddlCurrency option:selected").text() == "USD") {
-            $("#dispCurrency").text("$");
-            $("#dispPrice").text(dispPrice);
+            $(".dispCurrency").text("$");
+            $(".dispPrice").text(dispPrice);
         }
         else {
-            $("#dispCurrency").text("₹");
-            $("#dispPrice").text((dollarRate * dispPrice).toFixed(2));
+            $(".dispCurrency").text("₹");
+            $(".dispPrice").text((dollarRate * dispPrice).toFixed(2));
         }
     });
 

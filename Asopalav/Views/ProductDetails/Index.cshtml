@@ -48,7 +48,7 @@
                             <option>USD</option>
                             <option>INR</option>
                         </select>
-                        <h4><span id="dispCurrency"></span><span id="dispPrice">@Model.objProductMaster.Price</span></h4>
+                        <h4><span class="dispCurrency"></span><span class="dispPrice">@Model.objProductMaster.Price</span></h4>
                         <div class="entry">
 
                             <div class="tabs">
@@ -59,7 +59,10 @@
                                     </ul>
                                 </div>
                                 <div class="tab-content active" id="desc">
-                                    <p>@Model.objProductMaster.Description</p>
+                                    <p>@(Model.objProductMaster.Description ?? "NA")</p>
+                                    <p>Weight(Gms): @(Model.objProductMaster.WeightInGms.ToString("0.00") ?? "NA")</p>
+                                    <p>Height(Inch): @(Model.objProductMaster.HeightInInch ?? "NA")</p>
+                                    <p>Width(Inch): @(Model.objProductMaster.WidthInInch ?? "NA")</p>
                                 </div>
                                 <div class="tab-content" id="spec">
                                     <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</p>
@@ -82,9 +85,8 @@
     </div>
 </div>
 <!-- / body -->
-
 @section Scripts {
     <script type="text/javascript">
-        var dollarRate = @Session["DollarRate"];
+            var dollarRate = @Session["DollarRate"];
     </script>
 }

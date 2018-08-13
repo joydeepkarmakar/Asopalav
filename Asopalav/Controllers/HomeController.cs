@@ -8,6 +8,8 @@ using System.Web.Mvc;
 using System.Net;
 using Asopalav.Helpers;
 using System.Configuration;
+using Asopalav.GetDailyGoldRateServiceReference;
+using Asopalav.GetDailySilverRateServiceReference;
 
 namespace Asopalav.Controllers
 {
@@ -15,7 +17,8 @@ namespace Asopalav.Controllers
     {
         AsopalavDBEntities objAsopalavDBEntities = new AsopalavDBEntities();
         DashboardModel objDashboardModel = new DashboardModel();
-        public ActionResult Index()
+
+        public ActionResult Index(string currentCurrency)
         {
             Session["CurrentPage"] = "Home";
             #region Dollar Silver Rate Section
@@ -31,14 +34,24 @@ namespace Asopalav.Controllers
             */
 
             Session["DollarRate"] = GetDollarToRupeeVal(ConfigurationManager.AppSettings["DollarToRupeeUrl"]) ?? "NA";
-            Session["SilverRate"] = GetSilverPrice(ConfigurationManager.AppSettings["SilverPriceUrl"]) ?? "NA";
+            //Session["SilverRate"] = GetSilverPrice(ConfigurationManager.AppSettings["SilverPriceUrl"]) ?? "NA";
+            Session["GoldRate"] = GetGoldPrice();
+            Session["SilverRate"] = GetSilverPrice();
             #endregion
 
+            var isAjax = Request.IsAjaxRequest();
+
             #region Last Added Product Section
-            objDashboardModel.objGetLastAddedProducts_Result = objAsopalavDBEntities.GetLastAddedProducts().ToList();
+            Session["CurrentCurrency"] = currentCurrency;
+            objDashboardModel.objGetLastAddedProducts_Result = objAsopalavDBEntities.GetLastAddedProducts((string)Session["CurrentCurrency"] ?? "", (string)Session["DollarRate"] ?? "").ToList();
             #endregion
 
             return View(objDashboardModel);
+        }
+
+        public JsonResult AjaxGetLastAddedProducts(string currentCurrency)
+        {
+            return this.Json(new { flag = "" });
         }
 
         [Route("~/About")]
@@ -52,7 +65,7 @@ namespace Asopalav.Controllers
         [Route("~/Silverware")]
         public ActionResult Silverware(string page)
         {
-            objDashboardModel.objGetProductsByProductType_Result = objAsopalavDBEntities.GetProductsByProductType(page).ToList();
+            objDashboardModel.objGetProductsByProductType_Result = objAsopalavDBEntities.GetProductsByProductType(page, (string)Session["CurrentCurrency"] ?? "", (string)Session["DollarRate"] ?? "").ToList();
             objDashboardModel.ProductListPage = page;
             return View(objDashboardModel);
         }
@@ -60,7 +73,7 @@ namespace Asopalav.Controllers
         [Route("~/Personalize")]
         public ActionResult Personalize(string page)
         {
-            objDashboardModel.objGetProductsByProductType_Result = objAsopalavDBEntities.GetProductsByProductType(page).ToList();
+            objDashboardModel.objGetProductsByProductType_Result = objAsopalavDBEntities.GetProductsByProductType(page, (string)Session["CurrentCurrency"] ?? "", (string)Session["DollarRate"] ?? "").ToList();
             objDashboardModel.ProductListPage = page;
             return View(objDashboardModel);
         }
@@ -68,7 +81,7 @@ namespace Asopalav.Controllers
         [Route("~/Corporate")]
         public ActionResult Corporate(string page)
         {
-            objDashboardModel.objGetProductsByProductType_Result = objAsopalavDBEntities.GetProductsByProductType(page).ToList();
+            objDashboardModel.objGetProductsByProductType_Result = objAsopalavDBEntities.GetProductsByProductType(page, (string)Session["CurrentCurrency"] ?? "", (string)Session["DollarRate"] ?? "").ToList();
             objDashboardModel.ProductListPage = page;
             return View(objDashboardModel);
         }
@@ -76,7 +89,7 @@ namespace Asopalav.Controllers
         [Route("~/Kids")]
         public ActionResult Kids(string page)
         {
-            objDashboardModel.objGetProductsByProductType_Result = objAsopalavDBEntities.GetProductsByProductType(page).ToList();
+            objDashboardModel.objGetProductsByProductType_Result = objAsopalavDBEntities.GetProductsByProductType(page, (string)Session["CurrentCurrency"] ?? "", (string)Session["DollarRate"] ?? "").ToList();
             objDashboardModel.ProductListPage = page;
             return View(objDashboardModel);
         }
@@ -84,7 +97,7 @@ namespace Asopalav.Controllers
         [Route("~/Festive")]
         public ActionResult Festive(string page)
         {
-            objDashboardModel.objGetProductsByProductType_Result = objAsopalavDBEntities.GetProductsByProductType(page).ToList();
+            objDashboardModel.objGetProductsByProductType_Result = objAsopalavDBEntities.GetProductsByProductType(page, (string)Session["CurrentCurrency"] ?? "", (string)Session["DollarRate"] ?? "").ToList();
             objDashboardModel.ProductListPage = page;
             return View(objDashboardModel);
         }
@@ -92,7 +105,7 @@ namespace Asopalav.Controllers
         [Route("~/FineMetal")]
         public ActionResult FineMetal(string page)
         {
-            objDashboardModel.objGetProductsByProductType_Result = objAsopalavDBEntities.GetProductsByProductType(page).ToList();
+            objDashboardModel.objGetProductsByProductType_Result = objAsopalavDBEntities.GetProductsByProductType(page, (string)Session["CurrentCurrency"] ?? "", (string)Session["DollarRate"] ?? "").ToList();
             objDashboardModel.ProductListPage = page;
             return View(objDashboardModel);
         }
@@ -196,6 +209,19 @@ namespace Asopalav.Controllers
             var jsonData = JsonHelper.ReturnJsonData(url);
             var silverPrice = (from x in JsonHelper.DeserializeAndFlatten(jsonData) where x.Key == "data.SELL_PRICE" select x.Value).FirstOrDefault();
             return silverPrice.ToString();
+        }
+
+        private string GetGoldPrice()
+        {
+            GetGoldPriceSoapClient client = new GetGoldPriceSoapClient();
+            var a = client.GetCurrentGoldPrice(ConfigurationManager.AppSettings["GoldSilverDailyRateUid"], ConfigurationManager.AppSettings["GoldSilverDailyRatePwd"]);
+            return a[0].ToString();
+        }
+
+        private string GetSilverPrice()
+        {
+            GetSilverPriceSoapClient client = new GetSilverPriceSoapClient();
+            return client.GetCurrentSilverPrice(ConfigurationManager.AppSettings["GoldSilverDailyRateUid"], ConfigurationManager.AppSettings["GoldSilverDailyRatePwd"]);
         }
     }
 }

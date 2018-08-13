@@ -22,6 +22,13 @@ namespace Asopalav.Controllers
             {
                 var decodedId = int.Parse(id.Base64Decode());
                 objProductDetailsModel.objProductMaster = context.ProductMasters.Include("Images").Where(p => p.ProductID == decodedId).FirstOrDefault();
+
+                if ((string)Session["CurrentCurrency"] == "INR")
+                {
+                    objProductDetailsModel.objProductMaster.Price = Math.Round(objProductDetailsModel.objProductMaster.Price * Convert.ToDecimal(Session["DollarRate"]), 2);
+                    objProductDetailsModel.objProductMaster.OfferPrice = Math.Round(Convert.ToDecimal(objProductDetailsModel.objProductMaster.OfferPrice) * Convert.ToDecimal(Session["DollarRate"]), 2);
+                }
+
                 if (objProductDetailsModel.objProductMaster.Images != null)
                 {
                     foreach (var item in objProductDetailsModel.objProductMaster.Images)

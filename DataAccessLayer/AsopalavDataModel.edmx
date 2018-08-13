@@ -201,9 +201,14 @@
         </Function>
         <Function Name="DailyRate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="GetDollarSilverRate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
-        <Function Name="GetLastAddedProducts" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="GetLastAddedProducts" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="CurrentCurrency" Type="char" Mode="In" />
+          <Parameter Name="ConversionRate" Type="varchar" Mode="In" />
+        </Function>
         <Function Name="GetProductsByProductType" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="ProductType" Type="nvarchar" Mode="In" />
+          <Parameter Name="CurrentCurrency" Type="char" Mode="In" />
+          <Parameter Name="ConversionRate" Type="varchar" Mode="In" />
         </Function>
         <Function Name="SilverRate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="SplitString" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -407,9 +412,14 @@
             <Parameter Name="Input" Mode="In" Type="String" />
             <Parameter Name="Character" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="GetLastAddedProducts" ReturnType="Collection(AsopalavDBModel.GetLastAddedProducts_Result)" />
+          <FunctionImport Name="GetLastAddedProducts" ReturnType="Collection(AsopalavDBModel.GetLastAddedProducts_Result)" >
+            <Parameter Name="CurrentCurrency" Mode="In" Type="String" />
+            <Parameter Name="ConversionRate" Mode="In" Type="String" />
+          </FunctionImport>
           <FunctionImport Name="GetProductsByProductType" ReturnType="Collection(AsopalavDBModel.GetProductsByProductType_Result)">
-            <Parameter Name="ProductType" Mode="In" Type="String" />
+          <Parameter Name="ProductType" Mode="In" Type="String" />
+            <Parameter Name="CurrentCurrency" Mode="In" Type="String" />
+            <Parameter Name="ConversionRate" Mode="In" Type="String" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="ValidateUserAndMenu_Result">

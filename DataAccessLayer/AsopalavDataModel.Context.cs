@@ -186,18 +186,34 @@ namespace DataAccessLayer
             return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<string>("[AsopalavDBEntities].[SplitString](@Input, @Character)", inputParameter, characterParameter);
         }
     
-        public virtual ObjectResult<GetLastAddedProducts_Result> GetLastAddedProducts()
+        public virtual ObjectResult<GetLastAddedProducts_Result> GetLastAddedProducts(string currentCurrency, string conversionRate)
         {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetLastAddedProducts_Result>("GetLastAddedProducts");
+            var currentCurrencyParameter = currentCurrency != null ?
+                new ObjectParameter("CurrentCurrency", currentCurrency) :
+                new ObjectParameter("CurrentCurrency", typeof(string));
+    
+            var conversionRateParameter = conversionRate != null ?
+                new ObjectParameter("ConversionRate", conversionRate) :
+                new ObjectParameter("ConversionRate", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetLastAddedProducts_Result>("GetLastAddedProducts", currentCurrencyParameter, conversionRateParameter);
         }
     
-        public virtual ObjectResult<GetProductsByProductType_Result> GetProductsByProductType(string productType)
+        public virtual ObjectResult<GetProductsByProductType_Result> GetProductsByProductType(string productType, string currentCurrency, string conversionRate)
         {
             var productTypeParameter = productType != null ?
                 new ObjectParameter("ProductType", productType) :
                 new ObjectParameter("ProductType", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetProductsByProductType_Result>("GetProductsByProductType", productTypeParameter);
+            var currentCurrencyParameter = currentCurrency != null ?
+                new ObjectParameter("CurrentCurrency", currentCurrency) :
+                new ObjectParameter("CurrentCurrency", typeof(string));
+    
+            var conversionRateParameter = conversionRate != null ?
+                new ObjectParameter("ConversionRate", conversionRate) :
+                new ObjectParameter("ConversionRate", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetProductsByProductType_Result>("GetProductsByProductType", productTypeParameter, currentCurrencyParameter, conversionRateParameter);
         }
     }
 }

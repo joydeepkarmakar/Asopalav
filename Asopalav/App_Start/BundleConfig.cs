@@ -25,8 +25,7 @@ namespace Asopalav
                 "~/Scripts/plugins.js",
                 "~/Scripts/dropzone.js",
                 "~/Scripts/toastr.min.js",
-                "~/Scripts/webslidemenu.js.download.js"//,
-               // "~/Scripts/jquery-3.2.1.min.js.download.js"
+                "~/Scripts/webslidemenu.js.download.js"
                 ));
 
             bundles.Add(new ScriptBundle("~/Script/Layout").Include(
