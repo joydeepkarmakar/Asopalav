@@ -66,7 +66,7 @@ select {
 /*----- Register -----*/
 
 .register-margin-top {
-    margin: 160px auto 80px auto;
+    margin: 60px auto 80px auto;
     width: 40%;
     text-align: center;
     font-weight: bold;
@@ -136,7 +136,7 @@ select {
 }
 
 .admin-margin-top-pro {
-    margin: 85px auto 50px auto;
+    margin: 175px auto 50px auto;
     width: 90%;
 }
 
@@ -253,7 +253,7 @@ label {
 }*/
 
 .reg-margin-bottom {
-    margin-bottom: 59px;
+    margin-bottom: 210px;
 }
 
 /*---------------- Social Icon -----------------*/
@@ -521,7 +521,7 @@ fieldset > input {
 
 .quantity {
     position: absolute;
-    left: 32px;
+    left: 37px;
     font-size: 18px;
 }
 

@@ -996,6 +996,10 @@ h1 {
     margin-bottom: 39px;
     margin-top: -1px;
     border: 1px solid #cdcdcd;
+    font-family: verdana;
+    font-size: 14px;
+    background:#fff;
+    color: #666;
 }
 
     .entry .tab-content.active {
