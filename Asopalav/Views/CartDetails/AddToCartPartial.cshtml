@@ -1,0 +1,5 @@
+﻿@model Asopalav.Models.CartVM
+
+<a href="@Url.Action("Checkout", "Index")" class="cd-cart" title="Your cart: @Model.Quantity item(s) - $@Model.Price">
+    <span>@Model.Quantity</span>
+</a>

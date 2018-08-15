@@ -2,7 +2,7 @@
     <div class="container">
         <ul>
             <li><a href="@Url.Action("Index","Home")">Home</a></li>
-            <li><a href="@Url.Action(ViewData["ProductListPage"].ToString(),"Home")">@ViewData["ProductListPage"]</a></li>
+            <li><a href="@Url.Action(ViewData["ProductListPage"].ToString(),"Home",new { @page=ViewData["ProductListPage"].ToString()})">@ViewData["ProductListPage"]</a></li>
         </ul>
     </div>
     <!-- / container -->
@@ -87,7 +87,6 @@
                                 </div>
                                 <h3>@item.ProductName</h3>
                                 <h4>$@item.Price.ToString("0.00")</h4>
-                                <a href="@Url.Action("Index", "CartDetails")" class="btn-add">Add to cart</a>
                             </article>
                         }
                     }

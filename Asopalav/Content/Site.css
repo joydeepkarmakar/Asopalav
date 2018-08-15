@@ -30,12 +30,12 @@ select {
 /*-------- login ---------------*/
 
 .login-margin-top {
-    margin: 120px 30% 50px 27%;
+    margin: 105px 30% 50px 27%;
     width: 40%;
 }
 
 .login-pad {
-    padding-left: 110px;
+    padding-left: 148px;
     margin-bottom: 20px;
     font-weight: bold;
     text-transform: lowercase;
@@ -56,7 +56,7 @@ select {
 }
 
 .log-bdr {
-    margin-bottom: 270px;
+    margin-bottom: 120px;
 }
 
 .product-margin-bott {

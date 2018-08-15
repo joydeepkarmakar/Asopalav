@@ -18,4 +18,14 @@ namespace Asopalav.Models
         public ProductMaster objProductMaster = new ProductMaster();
         public string DefaultImagePath { get; set; }
     }
+
+    public class CartVM
+    {
+        public long ProductId { get; set; }
+        public string ProductName { get; set; }
+        public int Quantity { get; set; }
+        public decimal Price { get; set; }
+        public decimal Total { get { return Quantity * Price; } }
+        public IEnumerable<Image> Image { get; set; }
+    }
 }

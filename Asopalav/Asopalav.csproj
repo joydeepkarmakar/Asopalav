@@ -264,6 +264,9 @@
     <Content Include="Content\images\category4.jpg" />
     <Content Include="Content\images\category5.jpg" />
     <Content Include="Content\images\category6.jpg" />
+    <Content Include="Content\images\cd-icon-arrow.svg" />
+    <Content Include="Content\images\cd-icon-cart.svg" />
+    <Content Include="Content\images\cd-icon-settings.svg" />
     <Content Include="Content\images\citi.png" />
     <Content Include="Content\images\corporate1.jpg" />
     <Content Include="Content\images\corporate2.jpg" />
@@ -490,6 +493,7 @@
     <Content Include="Views\Home\Festive.cshtml" />
     <Content Include="Views\Home\FineMetal.cshtml" />
     <Content Include="Views\CartDetails\Index.cshtml" />
+    <Content Include="Views\CartDetails\AddToCartPartial.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

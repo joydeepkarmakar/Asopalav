@@ -9,7 +9,7 @@
         <ul>
             <li><a href="@Url.Action("Index","Home")">Home</a></li>
             <li @((string)Session["CurrentPage"] == "Home" ? "style=display:none" : "style=inline-block")>
-                <a href="@Url.Action((string)Session["CurrentPage"],"Home")">@Session["CurrentPage"]</a>
+                <a href="@Url.Action((string)Session["CurrentPage"],"Home",new { @page=(string)Session["CurrentPage"]})">@Session["CurrentPage"]</a>
             </li>
             <li>Product Details</li>
         </ul>
@@ -69,14 +69,20 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="actions">
-                            <label>Quantity:&nbsp;</label>
-                            <input class="form-control" data-val="true" id="Quantity" name="Quantity" type="text" value="">
-                            <a href="@Url.Action("Index", "CartDetails")" class="btn-grey">Add to cart</a>
+                        @*<div class="actions">
+                                <label>Quantity:&nbsp;</label>
+                                <input class="form-control" data-val="true" id="Quantity" name="Quantity" type="text" value="">
+                                <a href="@Url.Action("Index", "CartDetails")" class="btn-grey">Add to cart</a>
+                            </div>*@
+                        <div class="actions cd-customization">
+                            <a href="javascript:void(0);" class="btn-grey">BUY NOW</a>
+                            <button class="add-to-cart">
+                                <em>Add to Cart</em>
+                                <svg x="0px" y="0px" width="32px" height="32px" viewBox="0 0 32 32">
+                                    <path stroke-dasharray="19.79 19.79" stroke-dashoffset="19.79" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" d="M9,17l3.9,3.9c0.1,0.1,0.2,0.1,0.3,0L23,11" />
+                                </svg>
+                            </button>
                         </div>
-                    </div>
-                    <div>
-
                     </div>
                 </div>
             </div>
@@ -87,6 +93,7 @@
 <!-- / body -->
 @section Scripts {
     <script type="text/javascript">
-            var dollarRate = @Session["DollarRate"];
+        var dollarRate = @Session["DollarRate"];
+        var prodId = @Model.objProductMaster.ProductID;
     </script>
 }
