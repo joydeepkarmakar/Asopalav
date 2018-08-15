@@ -101,7 +101,7 @@ strong {
 }
 
 em {
-    font-style: italic;
+    font-style: normal;
 }
 
 del {
@@ -2571,32 +2571,34 @@ Cart button
 /*Add to Cart button*/
 
 .cd-customization .add-to-cart {
-    height: 34px;
+    height: 40px;
     border-radius: 3px;
     position: relative;
     overflow: hidden;
 }
 
 .cd-customization .add-to-cart {
-    width: calc(50% - 23px);
+    width: 200px;
 }
 
 .cd-customization .add-to-cart {
     font-size: 1.2rem;
     font-weight: 600;
     text-transform: uppercase;
-    line-height: 34px;
+    line-height: 40px;
 }
 
 .cd-customization .add-to-cart {
     color: #ffffff;
-    background-color: #46b29d;
+    font-size: 12px;
+    font-weight: 500;
+    background-color: #373737;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
 
     .cd-customization .add-to-cart:hover {
-        background-color: #55bca8;
+        color: #ff0000 ;
     }
 
     .cd-customization .add-to-cart em {
@@ -2660,4 +2662,8 @@ Cart button
         -moz-transition: -moz-transform 0s;
         transition: transform 0s;
     }
+
+.cart-margin {
+    z-index: 9999;
+}
 /********************/
