@@ -13,7 +13,7 @@
     <header id="header" class="hd-background">
         <div class="container">
             <div class="col-xs-12 col-sm-5"><a href="javascript:void(0);" id="logo" title="Asopalav Jewellers">Asopalav Jewellers</a></div>
-            <div class="col-xs-12 col-sm-3 shree-hari-middle">
+            <div class="col-xs-12 col-sm-2 shree-hari-middle">
                 <img src="~/Content/images/ShreeHari.gif" />
             </div>
             <div class="col-xs-12 col-sm-5 right-links device-price-margin" style="margin-right:10px">
@@ -23,16 +23,15 @@
             @*<div class="shree-hari"><img src="~/Content/images/ShreeHari.gif" style="width:50px;" /></div>*@
             <div class="col-xs-12 col-sm-4 right-links pull-right">
                 <div class="col-xs-9 col-sm-8 device-login" style="padding-left:0;padding-right:0;">
-                    <ul class="nav navbar-nav device-log-margin">
+                    <ul class="nav navbar-nav device-log-margin" style="float:right">
 
                         @if (Convert.ToBoolean(Session["IsLoginValid"]) == true)
                         {
                             @Html.AntiForgeryToken()
-
-                            <li>@Html.ActionLink("Log off", "LogOff", "Account", new { area = "" }, new { })</li>
                             <li>
                                 @Html.ActionLink("Welcome " + Session["UserFullName"] + "!", "Index", "Home", routeValues: null, htmlAttributes: new { title = "Manage" })
                             </li>
+                            <li>@Html.ActionLink("Log off", "LogOff", "Account", new { area = "" }, new { })</li>
                         }
                         else
                         {
