@@ -47,6 +47,7 @@ namespace Asopalav.Controllers
                 {
                     Session["IsLoginValid"] = true;
                     Session["UserFullName"] = objValidateUserAndMenu_Result.UserFullName;
+                    Session["PrimaryEmail"] = model.Email;
 
                     if (objValidateUserAndMenu_Result.RoleName == "Admin")
                         return RedirectToAction("Index", "Product", new { area = "Admin" });

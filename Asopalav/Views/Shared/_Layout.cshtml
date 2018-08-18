@@ -44,14 +44,10 @@
                 </div>
                 <div class="col-xs-3 col-sm-4 pull-right cart-margin">
                     <div class="profile-container" style="float:right">
-                        @*<a class="_3NFO0d JvUE0p" href="/viewcart?otracker=Cart_Icon_Click">
-                                <div class="_1jJkOg">
-                                    <div class="cart-bg"><div class="quantity">9</div></div>
-                                    <span class="glyphicon glyphicon-shopping-cart"></span>
-                                    <span>Cart</span>
-                                </div>
-                            </a>*@
-                        @Html.Partial("~/Views/CartDetails/AddToCartPartial.cshtml", new Asopalav.Models.CartVM())
+                        @if (ViewBag.Title != "Cart Details")
+                        {
+                            @Html.Action("CartPartial", "CartDetails")
+                        }
 
 
                     </div>

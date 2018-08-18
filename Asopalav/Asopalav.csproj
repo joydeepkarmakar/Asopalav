@@ -257,6 +257,7 @@
     <Content Include="Content\images\bg_footer%402x.png" />
     <Content Include="Content\images\bg_footer.png" />
     <Content Include="Content\images\btn_mobile_menu.png" />
+    <Content Include="Content\images\cart-empty.png" />
     <Content Include="Content\images\CartIcon.gif" />
     <Content Include="Content\images\category1.jpg" />
     <Content Include="Content\images\category2.jpg" />
@@ -494,6 +495,8 @@
     <Content Include="Views\Home\FineMetal.cshtml" />
     <Content Include="Views\CartDetails\Index.cshtml" />
     <Content Include="Views\CartDetails\AddToCartPartial.cshtml" />
+    <Content Include="Views\CartDetails\CartPartial.cshtml" />
+    <Content Include="Views\CartDetails\PaypalPartial.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

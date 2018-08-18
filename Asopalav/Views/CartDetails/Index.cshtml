@@ -1,157 +1,225 @@
-﻿<div id="breadcrumbs" class="product-margin-top">
+﻿@model IEnumerable<Asopalav.Models.CartVM>
+
+@{
+    ViewBag.Title = "Cart Details";
+    int count = 1;
+}
+
+<div id="breadcrumbs" class="product-margin-top">
     <div class="container">
         <ul>
             <li><a href="@Url.Action("Index","Home")">Home</a></li>
             <li @((string)Session["CurrentPage"] == "Home" ? "style=display:none" : "style=inline-block")>
                 <a href="@Url.Action((string)Session["CurrentPage"],"Home")">@Session["CurrentPage"]</a>
             </li>
-            <li>Cart</li>
         </ul>
     </div>
     <!-- / container -->
 </div>
-<!-- / body -->
-<div id="body">
-    <div class="container">
-        <div id="content" class="full">
-            <div class="cart-table">
-                <table>
-                    <tr>
-                        <th class="items">Items</th>
-                        <th class="price">Price</th>
-                        <th class="qnt">Quantity</th>
-                        <th class="total">Total</th>
-                        <th class="delete"></th>
-                    </tr>
-                    <tr>
-                        <td class="items">
-                            <div class="image">
-                                <img src="~/Content/images/6.jpg" alt="" style="height:75px;width:100px;">
-                            </div>
-                            <h3><a href="#">Lorem ipsum dolor</a></h3>
-                            <p>Dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi.</p>
-                        </td>
-                        <td class="price">$1 350.00</td>
-                        <td class="qnt"><select><option>1</option><option>1</option></select></td>
-                        <td class="total">$1 350.00</td>
-                        <td class="delete"><a href="#" class="ico-del"></a></td>
-                    </tr>
-                    <tr>
-                        <td class="items">
-                            <div class="image">
-                                <img src="~/Content/images/61.jpg" alt="" style="height:75px;width:100px;">
-                            </div>
-                            <h3><a href="#">illum qui dolorem eum fugiat</a></h3>
-                            <p>Quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum.</p>
-                        </td>
-                        <td class="price">$2 100.00</td>
-                        <td class="qnt"><select><option>1</option><option>1</option></select></td>
-                        <td class="total">$2 100.00</td>
-                        <td class="delete"><a href="#" class="ico-del"></a></td>
-                    </tr>
-                    <tr>
-                        <td class="items">
-                            <div class="image">
-                                <img src="~/Content/images/62.jpg" alt="" style="height:75px;width:100px;">
-                            </div>
-                            <h3><a href="#">accusantium doloremque laudantium</a></h3>
-                            <p>Quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum.</p>
-                        </td>
-                        <td class="price">$1 050.00</td>
-                        <td class="qnt"><select><option>1</option><option>1</option></select></td>
-                        <td class="total">$1 050.00</td>
-                        <td class="delete"><a href="#" class="ico-del"></a></td>
-                    </tr>
-                </table>
-            </div>
-            <div class="total-count">
-                <h4>Subtotal: $4 500.00</h4>
-                <p>+shippment: $30.00</p>
-                <h3>Total to pay: <strong>$4 530.00</strong></h3>
-                <a href="#" class="btn-grey">Continue Shopping</a>
-                <a href="#" class="btn-grey">Finalize and pay</a>
-            </div>
 
-            <!--- payment address -->
-            <div class="product-margin-top">
-                <div class="container">
-                    <ul class="cart-head ">
-                        <li>Login or Signup</li>
-                    </ul>
-                    <div class="row card-information">
-                        <div class="form-group col-sm-6 col-xs-12">
-                            <input type="text" class="form-control" placeholder="Enter Email/Mobile Number">
-                        </div>
-                        <div class="form-group col-sm-6 col-xs-12">
-                            <button type="submit" class="btn-grey">Continue</button>
-                            </div>
-                        </div>
-                    <ul class="cart-head ">
-                        <li>Delivery Address</li>
-                    </ul>
-                    <div class="row card-information">
-                        <div class="form-group col-sm-6 col-xs-12">
-                            <input type="text" class="form-control" placeholder="Name">
-                        </div>
-                        <div class="form-group col-sm-6 col-xs-12">
-                            <input type="text" class="form-control" placeholder="10-digi mobile number">
-                        </div>
-                        <div class="form-group col-sm-6 col-xs-12">
-                            <input type="text" class="form-control" placeholder="Landmark (Optional)">
-                        </div>
-                        <div class="form-group col-sm-6 col-xs-12">
-                            <input type="text" class="form-control" placeholder="Alternate Phone (Optional)">
-                        </div>
-                        <div class="form-group col-sm-6 col-xs-12">
-                            <input type="text" class="form-control" placeholder="City/District/Town">
-                        </div>
-                        <div class="form-group col-sm-6 col-xs-12">
-                            <input type="text" class="form-control" placeholder="10-digi mobile number">
-                        </div>
-                        <div class="form-group col-sm-6 col-xs-12">
-                            <input type="text" class="form-control" placeholder="Landmark (Optional)">
-                        </div>
-                        <div class="form-group col-sm-6 col-xs-12">
-                            <input type="text" class="form-control" placeholder="Alternate Phone (Optional)">
-                        </div>
-                        <div class="form-group col-sm-6 col-xs-12">
-                            <textarea class="form-control" rows="3"></textarea>
-                        </div>
-                        <div class="form-check form-check-inline col-sm-6 col-xs-12">
-                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
-                            <label class="form-check-label" for="inlineRadio1">Home (All day delivery)</label>
-                        </div>
-                        <div class="form-check form-check-inline col-sm-6 col-xs-12" style="margin-bottom:34px;">
-                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
-                            <label class="form-check-label" for="inlineRadio1">Work (Delivery between 10AM - 5PM)</label>
-                        </div>
-                        <div class="form-group col-sm-12 col-xs-12">
-                            <button type="submit" class="btn-grey">Save and Delivery Here</button>
-                            </div>
-                        </div>
-                    <ul class="cart-head ">
-                        <li>Payment Options</li>
-                    </ul>
-                    <div class="row card-information">
-                        <div class="form-group col-sm-6 col-xs-12">
-                            <input type="text" class="form-control" placeholder="Card Number">
-                        </div>
-                        <div class="form-group col-sm-6 col-xs-12">
-                            <input type="text" class="form-control" placeholder="Empire Date (MM/YY)">
-                        </div>
-                        <div class="form-group col-sm-6 col-xs-12">
-                            <input type="text" class="form-control" placeholder="CVC Code">
-                        </div>
-                        <div class="form-group col-sm-6 col-xs-12">
-                            <button type="submit" class="btn-grey">Continue</button>
-                            </div>
-                        </div>
-                <!-- / container -->
-            </div>
+@if (ViewBag.Message != null)
+{
+    <img src="~/Content/images/cart-empty.png" />
+    <h3>Please <a href="@Url.Action("Index","Home")">click here</a> to continue.</h3>
+}
+else
+{
+    <!-- / body -->
+    <div id="body">
+        <div class="container">
+            <div id="content" class="full">
+                <div class="cart-table">
+                    <table>
+                        <tr>
+                            <th class="items">Items</th>
+                            <th class="price">Price</th>
+                            <th class="qnt" colspan="3">Quantity</th>
+                            <th class="total">Total</th>
+                            <th class="delete"></th>
+                        </tr>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td class="items">
+                                    <div class="image">
+                                        <img src="@item.Image.FirstOrDefault().ImagePath" alt="@item.Image.FirstOrDefault().ImageName" style="height:75px;width:100px;">
+                                    </div>
+                                    <h3>@item.ProductName</h3>
+                                    <p>@item.Description</p>
+                                </td>
+                                <td class="price">$@item.Price</td>
+                                <td><a href="javascript:void(0);" class="decrproduct" data-id="@item.ProductId">-</a></td>
+                                <td class="qnt qty@(item.ProductId)">@Html.DisplayFor(modelItem => item.Quantity)</td>
+                                <td><a href="javascript:void(0);" class="incrproduct" data-id="@item.ProductId">+</a></td>
+                                <td class="total@(item.ProductId)">$@Html.DisplayFor(modelItem => item.Total)</td>
+                                <td class="delete">
+                                    <a href="javascript:void(0);" class="removeproduct" data-id="@item.ProductId">
+                                        <i class="fa fa-trash" style="font-size:20px"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    </table>
+                </div>
+                <div class="total-count">
+                    @*<h4>Subtotal: $4 500.00</h4>
+                        <p>+shippment: $30.00</p>*@
+                    <h3 class="grandtotal">Total to pay: <strong>$<span>@ViewBag.GrandTotal</span></strong></h3>
+                    <a href="@Url.Action("Index", "Home")" class="btn-grey">Continue Shopping</a>
+                    <a href="javascript:void(0);" class="btn-grey">Finalize and pay</a>
+                </div>
 
+            </div>
+            <!-- / content -->
         </div>
-        <!-- / content -->
+        <!-- / container -->
     </div>
-    <!-- / container -->
-</div>
-<!-- / body -->
+    <!-- / body -->
+    <div class="paypaldiv">
+        <form class="paypalform" action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
+            <input type="hidden" name="cmd" value="_cart">
+            <input type="hidden" name="upload" value="1">
+            <input type="hidden" name="business" value="jultranet-facilitator@gmail.com">
+
+            @foreach (var item in Model)
+            {
+                <input type="hidden" name="item_name_@count" value="@item.ProductName">
+                <input type="hidden" name="amount_@count" value="@item.Price">
+                <input type="hidden" name="quantity_@count" value="@item.Quantity">
+                count++;
+            }
+
+            <input type="hidden" name="currency_code" value="USD">
+            <input type="image" src="http://www.paypal.com/en_US/i/btn/x-click-but01.gif" name="submit" alt="Make payments with PayPal - it's fast, free and secure!">
+        </form>
+    </div>
+    <br />
+    <a href="javascript:void(0);" class="placeorder btn btn-primary pull-right">Checkout</a>
+}
+@section Scripts {
+    <script>
+
+        $(function () {
+
+            /*
+            * Increment product
+            */
+
+            $("a.incrproduct").click(function (e) {
+                e.preventDefault();
+
+                var productId = $(this).data("id");
+                var url = "/CartDetails/IncrementProduct";
+
+                $.getJSON(url, { productId: productId }, function (data) {
+
+                    $("td.qty" + productId).html(data.qty);
+
+                    var price = data.qty * data.price;
+                    var priceHtml = "$" + price.toFixed(2);
+
+                    $("td.total" + productId).html(priceHtml);
+
+                    var gt = parseFloat($("h3.grandtotal span").text());
+                    var grandtotal = (gt + data.price).toFixed(2);
+
+                    $("h3.grandtotal span").text(grandtotal);
+                }).done(function (data) {
+                    var url2 = "/CartDetails/PaypalPartial";
+
+                    $.get(url2, {}, function (data) {
+                        $('div.paypaldiv').html(data);
+                    });
+                });
+            });
+
+            //////////////////////////////////////////////////////////////
+
+            /*
+            * Decrement product
+            */
+
+            $("a.decrproduct").click(function (e) {
+                e.preventDefault();
+
+                var $this = $(this);
+                var productId = $(this).data("id");
+                var url = "/CartDetails/DecrementProduct";
+
+                $.getJSON(url, { productId: productId }, function (data) {
+                    if (data.qty == 0) {
+                        $this.parent().parent().fadeOut("fast", function () {
+                            location.reload();
+                        });
+                    }
+                    else {
+                        $("td.qty" + productId).html(data.qty);
+
+                        var price = data.qty * data.price;
+                        var priceHtml = "$" + price.toFixed(2);
+
+                        $("td.total" + productId).html(priceHtml);
+
+                        var gt = parseFloat($("h3.grandtotal span").text());
+                        var grandtotal = (gt - data.price).toFixed(2);
+
+                        $("td.grandtotal span").text(grandtotal);
+                    }
+
+                }).done(function (data) {
+                    var url2 = "/CartDetails/PaypalPartial";
+
+                    $.get(url2, {}, function (data) {
+                        $('div.paypaldiv').html(data);
+                    });
+                });
+            });
+
+            //////////////////////////////////////////////////////////////
+
+            /*
+            * Remove product
+            */
+
+            $("a.removeproduct").click(function (e) {
+                e.preventDefault();
+
+                var $this = $(this);
+                var productId = $(this).data("id");
+                var url = "/CartDetails/RemoveProduct";
+
+                $.get(url, { productId: productId }, function (data) {
+                    location.reload();
+                });
+            });
+
+            //////////////////////////////////////////////////////////////
+
+            /*
+            * Place order
+            */
+
+            $("a.placeorder").click(function (e) {
+                e.preventDefault();
+
+                var $this = $(this);
+
+                var url = "/CartDetails/PlaceOrder";
+
+                $(".ajaxbg").show();
+
+                $.post(url, {}, function (data) {
+                    $(".ajaxbg span").text("Thank you. You will now be redirected to paypal.");
+                    setTimeout(function () {
+                        $('form input[name="submit"]').click();
+                    }, 2000);
+                });
+            });
+
+            //////////////////////////////////////////////////////////////
+
+        });
+
+    </script>
+
+}

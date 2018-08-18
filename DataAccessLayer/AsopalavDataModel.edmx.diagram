@@ -18,6 +18,12 @@
         <AssociationConnector Association="AsopalavDBModel.FK_Images_ProductMaster" />
         <AssociationConnector Association="AsopalavDBModel.FK_ProductMaster_ProductTypeMaster" />
         <EntityTypeShape EntityType="AsopalavDBModel.MarketTracker" Width="1.5" PointX="8.375" PointY="6.75" />
+        <EntityTypeShape EntityType="AsopalavDBModel.OrderDetail" Width="1.5" PointX="11.25" PointY="5.75" />
+        <EntityTypeShape EntityType="AsopalavDBModel.Order" Width="1.5" PointX="3" PointY="11" />
+        <AssociationConnector Association="AsopalavDBModel.FK_OrderDetails_Orders" />
+        <AssociationConnector Association="AsopalavDBModel.FK_OrderDetails_ProductMaster" />
+        <AssociationConnector Association="AsopalavDBModel.FK_OrderDetails_UserProfileMaster" />
+        <AssociationConnector Association="AsopalavDBModel.FK_Orders_UserProfileMaster" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -87,6 +87,12 @@
     <Compile Include="MenuMaster.cs">
       <DependentUpon>AsopalavDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Order.cs">
+      <DependentUpon>AsopalavDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OrderDetail.cs">
+      <DependentUpon>AsopalavDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="ProductMaster.cs">
       <DependentUpon>AsopalavDataModel.tt</DependentUpon>
     </Compile>

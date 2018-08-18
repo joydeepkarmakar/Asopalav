@@ -45,6 +45,24 @@
           <Property Name="ParentMenuID" Type="int" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
         </EntityType>
+        <EntityType Name="OrderDetails">
+          <Key>
+            <PropertyRef Name="OrderDetailsId" />
+          </Key>
+          <Property Name="OrderDetailsId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OrderId" Type="int" />
+          <Property Name="UserId" Type="bigint" />
+          <Property Name="ProductId" Type="bigint" />
+          <Property Name="Quantity" Type="int" />
+        </EntityType>
+        <EntityType Name="Orders">
+          <Key>
+            <PropertyRef Name="OrderId" />
+          </Key>
+          <Property Name="OrderId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="bigint" />
+          <Property Name="CreationDate" Type="datetime" />
+        </EntityType>
         <EntityType Name="ProductMaster">
           <Key>
             <PropertyRef Name="ProductID" />
@@ -147,6 +165,54 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_OrderDetails_Orders">
+          <End Role="Orders" Type="Self.Orders" Multiplicity="0..1" />
+          <End Role="OrderDetails" Type="Self.OrderDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Orders">
+              <PropertyRef Name="OrderId" />
+            </Principal>
+            <Dependent Role="OrderDetails">
+              <PropertyRef Name="OrderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderDetails_ProductMaster">
+          <End Role="ProductMaster" Type="Self.ProductMaster" Multiplicity="0..1" />
+          <End Role="OrderDetails" Type="Self.OrderDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductMaster">
+              <PropertyRef Name="ProductID" />
+            </Principal>
+            <Dependent Role="OrderDetails">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderDetails_UserProfileMaster">
+          <End Role="UserProfileMaster" Type="Self.UserProfileMaster" Multiplicity="0..1" />
+          <End Role="OrderDetails" Type="Self.OrderDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserProfileMaster">
+              <PropertyRef Name="Login_Id" />
+            </Principal>
+            <Dependent Role="OrderDetails">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Orders_UserProfileMaster">
+          <End Role="UserProfileMaster" Type="Self.UserProfileMaster" Multiplicity="0..1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserProfileMaster">
+              <PropertyRef Name="Login_Id" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_ProductMaster_ProductTypeMaster">
           <End Role="ProductTypeMaster" Type="Self.ProductTypeMaster" Multiplicity="0..1" />
           <End Role="ProductMaster" Type="Self.ProductMaster" Multiplicity="*" />
@@ -231,6 +297,8 @@
           <EntitySet Name="Images" EntityType="Self.Images" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MarketTracker" EntityType="Self.MarketTracker" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MenuMaster" EntityType="Self.MenuMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrderDetails" EntityType="Self.OrderDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Orders" EntityType="Self.Orders" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProductMaster" EntityType="Self.ProductMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProductTypeMaster" EntityType="Self.ProductTypeMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RoleMaster" EntityType="Self.RoleMaster" Schema="dbo" store:Type="Tables" />
@@ -240,6 +308,22 @@
           <AssociationSet Name="FK_Images_ProductMaster" Association="Self.FK_Images_ProductMaster">
             <End Role="ProductMaster" EntitySet="ProductMaster" />
             <End Role="Images" EntitySet="Images" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderDetails_Orders" Association="Self.FK_OrderDetails_Orders">
+            <End Role="Orders" EntitySet="Orders" />
+            <End Role="OrderDetails" EntitySet="OrderDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderDetails_ProductMaster" Association="Self.FK_OrderDetails_ProductMaster">
+            <End Role="ProductMaster" EntitySet="ProductMaster" />
+            <End Role="OrderDetails" EntitySet="OrderDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderDetails_UserProfileMaster" Association="Self.FK_OrderDetails_UserProfileMaster">
+            <End Role="UserProfileMaster" EntitySet="UserProfileMaster" />
+            <End Role="OrderDetails" EntitySet="OrderDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Orders_UserProfileMaster" Association="Self.FK_Orders_UserProfileMaster">
+            <End Role="UserProfileMaster" EntitySet="UserProfileMaster" />
+            <End Role="Orders" EntitySet="Orders" />
           </AssociationSet>
           <AssociationSet Name="FK_ProductMaster_ProductTypeMaster" Association="Self.FK_ProductMaster_ProductTypeMaster">
             <End Role="ProductTypeMaster" EntitySet="ProductTypeMaster" />
@@ -337,6 +421,8 @@
           <Property Name="RoleID" Type="Int32" Nullable="false" />
           <Property Name="Registration_From_Device" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="UserAddressDetails" Relationship="Self.FK_User_Address_Details_User_Profile_Master" FromRole="UserProfileMaster" ToRole="UserAddressDetails" />
+          <NavigationProperty Name="OrderDetails" Relationship="AsopalavDBModel.FK_OrderDetails_UserProfileMaster" FromRole="UserProfileMaster" ToRole="OrderDetail" />
+          <NavigationProperty Name="Orders" Relationship="AsopalavDBModel.FK_Orders_UserProfileMaster" FromRole="UserProfileMaster" ToRole="Order" />
         </EntityType>
         <Association Name="FK_User_Address_Details_User_Profile_Master">
           <End Role="UserProfileMaster" Type="Self.UserProfileMaster" Multiplicity="1" />
@@ -417,10 +503,28 @@
             <Parameter Name="ConversionRate" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="GetProductsByProductType" ReturnType="Collection(AsopalavDBModel.GetProductsByProductType_Result)">
-          <Parameter Name="ProductType" Mode="In" Type="String" />
+            <Parameter Name="ProductType" Mode="In" Type="String" />
             <Parameter Name="CurrentCurrency" Mode="In" Type="String" />
             <Parameter Name="ConversionRate" Mode="In" Type="String" />
           </FunctionImport>
+          <EntitySet Name="OrderDetails" EntityType="AsopalavDBModel.OrderDetail" />
+          <EntitySet Name="Orders" EntityType="AsopalavDBModel.Order" />
+          <AssociationSet Name="FK_OrderDetails_Orders" Association="AsopalavDBModel.FK_OrderDetails_Orders">
+            <End Role="Order" EntitySet="Orders" />
+            <End Role="OrderDetail" EntitySet="OrderDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderDetails_ProductMaster" Association="AsopalavDBModel.FK_OrderDetails_ProductMaster">
+            <End Role="ProductMaster" EntitySet="ProductMasters" />
+            <End Role="OrderDetail" EntitySet="OrderDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderDetails_UserProfileMaster" Association="AsopalavDBModel.FK_OrderDetails_UserProfileMaster">
+            <End Role="UserProfileMaster" EntitySet="UserProfileMasters" />
+            <End Role="OrderDetail" EntitySet="OrderDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Orders_UserProfileMaster" Association="AsopalavDBModel.FK_Orders_UserProfileMaster">
+            <End Role="UserProfileMaster" EntitySet="UserProfileMasters" />
+            <End Role="Order" EntitySet="Orders" />
+          </AssociationSet>
         </EntityContainer>
         <ComplexType Name="ValidateUserAndMenu_Result">
           <Property Type="Boolean" Name="IsLoginValid" Nullable="false" />
@@ -468,6 +572,7 @@
           <Property Name="ModifyDate" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Images" Relationship="AsopalavDBModel.FK_Images_ProductMaster" FromRole="ProductMaster" ToRole="Image" />
           <NavigationProperty Name="ProductTypeMaster" Relationship="AsopalavDBModel.FK_ProductMaster_ProductTypeMaster" FromRole="ProductMaster" ToRole="ProductTypeMaster" />
+          <NavigationProperty Name="OrderDetails" Relationship="AsopalavDBModel.FK_OrderDetails_ProductMaster" FromRole="ProductMaster" ToRole="OrderDetail" />
         </EntityType>
         <Association Name="FK_Images_ProductMaster">
           <End Type="AsopalavDBModel.ProductMaster" Role="ProductMaster" Multiplicity="0..1" />
@@ -541,6 +646,77 @@
           <Property Type="String" Name="ImageName" Nullable="false" MaxLength="500" />
           <Property Type="String" Name="ImagePath" Nullable="false" />
         </ComplexType>
+        <EntityType Name="OrderDetail">
+          <Key>
+            <PropertyRef Name="OrderDetailsId" />
+          </Key>
+          <Property Name="OrderDetailsId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OrderId" Type="Int32" />
+          <Property Name="UserId" Type="Int64" />
+          <Property Name="ProductId" Type="Int64" />
+          <Property Name="Quantity" Type="Int32" />
+          <NavigationProperty Name="Order" Relationship="AsopalavDBModel.FK_OrderDetails_Orders" FromRole="OrderDetail" ToRole="Order" />
+          <NavigationProperty Name="ProductMaster" Relationship="AsopalavDBModel.FK_OrderDetails_ProductMaster" FromRole="OrderDetail" ToRole="ProductMaster" />
+          <NavigationProperty Name="UserProfileMaster" Relationship="AsopalavDBModel.FK_OrderDetails_UserProfileMaster" FromRole="OrderDetail" ToRole="UserProfileMaster" />
+        </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="OrderId" />
+          </Key>
+          <Property Name="OrderId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int64" />
+          <Property Name="CreationDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="OrderDetails" Relationship="AsopalavDBModel.FK_OrderDetails_Orders" FromRole="Order" ToRole="OrderDetail" />
+          <NavigationProperty Name="UserProfileMaster" Relationship="AsopalavDBModel.FK_Orders_UserProfileMaster" FromRole="Order" ToRole="UserProfileMaster" />
+        </EntityType>
+        <Association Name="FK_OrderDetails_Orders">
+          <End Type="AsopalavDBModel.Order" Role="Order" Multiplicity="0..1" />
+          <End Type="AsopalavDBModel.OrderDetail" Role="OrderDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order">
+              <PropertyRef Name="OrderId" />
+            </Principal>
+            <Dependent Role="OrderDetail">
+              <PropertyRef Name="OrderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderDetails_ProductMaster">
+          <End Type="AsopalavDBModel.ProductMaster" Role="ProductMaster" Multiplicity="0..1" />
+          <End Type="AsopalavDBModel.OrderDetail" Role="OrderDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductMaster">
+              <PropertyRef Name="ProductID" />
+            </Principal>
+            <Dependent Role="OrderDetail">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderDetails_UserProfileMaster">
+          <End Type="AsopalavDBModel.UserProfileMaster" Role="UserProfileMaster" Multiplicity="0..1" />
+          <End Type="AsopalavDBModel.OrderDetail" Role="OrderDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserProfileMaster">
+              <PropertyRef Name="Login_Id" />
+            </Principal>
+            <Dependent Role="OrderDetail">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Orders_UserProfileMaster">
+          <End Type="AsopalavDBModel.UserProfileMaster" Role="UserProfileMaster" Multiplicity="0..1" />
+          <End Type="AsopalavDBModel.Order" Role="Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserProfileMaster">
+              <PropertyRef Name="Login_Id" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -749,6 +925,26 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <EntitySetMapping Name="OrderDetails">
+            <EntityTypeMapping TypeName="AsopalavDBModel.OrderDetail">
+              <MappingFragment StoreEntitySet="OrderDetails">
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+                <ScalarProperty Name="OrderDetailsId" ColumnName="OrderDetailsId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Orders">
+            <EntityTypeMapping TypeName="AsopalavDBModel.Order">
+              <MappingFragment StoreEntitySet="Orders">
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

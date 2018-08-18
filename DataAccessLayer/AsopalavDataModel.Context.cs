@@ -37,6 +37,8 @@ namespace DataAccessLayer
         public virtual DbSet<Image> Images { get; set; }
         public virtual DbSet<ProductMaster> ProductMasters { get; set; }
         public virtual DbSet<MarketTracker> MarketTrackers { get; set; }
+        public virtual DbSet<OrderDetail> OrderDetails { get; set; }
+        public virtual DbSet<Order> Orders { get; set; }
     
         public virtual int AddUser(string primary_Email, string password, string user_Fname, string user_Mname, string user_Lname, string secondary_Email, string mobile, string alternate_Mobile, string gender, Nullable<System.DateTime> user_DOB, Nullable<System.DateTime> user_Anniversary)
         {

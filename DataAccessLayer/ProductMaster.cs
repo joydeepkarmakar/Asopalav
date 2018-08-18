@@ -18,6 +18,7 @@ namespace DataAccessLayer
         public ProductMaster()
         {
             this.Images = new HashSet<Image>();
+            this.OrderDetails = new HashSet<OrderDetail>();
         }
     
         public long ProductID { get; set; }
@@ -38,5 +39,7 @@ namespace DataAccessLayer
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Image> Images { get; set; }
         public virtual ProductTypeMaster ProductTypeMaster { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<OrderDetail> OrderDetails { get; set; }
     }
 }
