@@ -405,7 +405,6 @@
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <Content Include="Scripts\jquery-1.11.1.min.js" />
     <Content Include="Scripts\jquery-ui.js" />
-    <Content Include="Scripts\jquery.currencies.min.js" />
     <Content Include="Scripts\jquery.smartmenus.bootstrap.js.download" />
     <Content Include="Scripts\jquery.smartmenus.js.download" />
     <Content Include="Scripts\jquery-1.11.3.min.js.download" />
