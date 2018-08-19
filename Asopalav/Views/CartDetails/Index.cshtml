@@ -75,7 +75,7 @@ else
         <!-- / container -->
     </div>
     <!-- / body -->
-    <div class="paypaldiv">
+    <div class="paypaldiv" style="display:none;">
         <form class="paypalform" action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
             <input type="hidden" name="cmd" value="_cart">
             <input type="hidden" name="upload" value="1">
@@ -94,7 +94,7 @@ else
         </form>
     </div>
     <br />
-    <a href="javascript:void(0);" class="placeorder btn btn-primary pull-right">Checkout</a>
+    <a href="javascript:void(0);" class="placeorder btn btn-primary pull-right" style="display:none;">Checkout</a>
 }
 @section Scripts {
     <script>

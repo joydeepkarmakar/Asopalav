@@ -11,6 +11,7 @@ $(document).ready(function () {
     //$("input[type=checkbox]").crfi();
     //$("select").crfs();
 
+    $('[data-toggle="tooltip"]').tooltip();
 
 
     $("#slider ul").bxSlider({

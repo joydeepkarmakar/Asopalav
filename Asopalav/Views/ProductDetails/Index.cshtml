@@ -69,13 +69,22 @@
                                 </div>
                             </div>
                         </div>
-                        @*<div class="actions">
-                                <label>Quantity:&nbsp;</label>
-                                <input class="form-control" data-val="true" id="Quantity" name="Quantity" type="text" value="">
-                                <a href="@Url.Action("Index", "CartDetails")" class="btn-grey">Add to cart</a>
-                            </div>*@
                         <div class="actions cd-customization">
-                            <a href="javascript:void(0);" class="btn-grey">BUY NOW</a>
+                            @if (Session["Cart"] != null)
+                            {
+                                if (Convert.ToBoolean(Session["IsLoginValid"]) == true)
+                                {
+                                    <a href="@Url.Action("Index", "CartDetails")" class="btn-grey">BUY NOW</a>
+                                }
+                                else
+                                {
+                                    <a href="@Url.Action("Login", "Account")" class="btn-grey">BUY NOW</a>
+                                }
+                            }
+                            else
+                            {
+                                <a class="btn-grey" data-toggle="tooltip" data-placement="top" title="Please add some product into cart to buy !">BUY NOW</a>
+                            }
                             <button class="add-to-cart">
                                 <em>Add to Cart</em>
                                 <svg x="0px" y="0px" width="32" height="32" viewBox="0 0 32 32">
