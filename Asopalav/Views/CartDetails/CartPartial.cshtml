@@ -1,7 +1,16 @@
 ﻿@model Asopalav.Models.CartVM
 
 <div class="ajaxcart" style="color:white;">
-    <a href="@Url.Action("Index","CartDetails")" class="cd-cart @(Session["Cart"]!=null? "items-added":"")">
-        <span>0</span>
-    </a>
+    @if (Convert.ToBoolean(Session["IsLoginValid"]) == true)
+    {
+        <a href="@Url.Action("Index", "CartDetails")" class="cd-cart @(Session["Cart"] != null ? "items-added" : "")">
+            <span>@Model.Quantity</span>
+        </a>
+    }
+    else
+    {
+        <a href="@Url.Action("Login", "Account")" class="cd-cart @(Session["Cart"] != null ? "items-added" : "")">
+            <span>@Model.Quantity</span>
+        </a>
+    }
 </div>

@@ -1,5 +1,14 @@
 ﻿@model Asopalav.Models.CartVM
 
-<a href="@Url.Action("Index","CartDetails")" class="cd-cart" title="Your cart: @Model.Quantity item(s) - $@Model.Price">
-    <span>@Model.Quantity</span>
-</a>
+@if (Convert.ToBoolean(Session["IsLoginValid"]) == true)
+{
+    <a href="@Url.Action("Index","CartDetails")" class="cd-cart" title="Your cart: @Model.Quantity item(s) - $@Model.Price">
+        <span>@Model.Quantity</span>
+    </a>
+}
+else
+{
+    <a href="@Url.Action("Login", "Account")" class="cd-cart" title="Your cart: @Model.Quantity item(s) - $@Model.Price">
+        <span>@Model.Quantity</span>
+    </a>
+}

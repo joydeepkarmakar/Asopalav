@@ -2065,7 +2065,7 @@ h1 {
         color: #ffffff;
         font-size: 12px;
         font-weight: 500;
-        width:100%;
+        width: 100%;
         background-color: #373737;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
@@ -2191,7 +2191,7 @@ h1 {
         top: 10px !important;
     }
 
-        .cd-customization .add-to-cart {
+    .cd-customization .add-to-cart {
         color: #ffffff;
         font-size: 12px;
         font-weight: 500;
@@ -2712,3 +2712,11 @@ Cart button
         z-index: 9999;
     }
     /********************/
+}
+
+.isDisabled {
+    color: #eee;
+    cursor: not-allowed;
+    opacity: 0.5;
+    text-decoration: none;
+}

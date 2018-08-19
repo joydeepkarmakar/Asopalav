@@ -11,8 +11,12 @@ $(document).ready(function () {
     //$("input[type=checkbox]").crfi();
     //$("select").crfs();
 
+    /*Buy Now button in Product Details*/
     $('[data-toggle="tooltip"]').tooltip();
-
+    $('.add-to-cart').click(function () {
+        $('#noCartItems').hide();
+        $('#hasCartItems').show();
+    });
 
     $("#slider ul").bxSlider({
         controls: false,
