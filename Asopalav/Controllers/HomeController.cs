@@ -13,6 +13,7 @@ using Asopalav.GetDailySilverRateServiceReference;
 
 namespace Asopalav.Controllers
 {
+    [RequireHttps]
     public class HomeController : Controller
     {
         AsopalavDBEntities objAsopalavDBEntities = new AsopalavDBEntities();
