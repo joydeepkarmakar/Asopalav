@@ -71,6 +71,15 @@ namespace Asopalav.Controllers
             return View(objDashboardModel);
         }
 
+        [HttpGet]
+        [Route("~/Antiques")]
+        public ActionResult Antiques(string page)
+        {
+            objDashboardModel.objGetProductsByProductType_Result = objAsopalavDBEntities.GetProductsByProductType(page, (string)Session["CurrentCurrency"] ?? "", (string)Session["DollarRate"] ?? "").ToList();
+            objDashboardModel.ProductListPage = page;
+            return View(objDashboardModel);
+        }
+
         [Route("~/Personalize")]
         public ActionResult Personalize(string page)
         {
@@ -97,6 +106,14 @@ namespace Asopalav.Controllers
 
         [Route("~/Festive")]
         public ActionResult Festive(string page)
+        {
+            objDashboardModel.objGetProductsByProductType_Result = objAsopalavDBEntities.GetProductsByProductType(page, (string)Session["CurrentCurrency"] ?? "", (string)Session["DollarRate"] ?? "").ToList();
+            objDashboardModel.ProductListPage = page;
+            return View(objDashboardModel);
+        }
+
+        [Route("~/Jewelery")]
+        public ActionResult Jewelery(string page)
         {
             objDashboardModel.objGetProductsByProductType_Result = objAsopalavDBEntities.GetProductsByProductType(page, (string)Session["CurrentCurrency"] ?? "", (string)Session["DollarRate"] ?? "").ToList();
             objDashboardModel.ProductListPage = page;

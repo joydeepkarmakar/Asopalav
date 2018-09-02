@@ -73,7 +73,7 @@
                 @Html.LabelFor(m => m.Gender, new { @class = "col-sm-4 control-label" })
                 <div class="col-sm-8">
                     @Html.DropDownListFor(m => m.Gender, ViewData["Gender"] as List<SelectListItem>
-                                            , "Choose...", new { @class = "form-control gender-width" })
+                                                 , "Choose...", new { @class = "form-control gender-width" })
                     @Html.ValidationMessageFor(model => model.Gender, "", new { @style = "color:red" })
                 </div>
             </div>
@@ -81,6 +81,7 @@
                 @Html.LabelFor(m => m.User_DOB, new { @class = "col-sm-4 control-label" })
                 <div class="col-sm-8">
                     @Html.TextBoxFor(m => m.User_DOB, new { @class = "form-control ui-date-picker" })
+                    @Html.ValidationMessageFor(model => model.User_DOB, "", new { @style = "color:red" })
                 </div>
             </div>
             <div class="form-group">

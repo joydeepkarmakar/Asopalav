@@ -18,9 +18,9 @@
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort>44379</IISExpressSSLPort>
-    <IISExpressAnonymousAuthentication />
-    <IISExpressWindowsAuthentication />
-    <IISExpressUseClassicPipelineMode />
+    <IISExpressAnonymousAuthentication>enabled</IISExpressAnonymousAuthentication>
+    <IISExpressWindowsAuthentication>disabled</IISExpressWindowsAuthentication>
+    <IISExpressUseClassicPipelineMode>false</IISExpressUseClassicPipelineMode>
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
@@ -496,6 +496,8 @@
     <Content Include="Views\CartDetails\AddToCartPartial.cshtml" />
     <Content Include="Views\CartDetails\CartPartial.cshtml" />
     <Content Include="Views\CartDetails\PaypalPartial.cshtml" />
+    <Content Include="Views\Home\Antiques.cshtml" />
+    <Content Include="Views\Home\Jewelery.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

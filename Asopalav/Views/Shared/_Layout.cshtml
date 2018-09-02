@@ -94,6 +94,9 @@
                 <li @((string)Session["CurrentPage"] == "Silverware" ? "class=menu-active" : "class=menu-hover")>
                     <a href="@Url.Action("Silverware", "Home",new { page = "Silverware" })">Silverware</a>
                 </li>
+                <li @((string)Session["CurrentPage"] == "Antiques" ? "class=menu-active" : "class=menu-hover")>
+                    <a href="@Url.Action("Antiques", "Home",new { page = "Antiques" })">Antiques</a>
+                </li>
                 <li>
                     <a href="javascript:void(0);" id="mnuGifts">Gifts</a>
                     <ul id="ulGiftsSubmenu" class="gifts-submenu" style="display:none;">
@@ -108,6 +111,9 @@
                         </li>
                         <li @((string)Session["CurrentPage"] == "Festive" ? "class=menu-active" : "class=menu-hover")>
                             <a href="@Url.Action("Festive", "Home",new { page = "Festive" })">Festive</a>
+                        </li>
+                        <li @((string)Session["CurrentPage"] == "Jewelery" ? "class=menu-active" : "class=menu-hover")>
+                            <a href="@Url.Action("Jewelery", "Home",new { page = "Jewelery" })">Jewelery</a>
                         </li>
                     </ul>
                 </li>
@@ -145,6 +151,9 @@
                         </div>
                     </div>
                 </li>
+                <li @((string)Session["CurrentPage"] == "Antiques" ? "class=menu-active" : "class=menu-hover")>
+                    <a href="@Url.Action("Antiques", "Home",new { page = "Antiques" })">Antiques</a>
+                </li>
                 <li>
                     <a href="javascript:void(0);" id="mnuGifts">Gifts</a>
                     <div id="submenu-sticky" class="megamenu clearfix selectorarrow">
@@ -160,6 +169,8 @@
                                         onmouseover="func('divImg3');"><a href="@Url.Action("Kids", "Home",new { page = "Kids" })">Kids</a></li>
                                     <li @((string)Session["CurrentPage"] == "Festive" ? "class=menu-active" : "class=menu-hover")
                                         onmouseover="func('divImg4');"><a href="@Url.Action("Festive", "Home",new { page = "Festive" })">Festive</a></li>
+                                    <li @((string)Session["CurrentPage"] == "Jewelery" ? "class=menu-active" : "class=menu-hover")
+                                        onmouseover="func('divImg5');"><a href="@Url.Action("Jewelery", "Home",new { page = "Jewelery" })">Jewelery</a></li>
                                 </ul>
                                 <div class="col-lg-6 col-md-12 col-xs-12">
                                     <div id="divImg1" style="display:block;">
@@ -173,6 +184,9 @@
                                     </div>
                                     <div id="divImg4" style="display:none;">
                                         <img src="~/Content/images/category2.jpg" alt="Festive">
+                                    </div>
+                                    <div id="divImg5" style="display:none;">
+                                        <img src="~/Content/images/category5.jpg" alt="Jewelery">
                                     </div>
                                 </div>
                             </div>
@@ -260,7 +274,7 @@
                                 <a class="fa fa-google-plus" href="javascript:void(0)"></a>
                             </li>
                             <li class="socialIcons_link bg-face">
-                                <a class="fa fa-facebook" href="javascript:void(0)"></a>
+                                <a class="fa fa-facebook" href="https://www.facebook.com/AsopalavJewellers/"></a>
                             </li>
                         </ul>
                     </div>
@@ -306,6 +320,7 @@
             document.getElementById('divImg2').style.display = "none";
             document.getElementById('divImg3').style.display = "none";
             document.getElementById('divImg4').style.display = "none";
+            document.getElementById('divImg5').style.display = "none";
             document.getElementById(id).style.display = "block";
         }
     </script>

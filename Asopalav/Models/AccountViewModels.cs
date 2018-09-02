@@ -68,6 +68,7 @@ namespace Asopalav.Models
         public List<System.Web.Mvc.SelectListItem> GenderList { get; set; }
 
         [Display(Name = "Date of Birth")]
+        [Required(ErrorMessage = " {0} is required")]
         [CustomDate(ErrorMessage = "Invalid date")]
         public Nullable<System.DateTime> User_DOB { get; set; }
 

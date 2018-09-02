@@ -17,7 +17,7 @@
 
     <div id="divHomeProducts" class="container pad-left-right-0" style="margin-top:20px">
         <div class="last-products">
-            <h2>Last added products</h2>
+            <h2>New Arrivals</h2>
             @Html.Partial("LastAddedProducts", Model.objGetLastAddedProducts_Result)
         </div>
 
@@ -60,7 +60,15 @@
                         </div>
                     </a>
                 </article>
-
+                <article style="background-image: url(/content/images/corporate5.jpg); background-size: 278px 310px;">
+                    <a href="@Url.Action("Jewelery", "Home",new { page = "Jewelery" })" class="table">
+                        <div class="cell">
+                            <div class="text">
+                                <h4>Jewelery</h4>
+                            </div>
+                        </div>
+                    </a>
+                </article>
             </section>
         </div>
 
