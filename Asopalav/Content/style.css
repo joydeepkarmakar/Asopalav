@@ -219,10 +219,11 @@ a {
 
     #header .right-links li {
         float: left;
-        color: #000;
+        color: #ae7204;
         font-weight: 500;
         padding-left: 15px;
-        font-size: 12px;
+        font-size: 15px;
+        font-family: sans-serif;
     }
 
     #header .right-links a {
@@ -270,6 +271,18 @@ a {
     /*background: #efefef;*/
     border-bottom: 2px solid #ff0000;
 }
+
+ul.link-list > li.menu-hover:hover, ul.link-list.menu-active {
+    padding: 9px 19px 5px;
+    display: inline-block;
+    font-family: "Novecentowide";
+    /*background: #efefef;*/
+    border-bottom: none !important;
+}
+
+    ul.link-list > li.menu-hover:hover > a {
+        color: #ff0000 !important;
+    }
 
 #menu a {
     /*color: #232323;*/
@@ -2601,7 +2614,7 @@ Cart button
     .cd-cart {
         position: fixed;
         top: 10px;
-        right: 30px;
+        right: 15px;
         z-index: 9999;
         height: 50px;
         width: 50px;

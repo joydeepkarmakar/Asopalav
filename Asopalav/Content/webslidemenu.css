@@ -98,6 +98,7 @@
     .wsmenu-list > li {
         text-align: center;
         display: table-cell;
+        margin: 0 5px;
     }
 
     .wsmenu-list li:first-child a {

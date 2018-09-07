@@ -30,6 +30,7 @@ namespace Asopalav
 
             bundles.Add(new ScriptBundle("~/Script/Layout").Include(
                 "~/Scripts/setup.js"
+                //"~/Scripts/jquery.liMarquee.js"
                 ));
 
             bundles.Add(new StyleBundle("~/Style/Common").Include(
@@ -43,6 +44,7 @@ namespace Asopalav
                       "~/Content/basic.css",
                       "~/Content/dropzone.css",
                       "~/Content/toastr.min.css",
+                      //"~/Content/liMarquee.css",
                       "~/Content/webslidemenu.css"
                       ));
         }

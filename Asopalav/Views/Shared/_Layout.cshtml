@@ -140,11 +140,50 @@
                     <div id="submenu-sticky1" class="megamenu clearfix selectorarrow">
                         <div class="container-fluid">
                             <div class="row">
-                                <div class="col-lg-6 col-md-6 col-xs-6">
+                                @*<div class="col-lg-6 col-md-6 col-xs-6">
                                     <div style="display:flex;">
                                         <img src="~/Content/images/category3.jpg" alt="Personalize">
                                         <img src="~/Content/images/category6.jpg" alt="Corporate">
                                         <img src="~/Content/images/category4.jpg" alt="Kids">
+                                    </div>
+                                </div>*@
+                                <ul class="col-lg-5 col-md-12 col-xs-12 link-list" style="display:grid">
+                                    <li @((string)Session["CurrentPage"] == "Dinner Set" ? "class=menu-active" : "class=menu-hover")
+                                        onmouseover="func('divImg7');"><a href="@Url.Action("Dinner Set", "Home",new { page = "Dinner Set" })">Dinner Set</a></li>
+                                    <li @((string)Session["CurrentPage"] == "Pooja Set" ? "class=menu-active" : "class=menu-hover")
+                                        onmouseover="func('divImg8');"><a href="@Url.Action("Pooja Set", "Home",new { page = "Pooja Set" })">Pooja Set</a></li>
+                                    <li @((string)Session["CurrentPage"] == "Tea Set" ? "class=menu-active" : "class=menu-hover")
+                                        onmouseover="func('divImg9');"><a href="@Url.Action("Tea Set", "Home",new { page = "Tea Set" })">Tea Set</a></li>
+                                    <li @((string)Session["CurrentPage"] == "Lemon Set" ? "class=menu-active" : "class=menu-hover")
+                                        onmouseover="func('divImg10');"><a href="@Url.Action("Lemon Set", "Home",new { page = "Lemon Set" })">Lemon Set</a></li>
+                                    <li @((string)Session["CurrentPage"] == "Bedroom Set" ? "class=menu-active" : "class=menu-hover")
+                                        onmouseover="func('divImg11');"><a href="@Url.Action("Bedroom Set", "Home",new { page = "Bedroom Set" })">Bedroom Set</a></li>
+                                    <li @((string)Session["CurrentPage"] == "Fruit Bowl" ? "class=menu-active" : "class=menu-hover")
+                                        onmouseover="func('divImg12');"><a href="@Url.Action("Fruit Bowl", "Home",new { page = "Fruit Bowl" })">Fruit Bowl</a></li>
+                                    <li @((string)Session["CurrentPage"] == "Knife/Fork/Spoons" ? "class=menu-active" : "class=menu-hover")
+                                        onmouseover="func('divImg13');"><a href="@Url.Action("Knife/Fork/Spoons", "Home",new { page = "Knife/Fork/Spoons" })">Knife/Fork/Spoons</a></li>
+                                </ul>
+                                <div class="col-lg-6 col-md-12 col-xs-12">
+                                    <div id="divImg7" style="display:block;">
+                                        <img src="~/Content/images/category7.jpg" alt="Personalize">
+                                    </div>
+                                    <div id="divImg8" style="display:none;">
+                                        <img src="~/Content/images/category8.jpg" alt="Corporate">
+                                    </div>
+                                    <div id="divImg9" style="display:none;">
+                                        <img src="~/Content/images/category9.jpg" alt="Kids">
+                                    </div>
+                                    <div id="divImg10" style="display:none;">
+                                        <img src="~/Content/images/category10.jpg" alt="Festive">
+                                    </div>
+                                    <div id="divImg11" style="display:none;">
+                                        <img src="~/Content/images/category11.jpg" alt="Jewelery">
+                                    </div>
+                                    <div id="divImg12" style="display:none;">
+                                        <img src="~/Content/images/category12.jpg" alt="Jewelery">
+                                    </div>
+                                    <div id="divImg13" style="display:none;">
+                                        <img src="~/Content/images/category13.jpg" alt="Jewelery">
                                     </div>
                                 </div>
                             </div>
@@ -321,6 +360,13 @@
             document.getElementById('divImg3').style.display = "none";
             document.getElementById('divImg4').style.display = "none";
             document.getElementById('divImg5').style.display = "none";
+            document.getElementById('divImg7').style.display = "none";
+            document.getElementById('divImg8').style.display = "none";
+            document.getElementById('divImg9').style.display = "none";
+            document.getElementById('divImg10').style.display = "none";
+            document.getElementById('divImg11').style.display = "none";
+            document.getElementById('divImg12').style.display = "none";
+            document.getElementById('divImg13').style.display = "none";
             document.getElementById(id).style.display = "block";
         }
     </script>
