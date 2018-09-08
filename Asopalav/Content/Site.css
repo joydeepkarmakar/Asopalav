@@ -5,8 +5,8 @@
 
 /* Set padding to keep content from hitting the edges */
 .body-content {
-    padding-left: 15px;
-    padding-right: 15px;
+    padding-left: 0;
+    padding-right: 0;
 }
 
 /* Override the default bootstrap behavior where horizontal description lists 
@@ -370,7 +370,7 @@ label {
     }
 
     .product-margin-top {
-        margin: 210px auto 0 auto !important;
+        margin: 25px auto 0 auto !important;
     }
 
     .device-foot {

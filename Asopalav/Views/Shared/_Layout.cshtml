@@ -91,8 +91,31 @@
                 <li @((string)Session["CurrentPage"] == "Home" ? "class=menu-active" : "class=menu-hover")>
                     <a href="@Url.Action("Index", "Home")">Home</a>
                 </li>
-                <li @((string)Session["CurrentPage"] == "Silverware" ? "class=menu-active" : "class=menu-hover")>
-                    <a href="@Url.Action("Silverware", "Home",new { page = "Silverware" })">Silverware</a>
+                <li>
+                    <a a href="javascript:void(0);" id="mnuSilverware">Silverware</a>
+                    <ul id="ulSilverwareSubmenu" class="gifts-submenu" style="display:none;">
+                        <li @((string)Session["CurrentPage"] == "Personalize" ? "class=menu-active" : "class=menu-hover")>
+                            <a href="@Url.Action("Dinner Set", "Home",new { page = "Dinner Set" })">Dinner Set</a>
+                        </li>
+                        <li @((string)Session["CurrentPage"] == "Corporate" ? "class=menu-active" : "class=menu-hover")>
+                            <a href="@Url.Action("Pooja Set", "Home",new { page = "Pooja Set" })">Pooja Set</a>
+                        </li>
+                        <li @((string)Session["CurrentPage"] == "Kids" ? "class=menu-active" : "class=menu-hover")>
+                            <a href="@Url.Action("Tea Set", "Home",new { page = "Tea Set" })">Tea Set</a>
+                        </li>
+                        <li @((string)Session["CurrentPage"] == "Festive" ? "class=menu-active" : "class=menu-hover")>
+                            <a href="@Url.Action("Lemon Set", "Home",new { page = "Lemon Set" })">Lemon Set</a>
+                        </li>
+                        <li @((string)Session["CurrentPage"] == "Jewelery" ? "class=menu-active" : "class=menu-hover")>
+                            <a href="@Url.Action("Bedroom Set", "Home",new { page = "Bedroom Set" })">Bedroom Set</a>
+                        </li>
+                        <li @((string)Session["CurrentPage"] == "Festive" ? "class=menu-active" : "class=menu-hover")>
+                            <a href="@Url.Action("Fruit Bowl", "Home",new { page = "Fruit Bowl" })">Fruit Bowl</a>
+                        </li>
+                        <li @((string)Session["CurrentPage"] == "Jewelery" ? "class=menu-active" : "class=menu-hover")>
+                            <a href="@Url.Action("Knife/Fork/Spoons", "Home",new { page = "Knife/Fork/Spoons" })">Knife/Fork/Spoons</a>
+                        </li>
+                    </ul>
                 </li>
                 <li @((string)Session["CurrentPage"] == "Antiques" ? "class=menu-active" : "class=menu-hover")>
                     <a href="@Url.Action("Antiques", "Home",new { page = "Antiques" })">Antiques</a>
@@ -131,7 +154,7 @@
 
             <ul class="wsmenu-list" id="device-submenu">
                 <li><img src="~/Content/images/logo_thumb.gif" style="width:90%; display:none;" id="deviceImgMenuLogo" /></li>
-                <li style="padding:0; margin:0; width:15px"></li>
+                <li style="padding:0; margin:0; width:5px"></li>
                 <li @((string)Session["CurrentPage"] == "Home" ? "class=menu-active" : "class=menu-hover")>
                     <a href="@Url.Action("Index", "Home")">Home</a>
                 </li>
@@ -193,7 +216,7 @@
                 <li @((string)Session["CurrentPage"] == "Antiques" ? "class=menu-active" : "class=menu-hover")>
                     <a href="@Url.Action("Antiques", "Home",new { page = "Antiques" })">Antiques</a>
                 </li>
-                <li>
+                <li  @((string)Session["CurrentPage"] == "Gifts" ? "class=menu-active" : "class=menu-hover")>
                     <a href="javascript:void(0);" id="mnuGifts">Gifts</a>
                     <div id="submenu-sticky" class="megamenu clearfix selectorarrow">
                         <div class="container-fluid">
@@ -251,7 +274,7 @@
                 <li @((string)Session["CurrentPage"] == "About" ? "class=menu-active" : "class=menu-hover")>
                     <a href="@Url.Action("About", "Home")">About us</a>
                 </li>
-                <li @((string)Session["CurrentPage"] == "Contact" ? "class=menu-active" : "class=menu-hover")>
+                <li @((string)Session["CurrentPage"] == "Contact" ? "class=menu-active" : "class=menu-hover") style="margin-right:50px">
                     <a href="@Url.Action("Contact", "Home")">Contact us</a>
                 </li>
             </ul>

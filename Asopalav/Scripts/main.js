@@ -78,6 +78,18 @@ $(document).ready(function () {
         }
     });
 
+    $(document).on('click', '#mnuSilverware', function () {
+        isSilverwareMenuClicked = true;
+        if (!$("#ulSilverwareSubmenu").is(":visible")) {
+            $('#ulSilverwareSubmenu').slideDown();
+            isSilverwareSubMenuVisible = true;
+        }
+        else {
+            $('#ulSilverwareSubmenu').slideUp();
+            isSilverwareSubMenuVisible = false;
+        }
+    });
+
     $(document).click(function () {
         if ((!isGiftsMenuClicked) && (isGiftsSubMenuVisible)) {
             $('#ulGiftsSubmenu').slideUp();
