@@ -131,7 +131,7 @@
 
             <ul class="wsmenu-list" id="device-submenu">
                 <li><img src="~/Content/images/logo_thumb.gif" style="width:90%; display:none;" id="deviceImgMenuLogo" /></li>
-                <li>&nbsp;</li>
+                <li style="padding:0; margin:0; width:15px"></li>
                 <li @((string)Session["CurrentPage"] == "Home" ? "class=menu-active" : "class=menu-hover")>
                     <a href="@Url.Action("Index", "Home")">Home</a>
                 </li>
