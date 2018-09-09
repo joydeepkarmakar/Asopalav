@@ -62,14 +62,14 @@ namespace Asopalav.Controllers
             return View();
         }
 
-        [HttpGet]
-        [Route("~/Silverware")]
-        public ActionResult Silverware(string page)
-        {
-            objDashboardModel.objGetProductsByProductType_Result = objAsopalavDBEntities.GetProductsByProductType(page, (string)Session["CurrentCurrency"] ?? "", (string)Session["DollarRate"] ?? "").ToList();
-            objDashboardModel.ProductListPage = page;
-            return View(objDashboardModel);
-        }
+        //[HttpGet]
+        //[Route("~/Silverware")]
+        //public ActionResult Silverware(string page)
+        //{
+        //    objDashboardModel.objGetProductsByProductType_Result = objAsopalavDBEntities.GetProductsByProductType(page, (string)Session["CurrentCurrency"] ?? "", (string)Session["DollarRate"] ?? "").ToList();
+        //    objDashboardModel.ProductListPage = page;
+        //    return View(objDashboardModel);
+        //}
 
         [HttpGet]
         [Route("~/Antiques")]

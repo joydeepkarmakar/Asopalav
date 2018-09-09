@@ -94,26 +94,26 @@
                 <li>
                     <a a href="javascript:void(0);" id="mnuSilverware">Silverware</a>
                     <ul id="ulSilverwareSubmenu" class="gifts-submenu" style="display:none;">
-                        <li @((string)Session["CurrentPage"] == "Personalize" ? "class=menu-active" : "class=menu-hover")>
-                            <a href="@Url.Action("Dinner Set", "Home",new { page = "Dinner Set" })">Dinner Set</a>
+                        <li @((string)Session["CurrentPage"] == "DinnerSet" ? "class=menu-active" : "class=menu-hover")>
+                            <a href="@Url.Action("DinnerSet", "Silverware",new { page = "DinnerSet" })">Dinner Set</a>
                         </li>
-                        <li @((string)Session["CurrentPage"] == "Corporate" ? "class=menu-active" : "class=menu-hover")>
-                            <a href="@Url.Action("Pooja Set", "Home",new { page = "Pooja Set" })">Pooja Set</a>
+                        <li @((string)Session["CurrentPage"] == "PoojaSet" ? "class=menu-active" : "class=menu-hover")>
+                            <a href="@Url.Action("PoojaSet", "Silverware",new { page = "PoojaSet" })">Pooja Set</a>
                         </li>
-                        <li @((string)Session["CurrentPage"] == "Kids" ? "class=menu-active" : "class=menu-hover")>
-                            <a href="@Url.Action("Tea Set", "Home",new { page = "Tea Set" })">Tea Set</a>
+                        <li @((string)Session["CurrentPage"] == "TeaSet" ? "class=menu-active" : "class=menu-hover")>
+                            <a href="@Url.Action("TeaSet", "Silverware",new { page = "TeaSet" })">Tea Set</a>
                         </li>
-                        <li @((string)Session["CurrentPage"] == "Festive" ? "class=menu-active" : "class=menu-hover")>
-                            <a href="@Url.Action("Lemon Set", "Home",new { page = "Lemon Set" })">Lemon Set</a>
+                        <li @((string)Session["CurrentPage"] == "LemonSet" ? "class=menu-active" : "class=menu-hover")>
+                            <a href="@Url.Action("LemonSet", "Silverware",new { page = "LemonSet" })">Lemon Set</a>
                         </li>
-                        <li @((string)Session["CurrentPage"] == "Jewelery" ? "class=menu-active" : "class=menu-hover")>
-                            <a href="@Url.Action("Bedroom Set", "Home",new { page = "Bedroom Set" })">Bedroom Set</a>
+                        <li @((string)Session["CurrentPage"] == "BedroomSet" ? "class=menu-active" : "class=menu-hover")>
+                            <a href="@Url.Action("BedroomSet", "Silverware",new { page = "BedroomSet" })">Bedroom Set</a>
                         </li>
-                        <li @((string)Session["CurrentPage"] == "Festive" ? "class=menu-active" : "class=menu-hover")>
-                            <a href="@Url.Action("Fruit Bowl", "Home",new { page = "Fruit Bowl" })">Fruit Bowl</a>
+                        <li @((string)Session["CurrentPage"] == "FruitBowl" ? "class=menu-active" : "class=menu-hover")>
+                            <a href="@Url.Action("FruitBowl", "Silverware",new { page = "FruitBowl" })">Fruit Bowl</a>
                         </li>
-                        <li @((string)Session["CurrentPage"] == "Jewelery" ? "class=menu-active" : "class=menu-hover")>
-                            <a href="@Url.Action("Knife/Fork/Spoons", "Home",new { page = "Knife/Fork/Spoons" })">Knife/Fork/Spoons</a>
+                        <li @((string)Session["CurrentPage"] == "KnifeForkSpoons" ? "class=menu-active" : "class=menu-hover")>
+                            <a href="@Url.Action("KnifeForkSpoons", "Silverware",new { page = "KnifeForkSpoons" })">Knife/Fork/Spoons</a>
                         </li>
                     </ul>
                 </li>
@@ -159,54 +159,48 @@
                     <a href="@Url.Action("Index", "Home")">Home</a>
                 </li>
                 <li @((string)Session["CurrentPage"] == "Silverware" ? "class=menu-active" : "class=menu-hover")>
-                    <a href="@Url.Action("Silverware", "Home",new { page = "Silverware" })">Silverware</a>
+                    @*<a href="@Url.Action("Silverware", "Home",new { page = "Silverware" })">Silverware</a>*@
+                    <a href="javascript:void(0);">Silverware</a>
                     <div id="submenu-sticky1" class="megamenu clearfix selectorarrow">
                         <div class="container-fluid">
                             <div class="row">
-                                @*<div class="col-lg-6 col-md-6 col-xs-6">
-                                    <div style="display:flex;">
-                                        <img src="~/Content/images/category3.jpg" alt="Personalize">
-                                        <img src="~/Content/images/category6.jpg" alt="Corporate">
-                                        <img src="~/Content/images/category4.jpg" alt="Kids">
-                                    </div>
-                                </div>*@
                                 <ul class="col-lg-5 col-md-12 col-xs-12 link-list" style="display:grid">
-                                    <li @((string)Session["CurrentPage"] == "Dinner Set" ? "class=menu-active" : "class=menu-hover")
-                                        onmouseover="func('divImg7');"><a href="@Url.Action("Dinner Set", "Home",new { page = "Dinner Set" })">Dinner Set</a></li>
-                                    <li @((string)Session["CurrentPage"] == "Pooja Set" ? "class=menu-active" : "class=menu-hover")
-                                        onmouseover="func('divImg8');"><a href="@Url.Action("Pooja Set", "Home",new { page = "Pooja Set" })">Pooja Set</a></li>
-                                    <li @((string)Session["CurrentPage"] == "Tea Set" ? "class=menu-active" : "class=menu-hover")
-                                        onmouseover="func('divImg9');"><a href="@Url.Action("Tea Set", "Home",new { page = "Tea Set" })">Tea Set</a></li>
-                                    <li @((string)Session["CurrentPage"] == "Lemon Set" ? "class=menu-active" : "class=menu-hover")
-                                        onmouseover="func('divImg10');"><a href="@Url.Action("Lemon Set", "Home",new { page = "Lemon Set" })">Lemon Set</a></li>
-                                    <li @((string)Session["CurrentPage"] == "Bedroom Set" ? "class=menu-active" : "class=menu-hover")
-                                        onmouseover="func('divImg11');"><a href="@Url.Action("Bedroom Set", "Home",new { page = "Bedroom Set" })">Bedroom Set</a></li>
-                                    <li @((string)Session["CurrentPage"] == "Fruit Bowl" ? "class=menu-active" : "class=menu-hover")
-                                        onmouseover="func('divImg12');"><a href="@Url.Action("Fruit Bowl", "Home",new { page = "Fruit Bowl" })">Fruit Bowl</a></li>
-                                    <li @((string)Session["CurrentPage"] == "Knife/Fork/Spoons" ? "class=menu-active" : "class=menu-hover")
-                                        onmouseover="func('divImg13');"><a href="@Url.Action("Knife/Fork/Spoons", "Home",new { page = "Knife/Fork/Spoons" })">Knife/Fork/Spoons</a></li>
+                                    <li @((string)Session["CurrentPage"] == "DinnerSet" ? "class=menu-active" : "class=menu-hover")
+                                        onmouseover="func('divImg7');"><a href="@Url.Action("DinnerSet", "Silverware",new { page = "DinnerSet" })">Dinner Set</a></li>
+                                    <li @((string)Session["CurrentPage"] == "PoojaSet" ? "class=menu-active" : "class=menu-hover")
+                                        onmouseover="func('divImg8');"><a href="@Url.Action("PoojaSet", "Silverware",new { page = "PoojaSet" })">Pooja Set</a></li>
+                                    <li @((string)Session["CurrentPage"] == "TeaSet" ? "class=menu-active" : "class=menu-hover")
+                                        onmouseover="func('divImg9');"><a href="@Url.Action("TeaSet", "Silverware",new { page = "TeaSet" })">Tea Set</a></li>
+                                    <li @((string)Session["CurrentPage"] == "LemonSet" ? "class=menu-active" : "class=menu-hover")
+                                        onmouseover="func('divImg10');"><a href="@Url.Action("LemonSet", "Silverware",new { page = "LemonSet" })">Lemon Set</a></li>
+                                    <li @((string)Session["CurrentPage"] == "BedroomSet" ? "class=menu-active" : "class=menu-hover")
+                                        onmouseover="func('divImg11');"><a href="@Url.Action("BedroomSet", "Silverware",new { page = "BedroomSet" })">Bedroom Set</a></li>
+                                    <li @((string)Session["CurrentPage"] == "FruitBowl" ? "class=menu-active" : "class=menu-hover")
+                                        onmouseover="func('divImg12');"><a href="@Url.Action("FruitBowl", "Silverware",new { page = "FruitBowl" })">Fruit Bowl</a></li>
+                                    <li @((string)Session["CurrentPage"] == "KnifeForkSpoons" ? "class=menu-active" : "class=menu-hover")
+                                        onmouseover="func('divImg13');"><a href="@Url.Action("KnifeForkSpoons", "Silverware",new { page = "KnifeForkSpoons" })">Knife/Fork/Spoons</a></li>
                                 </ul>
                                 <div class="col-lg-6 col-md-12 col-xs-12">
                                     <div id="divImg7" style="display:block;">
-                                        <img src="~/Content/images/category7.jpg" alt="Personalize">
+                                        <img src="~/Content/images/category7.jpg" alt="Dinner Set">
                                     </div>
                                     <div id="divImg8" style="display:none;">
-                                        <img src="~/Content/images/category8.jpg" alt="Corporate">
+                                        <img src="~/Content/images/category8.jpg" alt="Pooja Set">
                                     </div>
                                     <div id="divImg9" style="display:none;">
-                                        <img src="~/Content/images/category9.jpg" alt="Kids">
+                                        <img src="~/Content/images/category9.jpg" alt="Tea Set">
                                     </div>
                                     <div id="divImg10" style="display:none;">
-                                        <img src="~/Content/images/category10.jpg" alt="Festive">
+                                        <img src="~/Content/images/category10.jpg" alt="Lemon Set">
                                     </div>
                                     <div id="divImg11" style="display:none;">
-                                        <img src="~/Content/images/category11.jpg" alt="Jewelery">
+                                        <img src="~/Content/images/category11.jpg" alt="Bedroom Set">
                                     </div>
                                     <div id="divImg12" style="display:none;">
-                                        <img src="~/Content/images/category12.jpg" alt="Jewelery">
+                                        <img src="~/Content/images/category12.jpg" alt="Fruit Bowl">
                                     </div>
                                     <div id="divImg13" style="display:none;">
-                                        <img src="~/Content/images/category13.jpg" alt="Jewelery">
+                                        <img src="~/Content/images/category13.jpg" alt="Knife/Fork/Spoons">
                                     </div>
                                 </div>
                             </div>
@@ -215,8 +209,21 @@
                 </li>
                 <li @((string)Session["CurrentPage"] == "Antiques" ? "class=menu-active" : "class=menu-hover")>
                     <a href="@Url.Action("Antiques", "Home",new { page = "Antiques" })">Antiques</a>
+                    <div id="submenu-sticky3" class="megamenu clearfix selectorarrow">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6 col-xs-6">
+                                    <div style="display:flex;">
+                                        <img src="~/Content/images/category3.jpg" alt="Personalize">
+                                        <img src="~/Content/images/category6.jpg" alt="Corporate">
+                                        <img src="~/Content/images/category4.jpg" alt="Kids">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </li>
-                <li  @((string)Session["CurrentPage"] == "Gifts" ? "class=menu-active" : "class=menu-hover")>
+                <li @((string)Session["CurrentPage"] == "Gifts" ? "class=menu-active" : "class=menu-hover")>
                     <a href="javascript:void(0);" id="mnuGifts">Gifts</a>
                     <div id="submenu-sticky" class="megamenu clearfix selectorarrow">
                         <div class="container-fluid">
@@ -354,6 +361,7 @@
         var subnav = document.getElementById("submenu-sticky");
         var silver = document.getElementById("submenu-sticky1");
         var metal = document.getElementById("submenu-sticky2");
+        var antiques = document.getElementById("submenu-sticky3");
         var cart = document.getElementById("cd-cart");
         var sticky = navbar.offsetTop;
         var desktopImg = document.getElementById("desktopImgMenuLogo");
@@ -362,6 +370,7 @@
         function menuHeaderScrollFunction() {
             if (window.pageYOffset >= sticky) {
                 metal.classList.add("megamenu-sticky");
+                antiques.classList.add("megamenu-sticky");
                 silver.classList.add("megamenu-sticky");
                 subnav.classList.add("megamenu-sticky");
                 navbar.classList.add("sticky");
@@ -369,6 +378,7 @@
                 deviceImg.style.display = "inline-block";
             } else {
                 metal.classList.remove("megamenu-sticky");
+                antiques.classList.remove("megamenu-sticky");
                 silver.classList.remove("megamenu-sticky");
                 subnav.classList.remove("megamenu-sticky");
                 navbar.classList.remove("sticky");
