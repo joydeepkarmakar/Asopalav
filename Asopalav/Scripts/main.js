@@ -78,6 +78,10 @@ $(document).ready(function () {
         }
     });
 
+    /*Silverware Submenu*/
+    var isSilverwareMenuClicked = false;
+    var isSilverwareSubMenuVisible = false;
+
     $(document).on('click', '#mnuSilverware', function () {
         isSilverwareMenuClicked = true;
         if (!$("#ulSilverwareSubmenu").is(":visible")) {
@@ -99,7 +103,6 @@ $(document).ready(function () {
                 $('#ulGiftsSubmenu').slideUp();
         }
         isGiftsMenuClicked = false;
-
     });
 
     $('.row ul li').hover(

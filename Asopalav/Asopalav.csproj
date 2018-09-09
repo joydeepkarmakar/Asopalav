@@ -473,6 +473,7 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
     <Compile Include="Controllers\CartDetailsController.cs" />
+    <Compile Include="Controllers\SilverwareController.cs" />
     <Compile Include="Helpers\JsonHelper.cs" />
     <Compile Include="Helpers\MailHelper.cs" />
     <Compile Include="Helpers\SecurityHelper.cs" />
@@ -525,6 +526,13 @@
     <Content Include="Views\CartDetails\PaypalPartial.cshtml" />
     <Content Include="Views\Home\Antiques.cshtml" />
     <Content Include="Views\Home\Jewelery.cshtml" />
+    <Content Include="Views\Silverware\DinnerSet.cshtml" />
+    <Content Include="Views\Silverware\PoojaSet.cshtml" />
+    <Content Include="Views\Silverware\TeaSet.cshtml" />
+    <Content Include="Views\Silverware\LemonSet.cshtml" />
+    <Content Include="Views\Silverware\BedroomSet.cshtml" />
+    <Content Include="Views\Silverware\FruitBowl.cshtml" />
+    <Content Include="Views\Silverware\KnifeForkSpoons.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
