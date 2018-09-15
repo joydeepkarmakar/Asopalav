@@ -122,7 +122,7 @@ select {
 
 .corporate-address {
     color: #696763;
-    font-size: 14px;
+    font-size: 15px;
     text-align: center;
 }
 
@@ -514,7 +514,7 @@ fieldset > input {
 }
 
 .body-bg {
-    background-image: url(../Content/images/logo_back-bg.gif);
+    /*background-image: url(../Content/images/logo_back-bg.gif);*/
     background-repeat: repeat;
     background-position: top left;
 }
