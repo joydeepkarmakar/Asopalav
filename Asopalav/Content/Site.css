@@ -271,7 +271,7 @@ label {
 .socialIcons_link {
     display: inline-table;
     margin-left: 15px;
-    background-color: #4e4e4e;
+    background-color: #f1eded;
     border-radius: 50%;
     width: 32px;
     height: 32px;
@@ -545,6 +545,22 @@ fieldset > input {
 
 .card-information > div > input {
     max-width:100%;
+}
+
+.search-top {
+    margin-top:0 !important;
+}
+
+hr {
+    margin-top: 5px !important;
+    margin-bottom: 10px !important;
+    border: 1px solid #dcdcdc !important;
+    border-top: 0 !important;
+    width: 119px !important;
+}
+
+.dropdown-menu {
+    top:35px !important;
 }
 
 

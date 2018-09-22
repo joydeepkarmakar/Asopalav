@@ -17,69 +17,115 @@
                 <img src="~/Content/images/ShreeHari.gif" />
             </div>
             <div class="col-xs-12 col-sm-5 right-links device-price-margin" style="margin-right:10px">
-                <ul><li>Gold Price per Ounce - $@Session["GoldRate"]  | Silver Price per Ounce - $@Session["SilverRate"]</li></ul>
-            </div>
-
-            @*<div class="shree-hari"><img src="~/Content/images/ShreeHari.gif" style="width:50px;" /></div>*@
-            <div class="col-xs-12 col-sm-4 right-links pull-right">
-                <div class="col-xs-9 col-sm-10 device-login" style="padding-left:0;padding-right:0;">
-                    <ul class="nav navbar-nav device-log-margin" style="float:right">
-
-                        @if (Convert.ToBoolean(Session["IsLoginValid"]) == true)
-                        {
-                            @Html.AntiForgeryToken()
-                            <li>
-                                @Html.ActionLink("Welcome " + Session["UserFullName"] + "!", "Index", "Home", routeValues: null, htmlAttributes: new { title = "Manage" })
-                            </li>
-                            <li>@Html.ActionLink("Log off", "LogOff", "Account", new { area = "" }, new { })</li>
-                        }
-                        else
-                        {
-                            <li>
-                                @Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink", style = "font-size:14px;" })
-                            </li>
-
-                        }
-                    </ul>
-                </div>
-                <div class="col-xs-3 col-sm-4 pull-right cart-margin">
-                    <div class="profile-container" style="float:right">
-                        @if (ViewBag.Title != "Cart Details")
-                        {
-                            @Html.Action("CartPartial", "CartDetails")
-                        }
-
-
-                    </div>
-                    @*<div style="float:right">
-                                <div class="btn-group" id="my-profile">
-                                    <button class="btn">My Profile</button>
-                                    <button class="btn dropdown-toggle" data-toggle="dropdown">
-                                        <span><i class="fa fa-caret-down" style="font-size:20px"></i></span>
-                                    </button>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="#">Profile</a></li>
-                                        <li><a href="#">Log Off</a></li>
-                                    </ul>
-                                </div>
+                <div class="container" style="display:flex">
+                    <div class="row" style="font-size:12px !important;">
+                        <div class="col-xs-7 col-sm-3">
+                            <div class="dropdown">
+                                <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Price per Ounce</button>
+                                <ul class="dropdown-menu" style="width:100% !important">
+                                    <li>Gold Price per Ounce - $@Session["GoldRate"]</li>
+                                    <li><hr> </li>
+                                    <li>Silver Price per Ounce - $@Session["SilverRate"]</li>
+                                </ul>
                             </div>
-                        <div style="float:right; margin-right:5px">
-                            <div class="btn-group">
-                                <button class="btn">Dollar</button>
+                            </div>
+                        <div class="col-xs-5 col-sm-3">
+                            <div class="dropdown" style="margin-left:10px">
+                                <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" style="width: 100%; margin-left: 8px;">LogIn</button>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#">My Profile</a></li></br>
+                                    <li><a href="#">Logout</a></li>
+                                </ul>
+                            </div>
+                            </div>
+                        <div class="col-xs-12 col-sm-6">
+                            <form class="navbar-form navbar-left search-top" role="search" style="padding-left: 0 !important;padding-right: 30px;">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="Search" style="max-width:61% !important;display:inline !important">
+                                    <button type="submit" class="btn btn-default">Submit</button>
+                                </div>
+                            </form>
+                        </div>
+                        </div>
+                </div>
+                <!--  <ul><li>Gold Price per Ounce - $@Session["GoldRate"]  | Silver Price per Ounce - $@Session["SilverRate"]</li></ul>-->
+            </div>
+            <!--<div class="row">
+                <div class="col-xs-12 col-sm-5 right-links device-price-margin" style="margin-right:99px">
+                    <form class="navbar-form navbar-left pull-right" role="search">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Search" style="max-width:100% !important">
+                        </div>
+                        <button type="submit" class="btn btn-default">Submit</button>
+                    </form>
+                </div>
+            </div>-->
+                @*<div class="shree-hari"><img src="~/Content/images/ShreeHari.gif" style="width:50px;" /></div>*@
+                <div class="col-xs-12 col-sm-4 right-links pull-right">
+                    <!--<div class="col-xs-9 col-sm-10 device-login" style="padding-left:0;padding-right:0;">
+                                <ul class="nav navbar-nav device-log-margin" style="float:right">
+
+                                    @if (Convert.ToBoolean(Session["IsLoginValid"]) == true)
+                                    {
+                                        @Html.AntiForgeryToken()
+                                        <li>
+                                            @Html.ActionLink("Welcome " + Session["UserFullName"] + "!", "Index", "Home", routeValues: null, htmlAttributes: new { title = "Manage" })
+                                        </li>
+                                        <li>@Html.ActionLink("Log off", "LogOff", "Account", new { area = ""
+                }, new { })</li>
+                }
+                else
+                {
+                <li>
+            }, new { })</li>
+                                    }
+                                    else
+                                    {
+                                        <li>
+                                            @Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink", style = "font-size:14px;" })
+                                        </li>
+
+                                    }
+                                </ul>
+                            </div>-->
+                    <div class="col-xs-3 col-sm-4 pull-right cart-margin">
+                        <div class="profile-container" style="float:right">
+                            @if (ViewBag.Title != "Cart Details")
+                            {
+                                @Html.Action("CartPartial", "CartDetails")
+                            }
+
+
+                        </div>
+                        @*<div style="float:right">
+                            <div class="btn-group" id="my-profile">
+                                <button class="btn">My Profile</button>
                                 <button class="btn dropdown-toggle" data-toggle="dropdown">
                                     <span><i class="fa fa-caret-down" style="font-size:20px"></i></span>
                                 </button>
                                 <ul class="dropdown-menu">
-                                    <li><a href="#">Dollar</a></li>
-                                    <li><a href="#">Pound</a></li>
-                                    <li><a href="#">Euro</a></li>
+                                    <li><a href="#">Profile</a></li>
+                                    <li><a href="#">Log Off</a></li>
                                 </ul>
                             </div>
-                        </div>*@
-                </div>
+                        </div>
+                    <div style="float:right; margin-right:5px">
+                        <div class="btn-group">
+                            <button class="btn">Dollar</button>
+                            <button class="btn dropdown-toggle" data-toggle="dropdown">
+                                <span><i class="fa fa-caret-down" style="font-size:20px"></i></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Dollar</a></li>
+                                <li><a href="#">Pound</a></li>
+                                <li><a href="#">Euro</a></li>
+                            </ul>
+                        </div>
+                    </div>*@
+                    </div>
 
+                </div>
             </div>
-        </div>
     </header>
     <!-- / header -->
     <nav id="menu">

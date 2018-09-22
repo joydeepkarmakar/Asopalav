@@ -1206,11 +1206,11 @@ h1 {
 
 #footer {
     clear: both;
-    padding: 0;
+    padding: 2px 0;
     color: #a5a5aa;
     font-size: 14px;
     line-height: 30px;
-    background: #525456;
+    background: #ded9d9;
 }
 
     #footer h3 {
@@ -2137,6 +2137,8 @@ h1 {
         font-weight: 500;
         padding-left: 15px;
         font-size: 12px;
+        padding-right: 15px;
+        text-align: left;
     }
 }
 
@@ -2374,7 +2376,7 @@ h1 {
 .dropdown-menu {
     left: 3px !important;
     width: 74% !important;
-    min-width: 118px !important;
+    min-width: 150px !important;
 }
 
     .dropdown-menu > li {
