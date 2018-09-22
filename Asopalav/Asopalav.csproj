@@ -202,6 +202,7 @@
     <Content Include="Connected Services\GetDailyGoldRateServiceReference\Asopalav.GetDailyGoldRateServiceReference.GetCurrentGoldPriceResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
+    <Content Include="Areas\Admin\Views\Product\ProductList.cshtml" />
     <None Include="Connected Services\GetDailyGoldRateServiceReference\GetGoldPrice.disco" />
     <None Include="Connected Services\GetDailyGoldRateServiceReference\configuration91.svcinfo" />
     <None Include="Connected Services\GetDailyGoldRateServiceReference\configuration.svcinfo" />
@@ -462,6 +463,8 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductController.cs" />
+    <Compile Include="Areas\Admin\Controllers\UserController.cs" />
+    <Compile Include="Areas\Admin\Models\UserViewModel.cs" />
     <Compile Include="Connected Services\GetDailyGoldRateServiceReference\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -474,6 +477,7 @@
     </Compile>
     <Compile Include="Controllers\CartDetailsController.cs" />
     <Compile Include="Controllers\SilverwareController.cs" />
+    <Compile Include="Helpers\ImageHelper.cs" />
     <Compile Include="Helpers\JsonHelper.cs" />
     <Compile Include="Helpers\MailHelper.cs" />
     <Compile Include="Helpers\SecurityHelper.cs" />
@@ -542,6 +546,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\Admin\Views\User\" />
     <Folder Include="obj\Debug\TempPE\" />
     <Folder Include="Uploads\Temp\" />
   </ItemGroup>

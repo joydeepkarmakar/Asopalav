@@ -5,6 +5,19 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="AsopalavDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CartDetails">
+          <Key>
+            <PropertyRef Name="CartDetailsId" />
+          </Key>
+          <Property Name="CartDetailsId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductId" Type="bigint" />
+          <Property Name="ImageID" Type="int" />
+          <Property Name="Quantity" Type="int" />
+          <Property Name="Price" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="Total" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="PrimaryEmail" Type="varchar" MaxLength="100" />
+          <Property Name="CurrentSessionId" Type="varchar(max)" />
+        </EntityType>
         <EntityType Name="FeedbackMaster">
           <Key>
             <PropertyRef Name="ID" />
@@ -75,7 +88,7 @@
           <Property Name="HeightInInch" Type="varchar" MaxLength="15" />
           <Property Name="WidthInInch" Type="varchar" MaxLength="15" />
           <Property Name="Price" Type="decimal" Precision="18" Scale="2" Nullable="false" />
-          <Property Name="IsOffer" Type="bit" />
+          <Property Name="IsOffer" Type="bit" Nullable="false" />
           <Property Name="OfferPrice" Type="decimal" Precision="18" Scale="2" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
           <Property Name="Description" Type="varchar(max)" Nullable="false" />
@@ -293,6 +306,7 @@
           <Parameter Name="Password" Type="varchar" Mode="In" />
         </Function>
         <EntityContainer Name="AsopalavDBModelStoreContainer">
+          <EntitySet Name="CartDetails" EntityType="Self.CartDetails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="FeedbackMaster" EntityType="Self.FeedbackMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Images" EntityType="Self.Images" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MarketTracker" EntityType="Self.MarketTracker" Schema="dbo" store:Type="Tables" />
@@ -525,6 +539,7 @@
             <End Role="UserProfileMaster" EntitySet="UserProfileMasters" />
             <End Role="Order" EntitySet="Orders" />
           </AssociationSet>
+          <EntitySet Name="CartDetails" EntityType="AsopalavDBModel.CartDetail" />
         </EntityContainer>
         <ComplexType Name="ValidateUserAndMenu_Result">
           <Property Type="Boolean" Name="IsLoginValid" Nullable="false" />
@@ -564,7 +579,7 @@
           <Property Name="HeightInInch" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
           <Property Name="WidthInInch" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
           <Property Name="Price" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
-          <Property Name="IsOffer" Type="Boolean" />
+          <Property Name="IsOffer" Type="Boolean" Nullable="false" />
           <Property Name="OfferPrice" Type="Decimal" Precision="18" Scale="2" />
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
           <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
@@ -717,6 +732,19 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="CartDetail">
+          <Key>
+            <PropertyRef Name="CartDetailsId" />
+          </Key>
+          <Property Name="CartDetailsId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductId" Type="Int64" />
+          <Property Name="ImageID" Type="Int32" />
+          <Property Name="Quantity" Type="Int32" />
+          <Property Name="Price" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Total" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="PrimaryEmail" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CurrentSessionId" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -942,6 +970,20 @@
                 <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CartDetails">
+            <EntityTypeMapping TypeName="AsopalavDBModel.CartDetail">
+              <MappingFragment StoreEntitySet="CartDetails">
+                <ScalarProperty Name="CurrentSessionId" ColumnName="CurrentSessionId" />
+                <ScalarProperty Name="PrimaryEmail" ColumnName="PrimaryEmail" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="ImageID" ColumnName="ImageID" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="CartDetailsId" ColumnName="CartDetailsId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

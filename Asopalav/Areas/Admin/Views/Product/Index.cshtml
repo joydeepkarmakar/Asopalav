@@ -1,4 +1,10 @@
 ﻿@model Asopalav.Models.ProductModel
+<p>
+    @*@Html.ActionLink("Back to List", "ProductList", "Product")*@
+    <a href="@Url.Action("ProductList","Product")">
+        <span class="glyphicon glyphicon-backward"></span> Back to List
+    </a>
+</p>
 
 @using (Html.BeginForm("Add", "Product", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
@@ -13,7 +19,7 @@
                 <div class="form-group">
                     @Html.LabelFor(m => m.ProductCode, new { @class = "col-sm-4 control-label" })
                     <div class="col-sm-8">
-                        @Html.TextBoxFor(m => m.ProductCode, new { @class = "form-control" })
+                        @Html.TextBoxFor(m => m.ProductCode, new { @class = "form-control", @readonly = "readonly" })
                         @Html.ValidationMessageFor(m => m.ProductCode, "", new { @style = "color:red" })
                     </div>
                 </div>
@@ -99,7 +105,7 @@
                         <div id="divDropImages" class="fallback dropzone dropDiv">
                             Upload Image
                             <a href="javascript:void(0);">
-                                <span class="drophyperspan">
+                                <span class="drophyperspan" style="cursor: pointer;">
                                 </span>
                             </a>
                         </div>

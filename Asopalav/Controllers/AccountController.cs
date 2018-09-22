@@ -50,7 +50,7 @@ namespace Asopalav.Controllers
                     Session["PrimaryEmail"] = model.Email;
 
                     if (objValidateUserAndMenu_Result.RoleName == "Admin")
-                        return RedirectToAction("Index", "Product", new { area = "Admin" });
+                        return RedirectToAction("ProductList", "Product", new { area = "Admin" });
                     else
                         return RedirectToAction("Index", "Home");
                 }
