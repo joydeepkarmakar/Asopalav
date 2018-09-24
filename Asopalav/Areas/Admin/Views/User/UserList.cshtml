@@ -17,8 +17,9 @@
 
 @section scripts{
     <script type="text/javascript">
+        var userDataTable;
         $(document).ready(function () {
-            var userDataTable = $("#userTable").DataTable({
+            userDataTable = $("#userTable").DataTable({
                 "ajax": {
                     "url": "@Url.Action("GetUserList", "User")",
                     "type": "GET",
@@ -50,8 +51,6 @@
                 //console.log(userDataTable.row(row).data());
                 UpdateUserModal(data.UserEmail, data.UserRoleName, data.UserId);
                 //alert(data.UserId);
-
-
             });
         });
 
@@ -71,7 +70,6 @@
                 var userRoleName = $("input[name='rdoRole']:checked").val();
                 var userId = $('#hdnUserId').val();
                 UpdateUserRole(userEmail, userRoleName, userId);
-                $("#userModal").modal("hide");
             } catch (ex) {
                 if (window.console)
                     console.log(ex);
@@ -79,24 +77,25 @@
         });
 
         var UpdateUserRole = function (userEmail, userRoleName, userId) {
-
             $.ajax({
                 url:"@Url.Action("UpdateUserRole","User")",
-                type: 'POST',
+                type: "POST",
                 data: { userEmail: userEmail, userRoleName: userRoleName, userId: userId },
                 dataType: "json",
                 success: function (response) {
-                    if (response.IsSuccess)
+                    if (response.IsSuccess) {
+                        $('input:radio[name=rdoRole]').find("input[value=" + response.Data + "]").prop("checked", true);
+                        userDataTable.ajax.reload();  
                         toastr.success('Success!');
+                    }
                     else
-                        toastr.error(response.errorMsg);
+                        toastr.error(response.ErrorMessage);
                 },
                 error: function (response) {
                     toastr.error('Error!');
                 },
                 complete: function () {
-                    $('#btnSubmit').removeAttr('disabled');
-                    $("input[type=text], textarea").val("");
+                    $("#userModal").modal("hide");
                 }
             });
         }

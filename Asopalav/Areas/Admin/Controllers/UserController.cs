@@ -42,22 +42,27 @@ namespace Asopalav.Areas.Admin.Controllers
 
         public ActionResult UpdateUserRole(long userId, string userRoleName, string userEmail)
         {
-            //try
-            //{
+            bool status = false;
+            string errorMessage = string.Empty;
+            try
+            {
                 UserProfileMaster userMaster = (from u in objAsopalavDBEntities.UserProfileMasters
                                                 where u.Login_Id == userId && u.Primary_Email == userEmail
                                                 select u).SingleOrDefault();
 
-                userMaster.RoleMaster.RoleName = userRoleName;
+                userMaster.RoleID = (from r in objAsopalavDBEntities.RoleMasters where r.RoleName == userRoleName select r.RoleID).SingleOrDefault();
                 objAsopalavDBEntities.SaveChanges();
-                return Json(new
-                {
-                    data = userMaster
-                }, JsonRequestBehavior.AllowGet);
-            //}
-            //catch (Exception)
-            //{
-            //}
+                status = true;
+            }
+            catch (Exception)
+            {
+            }
+            return Json(new
+            {
+                Data = userRoleName,
+                IsSuccess = status,
+                ErrorMessage = errorMessage
+            }, JsonRequestBehavior.AllowGet);
         }
     }
 }
