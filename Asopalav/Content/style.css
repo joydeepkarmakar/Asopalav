@@ -14,7 +14,7 @@ time, mark, audio, video {
     padding: 0;
     border: 0;
     font-size: 100%;
-    font: inherit;
+    font-family: Verdana;
     vertical-align: baseline;
 }
 
@@ -42,7 +42,6 @@ img {
 
 ol, ul {
     list-style: none;
-    font-family: "Novecentowide";
 }
 
 blockquote, q {
@@ -93,7 +92,6 @@ input[type=reset], input[type=submit] {
 
 h1, h2, h3, h4, h5, h6 {
     font-weight: normal;
-    font-family: "Novecentowide";
 }
 
 strong {
@@ -164,7 +162,7 @@ body {
 
 input, textarea, select, button {
     outline: none;
-    font-family: Novecentowide, Helvetica, sans-serif;
+    font-size:14px;
 }
 
 a {
@@ -260,14 +258,12 @@ a {
     #menu li {
         padding: 9px 24px 9px 19px;
         display: inline-block;
-        font-family: "Novecentowide";
         cursor: pointer;
     }
 
 .menu-hover:hover, .menu-active {
     padding: 9px 19px 5px;
     display: inline-block;
-    font-family: "Novecentowide";
     /*background: #efefef;*/
     border-bottom: 2px solid #ff0000;
 }
@@ -275,7 +271,6 @@ a {
 ul.link-list > li.menu-hover:hover, ul.link-list.menu-active {
     padding: 9px 19px 5px;
     display: inline-block;
-    font-family: "Novecentowide";
     /*background: #efefef;*/
     border-bottom: none !important;
 }
@@ -295,7 +290,7 @@ ul.link-list > li.menu-hover:hover, ul.link-list.menu-active {
 #breadcrumbs {
     background: #ded9d9;
     color: #666;
-    font-size: 14px;
+    font-size: 16px;
     overflow: hidden;
     padding: 5px 0;
     width: 100%;
@@ -441,7 +436,6 @@ ul.link-list > li.menu-hover:hover, ul.link-list.menu-active {
 
     .products h4 {
         color: #939597;
-        font-family: "Novecentowide";
         font-size: 24px;
         padding: 0 0 22px;
     }
@@ -451,7 +445,6 @@ ul.link-list > li.menu-hover:hover, ul.link-list.menu-active {
         background-color: #cecece;
         display: block;
         color: #656567;
-        font-family: "Novecentowide";
         font-size: 12px;
         font-weight: 500;
         line-height: 40px;
@@ -459,7 +452,7 @@ ul.link-list > li.menu-hover:hover, ul.link-list.menu-active {
     }
 
         .products .btn-add:hover {
-            background: #656567;
+            background: #a0a0a0;
             color: #fff;
             text-decoration: none;
             -webkit-transition: all 0.2s ease-in-out;
@@ -469,11 +462,11 @@ ul.link-list > li.menu-hover:hover, ul.link-list.menu-active {
         }
 
     .products h3 {
-        color: #656567;
-        font-family: "Novecentowide";
+        color: #a0a0a0;
         font-size: 12px;
         font-weight: 600;
         margin: 22px 0 0;
+        text-transform:uppercase;
     }
 
     .products article {
@@ -562,11 +555,10 @@ ul.link-list > li.menu-hover:hover, ul.link-list.menu-active {
         border-bottom: 1px solid #d3d3d3;
         font-weight: bold;
         font-size: 20px;
-        font-family: 'Times New Roman';
         font-weight: 500;
-        padding: 6px 30px;
+        padding: 9px 30px;
         background: #ded9d9;
-        font-family: "Novecentowide";
+        text-transform: uppercase;
     }
 
 .quick-links {
@@ -585,7 +577,6 @@ ul.link-list > li.menu-hover:hover, ul.link-list.menu-active {
 
     .quick-links h4 {
         color: #beb2a5;
-        font-family: "Novecentowide";
         font-size: 18px;
         font-weight: normal;
     }
@@ -602,18 +593,15 @@ ul.link-list > li.menu-hover:hover, ul.link-list.menu-active {
         }
 
     .quick-links h4 {
-        font-family: "Novecentowide";
         font-size: 18px;
         text-transform: uppercase;
     }
 
     .quick-links h3 {
-        font-family: "Novecentowide";
         font-size: 24px;
     }
 
     .quick-links a p {
-        font-family: "Novecentowide";
         padding-top: 14px;
         color: #cd9b9f;
         font-size: 18px;
@@ -658,7 +646,7 @@ ul.link-list > li.menu-hover:hover, ul.link-list.menu-active {
 
     .quick-links .text {
         margin: auto;
-        padding: 2px 30px;
+        padding: 4px 30px 4px 30px;
         width: 221px;
         border: 4px solid #fff;
         background-color: #fff;
@@ -750,11 +738,10 @@ h1 {
     display: inline-block;
     padding: 0 55px;
     line-height: 36px;
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 500;
     color: #fff;
     height: 36px;
-    font-family: "Novecentowide";
     background-color: #373737;
 }
 
@@ -909,6 +896,7 @@ h1 {
 
 .product {
     overflow: hidden;
+    margin-bottom: 50px;
 }
 
     .product .image {
@@ -987,9 +975,9 @@ h1 {
         height: 38px;
         text-decoration: none;
         color: #656567;
-        font-family: "Novecentowide";
         font-size: 16px;
         font-weight: 500;
+        text-transform:uppercase;
     }
 
     .entry .nav .active {
@@ -1142,7 +1130,7 @@ h1 {
             left: 50%;
             top: 10px;
             color: #d8d8d8;
-            font-size: 14px;
+            font-size: 16px;
         }
 
         #sidebar .ui-slider .ui-slider-handle {
@@ -1188,15 +1176,14 @@ h1 {
 
     #sidebar .widget {
         border-bottom: 1px solid #e8e8e8;
-        padding: 30px 0 19px;
-        margin-bottom: -11px;
+        padding: 5px 0 0;
+        margin-bottom: 5px;
     }
 
         #sidebar .widget h3 {
             padding-bottom: 10px;
             color: #fff;
-            font-family: "Novecentowide";
-            font-size: 14px;
+            font-size: 16px;
             font-weight: 500;
         }
 
@@ -2417,6 +2404,8 @@ h1 {
 .form-horizontal > div.form-group > div > input {
     border: 0;
     border-bottom: 1px solid #b6b6b4;
+    font-family: Verdana;
+    font-size: 16px;
 }
 
 .form-horizontal > div.form-group > div > textarea {
@@ -2649,7 +2638,7 @@ Cart button
 
     .cd-customization .add-to-cart {
         color: #ffffff;
-        font-size: 12px;
+        font-size: 14px;
         font-weight: 500;
         background-color: #373737;
         -webkit-font-smoothing: antialiased;
@@ -2733,4 +2722,11 @@ Cart button
     cursor: not-allowed;
     opacity: 0.5;
     text-decoration: none;
+}
+
+.btn-transparent {
+    color: #ff0000;
+    background-color: transparent;
+    border-color: transparent;
+    text-decoration:underline;
 }
