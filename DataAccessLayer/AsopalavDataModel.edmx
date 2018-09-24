@@ -5,6 +5,19 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="AsopalavDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CartDetails">
+          <Key>
+            <PropertyRef Name="CartDetailsId" />
+          </Key>
+          <Property Name="CartDetailsId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductId" Type="bigint" />
+          <Property Name="ImageID" Type="int" />
+          <Property Name="Quantity" Type="int" />
+          <Property Name="Price" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="Total" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="PrimaryEmail" Type="varchar" MaxLength="100" />
+          <Property Name="CurrentSessionId" Type="varchar(max)" />
+        </EntityType>
         <EntityType Name="FeedbackMaster">
           <Key>
             <PropertyRef Name="ID" />
@@ -75,7 +88,7 @@
           <Property Name="HeightInInch" Type="varchar" MaxLength="15" />
           <Property Name="WidthInInch" Type="varchar" MaxLength="15" />
           <Property Name="Price" Type="decimal" Precision="18" Scale="2" Nullable="false" />
-          <Property Name="IsOffer" Type="bit" />
+          <Property Name="IsOffer" Type="bit" Nullable="false" />
           <Property Name="OfferPrice" Type="decimal" Precision="18" Scale="2" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
           <Property Name="Description" Type="varchar(max)" Nullable="false" />
@@ -225,6 +238,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Role_UserProfileMaster">
+          <End Role="RoleMaster" Type="Self.RoleMaster" Multiplicity="1" />
+          <End Role="UserProfileMaster" Type="Self.UserProfileMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RoleMaster">
+              <PropertyRef Name="RoleID" />
+            </Principal>
+            <Dependent Role="UserProfileMaster">
+              <PropertyRef Name="RoleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_User_Address_Details_User_Profile_Master">
           <End Role="UserProfileMaster" Type="Self.UserProfileMaster" Multiplicity="1" />
           <End Role="UserAddressDetails" Type="Self.UserAddressDetails" Multiplicity="*" />
@@ -293,6 +318,7 @@
           <Parameter Name="Password" Type="varchar" Mode="In" />
         </Function>
         <EntityContainer Name="AsopalavDBModelStoreContainer">
+          <EntitySet Name="CartDetails" EntityType="Self.CartDetails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="FeedbackMaster" EntityType="Self.FeedbackMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Images" EntityType="Self.Images" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MarketTracker" EntityType="Self.MarketTracker" Schema="dbo" store:Type="Tables" />
@@ -328,6 +354,10 @@
           <AssociationSet Name="FK_ProductMaster_ProductTypeMaster" Association="Self.FK_ProductMaster_ProductTypeMaster">
             <End Role="ProductTypeMaster" EntitySet="ProductTypeMaster" />
             <End Role="ProductMaster" EntitySet="ProductMaster" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Role_UserProfileMaster" Association="Self.FK_Role_UserProfileMaster">
+            <End Role="RoleMaster" EntitySet="RoleMaster" />
+            <End Role="UserProfileMaster" EntitySet="UserProfileMaster" />
           </AssociationSet>
           <AssociationSet Name="FK_User_Address_Details_User_Profile_Master" Association="Self.FK_User_Address_Details_User_Profile_Master">
             <End Role="UserProfileMaster" EntitySet="UserProfileMaster" />
@@ -365,6 +395,7 @@
           <Property Name="RoleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="RoleName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="UserProfileMasters" Relationship="AsopalavDBModel.FK_Role_UserProfileMaster" FromRole="RoleMaster" ToRole="UserProfileMaster" />
         </EntityType>
         <EntityType Name="RoleMenuPermission">
           <Key>
@@ -423,6 +454,7 @@
           <NavigationProperty Name="UserAddressDetails" Relationship="Self.FK_User_Address_Details_User_Profile_Master" FromRole="UserProfileMaster" ToRole="UserAddressDetails" />
           <NavigationProperty Name="OrderDetails" Relationship="AsopalavDBModel.FK_OrderDetails_UserProfileMaster" FromRole="UserProfileMaster" ToRole="OrderDetail" />
           <NavigationProperty Name="Orders" Relationship="AsopalavDBModel.FK_Orders_UserProfileMaster" FromRole="UserProfileMaster" ToRole="Order" />
+          <NavigationProperty Name="RoleMaster" Relationship="AsopalavDBModel.FK_Role_UserProfileMaster" FromRole="UserProfileMaster" ToRole="RoleMaster" />
         </EntityType>
         <Association Name="FK_User_Address_Details_User_Profile_Master">
           <End Role="UserProfileMaster" Type="Self.UserProfileMaster" Multiplicity="1" />
@@ -525,11 +557,17 @@
             <End Role="UserProfileMaster" EntitySet="UserProfileMasters" />
             <End Role="Order" EntitySet="Orders" />
           </AssociationSet>
+          <EntitySet Name="CartDetails" EntityType="AsopalavDBModel.CartDetail" />
+          <AssociationSet Name="FK_Role_UserProfileMaster" Association="AsopalavDBModel.FK_Role_UserProfileMaster">
+            <End Role="RoleMaster" EntitySet="RoleMasters" />
+            <End Role="UserProfileMaster" EntitySet="UserProfileMasters" />
+          </AssociationSet>
         </EntityContainer>
         <ComplexType Name="ValidateUserAndMenu_Result">
-          <Property Type="Boolean" Name="IsLoginValid" Nullable="false" />
+          <Property Type="Boolean" Name="IsLoginValid" Nullable="true" />
           <Property Type="String" Name="RoleName" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="UserFullName" Nullable="true" MaxLength="250" />
+          <Property Type="String" Name="UserFirstName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="UserEmail" Nullable="true" MaxLength="100" />
         </ComplexType>
         <EntityType Name="FeedbackMaster">
           <Key>
@@ -564,7 +602,7 @@
           <Property Name="HeightInInch" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
           <Property Name="WidthInInch" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
           <Property Name="Price" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
-          <Property Name="IsOffer" Type="Boolean" />
+          <Property Name="IsOffer" Type="Boolean" Nullable="false" />
           <Property Name="OfferPrice" Type="Decimal" Precision="18" Scale="2" />
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
           <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
@@ -717,6 +755,31 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="CartDetail">
+          <Key>
+            <PropertyRef Name="CartDetailsId" />
+          </Key>
+          <Property Name="CartDetailsId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductId" Type="Int64" />
+          <Property Name="ImageID" Type="Int32" />
+          <Property Name="Quantity" Type="Int32" />
+          <Property Name="Price" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Total" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="PrimaryEmail" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CurrentSessionId" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <Association Name="FK_Role_UserProfileMaster">
+          <End Type="AsopalavDBModel.RoleMaster" Role="RoleMaster" Multiplicity="1" />
+          <End Type="AsopalavDBModel.UserProfileMaster" Role="UserProfileMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RoleMaster">
+              <PropertyRef Name="RoleID" />
+            </Principal>
+            <Dependent Role="UserProfileMaster">
+              <PropertyRef Name="RoleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -815,7 +878,8 @@
               <ComplexTypeMapping TypeName="AsopalavDBModel.ValidateUserAndMenu_Result">
                 <ScalarProperty Name="IsLoginValid" ColumnName="IsLoginValid" />
                 <ScalarProperty Name="RoleName" ColumnName="RoleName" />
-                <ScalarProperty Name="UserFullName" ColumnName="UserFullName" />
+                <ScalarProperty Name="UserFirstName" ColumnName="UserFirstName" />
+                <ScalarProperty Name="UserEmail" ColumnName="UserEmail" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -942,6 +1006,20 @@
                 <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CartDetails">
+            <EntityTypeMapping TypeName="AsopalavDBModel.CartDetail">
+              <MappingFragment StoreEntitySet="CartDetails">
+                <ScalarProperty Name="CurrentSessionId" ColumnName="CurrentSessionId" />
+                <ScalarProperty Name="PrimaryEmail" ColumnName="PrimaryEmail" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="ImageID" ColumnName="ImageID" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="CartDetailsId" ColumnName="CartDetailsId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

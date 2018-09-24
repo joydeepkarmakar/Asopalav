@@ -10,12 +10,17 @@
 namespace DataAccessLayer
 {
     using System;
+    using System.Collections.Generic;
     
-    public partial class ValidateUserAndMenu_Result
+    public partial class CartDetail
     {
-        public bool IsLoginValid { get; set; }
-        public string RoleName { get; set; }
-        public string UserFirstName { get; set; }
-        public string UserEmail { get; set; }
+        public int CartDetailsId { get; set; }
+        public Nullable<long> ProductId { get; set; }
+        public Nullable<int> ImageID { get; set; }
+        public Nullable<int> Quantity { get; set; }
+        public Nullable<decimal> Price { get; set; }
+        public Nullable<decimal> Total { get; set; }
+        public string PrimaryEmail { get; set; }
+        public string CurrentSessionId { get; set; }
     }
 }

@@ -7,6 +7,16 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Asopalav", "Asopalav\Asopal
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccessLayer", "DataAccessLayer\DataAccessLayer.csproj", "{47CBDE54-6A09-48DA-901C-9DC897C81A8C}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DBScript", "DBScript", "{F15177D1-69DF-47C8-B9B2-D3598F32E986}"
+	ProjectSection(SolutionItems) = preProject
+		ExecutableDBScript.sql = ExecutableDBScript.sql
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "StoredProcs", "StoredProcs", "{426253EE-9B43-4B8E-BEF9-7CA2B8C5A13C}"
+	ProjectSection(SolutionItems) = preProject
+		ValidateUserAndMenu.sql = ValidateUserAndMenu.sql
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,6 +34,9 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{426253EE-9B43-4B8E-BEF9-7CA2B8C5A13C} = {F15177D1-69DF-47C8-B9B2-D3598F32E986}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {CCDFA492-E05C-47A6-91D1-C0CAC0DE2250}

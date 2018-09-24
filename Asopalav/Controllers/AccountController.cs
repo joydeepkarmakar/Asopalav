@@ -46,11 +46,12 @@ namespace Asopalav.Controllers
                 if (objValidateUserAndMenu_Result.IsLoginValid)
                 {
                     Session["IsLoginValid"] = true;
-                    Session["UserFullName"] = objValidateUserAndMenu_Result.UserFullName;
+                    Session["UserFirstName"] = objValidateUserAndMenu_Result.UserFirstName;
                     Session["PrimaryEmail"] = model.Email;
+                    Session["UserRole"] = objValidateUserAndMenu_Result.RoleName;
 
-                    if (objValidateUserAndMenu_Result.RoleName == "Admin")
-                        return RedirectToAction("Index", "Product", new { area = "Admin" });
+                    if (objValidateUserAndMenu_Result.RoleName == "Admin" || objValidateUserAndMenu_Result.RoleName == "SuperAdmin")
+                        return RedirectToAction("ProductList", "Product", new { area = "Admin" });
                     else
                         return RedirectToAction("Index", "Home");
                 }
@@ -103,7 +104,7 @@ namespace Asopalav.Controllers
                     if (result == -1)
                     {
                         Session["IsLoginValid"] = true;
-                        Session["UserFullName"] = model.User_Fname + ' ' + model.User_Mname ?? ' ' + model.User_Lname;
+                        Session["UserFirstName"] = model.User_Fname + ' ' + model.User_Mname ?? ' ' + model.User_Lname;
                         return RedirectToAction("Index", "Home");
                     }
                 }
@@ -135,7 +136,7 @@ namespace Asopalav.Controllers
         {
             Session.Clear();
             Session.Remove("IsLoginValid");
-            Session.Remove("UserFullName");
+            Session.Remove("UserFirstName");
 
             //Disable back button In all browsers.
             Response.Cache.SetCacheability(HttpCacheability.NoCache);

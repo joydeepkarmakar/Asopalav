@@ -1,0 +1,50 @@
+﻿@model IEnumerable<Asopalav.Models.ProductListModel>
+
+<p>
+    <a href="@Url.Action("Index","Product")">
+        <i class="fa fa-plus-square" style="font-size:20px"></i> Create New
+    </a>
+</p>
+<table class="display" id="prodTable">
+    <thead>
+        <tr>
+            <th>Product Code</th>
+            <th>Product Name</th>
+            <th>Price</th>
+            <th>Weight(Gram)</th>
+            <th>Product Type</th>
+            <th>Dimension Height X Width(Inch)</th>
+            <th>Set Active</th>
+            <th>Description</th>
+            <th>Set Offer</th>
+            <th>Offer Price</th>
+        </tr>
+    </thead>
+</table>
+
+@section scripts{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#prodTable").DataTable({
+                "ajax": {
+                    "url": "@Url.Action("GetProductList", "Product")",
+                    "type": "GET",
+                    "datatype": "json"
+                },
+                "columns": [
+                    { "data": "ProductCode" },
+                    { "data": "ProductName" },
+                    { "data": "Price" },
+                    { "data": "WeightInGms" },
+                    { "data": "ProductType" },
+                    { "data": "Dimension" },
+                    { "data": "IsActive" },
+                    { "data": "Description", "autoWidth": true },
+                    { "data": "IsOffer" },
+                    { "data": "OfferPrice" }
+                ]
+            });
+        });
+    </script>
+}
+

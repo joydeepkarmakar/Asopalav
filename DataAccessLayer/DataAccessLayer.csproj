@@ -66,6 +66,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AsopalavDataModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="CartDetail.cs">
+      <DependentUpon>AsopalavDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="FeedbackMaster.cs">
       <DependentUpon>AsopalavDataModel.tt</DependentUpon>
     </Compile>

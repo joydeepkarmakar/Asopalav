@@ -5,7 +5,7 @@
     -nav navbar-right" style="display:flex">
     @if (Convert.ToBoolean(Session["IsLoginValid"]) == true)
     {
-        <li>@Html.ActionLink("Welcome " + Session["UserFullName"] + "!", "Index", "Product", routeValues: null, htmlAttributes: new { title = "Manage" }) </li>
+        <li>@Html.ActionLink("Welcome " + Session["UserFirstName"] + "!", "Index", "Product", routeValues: null, htmlAttributes: new { title = "Manage" }) </li>
         <li>@Html.ActionLink("Log off", "LogOff", "Account", new { area = "" }, new { })</li>
     }
     else

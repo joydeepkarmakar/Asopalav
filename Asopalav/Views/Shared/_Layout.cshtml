@@ -21,23 +21,29 @@
                     <div class="row" style="font-size:12px !important;">
                         <div class="col-xs-7 col-sm-3">
                             <div class="dropdown">
-                                <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Price per Ounce</button>
+                                <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Today's Gold-Silver Rate</button>
                                 <ul class="dropdown-menu" style="width:100% !important">
                                     <li>Gold Price per Ounce - $@Session["GoldRate"]</li>
-                                    <li><hr> </li>
                                     <li>Silver Price per Ounce - $@Session["SilverRate"]</li>
                                 </ul>
                             </div>
-                            </div>
+                        </div>
                         <div class="col-xs-5 col-sm-3">
                             <div class="dropdown" style="margin-left:10px">
-                                <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" style="width: 100%; margin-left: 8px;">LogIn</button>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#">My Profile</a></li></br>
-                                    <li><a href="#">Logout</a></li>
-                                </ul>
+                                @if (Convert.ToBoolean(Session["IsLoginValid"]) == true)
+                                {
+                                    <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" style="width: 100%; margin-left: 8px;">Welcome @Session["UserFirstName"]!</button>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="#">My Profile</a></li>
+                                        <li><a href="@Url.Action("LogOff","Account")">Logout</a></li>
+                                    </ul>
+                                }
+                                else
+                                {
+                                    <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" onclick="location.href = '@Url.Action("Login","Account")'" style="width: 100%; margin-left: 8px;">LogIn</button>
+                                }
                             </div>
-                            </div>
+                        </div>
                         <div class="col-xs-12 col-sm-6">
                             <form class="navbar-form navbar-left search-top" role="search" style="padding-left: 0 !important;padding-right: 30px;">
                                 <div class="form-group">
@@ -46,7 +52,7 @@
                                 </div>
                             </form>
                         </div>
-                        </div>
+                    </div>
                 </div>
                 <!--  <ul><li>Gold Price per Ounce - $@Session["GoldRate"]  | Silver Price per Ounce - $@Session["SilverRate"]</li></ul>-->
             </div>
@@ -60,72 +66,71 @@
                     </form>
                 </div>
             </div>-->
-                @*<div class="shree-hari"><img src="~/Content/images/ShreeHari.gif" style="width:50px;" /></div>*@
-                <div class="col-xs-12 col-sm-4 right-links pull-right">
-                    <!--<div class="col-xs-9 col-sm-10 device-login" style="padding-left:0;padding-right:0;">
-                                <ul class="nav navbar-nav device-log-margin" style="float:right">
+            @*<div class="shree-hari"><img src="~/Content/images/ShreeHari.gif" style="width:50px;" /></div>*@
+            <div class="col-xs-12 col-sm-4 right-links pull-right">
+                <!--<div class="col-xs-9 col-sm-10 device-login" style="padding-left:0;padding-right:0;">
+                                    <ul class="nav navbar-nav device-log-margin" style="float:right">
 
-                                    @if (Convert.ToBoolean(Session["IsLoginValid"]) == true)
-                                    {
-                                        @Html.AntiForgeryToken()
-                                        <li>
-                                            @Html.ActionLink("Welcome " + Session["UserFullName"] + "!", "Index", "Home", routeValues: null, htmlAttributes: new { title = "Manage" })
-                                        </li>
-                                        <li>@Html.ActionLink("Log off", "LogOff", "Account", new { area = ""
+                                        @if (Convert.ToBoolean(Session["IsLoginValid"]) == true)
+                                        {
+                                            @Html.AntiForgeryToken()
+                                            <li>
+                                                @Html.ActionLink("Welcome " + Session["UserFirstName"] + "!", "Index", "Home", routeValues: null, htmlAttributes: new { title = "Manage" })
+                                            </li>
+                                            <li>@Html.ActionLink("Log off", "LogOff", "Account", new { area = ""}, new { })</li>
+                    }
+                    else
+                    {
+                    <li>
                 }, new { })</li>
-                }
-                else
-                {
-                <li>
-            }, new { })</li>
-                                    }
-                                    else
-                                    {
-                                        <li>
-                                            @Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink", style = "font-size:14px;" })
-                                        </li>
+                                        }
+                                        else
+                                        {
+                                            <li>
+                                                @Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink", style = "font-size:14px;" })
+                                            </li>
 
-                                    }
-                                </ul>
-                            </div>-->
-                    <div class="col-xs-3 col-sm-4 pull-right cart-margin">
-                        <div class="profile-container" style="float:right">
-                            @if (ViewBag.Title != "Cart Details")
-                            {
-                                @Html.Action("CartPartial", "CartDetails")
-                            }
+                                        }
+                                    </ul>
+                                </div>-->
+                <div class="col-xs-3 col-sm-4 pull-right cart-margin">
+                    <div class="profile-container" style="float:right">
+                        @if (ViewBag.Title != "Cart Details")
+                        {
+                            @Html.Action("CartPartial", "CartDetails")
+                        }
 
 
-                        </div>
-                        @*<div style="float:right">
-                            <div class="btn-group" id="my-profile">
-                                <button class="btn">My Profile</button>
+                    </div>
+                    @*<div style="float:right">
+                                <div class="btn-group" id="my-profile">
+                                    <button class="btn">My Profile</button>
+                                    <button class="btn dropdown-toggle" data-toggle="dropdown">
+                                        <span><i class="fa fa-caret-down" style="font-size:20px"></i></span>
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="#">Profile</a></li>
+                                        <li><a href="#">Log Off</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        <div style="float:right; margin-right:5px">
+                            <div class="btn-group">
+                                <button class="btn">Dollar</button>
                                 <button class="btn dropdown-toggle" data-toggle="dropdown">
                                     <span><i class="fa fa-caret-down" style="font-size:20px"></i></span>
                                 </button>
                                 <ul class="dropdown-menu">
-                                    <li><a href="#">Profile</a></li>
-                                    <li><a href="#">Log Off</a></li>
+                                    <li><a href="#">Dollar</a></li>
+                                    <li><a href="#">Pound</a></li>
+                                    <li><a href="#">Euro</a></li>
                                 </ul>
                             </div>
-                        </div>
-                    <div style="float:right; margin-right:5px">
-                        <div class="btn-group">
-                            <button class="btn">Dollar</button>
-                            <button class="btn dropdown-toggle" data-toggle="dropdown">
-                                <span><i class="fa fa-caret-down" style="font-size:20px"></i></span>
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">Dollar</a></li>
-                                <li><a href="#">Pound</a></li>
-                                <li><a href="#">Euro</a></li>
-                            </ul>
-                        </div>
-                    </div>*@
-                    </div>
-
+                        </div>*@
                 </div>
+
             </div>
+        </div>
     </header>
     <!-- / header -->
     <nav id="menu">
@@ -158,9 +163,9 @@
                         <li @((string)Session["CurrentPage"] == "FruitBowl" ? "class=menu-active" : "class=menu-hover")>
                             <a href="@Url.Action("FruitBowl", "Silverware",new { page = "FruitBowl" })">Fruit Bowl</a>
                         </li>
-                        <li @((string)Session["CurrentPage"] == "KnifeForkSpoons" ? "class=menu-active" : "class=menu-hover")>
-                            <a href="@Url.Action("KnifeForkSpoons", "Silverware",new { page = "KnifeForkSpoons" })">Knife/Fork/Spoons</a>
-                        </li>
+                        @*<li @((string)Session["CurrentPage"] == "KnifeForkSpoons" ? "class=menu-active" : "class=menu-hover")>
+                                <a href="@Url.Action("KnifeForkSpoons", "Silverware",new { page = "KnifeForkSpoons" })">Knife/Fork/Spoons</a>
+                            </li>*@
                     </ul>
                 </li>
                 <li @((string)Session["CurrentPage"] == "Antiques" ? "class=menu-active" : "class=menu-hover")>
@@ -223,8 +228,8 @@
                                         onmouseover="func('divImg11');"><a href="@Url.Action("BedroomSet", "Silverware",new { page = "BedroomSet" })">Bedroom Set</a></li>
                                     <li @((string)Session["CurrentPage"] == "FruitBowl" ? "class=menu-active" : "class=menu-hover")
                                         onmouseover="func('divImg12');"><a href="@Url.Action("FruitBowl", "Silverware",new { page = "FruitBowl" })">Fruit Bowl</a></li>
-                                    <li @((string)Session["CurrentPage"] == "KnifeForkSpoons" ? "class=menu-active" : "class=menu-hover")
-                                        onmouseover="func('divImg13');"><a href="@Url.Action("KnifeForkSpoons", "Silverware",new { page = "KnifeForkSpoons" })">Knife/Fork/Spoons</a></li>
+                                    @*<li @((string)Session["CurrentPage"] == "KnifeForkSpoons" ? "class=menu-active" : "class=menu-hover")
+                                        onmouseover="func('divImg13');"><a href="@Url.Action("KnifeForkSpoons", "Silverware",new { page = "KnifeForkSpoons" })">Knife/Fork/Spoons</a></li>*@
                                 </ul>
                                 <div class="col-lg-6 col-md-12 col-xs-12">
                                     <div id="divImg7" style="display:block;">
@@ -245,9 +250,9 @@
                                     <div id="divImg12" style="display:none;">
                                         <img src="~/Content/images/category12.jpg" alt="Fruit Bowl">
                                     </div>
-                                    <div id="divImg13" style="display:none;">
-                                        <img src="~/Content/images/category13.jpg" alt="Knife/Fork/Spoons">
-                                    </div>
+                                    @*<div id="divImg13" style="display:none;">
+                                            <img src="~/Content/images/category13.jpg" alt="Knife/Fork/Spoons">
+                                        </div>*@
                                 </div>
                             </div>
                         </div>

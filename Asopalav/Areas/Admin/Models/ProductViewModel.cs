@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace Asopalav.Models
@@ -63,6 +61,37 @@ namespace Asopalav.Models
         public int ProductTypeID { get; set; }
         public string ProductType { get; set; }
         public bool IsActive { get; set; }
+    }
+
+    public class ProductListModel
+    {
+        public long ProductId { get; set; }
+        [DisplayName("Product Code")]
+        public string ProductCode { get; set; }
+        [DisplayName("Product Name")]
+        public string ProductName { get; set; }
+        [DisplayName("Product Type")]
+        public string ProductType { get; set; }
+        [DisplayName("Weight(Gram)")]
+        public decimal WeightInGms { get; set; }
+        public string HeightInInch { get; set; }
+        public string WidthInInch { get; set; }
+        public decimal Price { get; set; }
+        [DisplayName("Set Offer")]
+        public bool IsOffer { get; set; }
+        public decimal? OfferPrice { get; set; }
+        public List<DataAccessLayer.Image> ImagePaths { get; set; }
+        [DisplayName("Set Active")]
+        public bool IsActive { get; set; }
+        public string Description { get; set; }
+        [DisplayName("Dimension Height X Width(Inch)")]
+        public string Dimension
+        {
+            get
+            {
+                return String.Format("{0} X {1}", this.HeightInInch, this.WidthInInch);
+            }
+        }
     }
 
     //public class UploadImageModel

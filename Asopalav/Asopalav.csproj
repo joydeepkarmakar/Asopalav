@@ -202,6 +202,9 @@
     <Content Include="Connected Services\GetDailyGoldRateServiceReference\Asopalav.GetDailyGoldRateServiceReference.GetCurrentGoldPriceResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
+    <Content Include="Areas\Admin\Views\Product\ProductList.cshtml" />
+    <Content Include="Areas\Admin\Views\User\UserList.cshtml" />
+    <Content Include="Areas\Admin\Views\User\_ModifyUser.cshtml" />
     <None Include="Connected Services\GetDailyGoldRateServiceReference\GetGoldPrice.disco" />
     <None Include="Connected Services\GetDailyGoldRateServiceReference\configuration91.svcinfo" />
     <None Include="Connected Services\GetDailyGoldRateServiceReference\configuration.svcinfo" />
@@ -281,6 +284,11 @@
     <Content Include="Content\images\corporate3.jpg" />
     <Content Include="Content\images\corporate4.jpg" />
     <Content Include="Content\images\corporate5.jpg" />
+    <Content Include="Content\images\datatable\sort_asc.png" />
+    <Content Include="Content\images\datatable\sort_asc_disabled.png" />
+    <Content Include="Content\images\datatable\sort_both.png" />
+    <Content Include="Content\images\datatable\sort_desc.png" />
+    <Content Include="Content\images\datatable\sort_desc_disabled.png" />
     <Content Include="Content\images\emirates-nbd.jpg" />
     <Content Include="Content\images\favicon.ico" />
     <Content Include="Content\images\Icon-leaf.gif" />
@@ -370,6 +378,7 @@
     <Content Include="Content\images\thumbs\04_g_car.jpg" />
     <Content Include="Content\jquery-ui.structure.css" />
     <Content Include="Content\jquery-ui.theme.css" />
+    <Content Include="Content\jquery.dataTables.min.css" />
     <Content Include="Content\jquery.smartmenus.bootstrap.css" />
     <Content Include="Content\liMarquee.css" />
     <Content Include="Content\pygments.css" />
@@ -431,6 +440,7 @@
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <Content Include="Scripts\jquery-1.11.1.min.js" />
     <Content Include="Scripts\jquery-ui.js" />
+    <Content Include="Scripts\jquery.dataTables.min.js" />
     <Content Include="Scripts\jquery.liMarquee.js" />
     <Content Include="Scripts\jquery.smartmenus.bootstrap.js.download" />
     <Content Include="Scripts\jquery.smartmenus.js.download" />
@@ -462,6 +472,8 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductController.cs" />
+    <Compile Include="Areas\Admin\Controllers\UserController.cs" />
+    <Compile Include="Areas\Admin\Models\UserViewModel.cs" />
     <Compile Include="Connected Services\GetDailyGoldRateServiceReference\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -474,6 +486,7 @@
     </Compile>
     <Compile Include="Controllers\CartDetailsController.cs" />
     <Compile Include="Controllers\SilverwareController.cs" />
+    <Compile Include="Helpers\ImageHelper.cs" />
     <Compile Include="Helpers\JsonHelper.cs" />
     <Compile Include="Helpers\MailHelper.cs" />
     <Compile Include="Helpers\SecurityHelper.cs" />
