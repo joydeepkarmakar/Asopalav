@@ -25,7 +25,7 @@ namespace Asopalav.Areas.Admin.Controllers
         ProductModel objProductModel = new ProductModel();
 
         [Route("~/Admin/Product/Add")]
-        public ActionResult Index(ProductModel objProductModel)
+        public ActionResult Index()
         {
             ViewData["ProductTypeID"] = GetProductTypeList();
             if (objProductModel.ProductID > 0)
@@ -195,6 +195,7 @@ namespace Asopalav.Areas.Admin.Controllers
         [Route("~/Admin/Product/List")]
         public ActionResult ProductList()
         {
+            Session["CurrentPage"] = "Products";
             return View();
         }
 
