@@ -578,5 +578,9 @@ hr {
 
 /*--------------- search ------------*/
 
+.search-pad-right {
+    padding-right:23px !important;
+}
+
 
 /*Dropzone Div Ends*/

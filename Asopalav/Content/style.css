@@ -162,7 +162,7 @@ body {
 
 input, textarea, select, button {
     outline: none;
-    font-size:14px;
+    font-size: 14px;
 }
 
 a {
@@ -201,10 +201,7 @@ a {
 }
 
     #header .right-links span {
-        float: left;
-        width: 20px;
-        height: 20px;
-        margin: 0;
+        float: initial;
     }
 
         #header .right-links span.ico-account {
@@ -466,7 +463,7 @@ ul.link-list > li.menu-hover:hover, ul.link-list.menu-active {
         font-size: 12px;
         font-weight: 600;
         margin: 22px 0 0;
-        text-transform:uppercase;
+        text-transform: uppercase;
     }
 
     .products article {
@@ -977,7 +974,7 @@ h1 {
         color: #656567;
         font-size: 16px;
         font-weight: 500;
-        text-transform:uppercase;
+        text-transform: uppercase;
     }
 
     .entry .nav .active {
@@ -2127,6 +2124,10 @@ h1 {
         padding-right: 15px;
         text-align: left;
     }
+
+    .search-device-width {
+        width: 102%;
+    }
 }
 
 @media screen and (max-width: 320px) {
@@ -2392,7 +2393,8 @@ h1 {
 }
 
 .caret {
-    margin-top: 6px;
+    margin-top: 0 !important;
+    margin-left: 8px !important;
 }
 
 .video-container {
@@ -2728,5 +2730,4 @@ Cart button
     color: #ff0000;
     background-color: transparent;
     border-color: transparent;
-    text-decoration:underline;
 }
