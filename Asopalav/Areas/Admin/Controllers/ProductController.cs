@@ -25,11 +25,18 @@ namespace Asopalav.Areas.Admin.Controllers
         ProductModel objProductModel = new ProductModel();
 
         [Route("~/Admin/Product/Add")]
-        public ActionResult Index()
+        public ActionResult Index(ProductModel objProductModel)
         {
-            var prodCount = objAsopalavDBEntities.ProductMasters.Count();
-            objProductModel.ProductCode = "AJ000" + Convert.ToString(prodCount + 1);
             ViewData["ProductTypeID"] = GetProductTypeList();
+            if (objProductModel.ProductID > 0)
+            {
+
+            }
+            else
+            {
+                var prodCount = objAsopalavDBEntities.ProductMasters.Count();
+                objProductModel.ProductCode = "AJ000" + Convert.ToString(prodCount + 1);
+            }
             return View(objProductModel);
         }
 
@@ -193,12 +200,14 @@ namespace Asopalav.Areas.Admin.Controllers
 
         public ActionResult GetProductList()
         {
-            IEnumerable<ProductListModel> prodList = objAsopalavDBEntities.ProductMasters.Where(x => x.IsActive == true).Select(x => new ProductListModel
+            /*IEnumerable<ProductListModel>*/
+            var prodList = objAsopalavDBEntities.ProductMasters.Where(x => x.IsActive == true).Select(x => new ProductListModel
             {
                 ProductId = x.ProductID,
                 ProductCode = x.ProductCode,
                 ProductName = x.ProductName,
                 ProductType = x.ProductTypeMaster.ProductType,
+                ProductTypeId = x.ProductTypeMaster.ProductTypeID,
                 WeightInGms = x.WeightInGms,
                 HeightInInch = x.HeightInInch,
                 WidthInInch = x.WidthInInch,
@@ -207,12 +216,36 @@ namespace Asopalav.Areas.Admin.Controllers
                 OfferPrice = x.OfferPrice,
                 IsActive = x.IsActive,
                 Description = x.Description
+                //,ImagePaths= objAsopalavDBEntities.Images.Where(i => i.ProductID == x.ProductID)
+                //                                         .Select(i => new {
+                //                                                            ImageID =i.ImageID,
+
+                //                                                                                }).ToList()
             }).ToList();
 
             return Json(new
             {
                 data = prodList
             }, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult UpdateProduct(ProductListModel objproductListModel)
+        {
+            objProductModel.ProductID = objproductListModel.ProductId;
+            objProductModel.ProductCode = objproductListModel.ProductCode;
+            objProductModel.ProductName = objproductListModel.ProductName;
+            //objProductModel.ProductType = objproductListModel.ProductType;
+            objProductModel.ProductTypeID = objproductListModel.ProductTypeId;
+            objProductModel.WeightInGms = objproductListModel.WeightInGms;
+            objProductModel.HeightInInch = objproductListModel.HeightInInch;
+            objProductModel.WidthInInch = objproductListModel.WidthInInch;
+            objProductModel.Price = objproductListModel.Price;
+            objProductModel.IsOffer = objproductListModel.IsOffer;
+            objProductModel.OfferPrice = objproductListModel.OfferPrice;
+            objProductModel.IsActive = objproductListModel.IsActive;
+            objProductModel.Description = objproductListModel.Description;
+            //objProductModel.ImagePath = objproductListModel.ImagePaths;
+            return RedirectToAction("Index", "Product", objProductModel);
         }
     }
 }

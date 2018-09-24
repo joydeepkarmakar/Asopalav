@@ -18,6 +18,7 @@
             <th>Description</th>
             <th>Set Offer</th>
             <th>Offer Price</th>
+            <th></th>
         </tr>
     </thead>
 </table>
@@ -25,7 +26,7 @@
 @section scripts{
     <script type="text/javascript">
         $(document).ready(function () {
-            $("#prodTable").DataTable({
+            var prodDataTable = $("#prodTable").DataTable({
                 "ajax": {
                     "url": "@Url.Action("GetProductList", "Product")",
                     "type": "GET",
@@ -41,10 +42,49 @@
                     { "data": "IsActive" },
                     { "data": "Description", "autoWidth": true },
                     { "data": "IsOffer" },
-                    { "data": "OfferPrice" }
+                    { "data": "OfferPrice" },
+                    { "title": "Actions",  
+                      "data": "ProductId",  
+                      "searchable": false,  
+                      "sortable": false,  
+                      "render": function (data, type, full, meta) {  
+                        return '<a href="javascript:void(0);" id="editProduct_' + data + '" class="editProduct">Edit</a>';
+                                }  
+                            }  
                 ]
             });
+
+            $(document).on("click", "a[id^='editProduct_']", function () {
+                //to get currently clicked row object
+                var row = $(this).parents('tr');//$(this).closest('tr');
+                var data = prodDataTable.row(row[0]).data();
+                //for row data
+                //console.log(userDataTable.row(row).data());
+                UpdateProduct(data);
+            });
         });
+
+        var UpdateProduct = function (data) {
+            $.ajax({
+                url:"@Url.Action("UpdateProduct", "Product")",
+                type: "POST",
+                data: data,
+                dataType: "json",
+                success: function (response) {
+                    if (response.IsSuccess) {
+                        toastr.success('Success!');
+                    }
+                    else
+                        toastr.error(response.ErrorMessage);
+                },
+                error: function (response) {
+                    toastr.error('Error!');
+                },
+                complete: function () {
+                    $("#userModal").modal("hide");
+                }
+            });
+        }
     </script>
 }
 

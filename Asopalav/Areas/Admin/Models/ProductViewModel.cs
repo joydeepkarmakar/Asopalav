@@ -65,6 +65,10 @@ namespace Asopalav.Models
 
     public class ProductListModel
     {
+        public ProductListModel()
+        {
+            this.ImagePaths = new List<ImageModel>();
+        }
         public long ProductId { get; set; }
         [DisplayName("Product Code")]
         public string ProductCode { get; set; }
@@ -72,6 +76,7 @@ namespace Asopalav.Models
         public string ProductName { get; set; }
         [DisplayName("Product Type")]
         public string ProductType { get; set; }
+        public int ProductTypeId { get; set; }
         [DisplayName("Weight(Gram)")]
         public decimal WeightInGms { get; set; }
         public string HeightInInch { get; set; }
@@ -80,7 +85,7 @@ namespace Asopalav.Models
         [DisplayName("Set Offer")]
         public bool IsOffer { get; set; }
         public decimal? OfferPrice { get; set; }
-        public List<DataAccessLayer.Image> ImagePaths { get; set; }
+        
         [DisplayName("Set Active")]
         public bool IsActive { get; set; }
         public string Description { get; set; }
@@ -92,14 +97,14 @@ namespace Asopalav.Models
                 return String.Format("{0} X {1}", this.HeightInInch, this.WidthInInch);
             }
         }
+
+        public List<ImageModel> ImagePaths { get; set; }
     }
 
-    //public class UploadImageModel
-    //{
-    //    public HttpPostedFileBase File { get; set; }
-    //    public int X { get; set; }
-    //    public int Y { get; set; }
-    //    public int Width { get; set; }
-    //    public int Height { get; set; }
-    //}
+    public class ImageModel
+    {
+        public int ImageID { get; set; }
+        public string ImageName { get; set; }
+        public string ImagePath { get; set; }
+    }
 }

@@ -3,7 +3,7 @@
 @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
     @Html.AntiForgeryToken()
-    <h4 class="register-margin-top">Create a new account.</h4>
+<h4 class="register-margin-top">User Registration</h4>
     @*@Html.ValidationSummary("", new { @class = "text-danger" })*@
     <div class="row">
         <div class="col-xs-12 col-md-6">
@@ -35,12 +35,12 @@
                     @Html.ValidationMessageFor(m => m.User_Fname, "", new { @style = "color:red" })
                 </div>
             </div>
-            <div class="form-group">
+            @*<div class="form-group">
                 @Html.LabelFor(m => m.User_Mname, new { @class = "col-sm-4 control-label" })
                 <div class="col-sm-8">
                     @Html.TextBoxFor(m => m.User_Mname, new { @class = "form-control" })
                 </div>
-            </div>
+            </div>*@
             <div class="form-group">
                 @Html.LabelFor(m => m.User_Lname, new { @class = "col-sm-4 control-label" })
                 <div class="col-sm-8">
@@ -50,12 +50,12 @@
             </div>
         </div>
         <div class="col-xs-12 col-md-6">
-            <div class="form-group">
+            @*<div class="form-group">
                 @Html.LabelFor(m => m.Secondary_Email, new { @class = "col-sm-4 control-label" })
                 <div class="col-sm-8">
                     @Html.TextBoxFor(m => m.Secondary_Email, new { @class = "form-control" })
                 </div>
-            </div>
+            </div>*@
             <div class="form-group">
                 @Html.LabelFor(m => m.Mobile, new { @class = "col-sm-4 control-label" })
                 <div class="col-sm-8">

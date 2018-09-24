@@ -36,8 +36,8 @@ namespace Asopalav.Controllers
 
             Session["DollarRate"] = GetDollarToRupeeVal(ConfigurationManager.AppSettings["DollarToRupeeUrl"]) ?? "NA";
             //Session["SilverRate"] = GetSilverPrice(ConfigurationManager.AppSettings["SilverPriceUrl"]) ?? "NA";
-            Session["GoldRate"] = GetGoldPrice();
-            Session["SilverRate"] = GetSilverPrice();
+            Session["GoldRate"] = "1,197.75"; //GetGoldPrice();
+            Session["SilverRate"] = "14.32";// GetSilverPrice();
             #endregion
 
             var isAjax = Request.IsAjaxRequest();

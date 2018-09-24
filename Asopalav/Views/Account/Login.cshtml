@@ -13,7 +13,7 @@
                 {
                     @Html.AntiForgeryToken()
                     <h4 class="col-md-offset-3 col-md-9 login-pad">Login</h4>
-                    <hr />
+                    @*<hr />*@
                     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                     <div class="form-group">
                         @Html.LabelFor(m => m.Email, new { @class = "col-md-3 control-label" })
@@ -39,11 +39,11 @@
                     </div>
                     <div class="form-group">
                         <div class="col-md-offset-3 col-md-9">
-                            <input type="submit" value="Log in" class="btn btn-primary butt-color form-control" />
+                            <input type="submit" value="Login" class="btn btn-primary butt-color form-control" />
                         </div>
                     </div>
                     <div class="col-md-offset-3 col-md-8 left-pad">
-                        @Html.ActionLink("Register as a new user", "Register")
+                        @Html.ActionLink("New user! Signup", "Register")
                     </div>
                     @* Enable this once you have account confirmation enabled for password reset functionality
                         <p>

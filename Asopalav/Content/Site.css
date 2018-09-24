@@ -35,10 +35,10 @@ select {
 }
 
 .login-pad {
-    padding-left: 148px;
+    padding-left: 175px;
     margin-bottom: 20px;
     font-weight: bold;
-    text-transform: lowercase;
+    /*text-transform: lowercase;*/
 }
 
 .checkbox {
