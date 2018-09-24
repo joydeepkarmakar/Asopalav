@@ -11,6 +11,7 @@ using System.Web.Mvc;
 using Asopalav.Models;
 using DataAccessLayer;
 using Asopalav.Helpers;
+using System.Data.Entity;
 
 namespace Asopalav.Areas.Admin.Controllers
 {
@@ -192,7 +193,7 @@ namespace Asopalav.Areas.Admin.Controllers
 
         public ActionResult GetProductList()
         {
-            IEnumerable<ProductListModel> prodList = objAsopalavDBEntities.ProductMasters.Select(x => new ProductListModel
+            IEnumerable<ProductListModel> prodList = objAsopalavDBEntities.ProductMasters.Where(x => x.IsActive == true).Select(x => new ProductListModel
             {
                 ProductId = x.ProductID,
                 ProductCode = x.ProductCode,
@@ -204,7 +205,6 @@ namespace Asopalav.Areas.Admin.Controllers
                 Price = x.Price,
                 IsOffer = x.IsOffer,
                 OfferPrice = x.OfferPrice,
-                //ImagePaths = x.Images.Select(i => new DataAccessLayer.Image { ImagePath = i.ImagePath }).ToList(),
                 IsActive = x.IsActive,
                 Description = x.Description
             }).ToList();

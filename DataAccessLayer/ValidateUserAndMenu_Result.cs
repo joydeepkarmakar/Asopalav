@@ -15,6 +15,7 @@ namespace DataAccessLayer
     {
         public bool IsLoginValid { get; set; }
         public string RoleName { get; set; }
-        public string UserFullName { get; set; }
+        public string UserFirstName { get; set; }
+        public string UserEmail { get; set; }
     }
 }

@@ -13,19 +13,19 @@
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Administration Control Panel", "Index", "Product", new { area = "Admin" }, new { @class = "navbar-brand" })
+                <p>Administration Control Panel</p>
             </div>
             <div class="navbar-collapse collapse" style="margin-top:7px">
                 <ul class="nav navbar-nav">
-                    <li><a href="javascript:void(0);">Masters</a></li>
-                    <li><a href="javascript:void(0);">Orders</a></li>
-                    <li><a href="javascript:void(0);">Security</a></li>
-                    <li><a href="javascript:void(0);">Others</a></li>
+                    <li><a href="@Url.Action("ProductList", "Product")">Products</a></li>
+                    @if (Convert.ToString(Session["UserRole"]) == "SuperAdmin")
+                    {
+                        <li>
+                            <a href="@Url.Action("UserList", "User")">Users</a>
+                        </li>
+                    }
+                    @*<li><a href="javascript:void(0);">Security</a></li>
+                        <li><a href="javascript:void(0);">Others</a></li>*@
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
@@ -33,26 +33,6 @@
     </div>
     <div class="container body-content">
         @RenderBody()
-        @*<footer>
-                <div class="pull-left">
-                    <p>&copy; @DateTime.Now.Year - Asopalav Jewellers Private Limited</p>
-                </div>
-                <div class="pull-right">
-                    <div class="footer_socialIcons">
-                        <ul>
-                            <li class="socialIcons_link">
-                                <a class="fa fa-twitter" href="javascript:void(0)"></a>
-                            </li>
-                            <li class="socialIcons_link">
-                                <a class="fa fa-google-plus" href="javascript:void(0)"></a>
-                            </li>
-                            <li class="socialIcons_link">
-                                <a class="fa fa-facebook" href="javascript:void(0)"></a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </footer>*@
     </div>
     @Scripts.Render("~/Script/Common")
     @RenderSection("scripts", required: false)

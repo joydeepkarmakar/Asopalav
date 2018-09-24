@@ -26,7 +26,8 @@ namespace Asopalav
                 "~/Scripts/dropzone.js",
                 "~/Scripts/toastr.min.js",
                 "~/Scripts/webslidemenu.js.download.js",
-                "~/Scripts/jquery.liMarquee.js"
+                "~/Scripts/jquery.liMarquee.js",
+                "~/Scripts/jquery.dataTables.min.js"
                 ));
 
             bundles.Add(new ScriptBundle("~/Script/Layout").Include(
@@ -45,7 +46,8 @@ namespace Asopalav
                       "~/Content/dropzone.css",
                       "~/Content/toastr.min.css",
                       "~/Content/liMarquee.css",
-                      "~/Content/webslidemenu.css"
+                      "~/Content/webslidemenu.css",
+                      "~/Content/jquery.dataTables.min.css"
                       ));
         }
     }

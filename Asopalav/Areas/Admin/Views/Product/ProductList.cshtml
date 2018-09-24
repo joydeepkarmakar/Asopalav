@@ -1,6 +1,5 @@
 ﻿@model IEnumerable<Asopalav.Models.ProductListModel>
 
-<link href="//cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css" rel="stylesheet" />
 <p>
     <a href="@Url.Action("Index","Product")">
         <i class="fa fa-plus-square" style="font-size:20px"></i> Create New
@@ -21,91 +20,9 @@
             <th>Offer Price</th>
         </tr>
     </thead>
-    @*<tr>
-
-             <th>
-                 @Html.DisplayNameFor(model => model.ProductCode)
-             </th>
-             <th>
-                 @Html.DisplayNameFor(model => model.ProductName)
-             </th>
-             <th>
-                 @Html.DisplayNameFor(model => model.Price)
-             </th>
-             <th>
-                 @Html.DisplayNameFor(model => model.WeightInGms)
-             </th>
-             <th>
-                 @Html.DisplayNameFor(model => model.ProductType)
-             </th>
-             <th>
-                 @Html.DisplayNameFor(model => model.Dimension)
-             </th>
-             <th>
-                 @Html.DisplayNameFor(model => model.IsActive)
-             </th>
-             <th>
-                 @Html.DisplayNameFor(model => model.Description)
-             </th>
-             <th>
-                 @Html.DisplayNameFor(model => model.IsOffer)
-             </th>
-             <th>
-                 @Html.DisplayNameFor(model => model.OfferPrice)
-             </th>
-            <th>
-                     Actions
-                 </th>
-        </tr>*@
-
-    @*@if (Model.Count() > 0)
-        {
-            foreach (var item in Model)
-            {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.ProductCode)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.ProductName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Price)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.WeightInGms)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.ProductType)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Dimension)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.IsActive)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Description)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.IsOffer)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.OfferPrice)
-                    </td>
-                    <td>
-                        @Html.ActionLink("Edit", "Edit", new { id = item.ProductId }) |
-                        @Html.ActionLink("Details", "Details", new { id = item.ProductId }) |
-                        @Html.ActionLink("Delete", "Delete", new { id = item.ProductId })
-                    </td>
-                </tr>
-            }
-        }*@
-
 </table>
 
 @section scripts{
-    <script src="//cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
             $("#prodTable").DataTable({
@@ -122,11 +39,10 @@
                     { "data": "ProductType" },
                     { "data": "Dimension" },
                     { "data": "IsActive" },
-                    { "data": "Description" },
+                    { "data": "Description", "autoWidth": true },
                     { "data": "IsOffer" },
                     { "data": "OfferPrice" }
                 ]
-
             });
         });
     </script>

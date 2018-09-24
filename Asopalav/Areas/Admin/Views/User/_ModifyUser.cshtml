@@ -1,0 +1,33 @@
+﻿<div class="modal fade" tabindex="-1" role="dialog" data-backdrop="static" id="userModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Modify User</h4>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" id="hdnUserId" />
+                <div class="form-group">
+                    <label for="lblUserEmail">Email:</label>
+                    <input type="text" class="form-control" id="txtUserEmail">
+                </div>
+                <div class="form-group">
+                    <label for="lblRole">Role:</label>
+                    <div class="radio">
+                        <label><input type="radio" name="rdoRole" value="Customer">Customer</label>
+                    </div>
+                    <div class="radio">
+                        <label><input type="radio" name="rdoRole" value="Admin">Admin</label>
+                    </div>
+                    <div class="radio">
+                        <label><input type="radio" name="rdoRole" value="SuperAdmin">Super Admin</label>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" id="btnUserModify" class="btn btn-primary">Save changes</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

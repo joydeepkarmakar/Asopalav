@@ -25,6 +25,7 @@
         <AssociationConnector Association="AsopalavDBModel.FK_OrderDetails_UserProfileMaster" />
         <AssociationConnector Association="AsopalavDBModel.FK_Orders_UserProfileMaster" />
         <EntityTypeShape EntityType="AsopalavDBModel.CartDetail" Width="1.5" PointX="7.375" PointY="9.75" />
+        <AssociationConnector Association="AsopalavDBModel.FK_Role_UserProfileMaster" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

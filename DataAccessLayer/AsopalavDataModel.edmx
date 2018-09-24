@@ -238,6 +238,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Role_UserProfileMaster">
+          <End Role="RoleMaster" Type="Self.RoleMaster" Multiplicity="1" />
+          <End Role="UserProfileMaster" Type="Self.UserProfileMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RoleMaster">
+              <PropertyRef Name="RoleID" />
+            </Principal>
+            <Dependent Role="UserProfileMaster">
+              <PropertyRef Name="RoleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_User_Address_Details_User_Profile_Master">
           <End Role="UserProfileMaster" Type="Self.UserProfileMaster" Multiplicity="1" />
           <End Role="UserAddressDetails" Type="Self.UserAddressDetails" Multiplicity="*" />
@@ -343,6 +355,10 @@
             <End Role="ProductTypeMaster" EntitySet="ProductTypeMaster" />
             <End Role="ProductMaster" EntitySet="ProductMaster" />
           </AssociationSet>
+          <AssociationSet Name="FK_Role_UserProfileMaster" Association="Self.FK_Role_UserProfileMaster">
+            <End Role="RoleMaster" EntitySet="RoleMaster" />
+            <End Role="UserProfileMaster" EntitySet="UserProfileMaster" />
+          </AssociationSet>
           <AssociationSet Name="FK_User_Address_Details_User_Profile_Master" Association="Self.FK_User_Address_Details_User_Profile_Master">
             <End Role="UserProfileMaster" EntitySet="UserProfileMaster" />
             <End Role="UserAddressDetails" EntitySet="UserAddressDetails" />
@@ -379,6 +395,7 @@
           <Property Name="RoleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="RoleName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="UserProfileMasters" Relationship="AsopalavDBModel.FK_Role_UserProfileMaster" FromRole="RoleMaster" ToRole="UserProfileMaster" />
         </EntityType>
         <EntityType Name="RoleMenuPermission">
           <Key>
@@ -437,6 +454,7 @@
           <NavigationProperty Name="UserAddressDetails" Relationship="Self.FK_User_Address_Details_User_Profile_Master" FromRole="UserProfileMaster" ToRole="UserAddressDetails" />
           <NavigationProperty Name="OrderDetails" Relationship="AsopalavDBModel.FK_OrderDetails_UserProfileMaster" FromRole="UserProfileMaster" ToRole="OrderDetail" />
           <NavigationProperty Name="Orders" Relationship="AsopalavDBModel.FK_Orders_UserProfileMaster" FromRole="UserProfileMaster" ToRole="Order" />
+          <NavigationProperty Name="RoleMaster" Relationship="AsopalavDBModel.FK_Role_UserProfileMaster" FromRole="UserProfileMaster" ToRole="RoleMaster" />
         </EntityType>
         <Association Name="FK_User_Address_Details_User_Profile_Master">
           <End Role="UserProfileMaster" Type="Self.UserProfileMaster" Multiplicity="1" />
@@ -540,11 +558,16 @@
             <End Role="Order" EntitySet="Orders" />
           </AssociationSet>
           <EntitySet Name="CartDetails" EntityType="AsopalavDBModel.CartDetail" />
+          <AssociationSet Name="FK_Role_UserProfileMaster" Association="AsopalavDBModel.FK_Role_UserProfileMaster">
+            <End Role="RoleMaster" EntitySet="RoleMasters" />
+            <End Role="UserProfileMaster" EntitySet="UserProfileMasters" />
+          </AssociationSet>
         </EntityContainer>
         <ComplexType Name="ValidateUserAndMenu_Result">
-          <Property Type="Boolean" Name="IsLoginValid" Nullable="false" />
+          <Property Type="Boolean" Name="IsLoginValid" Nullable="true" />
           <Property Type="String" Name="RoleName" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="UserFullName" Nullable="true" MaxLength="250" />
+          <Property Type="String" Name="UserFirstName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="UserEmail" Nullable="true" MaxLength="100" />
         </ComplexType>
         <EntityType Name="FeedbackMaster">
           <Key>
@@ -745,6 +768,18 @@
           <Property Name="PrimaryEmail" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="CurrentSessionId" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
+        <Association Name="FK_Role_UserProfileMaster">
+          <End Type="AsopalavDBModel.RoleMaster" Role="RoleMaster" Multiplicity="1" />
+          <End Type="AsopalavDBModel.UserProfileMaster" Role="UserProfileMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RoleMaster">
+              <PropertyRef Name="RoleID" />
+            </Principal>
+            <Dependent Role="UserProfileMaster">
+              <PropertyRef Name="RoleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -843,7 +878,8 @@
               <ComplexTypeMapping TypeName="AsopalavDBModel.ValidateUserAndMenu_Result">
                 <ScalarProperty Name="IsLoginValid" ColumnName="IsLoginValid" />
                 <ScalarProperty Name="RoleName" ColumnName="RoleName" />
-                <ScalarProperty Name="UserFullName" ColumnName="UserFullName" />
+                <ScalarProperty Name="UserFirstName" ColumnName="UserFirstName" />
+                <ScalarProperty Name="UserEmail" ColumnName="UserEmail" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
