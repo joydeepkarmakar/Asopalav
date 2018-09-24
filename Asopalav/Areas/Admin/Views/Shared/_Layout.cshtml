@@ -17,10 +17,12 @@
             </div>
             <div class="navbar-collapse collapse" style="margin-top:7px">
                 <ul class="nav navbar-nav">
-                    <li><a href="@Url.Action("ProductList", "Product")">Products</a></li>
+                    <li @((string)Session["CurrentPage"] == "Products" ? "class=nav-menu-active" : "")>
+                    <a href="@Url.Action("ProductList", "Product")">Products</a>
+                    </li>
                     @if (Convert.ToString(Session["UserRole"]) == "SuperAdmin")
                     {
-                        <li>
+                        <li @((string)Session["CurrentPage"] == "Users" ? "class=nav-menu-active" : "")>
                             <a href="@Url.Action("UserList", "User")">Users</a>
                         </li>
                     }

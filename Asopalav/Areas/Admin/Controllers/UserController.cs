@@ -18,6 +18,7 @@ namespace Asopalav.Areas.Admin.Controllers
         [Route("~/Admin/User/List")]
         public ActionResult UserList()
         {
+            Session["CurrentPage"] = "Users";
             return View();
         }
 

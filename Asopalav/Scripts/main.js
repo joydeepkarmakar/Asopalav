@@ -128,7 +128,7 @@ $(document).ready(function () {
     });
 
     /*Dropzone for Images*/
-    $("div#divDropImages").dropzone({
+    $("div#divDropImages span.drophyperspan").dropzone({
         url: "/Admin/Product/UploadImage",
         init: function () {
             this.on("addedfile", function (file) {
