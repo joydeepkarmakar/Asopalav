@@ -1,91 +1,97 @@
 ﻿@model IEnumerable<Asopalav.Models.ProductListModel>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+            <p>
+                <a href="@Url.Action("Index","Product")">
+                    <i class="fa fa-plus-square" style="font-size:20px"></i> Create New
+                </a>
+            </p>
+            <table class="display" id="prodTable">
+                <thead>
+                    <tr>
+                        <th>Product Code</th>
+                        <th>Product Name</th>
+                        <th>Price</th>
+                        <th>Weight(Gram)</th>
+                        <th>Product Type</th>
+                        <th>Dimension Height X Width(Inch)</th>
+                        <th>Set Active</th>
+                        <th>Description</th>
+                        <th>Set Offer</th>
+                        <th>Offer Price</th>
+                        <th></th>
+                    </tr>
+                </thead>
+            </table>
+            </div>
+        </div>
+    </div>
 
-<p>
-    <a href="@Url.Action("Index","Product")">
-        <i class="fa fa-plus-square" style="font-size:20px"></i> Create New
-    </a>
-</p>
-<table class="display" id="prodTable">
-    <thead>
-        <tr>
-            <th>Product Code</th>
-            <th>Product Name</th>
-            <th>Price</th>
-            <th>Weight(Gram)</th>
-            <th>Product Type</th>
-            <th>Dimension Height X Width(Inch)</th>
-            <th>Set Active</th>
-            <th>Description</th>
-            <th>Set Offer</th>
-            <th>Offer Price</th>
-            <th></th>
-        </tr>
-    </thead>
-</table>
+            @section scripts{
+                <script type="text/javascript">
+                    $(document).ready(function () {
+                        var prodDataTable = $("#prodTable").DataTable({
+                            "ajax": {
+                                "url": "@Url.Action("GetProductList", "Product")",
+                                "type": "GET",
+                                "datatype": "json"
+                            },
+                            "columns": [
+                                { "data": "ProductCode" },
+                                { "data": "ProductName" },
+                                { "data": "Price" },
+                                { "data": "WeightInGms" },
+                                { "data": "ProductType" },
+                                { "data": "Dimension" },
+                                { "data": "IsActive" },
+                                { "data": "Description", "autoWidth": true },
+                                { "data": "IsOffer" },
+                                { "data": "OfferPrice" },
+                                {
+                                    "title": "Actions",
+                                    "data": "ProductId",
+                                    "searchable": false,
+                                    "sortable": false,
+                                    "render": function (data, type, full, meta) {
+                                        //return '<a href="javascript:void(0);" id="editProduct_' + data + '" class="editProduct">Edit</a>';
+                                        return '<a href="@Url.Action("Index", "Product")?id=' + data + '" class="editAsset">Edit</a>';
+                                    }
+                                }
+                            ]
+                        });
 
-@section scripts{
-    <script type="text/javascript">
-        $(document).ready(function () {
-            var prodDataTable = $("#prodTable").DataTable({
-                "ajax": {
-                    "url": "@Url.Action("GetProductList", "Product")",
-                    "type": "GET",
-                    "datatype": "json"
-                },
-                "columns": [
-                    { "data": "ProductCode" },
-                    { "data": "ProductName" },
-                    { "data": "Price" },
-                    { "data": "WeightInGms" },
-                    { "data": "ProductType" },
-                    { "data": "Dimension" },
-                    { "data": "IsActive" },
-                    { "data": "Description", "autoWidth": true },
-                    { "data": "IsOffer" },
-                    { "data": "OfferPrice" },
-                    { "title": "Actions",  
-                      "data": "ProductId",  
-                      "searchable": false,  
-                      "sortable": false,  
-                      "render": function (data, type, full, meta) {  
-                        //return '<a href="javascript:void(0);" id="editProduct_' + data + '" class="editProduct">Edit</a>';
-                          return '<a href="@Url.Action("Index", "Product")?id=' + data + '" class="editAsset">Edit</a>';
-                                }  
-                            }  
-                ]
-            });
+                        $(document).on("click", "a[id^='editProduct_']", function () {
+                            //to get currently clicked row object
+                            var row = $(this).parents('tr');//$(this).closest('tr');
+                            var data = prodDataTable.row(row[0]).data();
+                            //for row data
+                            //console.log(userDataTable.row(row).data());
+                            UpdateProduct(data);
+                        });
+                    });
 
-            $(document).on("click", "a[id^='editProduct_']", function () {
-                //to get currently clicked row object
-                var row = $(this).parents('tr');//$(this).closest('tr');
-                var data = prodDataTable.row(row[0]).data();
-                //for row data
-                //console.log(userDataTable.row(row).data());
-                UpdateProduct(data);
-            });
-        });
-
-        var UpdateProduct = function (data) {
-            $.ajax({
-                url:"@Url.Action("UpdateProduct", "Product")",
-                type: "POST",
-                data: data,
-                dataType: "json",
-                success: function (response) {
-                    if (response.IsSuccess) {
-                        toastr.success('Success!');
+                    var UpdateProduct = function (data) {
+                        $.ajax({
+                            url: "@Url.Action("UpdateProduct", "Product")",
+                            type: "POST",
+                            data: data,
+                            dataType: "json",
+                            success: function (response) {
+                                if (response.IsSuccess) {
+                                    toastr.success('Success!');
+                                }
+                                else
+                                    toastr.error(response.ErrorMessage);
+                            },
+                            error: function (response) {
+                                toastr.error('Error!');
+                            },
+                            complete: function () {
+                                $("#userModal").modal("hide");
+                            }
+                        });
                     }
-                    else
-                        toastr.error(response.ErrorMessage);
-                },
-                error: function (response) {
-                    toastr.error('Error!');
-                },
-                complete: function () {
-                    $("#userModal").modal("hide");
-                }
-            });
-        }
-    </script>
-}
+                </script>
+            }
 

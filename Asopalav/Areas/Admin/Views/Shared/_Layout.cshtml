@@ -9,34 +9,38 @@
     @Styles.Render("~/Style/Common")
 
 </head>
-<body style="margin-top:100px;">
+<body style="margin-top:70px;">
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
-            <div class="navbar-header">
-                <p>Administration Control Panel</p>
+            <div class="row">
+                <div class="col-sm-3">
+                    <div style="padding-top:12px;font-size:21px">Administration Control Panel</div>
+                </div>
+                <div class="col-sm-9">
+                    <div class="navbar-collapse collapse" style="margin-top:5px">
+                        <ul class="nav navbar-nav">
+                            <li @((string)Session["CurrentPage"] == "Products" ? "class=nav-menu-active" : "") style="margin-right:6px">
+                                <a href="@Url.Action("ProductList", "Product")">Products</a>
+                            </li>
+                            @if (Convert.ToString(Session["UserRole"]) == "SuperAdmin")
+                            {
+                                <li @((string)Session["CurrentPage"] == "Users" ? "class=nav-menu-active" : "")>
+                                    <a href="@Url.Action("UserList", "User")">Users</a>
+                                </li>
+                            }
+                            @*<li><a href="javascript:void(0);">Security</a></li>
+                            <li><a href="javascript:void(0);">Others</a></li>*@
+                        </ul>
+                       @Html.Partial("_LoginPartial")
+                        </div>
+                    </div>
+                    </div>
+                </div>
             </div>
-            <div class="navbar-collapse collapse" style="margin-top:7px">
-                <ul class="nav navbar-nav">
-                    <li @((string)Session["CurrentPage"] == "Products" ? "class=nav-menu-active" : "")>
-                    <a href="@Url.Action("ProductList", "Product")">Products</a>
-                    </li>
-                    @if (Convert.ToString(Session["UserRole"]) == "SuperAdmin")
-                    {
-                        <li @((string)Session["CurrentPage"] == "Users" ? "class=nav-menu-active" : "")>
-                            <a href="@Url.Action("UserList", "User")">Users</a>
-                        </li>
-                    }
-                    @*<li><a href="javascript:void(0);">Security</a></li>
-                        <li><a href="javascript:void(0);">Others</a></li>*@
-                </ul>
-                @Html.Partial("_LoginPartial")
-            </div>
-        </div>
-    </div>
-    <div class="container body-content">
-        @RenderBody()
-    </div>
-    @Scripts.Render("~/Script/Common")
-    @RenderSection("scripts", required: false)
-</body>
-</html>
+                <div class="container body-content">
+                    @RenderBody()
+                </div>
+                @Scripts.Render("~/Script/Common")
+                @RenderSection("scripts", required: false)
+    </body>
+    </html>

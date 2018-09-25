@@ -1,103 +1,108 @@
-﻿<h2>UserList</h2>
+﻿<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+            @Html.Partial("_ModifyUser")
+            <table class="display" id="userTable">
+                <thead>
+                    <tr>
+                        <th>Email</th>
+                        <th>FullName</th>
+                        <th>RoleName</th>
+                        <th>Mobile</th>
+                        <th>DOB</th>
+                        <th>Anniversary Date</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+            </table>
+            </div>
+        </div>
+    </div>
 
-@Html.Partial("_ModifyUser")
-<table class="display" id="userTable">
-    <thead>
-        <tr>
-            <th>Email</th>
-            <th>FullName</th>
-            <th>RoleName</th>
-            <th>Mobile</th>
-            <th>DOB</th>
-            <th>Anniversary Date</th>
-            <th>Actions</th>
-        </tr>
-    </thead>
-</table>
-
-@section scripts{
-    <script type="text/javascript">
-        var userDataTable;
-        $(document).ready(function () {
-            userDataTable = $("#userTable").DataTable({
-                "ajax": {
-                    "url": "@Url.Action("GetUserList", "User")",
-                    "type": "GET",
-                    "datatype": "json"
-                },
-                "columns": [
-                    { "data": "UserEmail" },
-                    { "data": "UserFullName" },
-                    { "data": "UserRoleName" },
-                    { "data": "UserMobile" },
-                    { "data": "UserDOB" },
-                    { "data": "UserAnniversaryDate" },
-                    { "data": "UserId",
-                      "searchable": false,
-                      "sortable": false,
-                      "render": function (data, type, full, meta) {
-                                   //return '<a href="@Url.Action("Edit", "User")?id=' + data + '" class="editUser">Edit</a>';
-                          return '<a href="javascript:void(0);" id="editUser_' + data + '" class="editUser">Edit</a>';
+            @section scripts{
+                <script type="text/javascript">
+                    var userDataTable;
+                    $(document).ready(function () {
+                        userDataTable = $("#userTable").DataTable({
+                            "ajax": {
+                                "url": "@Url.Action("GetUserList", "User")",
+                                "type": "GET",
+                                "datatype": "json"
+                            },
+                            "columns": [
+                                { "data": "UserEmail" },
+                                { "data": "UserFullName" },
+                                { "data": "UserRoleName" },
+                                { "data": "UserMobile" },
+                                { "data": "UserDOB" },
+                                { "data": "UserAnniversaryDate" },
+                                {
+                                    "data": "UserId",
+                                    "searchable": false,
+                                    "sortable": false,
+                                    "render": function (data, type, full, meta) {
+                                        //return '<a href="@Url.Action("Edit", "User")?id=' + data + '" class="editUser">Edit</a>';
+                                        return '<a href="javascript:void(0);" id="editUser_' + data + '" class="editUser">Edit</a>';
+                                    }
                                 }
+                            ]
+                        });
+
+                        $(document).on("click", "a[id^='editUser_']", function () {
+                            //to get currently clicked row object
+                            var row = $(this).parents('tr');//$(this).closest('tr');
+                            var data = userDataTable.row(row[0]).data();
+                            //for row data
+                            //console.log(userDataTable.row(row).data());
+                            UpdateUserModal(data.UserEmail, data.UserRoleName, data.UserId);
+                            //alert(data.UserId);
+                        });
+                    });
+
+                    var UpdateUserModal = function (userEmail, userRoleName, userId) {
+                        $('#txtUserEmail').val(userEmail);
+                        $('#hdnUserId').val(userId);
+                        var $radios = $('input:radio[name=rdoRole]');
+                        //if ($radios.is(':checked') === false) {
+                        $radios.filter('[value=' + userRoleName + ']').prop('checked', true);
+                        //}
+                        $("#userModal").modal("show");
                     }
-                ]
-            });
 
-            $(document).on("click", "a[id^='editUser_']", function () {
-                //to get currently clicked row object
-                var row = $(this).parents('tr');//$(this).closest('tr');
-                var data = userDataTable.row(row[0]).data();
-                //for row data
-                //console.log(userDataTable.row(row).data());
-                UpdateUserModal(data.UserEmail, data.UserRoleName, data.UserId);
-                //alert(data.UserId);
-            });
-        });
+                    $(document).on("click", "#btnUserModify", function () {
+                        try {
+                            var userEmail = $('#txtUserEmail').val();
+                            var userRoleName = $("input[name='rdoRole']:checked").val();
+                            var userId = $('#hdnUserId').val();
+                            UpdateUserRole(userEmail, userRoleName, userId);
+                        } catch (ex) {
+                            if (window.console)
+                                console.log(ex);
+                        }
+                    });
 
-        var UpdateUserModal = function (userEmail, userRoleName, userId) {
-            $('#txtUserEmail').val(userEmail);
-            $('#hdnUserId').val(userId);
-            var $radios = $('input:radio[name=rdoRole]');
-            //if ($radios.is(':checked') === false) {
-                $radios.filter('[value='+userRoleName+']').prop('checked', true);
-            //}
-            $("#userModal").modal("show");
-        }
-
-        $(document).on("click", "#btnUserModify", function () {
-            try {
-                var userEmail = $('#txtUserEmail').val();
-                var userRoleName = $("input[name='rdoRole']:checked").val();
-                var userId = $('#hdnUserId').val();
-                UpdateUserRole(userEmail, userRoleName, userId);
-            } catch (ex) {
-                if (window.console)
-                    console.log(ex);
+                    var UpdateUserRole = function (userEmail, userRoleName, userId) {
+                        $.ajax({
+                            url: "@Url.Action("UpdateUserRole","User")",
+                            type: "POST",
+                            data: { userEmail: userEmail, userRoleName: userRoleName, userId: userId },
+                            dataType: "json",
+                            success: function (response) {
+                                if (response.IsSuccess) {
+                                    $('input:radio[name=rdoRole]').find("input[value=" + response.Data + "]").prop("checked", true);
+                                    userDataTable.ajax.reload();
+                                    toastr.success('Success!');
+                                }
+                                else
+                                    toastr.error(response.ErrorMessage);
+                            },
+                            error: function (response) {
+                                toastr.error('Error!');
+                            },
+                            complete: function () {
+                                $("#userModal").modal("hide");
+                            }
+                        });
+                    }
+                </script>
             }
-        });
-
-        var UpdateUserRole = function (userEmail, userRoleName, userId) {
-            $.ajax({
-                url:"@Url.Action("UpdateUserRole","User")",
-                type: "POST",
-                data: { userEmail: userEmail, userRoleName: userRoleName, userId: userId },
-                dataType: "json",
-                success: function (response) {
-                    if (response.IsSuccess) {
-                        $('input:radio[name=rdoRole]').find("input[value=" + response.Data + "]").prop("checked", true);
-                        userDataTable.ajax.reload();  
-                        toastr.success('Success!');
-                    }
-                    else
-                        toastr.error(response.ErrorMessage);
-                },
-                error: function (response) {
-                    toastr.error('Error!');
-                },
-                complete: function () {
-                    $("#userModal").modal("hide");
-                }
-            });
-        }
-    </script>
-}
