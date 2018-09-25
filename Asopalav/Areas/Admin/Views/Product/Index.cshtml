@@ -31,8 +31,12 @@
                 </div>
                 <div class="form-group">
                     @Html.LabelFor(m => m.ProductTypeID, new { @class = "col-sm-4 control-label" })
+                    @*<div class="col-sm-8 pro-ad">
+                            @Html.DropDownListFor(m => m.ProductTypeID, ViewData["ProductTypeID"] as List<SelectListItem>, "Choose...", new { @class = "form-control gender-width" })
+                            @Html.ValidationMessageFor(model => model.ProductTypeID, "", new { @style = "color:red" })
+                        </div>*@
                     <div class="col-sm-8 pro-ad">
-                        @Html.DropDownListFor(m => m.ProductTypeID, ViewData["ProductTypeID"] as List<SelectListItem>, "Choose...", new { @class = "form-control gender-width" })
+                        @Html.DropDownListFor(m => m.ProductTypeID, (SelectList)ViewBag.ProductTypeList, "Choose...", new { @class = "form-control gender-width" })
                         @Html.ValidationMessageFor(model => model.ProductTypeID, "", new { @style = "color:red" })
                     </div>
                 </div>

@@ -27,7 +27,6 @@ namespace Asopalav.Areas.Admin.Controllers
         [Route("~/Admin/Product/Add")]
         public ActionResult Index(int id = 0)
         {
-            ViewData["ProductTypeID"] = GetProductTypeList();
             var host = System.Web.HttpContext.Current.Request.Url.OriginalString.Replace(System.Web.HttpContext.Current.Request.Url.PathAndQuery, "");
             ProductDetailsModel objProductDetailsModel = new ProductDetailsModel
             {
@@ -38,8 +37,10 @@ namespace Asopalav.Areas.Admin.Controllers
                 objProductModel.ProductID = objProductDetailsModel.objProductMaster.ProductID;
                 objProductModel.ProductCode = objProductDetailsModel.objProductMaster.ProductCode;
                 objProductModel.ProductName = objProductDetailsModel.objProductMaster.ProductName;
-                //objProductModel.ProductType = objProductDetailsModel.objProductMaster.ProductTypeID
+
                 objProductModel.ProductTypeID = objProductDetailsModel.objProductMaster.ProductTypeID;
+                ViewBag.ProductTypeList = new SelectList(GetProductTypeList(), "Value", "Text", objProductModel.ProductTypeID);
+
                 objProductModel.WeightInGms = objProductDetailsModel.objProductMaster.WeightInGms;
                 objProductModel.HeightInInch = objProductDetailsModel.objProductMaster.HeightInInch;
                 objProductModel.WidthInInch = objProductDetailsModel.objProductMaster.WidthInInch;
@@ -48,11 +49,35 @@ namespace Asopalav.Areas.Admin.Controllers
                 objProductModel.OfferPrice = objProductDetailsModel.objProductMaster.OfferPrice;
                 objProductModel.IsActive = objProductDetailsModel.objProductMaster.IsActive;
                 objProductModel.Description = objProductDetailsModel.objProductMaster.Description;
+
+                if (objProductDetailsModel.objProductMaster.Images != null)
+                {
+                    foreach (var item in objProductDetailsModel.objProductMaster.Images)
+                    {
+                        if (item.ImagePath != null)
+                        {
+                            if (!System.IO.File.Exists(Server.MapPath("~/" + item.ImagePath.ToString().Substring(item.ImagePath.ToString().IndexOf("Uploads")))))
+                            {
+                                item.ImagePath = Request.UrlReferrer.AbsoluteUri.Replace(Request.UrlReferrer.AbsolutePath, "/Content/images/no-product-image.jpg");
+                            }
+                            else
+                            {
+                                var tempImagePath = (host + "\\" + item.ImagePath.Substring(item.ImagePath.IndexOf("Uploads"))).Replace(@"\", "/");
+                                item.ImagePath = tempImagePath;
+                            }
+                        }
+                        else
+                        {
+                            item.ImagePath = Request.UrlReferrer.AbsoluteUri.Replace(Request.UrlReferrer.AbsolutePath, "/Content/images/no-product-image.jpg");
+                        }
+                    }
+                }
             }
             else
             {
                 var prodCount = objAsopalavDBEntities.ProductMasters.Count();
                 objProductModel.ProductCode = "AJ000" + Convert.ToString(prodCount + 1);
+                ViewBag.ProductTypeList = new SelectList(GetProductTypeList(), "Value", "Text");
             }
             return View(objProductModel);
         }
@@ -163,6 +188,7 @@ namespace Asopalav.Areas.Admin.Controllers
             try
             {
                 listProductType = (from producttype in objAsopalavDBEntities.ProductTypeMasters
+                                   where producttype.IsActive == true
                                    select new SelectListItem()
                                    {
                                        Value = producttype.ProductTypeID.ToString(),
