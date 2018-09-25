@@ -48,7 +48,8 @@
                       "searchable": false,  
                       "sortable": false,  
                       "render": function (data, type, full, meta) {  
-                        return '<a href="javascript:void(0);" id="editProduct_' + data + '" class="editProduct">Edit</a>';
+                        //return '<a href="javascript:void(0);" id="editProduct_' + data + '" class="editProduct">Edit</a>';
+                          return '<a href="@Url.Action("Index", "Product")?id=' + data + '" class="editAsset">Edit</a>';
                                 }  
                             }  
                 ]

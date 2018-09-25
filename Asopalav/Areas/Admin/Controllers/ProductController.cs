@@ -25,12 +25,29 @@ namespace Asopalav.Areas.Admin.Controllers
         ProductModel objProductModel = new ProductModel();
 
         [Route("~/Admin/Product/Add")]
-        public ActionResult Index()
+        public ActionResult Index(int id = 0)
         {
             ViewData["ProductTypeID"] = GetProductTypeList();
-            if (objProductModel.ProductID > 0)
+            var host = System.Web.HttpContext.Current.Request.Url.OriginalString.Replace(System.Web.HttpContext.Current.Request.Url.PathAndQuery, "");
+            ProductDetailsModel objProductDetailsModel = new ProductDetailsModel
             {
-
+                objProductMaster = objAsopalavDBEntities.ProductMasters.Include("Images").Where(p => p.ProductID == id).FirstOrDefault()
+            };
+            if (objProductDetailsModel.objProductMaster != null)
+            {
+                objProductModel.ProductID = objProductDetailsModel.objProductMaster.ProductID;
+                objProductModel.ProductCode = objProductDetailsModel.objProductMaster.ProductCode;
+                objProductModel.ProductName = objProductDetailsModel.objProductMaster.ProductName;
+                //objProductModel.ProductType = objProductDetailsModel.objProductMaster.ProductTypeID
+                objProductModel.ProductTypeID = objProductDetailsModel.objProductMaster.ProductTypeID;
+                objProductModel.WeightInGms = objProductDetailsModel.objProductMaster.WeightInGms;
+                objProductModel.HeightInInch = objProductDetailsModel.objProductMaster.HeightInInch;
+                objProductModel.WidthInInch = objProductDetailsModel.objProductMaster.WidthInInch;
+                objProductModel.Price = objProductDetailsModel.objProductMaster.Price;
+                objProductModel.IsOffer = objProductDetailsModel.objProductMaster.IsOffer;
+                objProductModel.OfferPrice = objProductDetailsModel.objProductMaster.OfferPrice;
+                objProductModel.IsActive = objProductDetailsModel.objProductMaster.IsActive;
+                objProductModel.Description = objProductDetailsModel.objProductMaster.Description;
             }
             else
             {
