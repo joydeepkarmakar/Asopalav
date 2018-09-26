@@ -216,7 +216,7 @@ a {
         float: left;
         color: #ae7204;
         font-weight: 500;
-        padding-left: 15px;
+        padding-left: 10px;
         font-size: 15.5px;
         font-family: sans-serif;
     }
@@ -2046,8 +2046,8 @@ h1 {
 
     .cd-cart {
         position: fixed;
-        top: 150px;
-        left: 30px;
+        top: 78px;
+        left: 315px;
         z-index: 9999;
         height: 50px;
         width: 50px;
@@ -2127,6 +2127,10 @@ h1 {
 
     .search-device-width {
         width: 102%;
+    }
+
+    .currency-marging {
+        margin-left:54px;
     }
 }
 

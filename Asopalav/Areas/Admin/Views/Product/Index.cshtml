@@ -1,5 +1,5 @@
 ﻿@model Asopalav.Models.ProductModel
-<p>
+<p style="margin-left:20px;">
     <a href="@Url.Action("ProductList","Product")">
         <span class="glyphicon glyphicon-backward"></span> Back to List
     </a>
@@ -10,7 +10,7 @@
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal admin-margin-top-pro">
-        <h4 style="text-align:center;font-weight:bold">Product Model</h4>
+        <h4 style="text-align:center;font-weight:bold;font-size:20px">Product Model</h4>
         <hr />
 
         <div class="row" id="input-width">
@@ -75,7 +75,7 @@
                     <div class="col-sm-offset-4 col-sm-8">
                         <div class="checkbox chb-prod">
                             @Html.LabelFor(m => m.IsOffer)
-                            @Html.CheckBoxFor(m => m.IsOffer, new { @style = "margin-top:10px !important;" })
+                            @Html.CheckBoxFor(m => m.IsOffer, new { @style = "margin-top:5px !important;" })
                         </div>
                     </div>
                 </div>
@@ -91,7 +91,7 @@
                     <div class="col-sm-offset-4 col-sm-8">
                         <div class="checkbox chb-prod">
                             @Html.LabelFor(m => m.IsActive)
-                            @Html.CheckBoxFor(m => m.IsActive, new { @style = "margin-top:10px !important;" })
+                            @Html.CheckBoxFor(m => m.IsActive, new { @style = "margin-top:5px !important;" })
                             @Html.ValidationMessageFor(m => m.IsActive, "", new { @style = "color:red" })
                         </div>
                     </div>
