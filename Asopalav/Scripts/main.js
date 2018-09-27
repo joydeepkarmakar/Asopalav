@@ -133,7 +133,7 @@ $(document).ready(function () {
         init: function () {
             this.on("addedfile", function (file) {
                 // Create the remove button
-                var removeButton = Dropzone.createElement('<button data-dz-remove="" class="btn btn-danger delete"><i class="glyphicon glyphicon-trash"></i><span>Delete</span></button>');
+                var removeButton = Dropzone.createElement('<button class="btn btn-danger delete"><i class="glyphicon glyphicon-trash"></i><span>Delete</span></button>');
 
                 // Capture the Dropzone instance as closure.
                 var _this = this;
@@ -144,7 +144,9 @@ $(document).ready(function () {
                     e.preventDefault();
                     e.stopPropagation();
                     // Remove the file preview.
-                    _this.removeFile(file);
+                    if (confirm("Are you sure want to clear the image?") == true) {
+                        _this.removeFile(file);
+                    }
                     // If you want to the delete the file on the server as well,
                     // you can do the AJAX request here.
                 });

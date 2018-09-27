@@ -117,7 +117,7 @@
             url: null,
             method: "post",
             withCredentials: false,
-            parallelUploads: 5,// default is 2, changing it 5 --JK
+            parallelUploads: 10,// default is 2, changing it 10 --JK
             uploadMultiple: false,
             maxFilesize: 256,
             paramName: "file",
@@ -135,7 +135,7 @@
             acceptedMimeTypes: null,
             autoProcessQueue: true,
             autoQueue: true,
-            addRemoveLinks: false,
+            addRemoveLinks: true, //false, changed it -- JK
             previewsContainer: null,
             capture: null,
             dictDefaultMessage: "",//"Drop files here to upload", commented this text --JK
