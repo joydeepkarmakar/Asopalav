@@ -19,25 +19,7 @@
             <div class="col-xs-12 col-sm-4 right-links device-price-margin" style="margin-right:10px">
                 <div class="container">
                     <div class="row" style="font-size:12px !important;">
-                        <div class="col-xs-12 col-sm-4 pull-right pad-left-right-0 login-margin">
-                            <div class="dropdown">
-                                @if (Convert.ToBoolean(Session["IsLoginValid"]) == true)
-                                {
-                                    <button class="btn btn-transparent dropdown-toggle" type="button" data-toggle="dropdown" style="width: 100%;">
-                                        Welcome @Session["UserFirstName"]!<span class="caret"></span>
-                                    </button>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="#">My Profile</a></li>
-                                        <li><a href="@Url.Action("LogOff","Account")">Logout</a></li>
-                                    </ul>
-                                }
-                                else
-                                {
-                                    <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" onclick="location.href = '@Url.Action("Login","Account")'" style="width: 100%;">Login & Signup<span class="caret"></span></button>
-                                }
-                            </div>
-                        </div>
-                        <div class="col-xs-12 col-sm-6 pull-right pad-left-right-0">
+                        <div class="col-xs-12 col-sm-6 pad-left-right-0">
                             <div class="dropdown">
                                 <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" style="width:99.4%;">
                                     Today's Gold-Silver Rate<span class="caret"></span>
@@ -49,8 +31,26 @@
                                 </ul>
                             </div>
                         </div>
+                        <div class="col-xs-12 col-sm-4 pad-left-right-0">
+                            <div class="dropdown">
+                                @if (Convert.ToBoolean(Session["IsLoginValid"]) == true)
+                                {
+                                    <button class="btn btn-transparent dropdown-toggle" type="button" data-toggle="dropdown" style="width: 110%;">
+                                        Welcome @Session["UserFirstName"]!<span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="#">My Profile</a></li>
+                                        <li><a href="@Url.Action("LogOff","Account")">Logout</a></li>
+                                    </ul>
+                                }
+                                else
+                                {
+                                    <button class="btn btn-default dropdown-toggle login-width" type="button" data-toggle="dropdown" onclick="location.href = '@Url.Action("Login","Account")'">Login & Signup<span class="caret"></span></button>
+                                }
+                            </div>
+                        </div>
                         <div class="col-xs-7 col-sm-8 pad-left-right-0">
-                            <form class="navbar-form right-pad" role="search">
+                            <form class="navbar-form pad-left-right-0" role="search">
                                 <div class="input-group add-on search-device-width">
                                     <input type="text" class="form-control" placeholder="Search" name="srch-term" id="srch-term" style="max-width:100%">
                                     <div class="input-group-btn">
