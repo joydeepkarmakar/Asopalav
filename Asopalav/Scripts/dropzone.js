@@ -122,7 +122,7 @@
             maxFilesize: 256,
             paramName: "file",
             createImageThumbnails: true,
-            maxThumbnailFilesize: 10,
+            maxThumbnailFilesize: 15,//10, changed it -- JK
             thumbnailWidth: 75,//120, changed it -- JK
             thumbnailHeight: 75,//120, changed it -- JK
             filesizeBase: 1000,

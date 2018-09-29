@@ -284,5 +284,53 @@ $(document).ready(function () {
         cartItems.text(text);
     }
 
+    /*Search Box*/
+    $('#txtSearch').keyup(function (event) {
+        stxt = $('#txtSearch').val();
+        $('#txtSearch').autocomplete({
+            scroll: true,
+            selectFirst: false,
+            autoFocus: false,
+            source: function (request, response) {
+                $.ajax({
+                    url: "/Home/GetSuggestion",
+                    type: "GET",
+                    data: { txtSearch: request.term },
+                    success: function (data) {
+                        response($.map(data, function (item) {
+                            return { label: item, value: item }
+                        }))
+                    },
+                    error: function (result) {
+                    }
+                })
+            },
+            minLength: 2,
+            select: function (event, ui) {
+                var vll = ui.item.val;
+                var sts = "no";
+                //var url = '/Home/SeachResult?prefix=' + stxt; // ur own conditions  
+                var url = '/Seach?prefix=' + stxt;
+                $(location).attr('href', url);
+                $('#txtSearch').val(stxt);
+            }
+        });
+        if (event.keyCode == 13) { // this event fired when enter is pressed  
+            //var url = '/Home/SeachResult?prefix=' + stxt; // ur own conditions  
+            var url = '/Seach?prefix=' + stxt;
+            $(location).attr('href', url);
+            $('#txtSearch').val(stxt);
+            return false;
+        }
+    });
+
+    $('#btnSearch').click(function () { //  this event fired on button click  
+        stxt = $('#txtSearch').val();
+        //var url = '/Home/SeachResult?prefix=' + stxt; // ur own conditions  
+        var url = '/Seach?prefix=' + stxt;
+        $(location).attr('href', url);
+        //window.location.href = url;
+        $('#txtSearch').val(stxt);
+    });
 
 });

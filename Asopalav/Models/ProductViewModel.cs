@@ -10,6 +10,7 @@ namespace Asopalav.Models
     {
         public List<GetLastAddedProducts_Result> objGetLastAddedProducts_Result = new List<GetLastAddedProducts_Result>();
         public List<GetProductsByProductType_Result> objGetProductsByProductType_Result = new List<GetProductsByProductType_Result>();
+        public List<SearchProducts_Result> objSearchProducts_Result = new List<SearchProducts_Result>();
         public string ProductListPage { get; set; }
     }
 

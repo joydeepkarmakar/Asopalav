@@ -1,0 +1,8 @@
+﻿@model Asopalav.Models.DashboardModel
+@{
+    ViewBag.Title = "SeachResult";
+    ViewData["ProductListPage"] = Model.ProductListPage;
+    Session["CurrentPage"] = Model.ProductListPage;
+}
+
+@Html.Partial("~/Views/Shared/_ProductList.cshtml", Model.objSearchProducts_Result, new ViewDataDictionary { { "ProductListPage", Model.ProductListPage } })

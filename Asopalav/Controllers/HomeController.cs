@@ -36,7 +36,7 @@ namespace Asopalav.Controllers
 
             Session["DollarRate"] = GetDollarToRupeeVal(ConfigurationManager.AppSettings["DollarToRupeeUrl"]) ?? "NA";
             //Session["SilverRate"] = GetSilverPrice(ConfigurationManager.AppSettings["SilverPriceUrl"]) ?? "NA";
-            Session["GoldRate"] =  GetGoldPrice();//"1,197.75";
+            Session["GoldRate"] = GetGoldPrice();//"1,197.75";
             Session["SilverRate"] = GetSilverPrice();//"14.32";
             #endregion
 
@@ -61,15 +61,6 @@ namespace Asopalav.Controllers
             Session["CurrentPage"] = "About";
             return View();
         }
-
-        //[HttpGet]
-        //[Route("~/Silverware")]
-        //public ActionResult Silverware(string page)
-        //{
-        //    objDashboardModel.objGetProductsByProductType_Result = objAsopalavDBEntities.GetProductsByProductType(page, (string)Session["CurrentCurrency"] ?? "", (string)Session["DollarRate"] ?? "").ToList();
-        //    objDashboardModel.ProductListPage = page;
-        //    return View(objDashboardModel);
-        //}
 
         [HttpGet]
         [Route("~/Antiques")]
@@ -165,6 +156,25 @@ namespace Asopalav.Controllers
                     return Json(new { IsSuccess = false, errorMsg = TempData["SendMailToAdminMsg"] }, JsonRequestBehavior.AllowGet);
             }
             return Json(new { IsSuccess = true }, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult GetSuggestion(string txtSearch)
+        {
+            List<string> itemList = (from p in objAsopalavDBEntities.ProductMasters where p.ProductName.ToLower().Contains(txtSearch.ToLower()) select p.ProductName)
+                                    .Union
+                                    (from pt in objAsopalavDBEntities.ProductTypeMasters
+                                     where pt.ProductType.ToLower().Contains(txtSearch.ToLower())
+                                     select pt.ProductType)
+                                    .ToList();
+            return Json(itemList, JsonRequestBehavior.AllowGet);
+        }
+
+        [Route("~/Seach")]
+        public ActionResult SeachResult(string prefix)
+        {
+            objDashboardModel.objSearchProducts_Result = objAsopalavDBEntities.SearchProducts(prefix, (string)Session["CurrentCurrency"] ?? "", (string)Session["DollarRate"] ?? "").ToList();
+            objDashboardModel.ProductListPage = "SeachResult";
+            return View(objDashboardModel);
         }
 
         private bool SendAcknowledgementMail(string emailId)

@@ -101,6 +101,7 @@
           </Key>
           <Property Name="ProductTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ProductType" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="ParentProductTypeId" Type="int" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
           <Property Name="Creation_Date" Type="datetime" />
         </EntityType>
@@ -301,6 +302,12 @@
           <Parameter Name="CurrentCurrency" Type="char" Mode="In" />
           <Parameter Name="ConversionRate" Type="varchar" Mode="In" />
         </Function>
+        <Function Name="GetProductType" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="SearchProducts" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="SearchText" Type="nvarchar" Mode="In" />
+          <Parameter Name="CurrentCurrency" Type="char" Mode="In" />
+          <Parameter Name="ConversionRate" Type="varchar" Mode="In" />
+        </Function>
         <Function Name="SilverRate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="SplitString" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Input" Type="nvarchar(max)" Mode="In" />
@@ -387,6 +394,7 @@
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
           <Property Name="Creation_Date" Type="DateTime" Precision="3" />
           <NavigationProperty Name="ProductMasters" Relationship="AsopalavDBModel.FK_ProductMaster_ProductTypeMaster" FromRole="ProductTypeMaster" ToRole="ProductMaster" />
+          <Property Name="ParentProductTypeId" Type="Int32" />
         </EntityType>
         <EntityType Name="RoleMaster">
           <Key>
@@ -562,6 +570,12 @@
             <End Role="RoleMaster" EntitySet="RoleMasters" />
             <End Role="UserProfileMaster" EntitySet="UserProfileMasters" />
           </AssociationSet>
+          <FunctionImport Name="GetProductType" ReturnType="Collection(AsopalavDBModel.GetProductType_Result)" />
+          <FunctionImport Name="SearchProducts" ReturnType="Collection(AsopalavDBModel.SearchProducts_Result)">
+            <Parameter Name="SearchText" Mode="In" Type="String" />
+            <Parameter Name="CurrentCurrency" Mode="In" Type="String" />
+            <Parameter Name="ConversionRate" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="ValidateUserAndMenu_Result">
           <Property Type="Boolean" Name="IsLoginValid" Nullable="true" />
@@ -780,6 +794,31 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <ComplexType Name="GetProductType_Result">
+          <Property Type="Int32" Name="Id" Nullable="true" />
+          <Property Type="String" Name="ProductType" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="ParentId" Nullable="true" />
+          <Property Type="String" Name="ParentProductType" Nullable="true" MaxLength="200" />
+          <Property Type="Int32" Name="Sort" Nullable="true" />
+          <Property Type="Int32" Name="Level" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="SearchProducts_Result">
+          <Property Type="Int64" Name="ProductID" Nullable="false" />
+          <Property Type="String" Name="ProductCode" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="ProductName" Nullable="false" MaxLength="250" />
+          <Property Type="Int32" Name="ProductTypeID" Nullable="true" />
+          <Property Type="Decimal" Name="WeightInGms" Nullable="false" Precision="18" Scale="3" />
+          <Property Type="String" Name="HeightInInch" Nullable="true" MaxLength="15" />
+          <Property Type="String" Name="WidthInInch" Nullable="true" MaxLength="15" />
+          <Property Type="Decimal" Name="Price" Nullable="true" Precision="37" Scale="4" />
+          <Property Type="Boolean" Name="IsOffer" Nullable="false" />
+          <Property Type="Decimal" Name="OfferPrice" Nullable="true" Precision="37" Scale="4" />
+          <Property Type="Boolean" Name="IsActive" Nullable="false" />
+          <Property Type="String" Name="Description" Nullable="false" />
+          <Property Type="DateTime" Name="CreationDate" Nullable="false" Precision="23" />
+          <Property Type="String" Name="ImageName" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="ImagePath" Nullable="false" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -800,6 +839,7 @@
           <EntitySetMapping Name="ProductTypeMasters">
             <EntityTypeMapping TypeName="AsopalavDBModel.ProductTypeMaster">
               <MappingFragment StoreEntitySet="ProductTypeMaster">
+                <ScalarProperty Name="ParentProductTypeId" ColumnName="ParentProductTypeId" />
                 <ScalarProperty Name="ProductTypeID" ColumnName="ProductTypeID" />
                 <ScalarProperty Name="ProductType" ColumnName="ProductType" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
@@ -1023,6 +1063,39 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="GetProductType" FunctionName="AsopalavDBModel.Store.GetProductType">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="AsopalavDBModel.GetProductType_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ProductType" ColumnName="ProductType" />
+                <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+                <ScalarProperty Name="ParentProductType" ColumnName="ParentProductType" />
+                <ScalarProperty Name="Sort" ColumnName="Sort" />
+                <ScalarProperty Name="Level" ColumnName="Level" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SearchProducts" FunctionName="AsopalavDBModel.Store.SearchProducts">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="AsopalavDBModel.SearchProducts_Result">
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="ProductCode" ColumnName="ProductCode" />
+                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+                <ScalarProperty Name="ProductTypeID" ColumnName="ProductTypeID" />
+                <ScalarProperty Name="WeightInGms" ColumnName="WeightInGms" />
+                <ScalarProperty Name="HeightInInch" ColumnName="HeightInInch" />
+                <ScalarProperty Name="WidthInInch" ColumnName="WidthInInch" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="IsOffer" ColumnName="IsOffer" />
+                <ScalarProperty Name="OfferPrice" ColumnName="OfferPrice" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="ImageName" ColumnName="ImageName" />
+                <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

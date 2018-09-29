@@ -14,6 +14,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DBScript", "DBScript", "{F1
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "StoredProcs", "StoredProcs", "{426253EE-9B43-4B8E-BEF9-7CA2B8C5A13C}"
 	ProjectSection(SolutionItems) = preProject
+		GetProductType.sql = GetProductType.sql
+		SearchProducts.sql = SearchProducts.sql
 		ValidateUserAndMenu.sql = ValidateUserAndMenu.sql
 	EndProjectSection
 EndProject

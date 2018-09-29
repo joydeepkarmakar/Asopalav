@@ -81,6 +81,9 @@
     <Compile Include="GetProductsByProductType_Result.cs">
       <DependentUpon>AsopalavDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="GetProductType_Result.cs">
+      <DependentUpon>AsopalavDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Image.cs">
       <DependentUpon>AsopalavDataModel.tt</DependentUpon>
     </Compile>
@@ -107,6 +110,9 @@
       <DependentUpon>AsopalavDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="RoleMenuPermission.cs">
+      <DependentUpon>AsopalavDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SearchProducts_Result.cs">
       <DependentUpon>AsopalavDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="UserAddressDetail.cs">

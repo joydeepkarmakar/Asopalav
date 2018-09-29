@@ -24,6 +24,7 @@ namespace DataAccessLayer
         public string ProductType { get; set; }
         public bool IsActive { get; set; }
         public Nullable<System.DateTime> Creation_Date { get; set; }
+        public Nullable<int> ParentProductTypeId { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ProductMaster> ProductMasters { get; set; }
