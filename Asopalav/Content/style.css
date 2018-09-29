@@ -1441,6 +1441,10 @@ h1 {
     }
 }
 
+    .login-width {
+        width: 110%;
+    }
+
 @media (min-width: 1200px) {
 }
 
@@ -2067,6 +2071,10 @@ h1 {
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
     }
+
+    .login-width {
+        width: 100%;
+    }
 }
 
 @media screen and (max-width: 479px) {
@@ -2126,12 +2134,13 @@ h1 {
     }
 
     .search-device-width {
-        width: 102%;
+        padding-left:15px;
     }
 
     .currency-marging {
-        margin-left:54px;
+        margin-left: 54px;
     }
+
 }
 
 @media screen and (max-width: 320px) {
