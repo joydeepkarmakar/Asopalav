@@ -25,6 +25,13 @@ namespace Asopalav.Models
 
     public class RegisterViewModel
     {
+        public RegisterViewModel()
+        {
+            /*Dummy Values*/
+            this.Gender = "M";
+            this.Mobile = "9999999999";
+            this.User_DOB = DateTime.Now.AddYears(-1);
+        }
         [Required(ErrorMessage = "The Email is required")]
         [DisplayName("Email")]
         [RegularExpression(@"\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*", ErrorMessage = "Invalid Email")]

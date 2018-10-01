@@ -210,7 +210,7 @@
                 </li>
                 <li @((string)Session["CurrentPage"] == "Antiques" ? "class=menu-active" : "class=menu-hover")>
                     <a href="@Url.Action("Antiques", "Home",new { page = "Antiques" })">Antiques</a>
-                    <div id="submenu-sticky3" class="megamenu clearfix selectorarrow">
+                    @*<div id="submenu-sticky3" class="megamenu clearfix selectorarrow">
                         <div class="container-fluid">
                             <div class="row">
                                 <div class="col-lg-6 col-md-6 col-xs-6">
@@ -222,7 +222,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div>*@
                 </li>
                 <li @((string)Session["CurrentPage"] == "Gifts" ? "class=menu-active" : "class=menu-hover")>
                     <a href="javascript:void(0);" id="mnuGifts">Gifts</a>
@@ -265,7 +265,7 @@
                 </li>
                 <li @((string)Session["CurrentPage"] == "FineMetal" ? "class=menu-active" : "class=menu-hover")>
                     <a href="@Url.Action("FineMetal", "Home",new { page = "FineMetal" })">Fine Metal</a>
-                    <div id="submenu-sticky2" class="megamenu clearfix selectorarrow">
+                    @*<div id="submenu-sticky2" class="megamenu clearfix selectorarrow">
                         <div class="container-fluid">
                             <div class="row">
                                 <div class="col-lg-6 col-md-6 col-xs-6">
@@ -277,7 +277,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div>*@
                 </li>
                 <li @((string)Session["CurrentPage"] == "About" ? "class=menu-active" : "class=menu-hover")>
                     <a href="@Url.Action("About", "Home")">About us</a>
@@ -296,7 +296,7 @@
     <div class="footer-bott">
         <footer id="footer">
             <div class="container" style="width:100% !important">
-                <div class="cols" style="display:none;">
+                <div class="cols">
                     <div class="col">
                         <h3>Frequently Asked Questions</h3>
                         <ul>
@@ -319,18 +319,18 @@
                     <div class="col contact">
                         <h3>Contact us</h3>
                         <p>10, Darpan Opposite, R C Dutt Road,<br>Alkapuri, Hotel Express, Vadodara,<br>Gujarat 390007</p>
-                        <p><span class="ico ico-em"></span><a href="#">contact@asopalavjewellery.com</a></p>
+                        <p><span class="ico ico-em"></span><a href="#">asopalavjeweller@gmail.com</a></p>
                         <p><span class="ico ico-ph"></span>0265 232 5526</p>
                     </div>
                     <div class="col newsletter">
-                        <h3>Join our newsletter</h3>
-                        <p>Sed ut perspiciatis unde omnis iste natus sit voluptatem accusantium doloremque laudantium.</p>
+                        <h3>Let's stay in touch.</h3>
+                        <p>Sign up for special offers and gift ideas.</p>
                         <form action="#">
-                            <input type="text" placeholder="Your email address...">
-                            <button type="submit"></button>
+                            <input type="text" placeholder="Enter your email address">
+                            <button type="submit" id="btnHomePageSignup"></button>
                         </form>
                     </div>
-                </div>
+                </div>  
                 <div class="pull-left device-foot">
                     <p>&copy; @DateTime.Now.Year - Asopalav Jewellers Private Limited</p>
                 </div>

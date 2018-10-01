@@ -527,7 +527,7 @@ fieldset > input {
 }
 
 .body-bg {
-    background-image: url(../Content/images/logo_back-bg.gif);
+    /*background-image: url(../Content/images/logo_back-bg.gif);*/
     background-repeat: repeat;
     background-position: top left;
 }

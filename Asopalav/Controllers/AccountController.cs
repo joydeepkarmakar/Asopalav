@@ -95,6 +95,7 @@ namespace Asopalav.Controllers
         [Route("~/Register")]
         public ActionResult NewRegistration(RegisterViewModel model)
         {
+            string errorMessage = string.Empty;
             try
             {
                 if (ModelState.IsValid)
@@ -104,13 +105,25 @@ namespace Asopalav.Controllers
                     if (result == -1)
                     {
                         Session["IsLoginValid"] = true;
-                        Session["UserFirstName"] = model.User_Fname + ' ' + model.User_Mname ?? ' ' + model.User_Lname;
+                        Session["UserFirstName"] = model.User_Fname; //model.User_Fname + ' ' + model.User_Mname ?? ' ' + model.User_Lname;
                         return RedirectToAction("Index", "Home");
                     }
-                }
 
-                TempData["isNewRegistration"] = "true";
-                TempData["NewRegistrationMsg"] = "You have registered successfully.";
+                    TempData["isNewRegistration"] = "true";
+                    TempData["NewRegistrationMsg"] = "You have registered successfully.";
+                }
+                else
+                {
+                    foreach (var item in ModelState.Keys)
+                    {
+                        if (ModelState[item].Errors.Count > 0)
+                        {
+                            errorMessage += ModelState[item].Errors.ToList()[0].ErrorMessage;
+                            TempData["isNewRegistration"] = "false";
+                            TempData["NewRegistrationMsg"] = errorMessage;
+                        }
+                    }
+                }
             }
             catch (Exception ex)
             {

@@ -28,6 +28,7 @@ namespace Asopalav.Areas.Admin.Controllers
         public ActionResult Index(int id = 0)
         {
             var host = System.Web.HttpContext.Current.Request.Url.OriginalString.Replace(System.Web.HttpContext.Current.Request.Url.PathAndQuery, "");
+            var images = Session["Images"] as List<DataAccessLayer.Image> ?? new List<DataAccessLayer.Image>();
             ProductDetailsModel objProductDetailsModel = new ProductDetailsModel
             {
                 objProductMaster = objAsopalavDBEntities.ProductMasters.Include("Images").Where(p => p.ProductID == id).FirstOrDefault()
@@ -71,6 +72,7 @@ namespace Asopalav.Areas.Admin.Controllers
                             item.ImagePath = Request.UrlReferrer.AbsoluteUri.Replace(Request.UrlReferrer.AbsolutePath, "/Content/images/no-product-image.jpg");
                         }
                     }
+                    Session["Images"] = objProductDetailsModel.objProductMaster.Images;
                 }
             }
             else
@@ -290,6 +292,12 @@ namespace Asopalav.Areas.Admin.Controllers
             objProductModel.Description = objproductListModel.Description;
             //objProductModel.ImagePath = objproductListModel.ImagePaths;
             return RedirectToAction("Index", "Product", objProductModel);
+        }
+
+        public ActionResult GetImageList()
+        {
+            var imageList = Session["Images"];
+            return Json(new { Data = imageList }, JsonRequestBehavior.AllowGet);
         }
     }
 }
