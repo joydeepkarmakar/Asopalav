@@ -361,8 +361,8 @@
         var navbar = document.getElementById("menu");
         var subnav = document.getElementById("submenu-sticky");
         var silver = document.getElementById("submenu-sticky1");
-        var metal = document.getElementById("submenu-sticky2");
-        var antiques = document.getElementById("submenu-sticky3");
+        //var metal = document.getElementById("submenu-sticky2");
+        //var antiques = document.getElementById("submenu-sticky3");
         var cart = document.getElementById("cd-cart");
         var sticky = navbar.offsetTop;
         var desktopImg = document.getElementById("desktopImgMenuLogo");
@@ -370,16 +370,16 @@
 
         function menuHeaderScrollFunction() {
             if (window.pageYOffset >= sticky) {
-                metal.classList.add("megamenu-sticky");
-                antiques.classList.add("megamenu-sticky");
+                //metal.classList.add("megamenu-sticky");
+                //antiques.classList.add("megamenu-sticky");
                 silver.classList.add("megamenu-sticky");
                 subnav.classList.add("megamenu-sticky");
                 navbar.classList.add("sticky");
                 desktopImg.style.display = "inline-block";
                 deviceImg.style.display = "inline-block";
             } else {
-                metal.classList.remove("megamenu-sticky");
-                antiques.classList.remove("megamenu-sticky");
+                //metal.classList.remove("megamenu-sticky");
+                //antiques.classList.remove("megamenu-sticky");
                 silver.classList.remove("megamenu-sticky");
                 subnav.classList.remove("megamenu-sticky");
                 navbar.classList.remove("sticky");
