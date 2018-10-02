@@ -73,6 +73,7 @@ namespace Asopalav.Areas.Admin.Controllers
                         }
                     }
                     Session["Images"] = objProductDetailsModel.objProductMaster.Images;
+                    objProductModel.ImagePathList = objProductDetailsModel.objProductMaster.Images.Select(x => x.ImagePath).ToList();
                 }
             }
             else
@@ -190,12 +191,12 @@ namespace Asopalav.Areas.Admin.Controllers
             try
             {
                 listProductType = (from producttype in objAsopalavDBEntities.ProductTypeMasters
-                                   where producttype.IsActive == true
+                                   where producttype.IsActive == true && !producttype.ProductType.Contains("Gifts") && !producttype.ProductType.Contains("Silverware")
                                    select new SelectListItem()
                                    {
                                        Value = producttype.ProductTypeID.ToString(),
                                        Text = producttype.ProductType
-                                   }).ToList();
+                                   }).OrderBy(x => x.Text).ToList();
             }
             catch (Exception ex)
             {
@@ -247,7 +248,7 @@ namespace Asopalav.Areas.Admin.Controllers
         public ActionResult GetProductList()
         {
             /*IEnumerable<ProductListModel>*/
-            var prodList = objAsopalavDBEntities.ProductMasters.Where(x => x.IsActive == true).Select(x => new ProductListModel
+            var prodList = objAsopalavDBEntities.ProductMasters.Where(x => x.IsActive == true).OrderByDescending(x => x.CreationDate).Select(x => new ProductListModel
             {
                 ProductId = x.ProductID,
                 ProductCode = x.ProductCode,

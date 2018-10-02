@@ -181,7 +181,7 @@ namespace Asopalav.Controllers
         {
             bool IsSendMail = false;
             var host = System.Web.HttpContext.Current.Request.Url.OriginalString.Replace(System.Web.HttpContext.Current.Request.Url.PathAndQuery, "");
-            string imageName = host + "/Content/images/logo@2x.png";
+            string imageName = host + "/Content/images/logo@2x.gif";
 
             //Mail For Contacted User
             string msg = "<p><img src='" + imageName + "' alt='LogoName' border='0' width='95px' height='77px'/></p>" +
@@ -205,7 +205,7 @@ namespace Asopalav.Controllers
         {
             bool IsSendMail = false;
             var host = System.Web.HttpContext.Current.Request.Url.OriginalString.Replace(System.Web.HttpContext.Current.Request.Url.PathAndQuery, "");
-            string imageName = host + "/Content/images/logo@2x.png";
+            string imageName = host + "/Content/images/logo@2x.gif";
 
             //Mail to Admin
             string msg = "<p><img src='" + imageName + "' alt='LogoName' border='0' width='95px' height='77px'/></p>" +

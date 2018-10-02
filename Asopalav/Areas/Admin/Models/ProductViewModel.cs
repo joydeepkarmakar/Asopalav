@@ -54,6 +54,8 @@ namespace Asopalav.Models
 
         public List<SelectListItem> ProductType { get; set; }
         public Dictionary<string, string> ImageDetailsList { get; set; }
+
+        public List<string> ImagePathList { get; set; }
     }
 
     public class ProductTypeModel

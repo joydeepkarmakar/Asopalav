@@ -29,7 +29,7 @@ namespace Asopalav.Models
         {
             /*Dummy Values*/
             this.Gender = "M";
-            this.Mobile = "9999999999";
+            //this.Mobile = "9999999999";
             this.User_DOB = DateTime.Now.AddYears(-1);
         }
         [Required(ErrorMessage = "The Email is required")]
@@ -105,7 +105,7 @@ namespace Asopalav.Models
         public string EmailID { get; set; }
 
         [Required(ErrorMessage = "Mobile no. is required")]
-        [DisplayName("Mobile No.")]
+        [DisplayName("Mobile #")]
         [RegularExpression(@"^([0-9]{10})$", ErrorMessage = "Invalid Mobile")]
         public string MobileNo { get; set; }
 
