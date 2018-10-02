@@ -5,7 +5,7 @@
 
 /* Set padding to keep content from hitting the edges */
 .body-content {
-   padding-left: 0;
+    padding-left: 0;
     padding-right: 0;
 }
 
@@ -70,7 +70,7 @@ select {
 /*----- Register -----*/
 
 .register-margin-top {
-    margin: 60px auto 80px auto;
+    margin: 60px auto 80px 425px;
     width: 40%;
     text-align: center;
     font-weight: bold;
@@ -266,6 +266,7 @@ label {
     opacity: 1;
     text-align: center;
     margin: 4px 0 0 0;
+    float: left;
 }
 
     .footer_socialIcons li {
@@ -275,17 +276,17 @@ label {
 .socialIcons_link {
     display: inline-table;
     margin-left: 15px;
-    background-color: #f1eded;
+    background-color: #fff;
     border-radius: 50%;
-    width: 32px;
-    height: 32px;
+    width: 36px;
+    height: 36px;
     text-align: center;
 }
 
     .socialIcons_link a {
         color: #847b79;
-        font-size: 17px;
-        margin-top: 8px;
+        font-size: 20px;
+        margin-top: 10px;
     }
 
 .fa {
@@ -324,11 +325,11 @@ label {
 .shree-hari-middle {
     width: 80px;
     height: 29px;
-    border: 2px solid #dcdcdc;
+    /*border: 2px solid #dcdcdc;*/
     background: #ffffff;
     opacity: .8;
     text-align: center;
-    margin: 0 3% 0 2.5%;
+    margin: 3px 3% 0 2.5%;
     border-radius: 5px;
     padding: 0;
 }
@@ -400,6 +401,11 @@ label {
 
     .login-margin {
         margin-right: 0 !important;
+    }
+
+    .currency-device {
+        margin-left: 120px !important;
+        margin-top: -30px;
     }
 }
 
@@ -579,19 +585,19 @@ hr {
 /*--------------- search ------------*/
 
 .search-pad-right {
-    padding-right:23px !important;
+    padding-right: 23px !important;
 }
 
 /*-------------Admin -------------*/
 
 .navbar-inverse {
-    background-color:lightgray;
+    background-color: lightgray;
     border-color: lightgray;
 }
 
-.navbar-inverse .navbar-nav > li > a {
-    color: #000;
-}
+    .navbar-inverse .navbar-nav > li > a {
+        color: #000;
+    }
 
 
 /*Dropzone Div Ends*/

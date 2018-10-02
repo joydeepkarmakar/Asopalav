@@ -21,7 +21,7 @@
                     <div class="row" style="font-size:12px !important;">
                         <div class="col-xs-12 col-sm-6 pad-left-right-0">
                             <div class="dropdown">
-                                <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" style="width:99.4%;">
+                                <button class="btn btn-transparent-new dropdown-toggle" type="button" data-toggle="dropdown" style="width:99.4%;">
                                     Today's Gold-Silver Rate<span class="caret"></span>
                                 </button>
                                 <ul class="dropdown-menu" style="width:100% !important">
@@ -45,23 +45,27 @@
                                 }
                                 else
                                 {
-                                    <button class="btn btn-default dropdown-toggle login-width" type="button" data-toggle="dropdown" onclick="location.href = '@Url.Action("Login","Account")'">Login & Signup<span class="caret"></span></button>
+                                    <button class="btn btn-transparent-new dropdown-toggle login-width" type="button" data-toggle="dropdown" onclick="location.href = '@Url.Action("Login","Account")'">Login & Signup<span class="caret"></span></button>
                                 }
                             </div>
                         </div>
-                        <div class="col-xs-7 col-sm-8 pad-left-right-0">
-                            <div role="search" method="get" class="navbar-form right-pad">
+                        <div class="col-xs-12 col-sm-8 pad-left-right-0">
+                            <div role="search" method="get" class="navbar-form" style="padding-left:9px !important;">
                                 <div class="input-group add-on search-device-width">
-                                    <input type="text" class="form-control" placeholder="Search" name="srch-term" id="txtSearch" style="max-width:100%">
+                                    <div class="input-placeholder">
+                                        <input class="col-lg-3 col-md-3 col-sm-5 col-xs-5 form-control btn-transparent search-width" style="color:#666" type="text" name="srch-term" id="txtSearch" placeholder="Search By RoleName" />
+                                        <span class="fa fa-search form-control-feedback search-icon" type="submit" id="btnSearch" style="font-size: 25px;"></span>
+                                    </div>
+                                   <!-- <input type="text" class="form-control" placeholder="Search" name="srch-term" id="txtSearch" style="max-width:100%">
                                     <div class="input-group-btn">
                                         <button class="btn btn-default" type="submit" id="btnSearch"><i class="glyphicon glyphicon-search"></i></button>
-                                    </div>
+                                    </div>-->
                                 </div>
                             </div>
                         </div>
-                        <div class="col-xs-3 col-sm-3 pad-left-right-0 currency-marging">
+                        <div class="col-xs-4 col-sm-3 pad-left-right-0 currency-marging currency-device" style="margin-left:-10px">
                             <div class="navbar-form dropdown pad-left-right-0">
-                                <select class="form-control">
+                                <select class="form-control" style="border-radius:20px;">
                                     <option>USD</option>
                                     <option>INR</option>
                                 </select>
@@ -295,61 +299,66 @@
     </div>
     <div class="footer-bott">
         <footer id="footer">
-            <div class="container" style="width:100% !important">
+            <div class="container" style="width:100% !important; padding:20px 40px 10px 40px !important;">
                 <div class="cols">
                     <div class="col">
-                        <h3>Frequently Asked Questions</h3>
+                        <h1 class="footer-info-head">Our Company</h1>
                         <ul>
-                            <li><a href="#">The Dummy copy </a></li>
-                            <li><a href="#">The Dummy copy</a></li>
-                            <li><a href="#">The Dummy copy</a></li>
-                            <li><a href="#">The Dummy copy</a></li>
-                            <li><a href="#">The Dummy copy</a></li>
+                            <li><a href="#">About Us</a></li>
+                            <li><a href="#">Hallmarking</a></li>
+                            <li><a href="#">T&C</a></li>
+                            <li><a href="#">Privacy Policy</a></li>
                         </ul>
                     </div>
                     <div class="col media">
-                        <h3>Social media</h3>
-                        <ul class="social">
-                            <li><a href="#"><span class="ico ico-fb"></span>Facebook</a></li>
-                            <li><a href="#"><span class="ico ico-tw"></span>Twitter</a></li>
-                            <li><a href="#"><span class="ico ico-gp"></span>Google+</a></li>
-                            <li><a href="#"><span class="ico ico-pi"></span>Pinterest</a></li>
+                        <h1 class="footer-info-head">Information</h1>
+                        <ul>
+                            <li><a href="#">Privacy Policy</a></li>
+                            <li><a href="#">Shipping Policies</a></li>
+                            <li><a href="#">Terms & Condition</a></li>
+                            <li><a href="#">Return, Cancellation & Exchange </a></li>
                         </ul>
                     </div>
                     <div class="col contact">
-                        <h3>Contact us</h3>
-                        <p>10, Darpan Opposite, R C Dutt Road,<br>Alkapuri, Hotel Express, Vadodara,<br>Gujarat 390007</p>
-                        <p><span class="ico ico-em"></span><a href="#">asopalavjeweller@gmail.com</a></p>
-                        <p><span class="ico ico-ph"></span>0265 232 5526</p>
+                        <h1 class="footer-info-head">Contact us</h1>
+                        <p><span class="fa fa-envelope envelope"></span><a href="#">asopalavjeweller@gmail.com</a></p>
+                        <p style="color:#717171"><span class="fa fa-phone envelope"></span>0265 232 5526/27</p>
                     </div>
                     <div class="col newsletter">
-                        <h3>Let's stay in touch.</h3>
+                        <h1 class="footer-info-head">Let's stay in touch.</h1>
                         <p>Sign up for special offers and gift ideas.</p>
                         <form action="#">
                             <input type="text" placeholder="Enter your email address">
                             <button type="submit" id="btnHomePageSignup"></button>
                         </form>
+                        <div class="footer_socialIcons">
+                            <ul>
+                                <li class="socialIcons_link bg-face">
+                                    <a class="fa fa-facebook" href="https://www.facebook.com/AsopalavJewellers/"></a>
+                                </li>
+                                <li class="socialIcons_link bg-twitter">
+                                    <a class="fa fa-twitter" href="javascript:void(0)"></a>
+                                </li>
+                                <li class="socialIcons_link bg-gplus">
+                                    <a class="fa fa-youtube" href="javascript:void(0)"></a>
+                                </li>
+                                <li class="socialIcons_link bg-gplus">
+                                    <a class="fa fa-pinterest-p" href="https://www.facebook.com/AsopalavJewellers/"></a>
+                                </li>
+                                <li class="socialIcons_link bg-face">
+                                    <a class="fa fa-instagram" href="https://www.facebook.com/AsopalavJewellers/"></a>
+                                </li>
+                                <li class="socialIcons_link bg-gplus">
+                                    <a class="fa fa-google-plus" href="https://www.facebook.com/AsopalavJewellers/"></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="pull-left device-foot">
+                        <p>&copy; @DateTime.Now.Year - Asopalav Jewellers Private Limited</p>
+                    </div>
                     </div>
                 </div>  
-                <div class="pull-left device-foot">
-                    <p>&copy; @DateTime.Now.Year - Asopalav Jewellers Private Limited</p>
-                </div>
-                <div class="pull-right">
-                    <div class="footer_socialIcons">
-                        <ul>
-                            <li class="socialIcons_link bg-twitter">
-                                <a class="fa fa-twitter" href="javascript:void(0)"></a>
-                            </li>
-                            <li class="socialIcons_link bg-gplus">
-                                <a class="fa fa-google-plus" href="javascript:void(0)"></a>
-                            </li>
-                            <li class="socialIcons_link bg-face">
-                                <a class="fa fa-facebook" href="https://www.facebook.com/AsopalavJewellers/"></a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
             <!-- / container -->
         </footer>
     </div>
