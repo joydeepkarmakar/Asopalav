@@ -53,13 +53,9 @@
                             <div role="search" method="get" class="navbar-form" style="padding-left:9px !important;">
                                 <div class="input-group add-on search-device-width">
                                     <div class="input-placeholder">
-                                        <input class="col-lg-3 col-md-3 col-sm-5 col-xs-5 form-control btn-transparent search-width" style="color:#666" type="text" name="srch-term" id="txtSearch" placeholder="Search By RoleName" />
+                                        <input class="col-lg-3 col-md-3 col-sm-5 col-xs-5 form-control btn-transparent search-width" style="color:#666" type="text" name="srch-term" id="txtSearch" placeholder="Search" />
                                         <span class="fa fa-search form-control-feedback search-icon" type="submit" id="btnSearch" style="font-size: 25px;"></span>
                                     </div>
-                                   <!-- <input type="text" class="form-control" placeholder="Search" name="srch-term" id="txtSearch" style="max-width:100%">
-                                    <div class="input-group-btn">
-                                        <button class="btn btn-default" type="submit" id="btnSearch"><i class="glyphicon glyphicon-search"></i></button>
-                                    </div>-->
                                 </div>
                             </div>
                         </div>
@@ -215,18 +211,18 @@
                 <li @((string)Session["CurrentPage"] == "Antiques" ? "class=menu-active" : "class=menu-hover")>
                     <a href="@Url.Action("Antiques", "Home",new { page = "Antiques" })">Antiques</a>
                     @*<div id="submenu-sticky3" class="megamenu clearfix selectorarrow">
-                        <div class="container-fluid">
-                            <div class="row">
-                                <div class="col-lg-6 col-md-6 col-xs-6">
-                                    <div style="display:flex;">
-                                        <img src="~/Content/images/category3.jpg" alt="Personalize">
-                                        <img src="~/Content/images/category6.jpg" alt="Corporate">
-                                        <img src="~/Content/images/category4.jpg" alt="Kids">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6 col-xs-6">
+                                        <div style="display:flex;">
+                                            <img src="~/Content/images/category3.jpg" alt="Personalize">
+                                            <img src="~/Content/images/category6.jpg" alt="Corporate">
+                                            <img src="~/Content/images/category4.jpg" alt="Kids">
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>*@
+                        </div>*@
                 </li>
                 <li @((string)Session["CurrentPage"] == "Gifts" ? "class=menu-active" : "class=menu-hover")>
                     <a href="javascript:void(0);" id="mnuGifts">Gifts</a>
@@ -270,18 +266,18 @@
                 <li @((string)Session["CurrentPage"] == "FineMetal" ? "class=menu-active" : "class=menu-hover")>
                     <a href="@Url.Action("FineMetal", "Home",new { page = "FineMetal" })">Fine Metal</a>
                     @*<div id="submenu-sticky2" class="megamenu clearfix selectorarrow">
-                        <div class="container-fluid">
-                            <div class="row">
-                                <div class="col-lg-6 col-md-6 col-xs-6">
-                                    <div style="display:flex;">
-                                        <img src="~/Content/images/category3.jpg" alt="Personalize">
-                                        <img src="~/Content/images/category6.jpg" alt="Corporate">
-                                        <img src="~/Content/images/category4.jpg" alt="Kids">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6 col-xs-6">
+                                        <div style="display:flex;">
+                                            <img src="~/Content/images/category3.jpg" alt="Personalize">
+                                            <img src="~/Content/images/category6.jpg" alt="Corporate">
+                                            <img src="~/Content/images/category4.jpg" alt="Kids">
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>*@
+                        </div>*@
                 </li>
                 <li @((string)Session["CurrentPage"] == "About" ? "class=menu-active" : "class=menu-hover")>
                     <a href="@Url.Action("About", "Home")">About us</a>
@@ -304,24 +300,24 @@
                     <div class="col">
                         <h1 class="footer-info-head">Our Company</h1>
                         <ul>
-                            <li><a href="#">About Us</a></li>
-                            <li><a href="#">Hallmarking</a></li>
-                            <li><a href="#">T&C</a></li>
-                            <li><a href="#">Privacy Policy</a></li>
+                            <li><a href="javascript:void(0)">About Us</a></li>
+                            <li><a href="javascript:void(0)">Hallmarking</a></li>
+                            <li><a href="javascript:void(0)">T&C</a></li>
+                            <li><a href="javascript:void(0)">Privacy Policy</a></li>
                         </ul>
                     </div>
                     <div class="col media">
                         <h1 class="footer-info-head">Information</h1>
                         <ul>
-                            <li><a href="#">Privacy Policy</a></li>
-                            <li><a href="#">Shipping Policies</a></li>
-                            <li><a href="#">Terms & Condition</a></li>
-                            <li><a href="#">Return, Cancellation & Exchange </a></li>
+                            <li><a href="javascript:void(0)">Privacy Policy</a></li>
+                            <li><a href="javascript:void(0)">Shipping Policies</a></li>
+                            <li><a href="javascript:void(0)">Terms & Condition</a></li>
+                            <li><a href="javascript:void(0)">Return, Cancellation & Exchange </a></li>
                         </ul>
                     </div>
                     <div class="col contact">
                         <h1 class="footer-info-head">Contact us</h1>
-                        <p><span class="fa fa-envelope envelope"></span><a href="#">asopalavjeweller@gmail.com</a></p>
+                        <p><span class="fa fa-envelope envelope"></span><a href="#">info@asopalavjewelers.com</a></p>
                         <p style="color:#717171"><span class="fa fa-phone envelope"></span>0265 232 5526/27</p>
                     </div>
                     <div class="col newsletter">
@@ -343,22 +339,22 @@
                                     <a class="fa fa-youtube" href="javascript:void(0)"></a>
                                 </li>
                                 <li class="socialIcons_link bg-gplus">
-                                    <a class="fa fa-pinterest-p" href="https://www.facebook.com/AsopalavJewellers/"></a>
+                                    <a class="fa fa-pinterest-p" href="javascript:void(0)"></a>
                                 </li>
                                 <li class="socialIcons_link bg-face">
-                                    <a class="fa fa-instagram" href="https://www.facebook.com/AsopalavJewellers/"></a>
+                                    <a class="fa fa-instagram" href="javascript:void(0)"></a>
                                 </li>
                                 <li class="socialIcons_link bg-gplus">
-                                    <a class="fa fa-google-plus" href="https://www.facebook.com/AsopalavJewellers/"></a>
+                                    <a class="fa fa-google-plus" href="javascript:void(0)"></a>
                                 </li>
                             </ul>
                         </div>
                     </div>
                     <div class="pull-left device-foot">
-                        <p>&copy; @DateTime.Now.Year - Asopalav Jewellers Private Limited</p>
+                        <p>&copy; @DateTime.Now.Year - Asopalav Jewellers Pvt. Ltd.</p>
                     </div>
-                    </div>
-                </div>  
+                </div>
+            </div>
             <!-- / container -->
         </footer>
     </div>
