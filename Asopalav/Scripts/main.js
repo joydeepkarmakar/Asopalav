@@ -133,30 +133,31 @@ $(document).ready(function () {
         url: "/Admin/Product/UploadImage",
         init: function () {
 
-            //$.getJSON("/Admin/Product/GetImageList").done(function (data) {
-            //    if (data.Data != '') {
+            var thisDropZone = this;
+            $.getJSON("/Admin/Product/GetImageList").done(function (data) {
+                if (data.Data != '') {
 
-            //        $.each(data.Data, function (index, item) {
-            //            //// Create the mock file:
-            //            var mockFile = {
-            //                name: item.ImageName,
-            //                size: 12345
-            //            };
+                    $.each(data.Data, function (index, item) {
+                        //// Create the mock file:
+                        var mockFile = {
+                            name: item.ImageName,
+                            size: 12345
+                        };
+                        
+                        // Call the default addedfile event handler
+                        thisDropZone.emit("addedfile", mockFile);
 
-            //            // Call the default addedfile event handler
-            //            thisDropzone.emit("addedfile", mockFile);
+                        // And optionally show the thumbnail of the file:
+                        thisDropZone.emit("thumbnail", mockFile, item.ImagePath);
 
-            //            // And optionally show the thumbnail of the file:
-            //            thisDropzone.emit("thumbnail", mockFile, item.ImagePath);
+                        // If you use the maxFiles option, make sure you adjust it to the
+                        // correct amount:
+                        //var existingFileCount = 1; // The number of files already uploaded
+                        //myDropzone.options.maxFiles = myDropzone.options.maxFiles - existingFileCount;
+                    });
+                }
 
-            //            // If you use the maxFiles option, make sure you adjust it to the
-            //            // correct amount:
-            //            //var existingFileCount = 1; // The number of files already uploaded
-            //            //myDropzone.options.maxFiles = myDropzone.options.maxFiles - existingFileCount;
-            //        });
-            //    }
-
-            //});
+            });
 
             this.on("addedfile", function (file) {
                 // Create the remove button

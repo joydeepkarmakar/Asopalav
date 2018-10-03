@@ -247,7 +247,6 @@ namespace Asopalav.Areas.Admin.Controllers
 
         public ActionResult GetProductList()
         {
-            /*IEnumerable<ProductListModel>*/
             var prodList = objAsopalavDBEntities.ProductMasters.Where(x => x.IsActive == true).OrderByDescending(x => x.CreationDate).Select(x => new ProductListModel
             {
                 ProductId = x.ProductID,
@@ -297,7 +296,23 @@ namespace Asopalav.Areas.Admin.Controllers
 
         public ActionResult GetImageList()
         {
-            var imageList = Session["Images"];
+            List<DataAccessLayer.Image> imageList = new List<DataAccessLayer.Image>();
+
+            if (Session["Images"] != null)
+            {
+                imageList = ((ICollection<DataAccessLayer.Image>)Session["Images"]).Select(x => new DataAccessLayer.Image
+                {
+                    ImageID = x.ImageID,
+                    ImageName = x.ImageName,
+                    ImagePath = x.ImagePath,
+                    ProductID = x.ProductID
+                }).ToList();
+                Session.Remove("Images");
+            }
+            else
+            {
+                imageList = null;
+            }
             return Json(new { Data = imageList }, JsonRequestBehavior.AllowGet);
         }
     }
