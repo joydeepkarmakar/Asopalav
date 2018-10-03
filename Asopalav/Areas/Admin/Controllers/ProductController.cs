@@ -286,10 +286,20 @@ namespace Asopalav.Areas.Admin.Controllers
                 Description = x.Description
             }).ToList();
 
-            return Json(new
+            if (prodList != null)
             {
-                data = prodList
-            }, JsonRequestBehavior.AllowGet);
+                return Json(new
+                {
+                    data = prodList
+                }, JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                return Json(new
+                {
+                    data = ""
+                }, JsonRequestBehavior.AllowGet);
+            }
         }
 
         //public ActionResult UpdateProduct(ProductListModel objproductListModel)
