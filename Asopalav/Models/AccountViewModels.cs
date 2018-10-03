@@ -61,8 +61,8 @@ namespace Asopalav.Models
         [DisplayName("Alternate Email")]
         public string Secondary_Email { get; set; }
 
-        [Required(ErrorMessage = " Mobile no. is required")]
-        [DisplayName("Mobile No.")]
+        [Required(ErrorMessage = " Mobile# is required")]
+        [DisplayName("Mobile#")]
         [RegularExpression(@"^([0-9]{10})$", ErrorMessage = "Invalid Mobile")]
         public string Mobile { get; set; }
 

@@ -70,6 +70,7 @@ namespace Asopalav.Models
         public ProductListModel()
         {
             this.ImagePaths = new List<ImageModel>();
+            this.CreationDate = DateTime.Now;
         }
         public long ProductId { get; set; }
         [DisplayName("Product Code")]
@@ -99,6 +100,8 @@ namespace Asopalav.Models
                 return String.Format("{0} X {1}", this.HeightInInch, this.WidthInInch);
             }
         }
+
+        public DateTime CreationDate { get; set; }
 
         public List<ImageModel> ImagePaths { get; set; }
     }

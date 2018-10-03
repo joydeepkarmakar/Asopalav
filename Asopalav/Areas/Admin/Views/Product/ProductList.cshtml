@@ -24,12 +24,12 @@
                     </tr>
                 </thead>
             </table>
-            </div>
         </div>
     </div>
+</div>
 
-            @section scripts{
-                <script type="text/javascript">
+@section scripts{
+    <script type="text/javascript">
                     $(document).ready(function () {
                         var prodDataTable = $("#prodTable").DataTable({
                             "ajax": {
@@ -37,7 +37,11 @@
                                 "type": "GET",
                                 "datatype": "json"
                             },
+                            //columnDefs: [
+                            //    { className: "hide", "targets": [0] },
+                            //],
                             "columns": [
+                                //{ "data":"CreationDate"},
                                 { "data": "ProductCode" },
                                 { "data": "ProductName" },
                                 { "data": "Price" },
@@ -54,44 +58,12 @@
                                     "searchable": false,
                                     "sortable": false,
                                     "render": function (data, type, full, meta) {
-                                        //return '<a href="javascript:void(0);" id="editProduct_' + data + '" class="editProduct">Edit</a>';
                                         return '<a href="@Url.Action("Index", "Product")?id=' + data + '" class="editAsset">Edit</a>';
                                     }
                                 }
                             ]
                         });
-
-                        $(document).on("click", "a[id^='editProduct_']", function () {
-                            //to get currently clicked row object
-                            var row = $(this).parents('tr');//$(this).closest('tr');
-                            var data = prodDataTable.row(row[0]).data();
-                            //for row data
-                            //console.log(userDataTable.row(row).data());
-                            UpdateProduct(data);
-                        });
                     });
-
-                    var UpdateProduct = function (data) {
-                        $.ajax({
-                            url: "@Url.Action("UpdateProduct", "Product")",
-                            type: "POST",
-                            data: data,
-                            dataType: "json",
-                            success: function (response) {
-                                if (response.IsSuccess) {
-                                    toastr.success('Success!');
-                                }
-                                else
-                                    toastr.error(response.ErrorMessage);
-                            },
-                            error: function (response) {
-                                toastr.error('Error!');
-                            },
-                            complete: function () {
-                                $("#userModal").modal("hide");
-                            }
-                        });
-                    }
-                </script>
-            }
+    </script>
+}
 

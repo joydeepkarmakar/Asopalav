@@ -90,10 +90,18 @@ namespace Asopalav.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Add(ProductMaster objProductMaster)
         {
+            string errorMessage = string.Empty;
             try
             {
                 if (ModelState.IsValid)
                 {
+                    //if (objProductMaster.ProductID > 0)
+                    //{
+                    //    objProductMaster.ModifyDate = DateTime.Now;
+                    //    objProductMaster.IsActive = false;
+                    //}
+                    //else
+                    //{
                     objProductMaster.CreationDate = DateTime.Now;
                     objAsopalavDBEntities.ProductMasters.Add(objProductMaster);
                     if (imageUrlList != null)
@@ -110,9 +118,22 @@ namespace Asopalav.Areas.Admin.Controllers
                     }
                     objAsopalavDBEntities.SaveChanges();
                     imageUrlList.Clear();
+                    //}
                     TempData["isProductSaved"] = "true";
                     TempData["ProductSaveMsg"] = "Record Saved. (Item Name : " + objProductMaster.ProductCode + " )";
                     return RedirectToAction("Index");
+                }
+                else
+                {
+                    foreach (var item in ModelState.Keys)
+                    {
+                        if (ModelState[item].Errors.Count > 0)
+                        {
+                            errorMessage += ModelState[item].Errors.ToList()[0].ErrorMessage;
+                            TempData["isProductSaved"] = "false";
+                            TempData["ProductSaveMsg"] = errorMessage;
+                        }
+                    }
                 }
             }
             catch (Exception ex)
@@ -249,6 +270,7 @@ namespace Asopalav.Areas.Admin.Controllers
         {
             var prodList = objAsopalavDBEntities.ProductMasters.Where(x => x.IsActive == true).OrderByDescending(x => x.CreationDate).Select(x => new ProductListModel
             {
+                //CreationDate = x.CreationDate,
                 ProductId = x.ProductID,
                 ProductCode = x.ProductCode,
                 ProductName = x.ProductName,
@@ -262,11 +284,6 @@ namespace Asopalav.Areas.Admin.Controllers
                 OfferPrice = x.OfferPrice,
                 IsActive = x.IsActive,
                 Description = x.Description
-                //,ImagePaths= objAsopalavDBEntities.Images.Where(i => i.ProductID == x.ProductID)
-                //                                         .Select(i => new {
-                //                                                            ImageID =i.ImageID,
-
-                //                                                                                }).ToList()
             }).ToList();
 
             return Json(new
@@ -275,24 +292,24 @@ namespace Asopalav.Areas.Admin.Controllers
             }, JsonRequestBehavior.AllowGet);
         }
 
-        public ActionResult UpdateProduct(ProductListModel objproductListModel)
-        {
-            objProductModel.ProductID = objproductListModel.ProductId;
-            objProductModel.ProductCode = objproductListModel.ProductCode;
-            objProductModel.ProductName = objproductListModel.ProductName;
-            //objProductModel.ProductType = objproductListModel.ProductType;
-            objProductModel.ProductTypeID = objproductListModel.ProductTypeId;
-            objProductModel.WeightInGms = objproductListModel.WeightInGms;
-            objProductModel.HeightInInch = objproductListModel.HeightInInch;
-            objProductModel.WidthInInch = objproductListModel.WidthInInch;
-            objProductModel.Price = objproductListModel.Price;
-            objProductModel.IsOffer = objproductListModel.IsOffer;
-            objProductModel.OfferPrice = objproductListModel.OfferPrice;
-            objProductModel.IsActive = objproductListModel.IsActive;
-            objProductModel.Description = objproductListModel.Description;
-            //objProductModel.ImagePath = objproductListModel.ImagePaths;
-            return RedirectToAction("Index", "Product", objProductModel);
-        }
+        //public ActionResult UpdateProduct(ProductListModel objproductListModel)
+        //{
+        //    objProductModel.ProductID = objproductListModel.ProductId;
+        //    objProductModel.ProductCode = objproductListModel.ProductCode;
+        //    objProductModel.ProductName = objproductListModel.ProductName;
+        //    //objProductModel.ProductType = objproductListModel.ProductType;
+        //    objProductModel.ProductTypeID = objproductListModel.ProductTypeId;
+        //    objProductModel.WeightInGms = objproductListModel.WeightInGms;
+        //    objProductModel.HeightInInch = objproductListModel.HeightInInch;
+        //    objProductModel.WidthInInch = objproductListModel.WidthInInch;
+        //    objProductModel.Price = objproductListModel.Price;
+        //    objProductModel.IsOffer = objproductListModel.IsOffer;
+        //    objProductModel.OfferPrice = objproductListModel.OfferPrice;
+        //    objProductModel.IsActive = objproductListModel.IsActive;
+        //    objProductModel.Description = objproductListModel.Description;
+        //    //objProductModel.ImagePath = objproductListModel.ImagePaths;
+        //    return RedirectToAction("Index", "Product", objProductModel);
+        //}
 
         public ActionResult GetImageList()
         {
