@@ -174,8 +174,8 @@
   box-sizing: border-box; }
 
 .dropzone {
-  min-height: 150px;
-  border: 2px solid rgba(0, 0, 0, 0.3);
+    height: 300px;
+  overflow-y: auto;
   background: white;
   padding: 20px 20px; }
   .dropzone.dz-clickable {
@@ -198,7 +198,9 @@
     display: inline-block;
     vertical-align: top;
     margin: 16px;
-    min-height: 100px; }
+    min-height: 100px;
+    top:45px;
+  }
     .dropzone .dz-preview:hover {
       z-index: 1000; }
       .dropzone .dz-preview:hover .dz-details {

@@ -146,14 +146,14 @@ select {
 
 /*Dropzone Div Starts*/
 .dropDiv {
-    height: 150px;
+    height: auto;
     width: 100%;
-    border: 1px solid black;
+    border: 1px solid #cccccc;
     position: relative;
 }
 
 .drophyperspan {
-    background: blue;
+    background: #fff;
     opacity: .3;
     position: absolute;
     width: 100%;
