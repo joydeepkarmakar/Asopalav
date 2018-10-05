@@ -135,7 +135,7 @@ $(document).ready(function () {
 
             var thisDropZone = this;
             $.getJSON("/Admin/Product/GetImageList").done(function (data) {
-                if (data.Data != '') {
+                if (data.Data != '' && data.Data != null) {
 
                     $.each(data.Data, function (index, item) {
                         //// Create the mock file:
@@ -143,7 +143,7 @@ $(document).ready(function () {
                             name: item.ImageName,
                             size: 12345
                         };
-                        
+
                         // Call the default addedfile event handler
                         thisDropZone.emit("addedfile", mockFile);
 
