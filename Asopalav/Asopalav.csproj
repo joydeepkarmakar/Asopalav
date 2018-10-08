@@ -547,7 +547,7 @@
     <Content Include="Views\Silverware\BedroomSet.cshtml" />
     <Content Include="Views\Silverware\FruitBowl.cshtml" />
     <Content Include="Views\Silverware\KnifeForkSpoons.cshtml" />
-    <Content Include="Views\Home\SeachResult.cshtml" />
+    <Content Include="Views\Home\SearchResult.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

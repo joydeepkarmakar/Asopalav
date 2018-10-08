@@ -169,14 +169,15 @@ namespace Asopalav.Controllers
             return Json(itemList, JsonRequestBehavior.AllowGet);
         }
 
-        [Route("~/Seach")]
-        public ActionResult SeachResult(string prefix)
+        [Route("~/Search")]
+        public ActionResult SearchResult(string prefix)
         {
             objDashboardModel.objSearchProducts_Result = objAsopalavDBEntities.SearchProducts(prefix, (string)Session["CurrentCurrency"] ?? "", (string)Session["DollarRate"] ?? "").ToList();
-            objDashboardModel.ProductListPage = "SeachResult";
+            objDashboardModel.ProductListPage = "SearchResult";
             return View(objDashboardModel);
         }
 
+        #region MailHelperMethods
         private bool SendAcknowledgementMail(string emailId)
         {
             bool IsSendMail = false;
@@ -223,8 +224,10 @@ namespace Asopalav.Controllers
             }
 
             return IsSendMail;
-        }
+        } 
+        #endregion
 
+        #region Dollar INR Conversion
         private string GetDollarToRupeeVal(string url)
         {
             var jsonData = JsonHelper.ReturnJsonData(url);
@@ -250,6 +253,7 @@ namespace Asopalav.Controllers
         {
             GetSilverPriceSoapClient client = new GetSilverPriceSoapClient();
             return client.GetCurrentSilverPrice(ConfigurationManager.AppSettings["GoldSilverDailyRateUid"], ConfigurationManager.AppSettings["GoldSilverDailyRatePwd"]);
-        }
+        } 
+        #endregion
     }
 }

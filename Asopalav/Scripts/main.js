@@ -335,17 +335,16 @@ $(document).ready(function () {
             },
             minLength: 2,
             select: function (event, ui) {
-                var vll = ui.item.val;
-                var sts = "no";
+                //var vll = ui.item.val;
+                //var sts = "no";
                 //var url = '/Home/SeachResult?prefix=' + stxt; // ur own conditions  
-                var url = '/Seach?prefix=' + stxt;
+                var url = '/Search?prefix=' + stxt;
                 $(location).attr('href', url);
                 $('#txtSearch').val(stxt);
             }
         });
         if (event.keyCode == 13) { // this event fired when enter is pressed  
-            //var url = '/Home/SeachResult?prefix=' + stxt; // ur own conditions  
-            var url = '/Seach?prefix=' + stxt;
+            var url = '/Search?prefix=' + stxt;
             $(location).attr('href', url);
             $('#txtSearch').val(stxt);
             return false;
@@ -354,11 +353,14 @@ $(document).ready(function () {
 
     $('#btnSearch').click(function () { //  this event fired on button click  
         stxt = $('#txtSearch').val();
-        //var url = '/Home/SeachResult?prefix=' + stxt; // ur own conditions  
-        var url = '/Seach?prefix=' + stxt;
+        var url = '/Search?prefix=' + stxt;
         $(location).attr('href', url);
-        //window.location.href = url;
         $('#txtSearch').val(stxt);
+    });
+
+    /*Newsletter*/
+    $('#btnHomePageSignup').click(function () {
+        alert("hi");
     });
 
 });
