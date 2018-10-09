@@ -324,6 +324,9 @@
     <Content Include="Content\images\logo_back-bg.gif" />
     <Content Include="Content\images\logo_thumb.GIF" />
     <Content Include="Content\images\mov_bbb.mp4" />
+    <Content Include="Content\images\navaratri1.jpg" />
+    <Content Include="Content\images\navaratri2.jpg" />
+    <Content Include="Content\images\navaratri3.jpg" />
     <Content Include="Content\images\no-magento-product-found.jpg" />
     <Content Include="Content\images\no-product-image.jpg" />
     <Content Include="Content\images\original\01_b_car.jpg" />
@@ -370,6 +373,12 @@
     <Content Include="Content\images\product-image\3_zoom_4.jpg" />
     <Content Include="Content\images\product-image\test_standard.jpg" />
     <Content Include="Content\images\product-image\test_zoom.jpg" />
+    <Content Include="Content\images\pt-1.jpg" />
+    <Content Include="Content\images\pt-13.jpg" />
+    <Content Include="Content\images\pt-14.jpg" />
+    <Content Include="Content\images\pt-16.jpg" />
+    <Content Include="Content\images\pt-4.jpg" />
+    <Content Include="Content\images\pt-6.jpg" />
     <Content Include="Content\images\rakbank.png" />
     <Content Include="Content\images\ShreeHari.gif" />
     <Content Include="Content\images\shukran.png" />
