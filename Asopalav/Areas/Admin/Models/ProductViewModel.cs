@@ -26,11 +26,12 @@ namespace Asopalav.Models
         [DisplayName("Weight(Gram)")]
         public decimal WeightInGms { get; set; }
 
-        [Required(ErrorMessage = "Product Dimension is required")]
-        [DisplayName("Height X Width(Inch)")]
+        //[Required(ErrorMessage = "Product Dimension is required")]
+        //[DisplayName("Height X Width(Inch)")]
         public string HeightInInch { get; set; }
         public string WidthInInch { get; set; }
 
+        [Required(ErrorMessage = "Price is required")]
         public decimal Price { get; set; }
 
         [DisplayName("Set Offer")]
