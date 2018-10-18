@@ -8,6 +8,10 @@ namespace Asopalav.Models
 {
     public class ProductModel
     {
+        public ProductModel()
+        {
+            this.Images = new HashSet<DataAccessLayer.Image>();
+        }
         public long ProductID { get; set; }
 
         [Required(ErrorMessage = "Product Code is required")]
@@ -22,12 +26,12 @@ namespace Asopalav.Models
         [DisplayName("Product Type")]
         public int? ProductTypeID { get; set; }
 
-        [Required(ErrorMessage = "Product Weight is required")]
+        //[Required(ErrorMessage = "Product Weight is required")]
         [DisplayName("Weight(Gram)")]
         public decimal WeightInGms { get; set; }
 
         //[Required(ErrorMessage = "Product Dimension is required")]
-        //[DisplayName("Height X Width(Inch)")]
+        [DisplayName("Height X Width(Inch)")]
         public string HeightInInch { get; set; }
         public string WidthInInch { get; set; }
 
@@ -53,10 +57,37 @@ namespace Asopalav.Models
 
         public DateTime? ModifyDate { get; set; }
 
+        [DisplayName("Set Occasion")]
+        public int? OccasionId { get; set; }
+        [DisplayName("Offer Start Date")]
+        public DateTime? OfferStartDate { get; set; }
+        [DisplayName("Offer End Date")]
+        public DateTime? OfferEndDate { get; set; }
+        [DisplayName("Making Charge Percentage")]
+        [RegularExpression(@"\d+(\.\d{1,2})?", ErrorMessage = "Invalid Entry")]
+        public decimal? MakingChargePercentage { get; set; }
+        [DisplayName("Making Charge")]
+        [RegularExpression(@"\d+(\.\d{1,2})?", ErrorMessage = "Invalid Entry")]
+        public decimal? MakingCharge { get; set; }
+        [DisplayName("Set Making Charge Offer")]
+        public bool IsMakingChargePercentage { get; set; }
+        [DisplayName("Set Metal")]
+        public int? MetalVariantId { get; set; }
+        [DisplayName("Set Gem")]
+        public int? GemVariantId { get; set; }
+        public decimal? MetalWeightInGms { get; set; }
+        public decimal? GemWeightInGms { get; set; }
+        public decimal? MetalPrice { get; set; }
+        public decimal? GemPrice { get; set; }
+        //[RegularExpression(@"\d+(\.\d{1,2})?", ErrorMessage = "Invalid price")]
+
         public List<SelectListItem> ProductType { get; set; }
         public Dictionary<string, string> ImageDetailsList { get; set; }
-
         public List<string> ImagePathList { get; set; }
+        public virtual ICollection<DataAccessLayer.Image> Images { get; set; }
+        public List<SelectListItem> OccasionMaster { get; set; }
+        public List<SelectListItem> GemVariant { get; set; }
+        public List<SelectListItem> MetalVariant { get; set; }
     }
 
     public class ProductTypeModel
@@ -89,7 +120,7 @@ namespace Asopalav.Models
         [DisplayName("Set Offer")]
         public bool IsOffer { get; set; }
         public decimal? OfferPrice { get; set; }
-        
+
         [DisplayName("Set Active")]
         public bool IsActive { get; set; }
         public string Description { get; set; }
@@ -112,5 +143,6 @@ namespace Asopalav.Models
         public int ImageID { get; set; }
         public string ImageName { get; set; }
         public string ImagePath { get; set; }
+        public long? ProductID { get; set; }
     }
 }

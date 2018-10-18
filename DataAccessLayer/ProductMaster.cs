@@ -35,11 +35,22 @@ namespace DataAccessLayer
         public string Description { get; set; }
         public System.DateTime CreationDate { get; set; }
         public Nullable<System.DateTime> ModifyDate { get; set; }
+        public Nullable<int> OccasionId { get; set; }
+        public Nullable<System.DateTime> OfferStartDate { get; set; }
+        public Nullable<System.DateTime> OfferEndDate { get; set; }
+        public Nullable<decimal> MakingChargePercentage { get; set; }
+        public Nullable<decimal> MakingCharge { get; set; }
+        public bool IsMakingChargePercentage { get; set; }
+        public Nullable<int> MetalVariantId { get; set; }
+        public Nullable<int> GemVariantId { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Image> Images { get; set; }
         public virtual ProductTypeMaster ProductTypeMaster { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<OrderDetail> OrderDetails { get; set; }
+        public virtual GemVariant GemVariant { get; set; }
+        public virtual MetalVariant MetalVariant { get; set; }
+        public virtual OccasionMaster OccasionMaster { get; set; }
     }
 }

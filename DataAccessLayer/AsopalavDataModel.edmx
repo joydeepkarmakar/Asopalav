@@ -29,6 +29,20 @@
           <Property Name="FeedbackMessage" Type="nvarchar" MaxLength="1000" Nullable="false" />
           <Property Name="FeedbackDate" Type="datetime" Nullable="false" />
         </EntityType>
+        <EntityType Name="GemVariant">
+          <Key>
+            <PropertyRef Name="GemVariantId" />
+          </Key>
+          <Property Name="GemVariantId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="500" />
+          <Property Name="Carat" Type="int" />
+          <Property Name="Weight" Type="decimal" Precision="9" Scale="2" />
+          <Property Name="Price" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="CreatedOn" Type="datetime" />
+          <Property Name="ModifiedOn" Type="datetime" />
+        </EntityType>
         <EntityType Name="Images">
           <Key>
             <PropertyRef Name="ImageID" />
@@ -57,6 +71,40 @@
           <Property Name="MenuTarget" Type="nvarchar" MaxLength="100" />
           <Property Name="ParentMenuID" Type="int" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MetalVariant">
+          <Key>
+            <PropertyRef Name="MetalVariantId" />
+          </Key>
+          <Property Name="MetalVariantId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="Specification" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="Carat" Type="int" Nullable="false" />
+          <Property Name="UnitValueInGms" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="UnitSellPrice" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="UnitBuyPrice" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="CreatedOn" Type="datetime" />
+          <Property Name="ModifiedOn" Type="datetime" />
+        </EntityType>
+        <EntityType Name="NewsLetterMaster">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" Nullable="false" />
+          <Property Name="EmailId" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="SubscriptionDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OccasionMaster">
+          <Key>
+            <PropertyRef Name="OccasionId" />
+          </Key>
+          <Property Name="OccasionId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Occasion" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="CreatedOn" Type="datetime" />
+          <Property Name="ModifiedOn" Type="datetime" />
         </EntityType>
         <EntityType Name="OrderDetails">
           <Key>
@@ -94,6 +142,14 @@
           <Property Name="Description" Type="varchar(max)" Nullable="false" />
           <Property Name="CreationDate" Type="datetime" Nullable="false" />
           <Property Name="ModifyDate" Type="datetime" />
+          <Property Name="OccasionId" Type="int" />
+          <Property Name="OfferStartDate" Type="datetime" />
+          <Property Name="OfferEndDate" Type="datetime" />
+          <Property Name="MakingChargePercentage" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="MakingCharge" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="IsMakingChargePercentage" Type="bit" Nullable="false" />
+          <Property Name="MetalVariantId" Type="int" />
+          <Property Name="GemVariantId" Type="int" />
         </EntityType>
         <EntityType Name="ProductTypeMaster">
           <Key>
@@ -227,6 +283,42 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_ProductMaster_GemVariant">
+          <End Role="GemVariant" Type="Self.GemVariant" Multiplicity="0..1" />
+          <End Role="ProductMaster" Type="Self.ProductMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GemVariant">
+              <PropertyRef Name="GemVariantId" />
+            </Principal>
+            <Dependent Role="ProductMaster">
+              <PropertyRef Name="GemVariantId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductMaster_MetalVariant">
+          <End Role="MetalVariant" Type="Self.MetalVariant" Multiplicity="0..1" />
+          <End Role="ProductMaster" Type="Self.ProductMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MetalVariant">
+              <PropertyRef Name="MetalVariantId" />
+            </Principal>
+            <Dependent Role="ProductMaster">
+              <PropertyRef Name="MetalVariantId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductMaster_OccasionMaster">
+          <End Role="OccasionMaster" Type="Self.OccasionMaster" Multiplicity="0..1" />
+          <End Role="ProductMaster" Type="Self.ProductMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OccasionMaster">
+              <PropertyRef Name="OccasionId" />
+            </Principal>
+            <Dependent Role="ProductMaster">
+              <PropertyRef Name="OccasionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_ProductMaster_ProductTypeMaster">
           <End Role="ProductTypeMaster" Type="Self.ProductTypeMaster" Multiplicity="0..1" />
           <End Role="ProductMaster" Type="Self.ProductMaster" Multiplicity="*" />
@@ -276,7 +368,14 @@
           <Parameter Name="OfferPrice" Type="decimal" Mode="In" />
           <Parameter Name="IsActive" Type="bit" Mode="In" />
           <Parameter Name="Description" Type="varchar(max)" Mode="In" />
-          <Parameter Name="ModifyDate" Type="datetime" Mode="In" />
+          <Parameter Name="OccasionId" Type="int" Mode="In" />
+          <Parameter Name="OfferStartDate" Type="datetime" Mode="In" />
+          <Parameter Name="OfferEndDate" Type="datetime" Mode="In" />
+          <Parameter Name="MakingChargePercentage" Type="decimal" Mode="In" />
+          <Parameter Name="MakingCharge" Type="decimal" Mode="In" />
+          <Parameter Name="IsMakingChargePercentage" Type="bit" Mode="In" />
+          <Parameter Name="MetalVariantId" Type="int" Mode="In" />
+          <Parameter Name="GemVariantId" Type="int" Mode="In" />
         </Function>
         <Function Name="AddUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Primary_Email" Type="varchar" Mode="In" />
@@ -327,9 +426,13 @@
         <EntityContainer Name="AsopalavDBModelStoreContainer">
           <EntitySet Name="CartDetails" EntityType="Self.CartDetails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="FeedbackMaster" EntityType="Self.FeedbackMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GemVariant" EntityType="Self.GemVariant" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Images" EntityType="Self.Images" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MarketTracker" EntityType="Self.MarketTracker" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MenuMaster" EntityType="Self.MenuMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MetalVariant" EntityType="Self.MetalVariant" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NewsLetterMaster" EntityType="Self.NewsLetterMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OccasionMaster" EntityType="Self.OccasionMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="OrderDetails" EntityType="Self.OrderDetails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Orders" EntityType="Self.Orders" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProductMaster" EntityType="Self.ProductMaster" Schema="dbo" store:Type="Tables" />
@@ -357,6 +460,18 @@
           <AssociationSet Name="FK_Orders_UserProfileMaster" Association="Self.FK_Orders_UserProfileMaster">
             <End Role="UserProfileMaster" EntitySet="UserProfileMaster" />
             <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductMaster_GemVariant" Association="Self.FK_ProductMaster_GemVariant">
+            <End Role="GemVariant" EntitySet="GemVariant" />
+            <End Role="ProductMaster" EntitySet="ProductMaster" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductMaster_MetalVariant" Association="Self.FK_ProductMaster_MetalVariant">
+            <End Role="MetalVariant" EntitySet="MetalVariant" />
+            <End Role="ProductMaster" EntitySet="ProductMaster" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductMaster_OccasionMaster" Association="Self.FK_ProductMaster_OccasionMaster">
+            <End Role="OccasionMaster" EntitySet="OccasionMaster" />
+            <End Role="ProductMaster" EntitySet="ProductMaster" />
           </AssociationSet>
           <AssociationSet Name="FK_ProductMaster_ProductTypeMaster" Association="Self.FK_ProductMaster_ProductTypeMaster">
             <End Role="ProductTypeMaster" EntitySet="ProductTypeMaster" />
@@ -517,7 +632,14 @@
             <Parameter Name="OfferPrice" Mode="In" Type="Decimal" />
             <Parameter Name="IsActive" Mode="In" Type="Boolean" />
             <Parameter Name="Description" Mode="In" Type="String" />
-            <Parameter Name="ModifyDate" Mode="In" Type="DateTime" />
+            <Parameter Name="OccasionId" Mode="In" Type="Int32" />
+            <Parameter Name="OfferStartDate" Mode="In" Type="DateTime" />
+            <Parameter Name="OfferEndDate" Mode="In" Type="DateTime" />
+            <Parameter Name="MakingChargePercentage" Mode="In" Type="Decimal" />
+            <Parameter Name="MakingCharge" Mode="In" Type="Decimal" />
+            <Parameter Name="IsMakingChargePercentage" Mode="In" Type="Boolean" />
+            <Parameter Name="MetalVariantId" Mode="In" Type="Int32" />
+            <Parameter Name="GemVariantId" Mode="In" Type="Int32" />
           </FunctionImport>
           <EntitySet Name="FeedbackMasters" EntityType="AsopalavDBModel.FeedbackMaster" />
           <EntitySet Name="Images" EntityType="AsopalavDBModel.Image" />
@@ -576,6 +698,22 @@
             <Parameter Name="CurrentCurrency" Mode="In" Type="String" />
             <Parameter Name="ConversionRate" Mode="In" Type="String" />
           </FunctionImport>
+          <EntitySet Name="GemVariants" EntityType="AsopalavDBModel.GemVariant" />
+          <EntitySet Name="MetalVariants" EntityType="AsopalavDBModel.MetalVariant" />
+          <EntitySet Name="NewsLetterMasters" EntityType="AsopalavDBModel.NewsLetterMaster" />
+          <EntitySet Name="OccasionMasters" EntityType="AsopalavDBModel.OccasionMaster" />
+          <AssociationSet Name="FK_ProductMaster_GemVariant" Association="AsopalavDBModel.FK_ProductMaster_GemVariant">
+            <End Role="GemVariant" EntitySet="GemVariants" />
+            <End Role="ProductMaster" EntitySet="ProductMasters" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductMaster_MetalVariant" Association="AsopalavDBModel.FK_ProductMaster_MetalVariant">
+            <End Role="MetalVariant" EntitySet="MetalVariants" />
+            <End Role="ProductMaster" EntitySet="ProductMasters" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductMaster_OccasionMaster" Association="AsopalavDBModel.FK_ProductMaster_OccasionMaster">
+            <End Role="OccasionMaster" EntitySet="OccasionMasters" />
+            <End Role="ProductMaster" EntitySet="ProductMasters" />
+          </AssociationSet>
         </EntityContainer>
         <ComplexType Name="ValidateUserAndMenu_Result">
           <Property Type="Boolean" Name="IsLoginValid" Nullable="true" />
@@ -625,6 +763,17 @@
           <NavigationProperty Name="Images" Relationship="AsopalavDBModel.FK_Images_ProductMaster" FromRole="ProductMaster" ToRole="Image" />
           <NavigationProperty Name="ProductTypeMaster" Relationship="AsopalavDBModel.FK_ProductMaster_ProductTypeMaster" FromRole="ProductMaster" ToRole="ProductTypeMaster" />
           <NavigationProperty Name="OrderDetails" Relationship="AsopalavDBModel.FK_OrderDetails_ProductMaster" FromRole="ProductMaster" ToRole="OrderDetail" />
+          <Property Name="OccasionId" Type="Int32" />
+          <Property Name="OfferStartDate" Type="DateTime" Precision="3" />
+          <Property Name="OfferEndDate" Type="DateTime" Precision="3" />
+          <Property Name="MakingChargePercentage" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="MakingCharge" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="IsMakingChargePercentage" Type="Boolean" Nullable="false" />
+          <Property Name="MetalVariantId" Type="Int32" />
+          <Property Name="GemVariantId" Type="Int32" />
+          <NavigationProperty Name="GemVariant" Relationship="AsopalavDBModel.FK_ProductMaster_GemVariant" FromRole="ProductMaster" ToRole="GemVariant" />
+          <NavigationProperty Name="MetalVariant" Relationship="AsopalavDBModel.FK_ProductMaster_MetalVariant" FromRole="ProductMaster" ToRole="MetalVariant" />
+          <NavigationProperty Name="OccasionMaster" Relationship="AsopalavDBModel.FK_ProductMaster_OccasionMaster" FromRole="ProductMaster" ToRole="OccasionMaster" />
         </EntityType>
         <Association Name="FK_Images_ProductMaster">
           <End Type="AsopalavDBModel.ProductMaster" Role="ProductMaster" Multiplicity="0..1" />
@@ -819,6 +968,93 @@
           <Property Type="String" Name="ImageName" Nullable="false" MaxLength="500" />
           <Property Type="String" Name="ImagePath" Nullable="false" />
         </ComplexType>
+        <EntityType Name="GemVariant">
+          <Key>
+            <PropertyRef Name="GemVariantId" />
+          </Key>
+          <Property Name="GemVariantId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Carat" Type="Int32" />
+          <Property Name="Weight" Type="Decimal" Precision="9" Scale="2" />
+          <Property Name="Price" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="ProductMasters" Relationship="AsopalavDBModel.FK_ProductMaster_GemVariant" FromRole="GemVariant" ToRole="ProductMaster" />
+        </EntityType>
+        <EntityType Name="MetalVariant">
+          <Key>
+            <PropertyRef Name="MetalVariantId" />
+          </Key>
+          <Property Name="MetalVariantId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="Specification" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="Carat" Type="Int32" Nullable="false" />
+          <Property Name="UnitValueInGms" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="UnitSellPrice" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="UnitBuyPrice" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="ProductMasters" Relationship="AsopalavDBModel.FK_ProductMaster_MetalVariant" FromRole="MetalVariant" ToRole="ProductMaster" />
+        </EntityType>
+        <EntityType Name="NewsLetterMaster">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" />
+          <Property Name="EmailId" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="SubscriptionDate" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="OccasionMaster">
+          <Key>
+            <PropertyRef Name="OccasionId" />
+          </Key>
+          <Property Name="OccasionId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Occasion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="ProductMasters" Relationship="AsopalavDBModel.FK_ProductMaster_OccasionMaster" FromRole="OccasionMaster" ToRole="ProductMaster" />
+        </EntityType>
+        <Association Name="FK_ProductMaster_GemVariant">
+          <End Type="AsopalavDBModel.GemVariant" Role="GemVariant" Multiplicity="0..1" />
+          <End Type="AsopalavDBModel.ProductMaster" Role="ProductMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GemVariant">
+              <PropertyRef Name="GemVariantId" />
+            </Principal>
+            <Dependent Role="ProductMaster">
+              <PropertyRef Name="GemVariantId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductMaster_MetalVariant">
+          <End Type="AsopalavDBModel.MetalVariant" Role="MetalVariant" Multiplicity="0..1" />
+          <End Type="AsopalavDBModel.ProductMaster" Role="ProductMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MetalVariant">
+              <PropertyRef Name="MetalVariantId" />
+            </Principal>
+            <Dependent Role="ProductMaster">
+              <PropertyRef Name="MetalVariantId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductMaster_OccasionMaster">
+          <End Type="AsopalavDBModel.OccasionMaster" Role="OccasionMaster" Multiplicity="0..1" />
+          <End Type="AsopalavDBModel.ProductMaster" Role="ProductMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OccasionMaster">
+              <PropertyRef Name="OccasionId" />
+            </Principal>
+            <Dependent Role="ProductMaster">
+              <PropertyRef Name="OccasionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -949,6 +1185,14 @@
           <EntitySetMapping Name="ProductMasters">
             <EntityTypeMapping TypeName="AsopalavDBModel.ProductMaster">
               <MappingFragment StoreEntitySet="ProductMaster">
+                <ScalarProperty Name="GemVariantId" ColumnName="GemVariantId" />
+                <ScalarProperty Name="MetalVariantId" ColumnName="MetalVariantId" />
+                <ScalarProperty Name="IsMakingChargePercentage" ColumnName="IsMakingChargePercentage" />
+                <ScalarProperty Name="MakingCharge" ColumnName="MakingCharge" />
+                <ScalarProperty Name="MakingChargePercentage" ColumnName="MakingChargePercentage" />
+                <ScalarProperty Name="OfferEndDate" ColumnName="OfferEndDate" />
+                <ScalarProperty Name="OfferStartDate" ColumnName="OfferStartDate" />
+                <ScalarProperty Name="OccasionId" ColumnName="OccasionId" />
                 <ScalarProperty Name="ModifyDate" ColumnName="ModifyDate" />
                 <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
@@ -1096,6 +1340,58 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <EntitySetMapping Name="GemVariants">
+            <EntityTypeMapping TypeName="AsopalavDBModel.GemVariant">
+              <MappingFragment StoreEntitySet="GemVariant">
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Weight" ColumnName="Weight" />
+                <ScalarProperty Name="Carat" ColumnName="Carat" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="GemVariantId" ColumnName="GemVariantId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MetalVariants">
+            <EntityTypeMapping TypeName="AsopalavDBModel.MetalVariant">
+              <MappingFragment StoreEntitySet="MetalVariant">
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="UnitBuyPrice" ColumnName="UnitBuyPrice" />
+                <ScalarProperty Name="UnitSellPrice" ColumnName="UnitSellPrice" />
+                <ScalarProperty Name="UnitValueInGms" ColumnName="UnitValueInGms" />
+                <ScalarProperty Name="Carat" ColumnName="Carat" />
+                <ScalarProperty Name="Specification" ColumnName="Specification" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="MetalVariantId" ColumnName="MetalVariantId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NewsLetterMasters">
+            <EntityTypeMapping TypeName="AsopalavDBModel.NewsLetterMaster">
+              <MappingFragment StoreEntitySet="NewsLetterMaster">
+                <ScalarProperty Name="SubscriptionDate" ColumnName="SubscriptionDate" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="EmailId" ColumnName="EmailId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OccasionMasters">
+            <EntityTypeMapping TypeName="AsopalavDBModel.OccasionMaster">
+              <MappingFragment StoreEntitySet="OccasionMaster">
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Occasion" ColumnName="Occasion" />
+                <ScalarProperty Name="OccasionId" ColumnName="OccasionId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

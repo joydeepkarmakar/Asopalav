@@ -59,7 +59,7 @@
                                     </ul>
                                 </div>
                                 <div class="tab-content active" id="desc">
-                                    <p>@(Model.objProductMaster.Description ?? "NA")</p>
+                                    <p style="white-space: pre-line;">@(Model.objProductMaster.Description ?? "NA")</p>
                                     <p>Weight(Gms): @(Model.objProductMaster.WeightInGms.ToString("0.00") ?? "NA")</p>
                                     <p>Height(Inch): @(Model.objProductMaster.HeightInInch ?? "NA")</p>
                                     <p>Width(Inch): @(Model.objProductMaster.WidthInInch ?? "NA")</p>

@@ -43,7 +43,7 @@ namespace Asopalav.Controllers
                 ValidateUserAndMenu_Result objValidateUserAndMenu_Result = new ValidateUserAndMenu_Result();
                 objValidateUserAndMenu_Result = objAsopalavDBEntities.ValidateUserAndMenu(model.Email, model.Password).FirstOrDefault();
 
-                if (objValidateUserAndMenu_Result.IsLoginValid)
+                if (objValidateUserAndMenu_Result.IsLoginValid == true)
                 {
                     Session["IsLoginValid"] = true;
                     Session["UserFirstName"] = objValidateUserAndMenu_Result.UserFirstName;

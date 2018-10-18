@@ -40,6 +40,10 @@ namespace DataAccessLayer
         public virtual DbSet<OrderDetail> OrderDetails { get; set; }
         public virtual DbSet<Order> Orders { get; set; }
         public virtual DbSet<CartDetail> CartDetails { get; set; }
+        public virtual DbSet<GemVariant> GemVariants { get; set; }
+        public virtual DbSet<MetalVariant> MetalVariants { get; set; }
+        public virtual DbSet<NewsLetterMaster> NewsLetterMasters { get; set; }
+        public virtual DbSet<OccasionMaster> OccasionMasters { get; set; }
     
         public virtual int AddUser(string primary_Email, string password, string user_Fname, string user_Mname, string user_Lname, string secondary_Email, string mobile, string alternate_Mobile, string gender, Nullable<System.DateTime> user_DOB, Nullable<System.DateTime> user_Anniversary)
         {
@@ -103,7 +107,7 @@ namespace DataAccessLayer
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ValidateUserAndMenu_Result>("ValidateUserAndMenu", userNameParameter, passwordParameter);
         }
     
-        public virtual int AddUpdateProduct(Nullable<long> productID, string productCode, string productName, Nullable<int> productTypeID, Nullable<decimal> weightInGms, string heightInInch, string widthInInch, Nullable<decimal> price, Nullable<bool> isOffer, Nullable<decimal> offerPrice, Nullable<bool> isActive, string description, Nullable<System.DateTime> modifyDate)
+        public virtual int AddUpdateProduct(Nullable<long> productID, string productCode, string productName, Nullable<int> productTypeID, Nullable<decimal> weightInGms, string heightInInch, string widthInInch, Nullable<decimal> price, Nullable<bool> isOffer, Nullable<decimal> offerPrice, Nullable<bool> isActive, string description, Nullable<int> occasionId, Nullable<System.DateTime> offerStartDate, Nullable<System.DateTime> offerEndDate, Nullable<decimal> makingChargePercentage, Nullable<decimal> makingCharge, Nullable<bool> isMakingChargePercentage, Nullable<int> metalVariantId, Nullable<int> gemVariantId)
         {
             var productIDParameter = productID.HasValue ?
                 new ObjectParameter("ProductID", productID) :
@@ -153,11 +157,39 @@ namespace DataAccessLayer
                 new ObjectParameter("Description", description) :
                 new ObjectParameter("Description", typeof(string));
     
-            var modifyDateParameter = modifyDate.HasValue ?
-                new ObjectParameter("ModifyDate", modifyDate) :
-                new ObjectParameter("ModifyDate", typeof(System.DateTime));
+            var occasionIdParameter = occasionId.HasValue ?
+                new ObjectParameter("OccasionId", occasionId) :
+                new ObjectParameter("OccasionId", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AddUpdateProduct", productIDParameter, productCodeParameter, productNameParameter, productTypeIDParameter, weightInGmsParameter, heightInInchParameter, widthInInchParameter, priceParameter, isOfferParameter, offerPriceParameter, isActiveParameter, descriptionParameter, modifyDateParameter);
+            var offerStartDateParameter = offerStartDate.HasValue ?
+                new ObjectParameter("OfferStartDate", offerStartDate) :
+                new ObjectParameter("OfferStartDate", typeof(System.DateTime));
+    
+            var offerEndDateParameter = offerEndDate.HasValue ?
+                new ObjectParameter("OfferEndDate", offerEndDate) :
+                new ObjectParameter("OfferEndDate", typeof(System.DateTime));
+    
+            var makingChargePercentageParameter = makingChargePercentage.HasValue ?
+                new ObjectParameter("MakingChargePercentage", makingChargePercentage) :
+                new ObjectParameter("MakingChargePercentage", typeof(decimal));
+    
+            var makingChargeParameter = makingCharge.HasValue ?
+                new ObjectParameter("MakingCharge", makingCharge) :
+                new ObjectParameter("MakingCharge", typeof(decimal));
+    
+            var isMakingChargePercentageParameter = isMakingChargePercentage.HasValue ?
+                new ObjectParameter("IsMakingChargePercentage", isMakingChargePercentage) :
+                new ObjectParameter("IsMakingChargePercentage", typeof(bool));
+    
+            var metalVariantIdParameter = metalVariantId.HasValue ?
+                new ObjectParameter("MetalVariantId", metalVariantId) :
+                new ObjectParameter("MetalVariantId", typeof(int));
+    
+            var gemVariantIdParameter = gemVariantId.HasValue ?
+                new ObjectParameter("GemVariantId", gemVariantId) :
+                new ObjectParameter("GemVariantId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AddUpdateProduct", productIDParameter, productCodeParameter, productNameParameter, productTypeIDParameter, weightInGmsParameter, heightInInchParameter, widthInInchParameter, priceParameter, isOfferParameter, offerPriceParameter, isActiveParameter, descriptionParameter, occasionIdParameter, offerStartDateParameter, offerEndDateParameter, makingChargePercentageParameter, makingChargeParameter, isMakingChargePercentageParameter, metalVariantIdParameter, gemVariantIdParameter);
         }
     
         public virtual ObjectResult<GetDollarSilverRate_Result> GetDollarSilverRate()

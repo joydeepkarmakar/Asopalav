@@ -72,6 +72,9 @@
     <Compile Include="FeedbackMaster.cs">
       <DependentUpon>AsopalavDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="GemVariant.cs">
+      <DependentUpon>AsopalavDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="GetDollarSilverRate_Result.cs">
       <DependentUpon>AsopalavDataModel.tt</DependentUpon>
     </Compile>
@@ -91,6 +94,15 @@
       <DependentUpon>AsopalavDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="MenuMaster.cs">
+      <DependentUpon>AsopalavDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MetalVariant.cs">
+      <DependentUpon>AsopalavDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="NewsLetterMaster.cs">
+      <DependentUpon>AsopalavDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OccasionMaster.cs">
       <DependentUpon>AsopalavDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Order.cs">

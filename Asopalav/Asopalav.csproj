@@ -390,6 +390,13 @@
     <Content Include="Content\images\thumbs\02_o_car.jpg" />
     <Content Include="Content\images\thumbs\03_r_car.jpg" />
     <Content Include="Content\images\thumbs\04_g_car.jpg" />
+    <Content Include="Content\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\images\ui-icons_444444_256x240.png" />
+    <Content Include="Content\images\ui-icons_555555_256x240.png" />
+    <Content Include="Content\images\ui-icons_777620_256x240.png" />
+    <Content Include="Content\images\ui-icons_777777_256x240.png" />
+    <Content Include="Content\images\ui-icons_cc0000_256x240.png" />
+    <Content Include="Content\images\ui-icons_ffffff_256x240.png" />
     <Content Include="Content\jquery-ui.structure.css" />
     <Content Include="Content\jquery-ui.theme.css" />
     <Content Include="Content\jquery.dataTables.min.css" />
@@ -500,6 +507,7 @@
     </Compile>
     <Compile Include="Controllers\CartDetailsController.cs" />
     <Compile Include="Controllers\SilverwareController.cs" />
+    <Compile Include="Helpers\ConversionHelper.cs" />
     <Compile Include="Helpers\ImageHelper.cs" />
     <Compile Include="Helpers\JsonHelper.cs" />
     <Compile Include="Helpers\MailHelper.cs" />

@@ -5,7 +5,12 @@
     </a>
 </p>
 
-@using (Html.BeginForm("Add", "Product", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+@{
+    var goldPrice = Session["GoldRate"];
+    var silverPrice = Session["SilverRate"];
+}
+
+@using (Html.BeginForm(new { @class = "form-horizontal", role = "form" }))
 {
     @Html.AntiForgeryToken()
 
@@ -17,12 +22,38 @@
         <div class="row" id="input-width">
             <div class="col-xs-12 col-sm-6">
                 <div class="form-group">
-                    @Html.LabelFor(m => m.ProductCode, new { @class = "col-sm-4 control-label" })
-                    <div class="col-sm-8">
-                        @Html.TextBoxFor(m => m.ProductCode, new { @class = "form-control", @readonly = "readonly" })
-                        @Html.ValidationMessageFor(m => m.ProductCode, "", new { @style = "color:red" })
+                    @Html.LabelFor(m => m.MetalVariantId, new { @class = "col-sm-4 control-label" })
+                    <div class="col-sm-8 pro-ad">
+                        @Html.DropDownListFor(m => m.MetalVariantId, (SelectList)ViewBag.MetalList, "Choose...", new { @class = "form-control gender-width", @onchange = "SetMetalPerUnitPrice()" })
+                        @Html.ValidationMessageFor(model => model.MetalVariantId, "", new { @style = "color:red" })
                     </div>
                 </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.GemVariantId, new { @class = "col-sm-4 control-label" })
+                    <div class="col-sm-8 pro-ad">
+                        @Html.DropDownListFor(m => m.GemVariantId, (SelectList)ViewBag.GemList, "Choose...", new { @class = "form-control gender-width", @onchange = "SetGemPerUnitPrice()" })
+                        @Html.ValidationMessageFor(model => model.GemVariantId, "", new { @style = "color:red" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.WeightInGms, new { @class = "col-sm-4 control-label" })
+                    <div class="col-sm-8">
+                        @Html.TextBoxFor(m => m.MetalWeightInGms, new { @class = "form-control", @placeholder = "Put Metal Weight", @onchange = "SetMetalPrice()" })
+                        @Html.TextBoxFor(m => m.GemWeightInGms, new { @class = "form-control", @placeholder = "Put Gem Weight", @onchange = "SetGemPrice()" })
+                        @Html.TextBoxFor(m => m.WeightInGms, new { @class = "form-control", @placeholder = "Total Weight", @readonly = "readonly" })
+                        @Html.ValidationMessageFor(m => m.WeightInGms, "", new { @style = "color:red" })
+                    </div>
+                </div>
+                @if (Model.ProductID != 0)
+                {
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.ProductCode, new { @class = "col-sm-4 control-label" })
+                        <div class="col-sm-8">
+                            @Html.TextBoxFor(m => m.ProductCode, new { @class = "form-control", @readonly = "readonly" })
+                            @Html.ValidationMessageFor(m => m.ProductCode, "", new { @style = "color:red" })
+                        </div>
+                    </div>
+                }
                 <div class="form-group">
                     @Html.LabelFor(m => m.ProductName, new { @class = "col-sm-4 control-label" })
                     <div class="col-sm-8">
@@ -38,10 +69,19 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    @Html.LabelFor(m => m.WeightInGms, new { @class = "col-sm-4 control-label" })
+                    <div class="col-sm-offset-4 col-sm-8">
+                        <div class="checkbox chb-prod">
+                            @Html.LabelFor(m => m.IsActive)
+                            @Html.CheckBoxFor(m => m.IsActive, new { @style = "margin-top:5px !important;" })
+                            @Html.ValidationMessageFor(m => m.IsActive, "", new { @style = "color:red" })
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Description, new { @class = "control-label col-sm-4" })
                     <div class="col-sm-8">
-                        @Html.TextBoxFor(m => m.WeightInGms, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(m => m.WeightInGms, "", new { @style = "color:red" })
+                        @Html.TextAreaFor(m => m.Description, new { @class = "form-control rounded-0" })
+                        @Html.ValidationMessageFor(m => m.Description, "", new { @style = "color:red" })
                     </div>
                 </div>
                 <div class="form-group">
@@ -64,10 +104,16 @@
                 <div class="form-group">
                     @Html.LabelFor(m => m.Price, new { @class = "col-sm-4 control-label" })
                     <div class="col-sm-8">
-                        @Html.TextBoxFor(m => m.Price, new { @class = "form-control" })
+                        @Html.TextBoxFor(m => m.MetalPrice, new { @class = "form-control", @placeholder = "Metal Price" })
+                        @Html.TextBoxFor(m => m.GemPrice, new { @class = "form-control", @placeholder = "Gem Price" })
+                        @Html.TextBoxFor(m => m.MakingCharge, new { @class = "form-control", @placeholder = "Put Making Charge Price", @onchange = "SetProductPrice()" })
+                        @Html.TextBoxFor(m => m.Price, new { @class = "form-control", @readonly = "readonly" })
+                        <ul><li>Gold Price per Ounce - $@Session["GoldRate"]  <br /> Silver Price per Ounce - $@Session["SilverRate"]</li></ul>
                         @Html.ValidationMessageFor(m => m.Price, "", new { @style = "color:red" })
                     </div>
                 </div>
+            </div>
+            <div class="col-xs-12 col-sm-6">
                 <div class="form-group">
                     <div class="col-sm-offset-4 col-sm-8">
                         <div class="checkbox chb-prod">
@@ -77,41 +123,43 @@
                     </div>
                 </div>
                 <div class="form-group">
+                    @Html.LabelFor(m => m.OccasionId, new { @class = "col-sm-4 control-label" })
+                    <div class="col-sm-8 pro-ad">
+                        @Html.DropDownListFor(m => m.OccasionId, (SelectList)ViewBag.OccasionList, "Choose...", new { @class = "form-control gender-width" })
+                        @Html.ValidationMessageFor(model => model.OccasionId, "", new { @style = "color:red" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.OfferStartDate, new { @class = "col-sm-4 control-label" })
+                    <div class="col-sm-8">
+                        @Html.TextBoxFor(m => m.OfferStartDate, new { @class = "form-control ui-date-picker" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.OfferEndDate, new { @class = "col-sm-4 control-label" })
+                    <div class="col-sm-8">
+                        @Html.TextBoxFor(m => m.OfferEndDate, new { @class = "form-control ui-date-picker" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-4 col-sm-8">
+                        <div class="checkbox chb-prod">
+                            @Html.LabelFor(m => m.IsMakingChargePercentage)
+                            @Html.CheckBoxFor(m => m.IsMakingChargePercentage, new { @style = "margin-top:5px !important;" })
+                            @Html.TextBoxFor(m => m.MakingChargePercentage, new { @class = "form-control", @placeholder = "Put Discounted Making Charge Price" })
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
                     @Html.LabelFor(m => m.OfferPrice, new { @class = "col-sm-4 control-label" })
                     <div class="col-sm-8">
                         @Html.TextBoxFor(m => m.OfferPrice, new { @class = "form-control" })
                     </div>
                 </div>
-            </div>
-            <div class="col-xs-12 col-sm-6">
-                <div class="form-group">
-                    <div class="col-sm-offset-4 col-sm-8">
-                        <div class="checkbox chb-prod">
-                            @Html.LabelFor(m => m.IsActive)
-                            @Html.CheckBoxFor(m => m.IsActive, new { @style = "margin-top:5px !important;" })
-                            @Html.ValidationMessageFor(m => m.IsActive, "", new { @style = "color:red" })
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    @Html.LabelFor(m => m.Description, new { @class = "control-label col-sm-4" })
-                    <div class="col-sm-8">
-                        @Html.TextAreaFor(m => m.Description, new { @class = "form-control rounded-0" })
-                        @Html.ValidationMessageFor(m => m.Description, "", new { @style = "color:red" })
-                    </div>
-                </div>
+
                 <div class="form-group">
                     @Html.LabelFor(m => m.ImagePath, new { @class = "control-label col-sm-4" })
                     <div class="col-sm-8">
-                        @*@if (Model.ImagePathList.Count > 0)
-                        {
-                            for (int i = 0; i > Model.ImagePathList.Count - 1; i++)
-                            {
-                                @Html.HiddenFor(m => m.ImagePathList[i])
-                            }
-                        }
-                        @Html.HiddenFor(m => m.ImagePathList[0])*@
-
                         <div id="divDropImages" class="fallback dropzone dropDiv">
                             Upload
                             <a href="javascript:void(0);">
@@ -125,7 +173,20 @@
             </div>
         </div>
         <div class="form-group pro-admin-topspace">
-            <button type="submit" class="btn btn-primary butt-color col-xs-offset-0 col-sm-offset-3 col-md-offset-4 col-xs-12 col-sm-6 col-md-4">Save</button>
+            @if (Model.ProductID != 0)
+            {
+                <button type="submit" class="btn btn-primary butt-color col-xs-offset-0 col-sm-offset-3 col-md-offset-4 col-xs-12 col-sm-6 col-md-4"
+                        onclick="UpdateProduct()">
+                    Update
+                </button>
+            }
+            else
+            {
+                <button type="submit" class="btn btn-primary butt-color col-xs-offset-0 col-sm-offset-3 col-md-offset-4 col-xs-12 col-sm-6 col-md-4"
+                        onclick="window.location = @Url.Action("Add", "Product")">
+                    Save
+                </button>
+            }
         </div>
     </div>
 }
@@ -139,38 +200,96 @@
             toastr.error('@TempData["ProductSaveMsg"]');
         }
 
-
-        @*Dropzone.autoDiscover = false;
-        $("div#divDropImages span.drophyperspan").dropzone({
-            acceptedFiles: "image/*",
-            init: function () {
-                var thisDropzone = this;
-
-                $.getJSON("@Url.Action("GetImageList", "Product")").done(function (data) {
-                    if (data.Data != '') {
-
-                        $.each(data.Data, function (index, item) {
-                            //// Create the mock file:
-                            var mockFile = {
-                                name: item.ImageName,
-                                size: 12345
-                            };
-
-                            // Call the default addedfile event handler
-                            thisDropzone.emit("addedfile", mockFile);
-
-                            // And optionally show the thumbnail of the file:
-                            thisDropzone.emit("thumbnail", mockFile, item.ImagePath);
-
-                            // If you use the maxFiles option, make sure you adjust it to the
-                            // correct amount:
-                            //var existingFileCount = 1; // The number of files already uploaded
-                            //myDropzone.options.maxFiles = myDropzone.options.maxFiles - existingFileCount;
-                        });
-                    }
-
+        function UpdateProduct() {
+            if ($("div#divDropImages span.drophyperspan").find('img').length > 0) {
+                var imgNames = [];
+                $("div#divDropImages span.drophyperspan").find('img').each(function () {
+                    var ImageName = $(this).attr('alt');
+                    imgNames.push(ImageName);
                 });
+                //alert(imgNames);
+                $.ajax({
+                        type: "POST",
+                        url: '@Url.Action("GetExistingImages", "Product")',
+                        dataType: "json",
+                        contentType: "application/json; charset=utf-8",
+                        data: JSON.stringify({ imgNames: imgNames }),
+                        success: function (data) {
+                            alert(data);
+                        },
+                        failure: function (errMsg) {
+                            alert(errMsg);
+                        }
+                 });
             }
-        });*@
+        }
+
+        var selectedMetal = "";
+        var metalPerUnitPrice = "";
+        function SetMetalPerUnitPrice() {
+            selectedMetal = $("#MetalVariantId").find("option:selected").text();
+            $.ajax({
+                url: '@Url.Action("GetMetalPrice", "Product")',
+                type: "POST",
+                data: { metalName: selectedMetal},
+                dataType: "json",
+                success: function (result) {
+                    metalPerUnitPrice = result.data;
+                },
+                error: function (result) {
+                    toastr.error('Error!');
+                }
+            });
+        }
+
+        var selectedGem = "";
+        var gemPerUnitPrice = "";
+        function SetGemPerUnitPrice() {
+            selectedGem = $("#GemVariantId").find("option:selected").text();
+            $.ajax({
+                url: '@Url.Action("GetGemPrice", "Product")',
+                type: "POST",
+                data: { gemName: selectedGem},
+                dataType: "json",
+                success: function (result) {
+                    gemPerUnitPrice = result.data;
+                },
+                error: function (result) {
+                    toastr.error('Error!');
+                }
+            });
+        }
+
+        function SetMetalPrice() {
+            if (!isNaN(metalPerUnitPrice)) {
+                parseFloat($("#MetalPrice").val(parseFloat(metalPerUnitPrice).toFixed(2) * parseFloat($('#MetalWeightInGms').val()).toFixed(2))).toFixed(2);
+                parseFloat($('#WeightInGms').val(parseFloat($('#MetalWeightInGms').val()).toFixed(2))).toFixed(2);
+            }
+        }
+
+        function SetGemPrice() {
+            if (!isNaN(gemPerUnitPrice)) {
+                parseFloat($("#GemPrice").val(parseFloat(gemPerUnitPrice).toFixed(2) * parseFloat($('#GemWeightInGms').val()).toFixed(2))).toFixed(2);
+                parseFloat($('#WeightInGms').val(
+                    parseFloat($('#MetalWeightInGms').val()) +
+                    parseFloat($('#GemWeightInGms').val()))).toFixed(2);
+            }
+        }
+
+        function SetProductPrice() {
+            var metalPrice = 0;
+            var gemPrice = 0;
+            if ((!isNaN($("#MetalPrice").val())) && $("#MetalPrice").val() != null && $("#MetalPrice").val() != '') {
+                metalPrice = parseFloat($("#MetalPrice").val()).toFixed(2);
+            }
+            if ((!isNaN($("#GemPrice").val())) && $("#GemPrice").val() != null && $("#GemPrice").val() != '') {
+                gemPrice = parseFloat($("#GemPrice").val()).toFixed(2);
+            }
+            parseFloat($('#Price').val(
+                parseFloat($('#MakingCharge').val()) +
+                parseFloat(metalPrice) +
+                parseFloat(gemPrice))).toFixed(2);
+        }
+
     </script>
 }

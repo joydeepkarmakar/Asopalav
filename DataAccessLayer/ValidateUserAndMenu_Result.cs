@@ -13,7 +13,7 @@ namespace DataAccessLayer
     
     public partial class ValidateUserAndMenu_Result
     {
-        public bool IsLoginValid { get; set; }
+        public Nullable<bool> IsLoginValid { get; set; }
         public string RoleName { get; set; }
         public string UserFirstName { get; set; }
         public string UserEmail { get; set; }

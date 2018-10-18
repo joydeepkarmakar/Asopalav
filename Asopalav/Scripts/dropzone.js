@@ -126,7 +126,7 @@
             thumbnailWidth: 75,//120, changed it -- JK
             thumbnailHeight: 75,//120, changed it -- JK
             filesizeBase: 1000,
-            maxFiles: null,
+            maxFiles: 10,//null, changed it -- JK
             filesizeBase: 1000,
             params: {},
             clickable: true,

@@ -26,6 +26,13 @@
         <AssociationConnector Association="AsopalavDBModel.FK_Orders_UserProfileMaster" />
         <EntityTypeShape EntityType="AsopalavDBModel.CartDetail" Width="1.5" PointX="7.375" PointY="9.75" />
         <AssociationConnector Association="AsopalavDBModel.FK_Role_UserProfileMaster" />
+        <EntityTypeShape EntityType="AsopalavDBModel.GemVariant" Width="1.5" PointX="5.75" PointY="17.625" />
+        <EntityTypeShape EntityType="AsopalavDBModel.MetalVariant" Width="1.5" PointX="5.75" PointY="13.75" />
+        <EntityTypeShape EntityType="AsopalavDBModel.NewsLetterMaster" Width="1.5" PointX="11.375" PointY="9.75" />
+        <EntityTypeShape EntityType="AsopalavDBModel.OccasionMaster" Width="1.5" PointX="9.375" PointY="9.875" />
+        <AssociationConnector Association="AsopalavDBModel.FK_ProductMaster_GemVariant" />
+        <AssociationConnector Association="AsopalavDBModel.FK_ProductMaster_MetalVariant" />
+        <AssociationConnector Association="AsopalavDBModel.FK_ProductMaster_OccasionMaster" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
