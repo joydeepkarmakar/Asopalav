@@ -75,7 +75,9 @@ namespace Asopalav.Models
         public int? MetalVariantId { get; set; }
         [DisplayName("Set Gem")]
         public int? GemVariantId { get; set; }
+        [RegularExpression(@"\d+(\.\d{1,2})?", ErrorMessage = "Invalid Entry")]
         public decimal? MetalWeightInGms { get; set; }
+        [RegularExpression(@"\d+(\.\d{1,2})?", ErrorMessage = "Invalid Entry")]
         public decimal? GemWeightInGms { get; set; }
         public decimal? MetalPrice { get; set; }
         public decimal? GemPrice { get; set; }
