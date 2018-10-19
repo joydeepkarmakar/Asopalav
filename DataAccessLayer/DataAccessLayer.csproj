@@ -81,6 +81,9 @@
     <Compile Include="GetLastAddedProducts_Result.cs">
       <DependentUpon>AsopalavDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="GetLatestOfferProducts_Result.cs">
+      <DependentUpon>AsopalavDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="GetProductsByProductType_Result.cs">
       <DependentUpon>AsopalavDataModel.tt</DependentUpon>
     </Compile>

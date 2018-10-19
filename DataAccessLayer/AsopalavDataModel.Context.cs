@@ -272,5 +272,18 @@ namespace DataAccessLayer
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SearchProducts_Result>("SearchProducts", searchTextParameter, currentCurrencyParameter, conversionRateParameter);
         }
+    
+        public virtual ObjectResult<GetLatestOfferProducts_Result> GetLatestOfferProducts(string currentCurrency, string conversionRate)
+        {
+            var currentCurrencyParameter = currentCurrency != null ?
+                new ObjectParameter("CurrentCurrency", currentCurrency) :
+                new ObjectParameter("CurrentCurrency", typeof(string));
+    
+            var conversionRateParameter = conversionRate != null ?
+                new ObjectParameter("ConversionRate", conversionRate) :
+                new ObjectParameter("ConversionRate", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetLatestOfferProducts_Result>("GetLatestOfferProducts", currentCurrencyParameter, conversionRateParameter);
+        }
     }
 }

@@ -322,4 +322,63 @@ AS
          END CATCH;
      END;
 GO;
-/*******************************************************EXECUTED ON PRODUCTION***********************************************************/
+/*******************************************************EXECUTED ON PRODUCTION 20181018***********************************************************/
+CREATE PROCEDURE [dbo].[GetLatestOfferProducts] @CurrentCurrency CHAR(5)     = NULL,
+                                                @ConversionRate  VARCHAR(50) = NULL
+AS
+     BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+         SET NOCOUNT ON;
+         SELECT TOP 10 P.ProductID,
+                       P.ProductCode,
+                       P.ProductName,
+                       P.ProductTypeID,
+                       P.WeightInGms,
+                       P.HeightInInch,
+                       P.WidthInInch,
+                       CASE
+                           WHEN 'INR' = @CurrentCurrency
+                           THEN ROUND((P.Price * @ConversionRate), 2)
+                           ELSE ROUND(P.Price, 2)
+                       END AS Price,
+                       P.IsOffer,
+                       CASE
+                           WHEN 'INR' = @CurrentCurrency
+                           THEN ROUND((P.OfferPrice * @ConversionRate), 2)
+                           ELSE ROUND(P.OfferPrice, 2)
+                       END AS OfferPrice,
+                       P.IsActive,
+                       P.[Description],
+                       P.CreationDate,
+					   P.OfferStartDate,
+                       P.OfferEndDate,
+                       P.IsMakingChargePercentage,
+                       P.MakingChargePercentage,
+                       P.MakingCharge,
+                       I.ImageName,
+                       I.ImagePath
+         FROM ProductMaster P
+              INNER JOIN
+						(
+							SELECT ImageName,
+								   ImagePath,
+								   ProductID
+							FROM
+						(
+							SELECT ROW_NUMBER() OVER(PARTITION BY ProductID ORDER BY ImageID) AS RN,
+								   ImageName,
+								   ImagePath,
+								   ProductID
+							FROM Images
+						) T
+							WHERE T.RN = 1
+						) I ON P.ProductID = I.ProductID 
+							AND P.IsActive = 1 
+							AND P.IsOffer = 1 
+							AND GETDATE() BETWEEN P.OfferStartDate AND P.OfferEndDate
+							ORDER BY CreationDate DESC;
+     END;
+
+GO
+/*******************************************************EXECUTED ON PRODUCTION 20181019***********************************************************/

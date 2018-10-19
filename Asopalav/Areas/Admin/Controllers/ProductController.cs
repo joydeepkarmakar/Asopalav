@@ -282,7 +282,7 @@ namespace Asopalav.Areas.Admin.Controllers
                             ParameterName = "IsMakingChargePercentage",
                             Value = objProductMaster.IsMakingChargePercentage,
                             SqlDbType = SqlDbType.Bit
-                        };                        
+                        };
                         SqlParameter metalVariantId = new SqlParameter
                         {
                             ParameterName = "MetalVariantId",
@@ -316,12 +316,14 @@ namespace Asopalav.Areas.Admin.Controllers
 
                         if (!(String.IsNullOrEmpty(gemName)))
                         {
-                            var prodCountG = objAsopalavDBEntities.ProductMasters.Where(p => p.MetalVariant.Name == metalName && p.GemVariant.Name == gemName).Count();
+                            var prodCountG = objAsopalavDBEntities.ProductMasters.Where(p => p.MetalVariant.Name == metalName && 
+                                                                                        p.GemVariant.Name == gemName && 
+                                                                                        p.IsActive == true).Count();
                             objProductMaster.ProductCode = "AJ" + metalName[0] + gemName[0] + "000" + Convert.ToString(prodCountG + 1);
                         }
                         else
                         {
-                            var prodCountM = objAsopalavDBEntities.ProductMasters.Where(p => p.MetalVariant.Name == metalName).Count();
+                            var prodCountM = objAsopalavDBEntities.ProductMasters.Where(p => p.MetalVariant.Name == metalName && p.IsActive == true).Count();
                             objProductMaster.ProductCode = "AJ" + metalName[0] + "000" + Convert.ToString(prodCountM + 1);
                         }
 
@@ -643,7 +645,7 @@ namespace Asopalav.Areas.Admin.Controllers
                                   }).ToList();
             }
             Session["ExistingImg"] = imageList;
-            return View();
+            return RedirectToAction("Add");
         }
     }
 }

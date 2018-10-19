@@ -569,6 +569,7 @@
     <Content Include="Views\Silverware\FruitBowl.cshtml" />
     <Content Include="Views\Silverware\KnifeForkSpoons.cshtml" />
     <Content Include="Views\Home\SearchResult.cshtml" />
+    <Content Include="Views\Home\LatestOffers.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

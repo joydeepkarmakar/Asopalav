@@ -47,6 +47,8 @@ namespace Asopalav.Controllers
             objDashboardModel.objGetLastAddedProducts_Result = objAsopalavDBEntities.GetLastAddedProducts((string)Session["CurrentCurrency"] ?? "", (string)Session["DollarRate"] ?? "").ToList();
             #endregion
 
+            objDashboardModel.objGetLatestOfferProducts_Result = objAsopalavDBEntities.GetLatestOfferProducts((string)Session["CurrentCurrency"] ?? "", (string)Session["DollarRate"] ?? "").ToList();
+
             return View(objDashboardModel);
         }
 
@@ -224,7 +226,7 @@ namespace Asopalav.Controllers
             }
 
             return IsSendMail;
-        } 
+        }
         #endregion
 
         #region Dollar INR Conversion
@@ -253,7 +255,7 @@ namespace Asopalav.Controllers
         {
             GetSilverPriceSoapClient client = new GetSilverPriceSoapClient();
             return client.GetCurrentSilverPrice(ConfigurationManager.AppSettings["GoldSilverDailyRateUid"], ConfigurationManager.AppSettings["GoldSilverDailyRatePwd"]);
-        } 
+        }
         #endregion
     }
 }
