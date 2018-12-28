@@ -3,30 +3,36 @@
     ViewBag.Title = "Home Page";
 }
 
-<div id="body" style="padding-left: 440px;">
-    <img src="~/Content/images/site-construction.jpg" />
-    @*<div id="slider" class="middle-con-margin">
-        <ul>*@
-    @*<li style="background-image: url(/content/images/banner1.jpg)">
+<div id="body" @*style="padding-left: 440px;"*@>
+    @*<img src="~/Content/images/site-construction.jpg" />*@
+    <div id="slider" class="middle-con-margin">
+        <ul>
+            @*<li style="background-image: url(/content/images/banner1.jpg)">
         </li>
         <li class="purple" style="background-image: url(/content/images/banner2.jpg)">
         </li>
         <li class="yellow" style="background-image: url(/content/images/banner3.jpg)">
+        </li>
+        <li style="background-image: url(/content/images/navaratri4.jpg)">
+        </li>
+        <li class="yellow" style="background-image: url(/content/images/navaratri5.jpg)">
+        </li>
+        <li class="purple" style="background-image: url(/content/images/banner2.jpg)">
+        </li>
+        <li class="purple" style="background-image: url(/content/images/navaratri7.jpg)">
+        </li>
+        <li style="background-image: url(/content/images/banner1.jpg)">
         </li>*@
-    @*<li style="background-image: url(/content/images/navaratri4.jpg)">
-                </li>
-                <li class="yellow" style="background-image: url(/content/images/navaratri5.jpg)">
-                </li>
-                <li class="purple" style="background-image: url(/content/images/banner2.jpg)">
-                </li>
-                <li class="purple" style="background-image: url(/content/images/navaratri7.jpg)">
-                </li>
-                <li style="background-image: url(/content/images/banner1.jpg)">
-                </li>
-            </ul>
-        </div>*@
+            <li style="background-image: url(/content/images/slide1.jpg)">
+            </li>
+            <li style="background-image: url(/content/images/slide2.jpg)">
+            </li>
+            <li style="background-image: url(/content/images/slide3.jpg)">
+            </li>
+        </ul>
+    </div>
 
-    @*<div id="divHomeProducts" class="container" style="margin-top:20px; padding-left:15px; padding-right:15px">
+    <div id="divHomeProducts" class="container" style="margin-top:20px; padding-left:15px; padding-right:15px">
         <div class="last-products">
             <h2>New Arrivals</h2>
             @Html.Partial("LastAddedProducts", Model.objGetLastAddedProducts_Result)
@@ -34,91 +40,91 @@
         <div class="last-products">
             <h2>Latest Offers</h2>
             @Html.Partial("LatestOffers", Model.objGetLatestOfferProducts_Result)
-        </div>*@
+        </div>
 
-    @*<div class="last-products">
-            <h2>GIFTS</h2>
-            <section class="quick-links">
-                <article style="background-image: url(/content/images/corporate1.jpg); background-size: 278px 310px;">
-                    <a href="@Url.Action("Personalize", "Home",new { page = "Personalize" } )" class="table">
-                        <div class="cell">
-                            <div class="text">
-                                <h4>Personalize</h4>
+        @*<div class="last-products">
+                <h2>GIFTS</h2>
+                <section class="quick-links">
+                    <article style="background-image: url(/content/images/corporate1.jpg); background-size: 278px 310px;">
+                        <a href="@Url.Action("Personalize", "Home",new { page = "Personalize" } )" class="table">
+                            <div class="cell">
+                                <div class="text">
+                                    <h4>Personalize</h4>
+                                </div>
                             </div>
-                        </div>
-                    </a>
-                </article>
-                <article style="background-image: url(/content/images/corporate5.jpg); background-size: 278px 310px;">
-                    <a href="@Url.Action("Corporate", "Home",new { page = "Corporate" })" class="table">
-                        <div class="cell">
-                            <div class="text">
-                                <h4>Corporate</h4>
+                        </a>
+                    </article>
+                    <article style="background-image: url(/content/images/corporate5.jpg); background-size: 278px 310px;">
+                        <a href="@Url.Action("Corporate", "Home",new { page = "Corporate" })" class="table">
+                            <div class="cell">
+                                <div class="text">
+                                    <h4>Corporate</h4>
+                                </div>
                             </div>
-                        </div>
-                    </a>
-                </article>
-                <article style="background-image: url(/content/images/corporate4.jpg); background-size: 278px 310px;">
-                    <a href="@Url.Action("Kids", "Home",new { page = "Kids" })" class="table">
-                        <div class="cell">
-                            <div class="text">
-                                <h4>Kids</h4>
+                        </a>
+                    </article>
+                    <article style="background-image: url(/content/images/corporate4.jpg); background-size: 278px 310px;">
+                        <a href="@Url.Action("Kids", "Home",new { page = "Kids" })" class="table">
+                            <div class="cell">
+                                <div class="text">
+                                    <h4>Kids</h4>
+                                </div>
                             </div>
-                        </div>
-                    </a>
-                </article>
-                <article style="background-image: url(/content/images/corporate3.jpg); background-size: 278px 310px;">
-                    <a href="@Url.Action("Festive", "Home",new { page = "Festive" })" class="table">
-                        <div class="cell">
-                            <div class="text">
-                                <h4>Festive</h4>
+                        </a>
+                    </article>
+                    <article style="background-image: url(/content/images/corporate3.jpg); background-size: 278px 310px;">
+                        <a href="@Url.Action("Festive", "Home",new { page = "Festive" })" class="table">
+                            <div class="cell">
+                                <div class="text">
+                                    <h4>Festive</h4>
+                                </div>
                             </div>
-                        </div>
-                    </a>
-                </article>
-                <article style="background-image: url(/content/images/corporate5.jpg); background-size: 278px 310px;">
-                    <a href="@Url.Action("Jewelery", "Home",new { page = "Jewelery" })" class="table">
-                        <div class="cell">
-                            <div class="text">
-                                <h4>Jewelery</h4>
+                        </a>
+                    </article>
+                    <article style="background-image: url(/content/images/corporate5.jpg); background-size: 278px 310px;">
+                        <a href="@Url.Action("Jewelery", "Home",new { page = "Jewelery" })" class="table">
+                            <div class="cell">
+                                <div class="text">
+                                    <h4>Jewelery</h4>
+                                </div>
                             </div>
-                        </div>
-                    </a>
-                </article>
-            </section>
-        </div>*@
+                        </a>
+                    </article>
+                </section>
+            </div>*@
 
-    @*<div class="row" style="margin-bottom:50px">
-                <div class="col-lg-12">
-                    <div class="brand">
-                        <h1>Corporate Clients</h1>
-                    </div>
-                    <div class="partners-wrap">
-                        <div class="str3 str_wrap">
-                            <a href="http://www.setcoauto.com/" target="_blank"><img src="~/Content/images/partner-img/pt-1.jpg" style="width:217px"></a>
-                            <a href="http://www.transpek.com/" target="_blank"><img src="~/Content/images/partner-img/pt-4.jpg" style="width:217px"></a>
-                            <a href="http://zydexindustries.com/" target="_blank"><img src="~/Content/images/partner-img/pt-6.jpg" style="width:217px"></a>
-                            <a href="https://vmc.gov.in/" target="_blank"><img src="~/Content/images/partner-img/pt-13.jpg" style="width:217px"></a>
-                            <a href="https://www.apollotyres.com/" target="_blank"><img src="~/Content/images/partner-img/pt-14.jpg" style="width:217px"></a>
-                            <a href="https://www.saraswatbank.com/" target="_blank"><img src="~/Content/images/partner-img/pt-16.jpg" style="width:217px"></a>
-                        </div>
+        <div class="row" style="margin-bottom:50px">
+            <div class="col-lg-12">
+                <div class="brand">
+                    <h1>Corporate Clients</h1>
+                </div>
+                <div class="partners-wrap">
+                    <div class="str3 str_wrap">
+                        <a href="http://www.setcoauto.com/" target="_blank"><img src="~/Content/images/partner-img/pt-1.jpg" style="width:217px"></a>
+                        <a href="http://www.transpek.com/" target="_blank"><img src="~/Content/images/partner-img/pt-4.jpg" style="width:217px"></a>
+                        <a href="http://zydexindustries.com/" target="_blank"><img src="~/Content/images/partner-img/pt-6.jpg" style="width:217px"></a>
+                        <a href="https://vmc.gov.in/" target="_blank"><img src="~/Content/images/partner-img/pt-13.jpg" style="width:217px"></a>
+                        <a href="https://www.apollotyres.com/" target="_blank"><img src="~/Content/images/partner-img/pt-14.jpg" style="width:217px"></a>
+                        <a href="https://www.saraswatbank.com/" target="_blank"><img src="~/Content/images/partner-img/pt-16.jpg" style="width:217px"></a>
                     </div>
                 </div>
             </div>
-        </div>*@
+        </div>
+    </div>
     <!-- / container -->
 </div>
 <!-- / body -->
-@*@section Scripts {
-        <script>
-            $(window).load(function () {
-                $('.str3').liMarquee({
-                    direction: 'left',
-                    loop: -1,
-                    scrolldelay: 0,
-                    scrollamount: 100,
-                    circular: true,
-                    drag: true
-                });
-            })
-        </script>
-    }*@
+@section Scripts {
+    <script>
+        $(window).load(function () {
+            $('.str3').liMarquee({
+                direction: 'left',
+                loop: -1,
+                scrolldelay: 0,
+                scrollamount: 100,
+                circular: true,
+                drag: true
+            });
+        })
+    </script>
+}

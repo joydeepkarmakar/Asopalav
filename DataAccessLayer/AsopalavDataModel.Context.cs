@@ -107,7 +107,7 @@ namespace DataAccessLayer
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ValidateUserAndMenu_Result>("ValidateUserAndMenu", userNameParameter, passwordParameter);
         }
     
-        public virtual int AddUpdateProduct(Nullable<long> productID, string productCode, string productName, Nullable<int> productTypeID, Nullable<decimal> weightInGms, string heightInInch, string widthInInch, Nullable<decimal> price, Nullable<bool> isOffer, Nullable<decimal> offerPrice, Nullable<bool> isActive, string description, Nullable<int> occasionId, Nullable<System.DateTime> offerStartDate, Nullable<System.DateTime> offerEndDate, Nullable<decimal> makingChargePercentage, Nullable<decimal> makingCharge, Nullable<bool> isMakingChargePercentage, Nullable<int> metalVariantId, Nullable<int> gemVariantId)
+        public virtual int AddUpdateProduct(Nullable<long> productID, string productCode, string productName, Nullable<int> productTypeID, Nullable<decimal> weightInGms, string heightInInch, string widthInInch, Nullable<decimal> price, Nullable<bool> isOffer, Nullable<decimal> offerPrice, Nullable<bool> isActive, string description, Nullable<int> occasionId, Nullable<System.DateTime> offerStartDate, Nullable<System.DateTime> offerEndDate, Nullable<decimal> makingChargePercentage, Nullable<decimal> makingCharge, Nullable<bool> isMakingChargePercentage, Nullable<int> metalVariantId, Nullable<int> gemVariantId, string amazonUrl, string eBayUrl)
         {
             var productIDParameter = productID.HasValue ?
                 new ObjectParameter("ProductID", productID) :
@@ -189,7 +189,15 @@ namespace DataAccessLayer
                 new ObjectParameter("GemVariantId", gemVariantId) :
                 new ObjectParameter("GemVariantId", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AddUpdateProduct", productIDParameter, productCodeParameter, productNameParameter, productTypeIDParameter, weightInGmsParameter, heightInInchParameter, widthInInchParameter, priceParameter, isOfferParameter, offerPriceParameter, isActiveParameter, descriptionParameter, occasionIdParameter, offerStartDateParameter, offerEndDateParameter, makingChargePercentageParameter, makingChargeParameter, isMakingChargePercentageParameter, metalVariantIdParameter, gemVariantIdParameter);
+            var amazonUrlParameter = amazonUrl != null ?
+                new ObjectParameter("AmazonUrl", amazonUrl) :
+                new ObjectParameter("AmazonUrl", typeof(string));
+    
+            var eBayUrlParameter = eBayUrl != null ?
+                new ObjectParameter("eBayUrl", eBayUrl) :
+                new ObjectParameter("eBayUrl", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AddUpdateProduct", productIDParameter, productCodeParameter, productNameParameter, productTypeIDParameter, weightInGmsParameter, heightInInchParameter, widthInInchParameter, priceParameter, isOfferParameter, offerPriceParameter, isActiveParameter, descriptionParameter, occasionIdParameter, offerStartDateParameter, offerEndDateParameter, makingChargePercentageParameter, makingChargeParameter, isMakingChargePercentageParameter, metalVariantIdParameter, gemVariantIdParameter, amazonUrlParameter, eBayUrlParameter);
         }
     
         public virtual ObjectResult<GetDollarSilverRate_Result> GetDollarSilverRate()

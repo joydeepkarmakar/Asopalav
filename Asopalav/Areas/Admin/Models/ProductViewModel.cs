@@ -83,6 +83,11 @@ namespace Asopalav.Models
         public decimal? GemPrice { get; set; }
         //[RegularExpression(@"\d+(\.\d{1,2})?", ErrorMessage = "Invalid price")]
 
+        [DisplayName("Amazon Url")]
+        public string AmazonUrl { get; set; }
+        [DisplayName("eBay Url")]
+        public string eBayUrl { get; set; }
+
         public List<SelectListItem> ProductType { get; set; }
         public Dictionary<string, string> ImageDetailsList { get; set; }
         public List<string> ImagePathList { get; set; }

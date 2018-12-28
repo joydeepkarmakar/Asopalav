@@ -382,3 +382,463 @@ AS
 
 GO
 /*******************************************************EXECUTED ON PRODUCTION 20181019***********************************************************/
+
+/***20181220***/
+ALTER TABLE dbo.ProductMaster
+ADD AmazonUrl VARCHAR(MAX) NULL, eBayUrl VARCHAR(MAX) NULL
+GO
+/*
+dbo.AddUpdateProduct
+dbo.GetLastAddedProducts
+dbo.GetLatestOfferProducts
+dbo.GetProductsByProductType
+dbo.SearchProducts
+*/
+
+ALTER PROCEDURE [dbo].[AddUpdateProduct] @ProductID                BIGINT,
+                                         @ProductCode              VARCHAR(20),
+                                         @ProductName              VARCHAR(100),
+                                         @ProductTypeID            INT = NULL,
+                                         @WeightInGms              DECIMAL(18, 3),
+                                         @HeightInInch             VARCHAR(15) = NULL,
+                                         @WidthInInch              VARCHAR(15) = NULL,
+                                         @Price                    DECIMAL(18, 2),
+                                         @IsOffer                  BIT = 0,
+                                         @OfferPrice               DECIMAL(18, 2) = NULL,
+                                         @IsActive                 BIT,
+                                         @Description              VARCHAR(MAX),
+                                         @OccasionId               INT = NULL,
+                                         @OfferStartDate           DATETIME = NULL,
+                                         @OfferEndDate             DATETIME = NULL,
+                                         @MakingChargePercentage   DECIMAL(18, 2) = NULL,
+                                         @MakingCharge             DECIMAL(18, 2) = NULL,
+                                         @IsMakingChargePercentage BIT = 0,
+                                         @MetalVariantId           INT = NULL,
+                                         @GemVariantId             INT = NULL,
+                                         @ImgDetails               [dbo].[ImgTable] READONLY,
+										 @AmazonUrl				   VARCHAR(MAX),
+										 @eBayUrl				   VARCHAR(MAX)	
+AS
+     BEGIN
+         SET NOCOUNT ON;
+         DECLARE @TranCount INT, @ErrorMessage VARCHAR(4000);
+         SET @TranCount = @@trancount;
+         DECLARE @OutputTableVar AS TABLE(OutputProductID INT);
+         DECLARE @varImgDetails [dbo].[ImgTable];
+         INSERT INTO @varImgDetails
+                SELECT ImageID,
+                       ImageName,
+                       ImagePath,
+                       ProductID
+                FROM @ImgDetails;
+         BEGIN TRY
+             IF @TranCount = 0
+             BEGIN TRANSACTION;
+                 ELSE
+             SAVE TRANSACTION AddUpdateProduct;
+             IF EXISTS
+				(
+					SELECT 1
+					FROM [dbo].[ProductMaster]
+					WHERE ProductCode = @ProductCode
+				)
+                 BEGIN
+                     UPDATE dbo.ProductMaster
+                       SET
+                           IsActive = 0,
+                           ModifyDate = GETDATE()
+                     WHERE ProductID = @ProductID
+                           AND ProductCode = @ProductCode;
+                     IF(@IsActive = 1)
+                         BEGIN
+                             INSERT INTO [dbo].[ProductMaster]
+												(ProductCode,
+												 ProductName,
+												 ProductTypeID,
+												 WeightInGms,
+												 HeightInInch,
+												 WidthInInch,
+												 Price,
+												 IsOffer,
+												 OfferPrice,
+												 IsActive,
+												 [Description],
+												 OccasionId,
+												 OfferStartDate,
+												 OfferEndDate,
+												 MakingChargePercentage,
+												 MakingCharge,
+												 IsMakingChargePercentage,
+												 MetalVariantId,
+												 GemVariantId,
+												 AmazonUrl,
+												 eBayUrl
+												)
+                             OUTPUT INSERTED.ProductID
+                                    INTO @OutputTableVar
+                                    SELECT ProductCode,
+                                           CASE
+                                               WHEN LOWER(RTRIM(LTRIM(ProductName))) = LOWER(RTRIM(LTRIM(@ProductName)))
+                                               THEN ProductName
+                                               ELSE @ProductName
+										   END AS ProductName,
+                                           CASE
+                                               WHEN ProductTypeID = @ProductTypeID
+                                               THEN ProductTypeID
+                                               ELSE @ProductTypeID
+                                           END AS ProductTypeID,
+                                           CASE
+                                               WHEN WeightInGms = @WeightInGms
+                                               THEN WeightInGms
+                                               ELSE @WeightInGms
+                                           END AS WeightInGms,
+                                           CASE
+                                               WHEN HeightInInch = @HeightInInch
+                                               THEN HeightInInch
+                                               ELSE @HeightInInch
+                                           END AS HeightInInch,
+                                           CASE
+                                               WHEN WidthInInch = @WidthInInch
+                                               THEN WidthInInch
+                                               ELSE @WidthInInch
+                                           END AS WidthInInch,
+                                           CASE
+                                               WHEN Price = @Price
+                                               THEN Price
+                                               ELSE @Price
+                                           END AS Price,
+                                           CASE
+                                               WHEN IsOffer = @IsOffer
+                                               THEN IsOffer
+                                               ELSE @IsOffer
+                                           END AS IsOffer,
+                                           CASE
+                                               WHEN OfferPrice = @OfferPrice
+                                               THEN OfferPrice
+                                               ELSE @OfferPrice
+                                           END AS OfferPrice,
+                                           1 AS IsActive,
+                                           CASE
+                                               WHEN LOWER(RTRIM(LTRIM([Description]))) = LOWER(RTRIM(LTRIM(@Description)))
+                                               THEN [Description]
+                                               ELSE @Description
+                                           END AS Description,
+                                           CASE
+                                               WHEN OccasionId = @OccasionId
+                                               THEN OccasionId
+                                               ELSE @OccasionId
+                                           END AS OccasionId,
+                                           CASE
+                                               WHEN OfferStartDate = @OfferStartDate
+                                               THEN OfferStartDate
+                                               ELSE @OfferStartDate
+                                           END AS OfferStartDate,
+                                           CASE
+                                               WHEN OfferEndDate = @OfferEndDate
+                                               THEN OfferEndDate
+                                               ELSE @OfferEndDate
+                                           END AS OfferEndDate,
+                                           CASE
+                                               WHEN MakingChargePercentage = @MakingChargePercentage
+                                               THEN MakingChargePercentage
+                                               ELSE @MakingChargePercentage
+										   END AS MakingChargePercentage,
+                                           CASE
+                                               WHEN MakingCharge = @MakingCharge
+                                               THEN MakingCharge
+                                               ELSE @MakingCharge
+                                           END AS MakingCharge,
+                                           CASE
+                                               WHEN IsMakingChargePercentage = @IsMakingChargePercentage
+                                               THEN IsMakingChargePercentage
+                                               ELSE @IsMakingChargePercentage
+                                           END AS IsMakingChargePercentage,
+                                           CASE
+                                               WHEN MetalVariantId = @MetalVariantId
+                                               THEN MetalVariantId
+                                               ELSE @MetalVariantId
+                                           END AS MetalVariantId,
+                                           CASE
+                                               WHEN GemVariantId = @GemVariantId
+                                               THEN GemVariantId
+                                               ELSE @GemVariantId
+                                           END AS GemVariantId,
+										   CASE
+                                               WHEN AmazonUrl = @AmazonUrl
+                                               THEN AmazonUrl
+                                               ELSE @AmazonUrl
+                                           END AS AmazonUrl,
+										   CASE
+                                               WHEN eBayUrl = @eBayUrl
+                                               THEN eBayUrl
+                                               ELSE @eBayUrl
+                                           END AS eBayUrl
+                                    FROM dbo.ProductMaster
+                                    WHERE ProductCode = @ProductCode;
+                         END;
+                     UPDATE @varImgDetails
+                       SET
+                           ProductID =
+										(
+											SELECT OutputProductID
+											FROM @OutputTableVar
+										);
+                     INSERT INTO dbo.Images
+								(   ImageName,
+									ImagePath,
+									ProductID
+								)
+                            SELECT ImageName,
+                                   ImagePath,
+                                   ProductID
+                            FROM @varImgDetails;
+                 END;
+             lbexit:
+             IF @@TRANCOUNT = 0
+                 COMMIT;
+         END TRY
+         BEGIN CATCH
+             DECLARE @error INT, @xstate INT;
+             SELECT @error = ERROR_NUMBER(),
+                    @ErrorMessage = ERROR_MESSAGE(),
+                    @xstate = XACT_STATE();
+             IF @xstate = -1
+                 ROLLBACK;
+             IF @xstate = 1
+                AND @trancount = 0
+                 ROLLBACK;
+             IF @xstate = 1
+                AND @trancount > 0
+                 ROLLBACK TRANSACTION AddUpdateProduct;
+             RAISERROR('AddUpdateProduct: %d: %s', 16, 1, @error, @ErrorMessage);
+         END CATCH;
+     END;
+	 GO;
+
+
+/**************
+EXEC GetLastAddedProducts
+**************/
+
+ALTER PROCEDURE [dbo].[GetLastAddedProducts] @CurrentCurrency CHAR(5)     = NULL,
+                                             @ConversionRate  VARCHAR(50) = NULL
+AS
+     BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+         SET NOCOUNT ON;
+         SELECT TOP 10 P.ProductID,
+                       P.ProductCode,
+                       P.ProductName,
+                       P.ProductTypeID,
+                       P.WeightInGms,
+                       P.HeightInInch,
+                       P.WidthInInch,
+                       CASE
+                           WHEN 'INR' = @CurrentCurrency
+                           THEN ROUND((P.Price * @ConversionRate), 2)
+                           ELSE ROUND(P.Price, 2)
+                       END AS Price,
+                       P.IsOffer,
+                       CASE
+                           WHEN 'INR' = @CurrentCurrency
+                           THEN ROUND((P.OfferPrice * @ConversionRate), 2)
+                           ELSE ROUND(P.OfferPrice, 2)
+                       END AS OfferPrice,
+                       P.IsActive,
+                       P.[Description],
+                       P.CreationDate,
+                       I.ImageName,
+                       I.ImagePath,
+					   P.AmazonUrl,
+					   P.eBayUrl
+         FROM ProductMaster P
+              INNER JOIN
+(
+    SELECT ImageName,
+           ImagePath,
+           ProductID
+    FROM
+(
+    SELECT ROW_NUMBER() OVER(PARTITION BY ProductID ORDER BY ImageID) AS RN,
+           ImageName,
+           ImagePath,
+           ProductID
+    FROM Images
+) T
+    WHERE T.RN = 1
+) I ON P.ProductID = I.ProductID AND P.IsActive = 1
+         ORDER BY CreationDate DESC;
+     END;
+	 GO;
+
+CREATE PROCEDURE [dbo].[GetLatestOfferProducts] @CurrentCurrency CHAR(5)     = NULL,
+                                                @ConversionRate  VARCHAR(50) = NULL
+AS
+     BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+         SET NOCOUNT ON;
+         SELECT TOP 10 P.ProductID,
+                       P.ProductCode,
+                       P.ProductName,
+                       P.ProductTypeID,
+                       P.WeightInGms,
+                       P.HeightInInch,
+                       P.WidthInInch,
+                       CASE
+                           WHEN 'INR' = @CurrentCurrency
+                           THEN ROUND((P.Price * @ConversionRate), 2)
+                           ELSE ROUND(P.Price, 2)
+                       END AS Price,
+                       P.IsOffer,
+                       CASE
+                           WHEN 'INR' = @CurrentCurrency
+                           THEN ROUND((P.OfferPrice * @ConversionRate), 2)
+                           ELSE ROUND(P.OfferPrice, 2)
+                       END AS OfferPrice,
+                       P.IsActive,
+                       P.[Description],
+                       P.CreationDate,
+					   P.OfferStartDate,
+                       P.OfferEndDate,
+                       P.IsMakingChargePercentage,
+                       P.MakingChargePercentage,
+                       P.MakingCharge,
+                       I.ImageName,
+                       I.ImagePath
+         FROM ProductMaster P
+              INNER JOIN
+						(
+							SELECT ImageName,
+								   ImagePath,
+								   ProductID
+							FROM
+						(
+							SELECT ROW_NUMBER() OVER(PARTITION BY ProductID ORDER BY ImageID) AS RN,
+								   ImageName,
+								   ImagePath,
+								   ProductID
+							FROM Images
+						) T
+							WHERE T.RN = 1
+						) I ON P.ProductID = I.ProductID 
+							AND P.IsActive = 1 
+							AND P.IsOffer = 1 
+							AND GETDATE() BETWEEN P.OfferStartDate AND P.OfferEndDate
+							ORDER BY CreationDate DESC;
+     END;
+GO;
+
+ALTER PROC [dbo].[GetProductsByProductType] @ProductType     NVARCHAR(100),
+                                            @CurrentCurrency CHAR(5)       = NULL,
+                                            @ConversionRate  VARCHAR(50)   = NULL
+AS
+     BEGIN
+SELECT
+	P.ProductID
+   ,P.ProductCode
+   ,P.ProductName
+   ,P.ProductTypeID
+   ,P.WeightInGms
+   ,P.HeightInInch
+   ,P.WidthInInch
+   ,CASE
+		WHEN 'INR' = @CurrentCurrency THEN ROUND((P.Price * @ConversionRate), 2)
+		ELSE ROUND(P.Price, 2)
+	END AS Price
+   ,P.IsOffer
+   ,CASE
+		WHEN 'INR' = @CurrentCurrency THEN ROUND((P.OfferPrice * @ConversionRate), 2)
+		ELSE ROUND(P.OfferPrice, 2)
+	END AS OfferPrice
+   ,P.IsActive
+   ,P.[Description]
+   ,P.CreationDate
+   ,I.ImageName
+   ,I.ImagePath
+   ,P.AmazonUrl
+   ,P.eBayUrl
+FROM ProductMaster P
+INNER JOIN (SELECT
+		ImageName
+	   ,ImagePath
+	   ,ProductID
+	FROM (SELECT
+			ROW_NUMBER() OVER (PARTITION BY ProductID ORDER BY ImageID) AS RN
+		   ,ImageName
+		   ,ImagePath
+		   ,ProductID
+		FROM Images) T
+	WHERE T.RN = 1) I
+	ON P.ProductID = I.ProductID
+INNER JOIN ProductTypeMaster PT
+	ON P.ProductTypeID --= PT.ProductTypeID
+		IN (SELECT
+				T.ProductTypeId
+			FROM (SELECT
+					ProductTypeId
+				   ,ProductType
+				FROM ProductTypeMaster --WHERE ProductType = 'Festive'
+				UNION
+				SELECT
+					SPT.ProductTypeID
+				   ,PT.ProductType
+				FROM ProductTypeMaster PT
+				JOIN ProductTypeMaster SPT
+					ON PT.ProductTypeID = SPT.ParentProductTypeId) T
+			--WHERE PT.ProductType = 'Festive'
+			WHERE T.ProductType = @ProductType)
+WHERE PT.ProductType = @ProductType;
+END;
+GO;
+
+ALTER PROC [dbo].[SearchProducts] @SearchText      NVARCHAR(500),
+                                  @CurrentCurrency CHAR(5)       = NULL,
+                                  @ConversionRate  VARCHAR(50)   = NULL
+AS
+     BEGIN
+SELECT
+	P.ProductID
+   ,P.ProductCode
+   ,P.ProductName
+   ,P.ProductTypeID
+   ,P.WeightInGms
+   ,P.HeightInInch
+   ,P.WidthInInch
+   ,CASE
+		WHEN 'INR' = @CurrentCurrency THEN ROUND((P.Price * @ConversionRate), 2)
+		ELSE ROUND(P.Price, 2)
+	END AS Price
+   ,P.IsOffer
+   ,CASE
+		WHEN 'INR' = @CurrentCurrency THEN ROUND((P.OfferPrice * @ConversionRate), 2)
+		ELSE ROUND(P.OfferPrice, 2)
+	END AS OfferPrice
+   ,P.IsActive
+   ,P.[Description]
+   ,P.CreationDate
+   ,I.ImageName
+   ,I.ImagePath
+   ,P.AmazonUrl
+   ,P.eBayUrl
+FROM ProductMaster P
+INNER JOIN (SELECT
+		ImageName
+	   ,ImagePath
+	   ,ProductID
+	FROM (SELECT
+			ROW_NUMBER() OVER (PARTITION BY ProductID ORDER BY ImageID) AS RN
+		   ,ImageName
+		   ,ImagePath
+		   ,ProductID
+		FROM Images) T
+	WHERE T.RN = 1) I
+	ON P.ProductID = I.ProductID
+INNER JOIN ProductTypeMaster PT
+	ON P.ProductTypeID = PT.ProductTypeID
+WHERE PT.ProductType LIKE '%' + @SearchText + '%'
+OR P.ProductName LIKE '%' + @SearchText + '%'
+OR P.ProductCode LIKE '%' + @SearchText + '%';
+END;
+GO;

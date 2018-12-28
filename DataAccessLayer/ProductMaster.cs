@@ -43,6 +43,8 @@ namespace DataAccessLayer
         public bool IsMakingChargePercentage { get; set; }
         public Nullable<int> MetalVariantId { get; set; }
         public Nullable<int> GemVariantId { get; set; }
+        public string AmazonUrl { get; set; }
+        public string eBayUrl { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Image> Images { get; set; }

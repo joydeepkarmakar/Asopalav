@@ -455,6 +455,8 @@
     <Content Include="Scripts\bootstrap.min.js.download" />
     <Content Include="App_Code\Shared.cshtml" />
     <None Include="Connected Services\GetDailySilverRateServiceReference\GetSilverPrice.wsdl" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
+    <None Include="Properties\PublishProfiles\webappjdk - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\dropzone.js" />
     <Content Include="Scripts\easyzoom.js" />

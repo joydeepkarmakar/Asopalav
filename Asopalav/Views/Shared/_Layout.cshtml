@@ -16,7 +16,7 @@
             <div class="col-xs-12 col-sm-3 shree-hari-middle">
                 <img src="~/Content/images/ShreeHari.gif" />
             </div>
-            @*<div class="col-xs-12 col-sm-4 right-links device-price-margin" style="margin-right:10px">
+            <div class="col-xs-12 col-sm-4 right-links device-price-margin" style="margin-right:10px">
                     <div class="container">
                         <div class="row" style="font-size:12px !important;">
                             <div class="col-xs-12 col-sm-6 pad-left-right-0">
@@ -69,8 +69,8 @@
                             </div>
                         </div>
                     </div>
-                </div>*@
-            @*<div class="col-xs-12 col-sm-4 right-links pull-right">
+                </div>
+            <div class="col-xs-12 col-sm-4 right-links pull-right">
                     <div class="col-xs-3 col-sm-4 pull-right cart-margin">
                         <div class="profile-container" style="float:right">
                             @if (ViewBag.Title != "Cart Details")
@@ -79,11 +79,11 @@
                             }
                         </div>
                     </div>
-                </div>*@
+                </div>
         </div>
     </header>
     <!-- / header -->
-    @*<nav id="menu">
+    <nav id="menu">
         <div class="container" style="width:100% !important; border-bottom: 1px solid #ccc;">
             <div class="trigger"></div>
 
@@ -158,7 +158,7 @@
                 </li>
                 <li @((string)Session["CurrentPage"] == "Silverware" ? "class=menu-active" : "class=menu-hover")>
                     @*<a href="@Url.Action("Silverware", "Home",new { page = "Silverware" })">Silverware</a>*@
-    @*<a href="javascript:void(0);">Silverware</a>
+    <a href="javascript:void(0);">Silverware</a>
                         <div id="submenu-sticky1" class="megamenu clearfix selectorarrow">
                             <div class="container-fluid">
                                 <div class="row">
@@ -253,7 +253,7 @@
                     </li>
                 </ul>
             </div>
-        </nav>*@
+        </nav>
     <!--</div>-->
     <!-- / navigation -->
     <div class="container body-content">
@@ -263,7 +263,7 @@
         <footer id="footer" style="display:none;">
             <div class="container" style="width:100% !important; padding:20px 40px 10px 40px !important;">
                 <div class="cols">
-                    @*<div class="col">
+                    <div class="col">
                             <h1 class="footer-info-head">Our Company</h1>
                             <ul>
                                 <li><a href="javascript:void(0)">Brand Story</a></li>
@@ -318,14 +318,14 @@
                         </div>
                         <div class="pull-left device-foot">
                             <p>&copy; @DateTime.Now.Year - Asopalav Jewellers Pvt. Ltd.</p>
-                        </div>*@
+                        </div>
                 </div>
             </div>
             <!-- / container -->
         </footer>
     </div>
 
-    @*<script>
+    <script>
             window.onscroll = function () {
                 menuHeaderScrollFunction()
             };
@@ -374,7 +374,7 @@
                 //document.getElementById('divImg13').style.display = "none";
                 document.getElementById(id).style.display = "block";
             }
-        </script>*@
+        </script>
 
     @Scripts.Render("~/Script/Common")
     @RenderSection("scripts", required: false)

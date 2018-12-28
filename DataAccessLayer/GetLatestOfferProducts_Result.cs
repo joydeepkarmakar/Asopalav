@@ -33,5 +33,7 @@ namespace DataAccessLayer
         public Nullable<decimal> MakingCharge { get; set; }
         public string ImageName { get; set; }
         public string ImagePath { get; set; }
+        public string AmazonUrl { get; set; }
+        public string eBayUrl { get; set; }
     }
 }

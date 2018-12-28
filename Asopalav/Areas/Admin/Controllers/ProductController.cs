@@ -62,6 +62,8 @@ namespace Asopalav.Areas.Admin.Controllers
                 objProductModel.IsMakingChargePercentage = objProductDetailsModel.objProductMaster.IsMakingChargePercentage;
                 objProductModel.MetalVariantId = objProductDetailsModel.objProductMaster.MetalVariantId;
                 objProductModel.GemVariantId = objProductDetailsModel.objProductMaster.GemVariantId;
+                objProductModel.AmazonUrl = objProductDetailsModel.objProductMaster.AmazonUrl;
+                objProductModel.eBayUrl = objProductDetailsModel.objProductMaster.eBayUrl;
 
                 if (objProductDetailsModel.objProductMaster.Images != null)
                 {
@@ -303,9 +305,29 @@ namespace Asopalav.Areas.Admin.Controllers
                         {
                             gemVariantId.Value = DBNull.Value;
                         }
-                        object[] parameters = new object[] { productID, productCode, productName, productTypeID, weightInGms, heightInInch, widthInInch, price, isOffer, offerPrice, isActive, description, occasionId, offerStartDate, offerEndDate, makingChargePercentage, makingCharge, isMakingChargePercentage, metalVariantId, gemVariantId, imgDetails };
+                        SqlParameter amazonUrl = new SqlParameter
+                        {
+                            ParameterName = "AmazonUrl",
+                            Value = objProductMaster.AmazonUrl,
+                            SqlDbType = SqlDbType.VarChar
+                        };
+                        if (objProductMaster.AmazonUrl == null)
+                        {
+                            amazonUrl.Value = DBNull.Value;
+                        }
+                        SqlParameter eBayUrl = new SqlParameter
+                        {
+                            ParameterName = "eBayUrl",
+                            Value = objProductMaster.eBayUrl,
+                            SqlDbType = SqlDbType.VarChar
+                        };
+                        if (objProductMaster.eBayUrl == null)
+                        {
+                            eBayUrl.Value = DBNull.Value;
+                        }
+                        object[] parameters = new object[] { productID, productCode, productName, productTypeID, weightInGms, heightInInch, widthInInch, price, isOffer, offerPrice, isActive, description, occasionId, offerStartDate, offerEndDate, makingChargePercentage, makingCharge, isMakingChargePercentage, metalVariantId, gemVariantId, imgDetails, amazonUrl, eBayUrl };
 
-                        objAsopalavDBEntities.Database.ExecuteSqlCommand("EXEC [dbo].[AddUpdateProduct] @ProductID, @ProductCode, @ProductName ,@ProductTypeID, @WeightInGms, @HeightInInch, @WidthInInch, @Price, @IsOffer, @OfferPrice, @IsActive, @Description, @OccasionId, @OfferStartDate, @OfferEndDate, @MakingChargePercentage, @MakingCharge, @IsMakingChargePercentage, @MetalVariantId, @GemVariantId,@ImgDetails", parameters);
+                        objAsopalavDBEntities.Database.ExecuteSqlCommand("EXEC [dbo].[AddUpdateProduct] @ProductID, @ProductCode, @ProductName ,@ProductTypeID, @WeightInGms, @HeightInInch, @WidthInInch, @Price, @IsOffer, @OfferPrice, @IsActive, @Description, @OccasionId, @OfferStartDate, @OfferEndDate, @MakingChargePercentage, @MakingCharge, @IsMakingChargePercentage, @MetalVariantId, @GemVariantId,@ImgDetails,@AmazonUrl,@eBayUrl", parameters);
                     }
                     else
                     {
@@ -316,8 +338,8 @@ namespace Asopalav.Areas.Admin.Controllers
 
                         if (!(String.IsNullOrEmpty(gemName)))
                         {
-                            var prodCountG = objAsopalavDBEntities.ProductMasters.Where(p => p.MetalVariant.Name == metalName && 
-                                                                                        p.GemVariant.Name == gemName && 
+                            var prodCountG = objAsopalavDBEntities.ProductMasters.Where(p => p.MetalVariant.Name == metalName &&
+                                                                                        p.GemVariant.Name == gemName &&
                                                                                         p.IsActive == true).Count();
                             objProductMaster.ProductCode = "AJ" + metalName[0] + gemName[0] + "000" + Convert.ToString(prodCountG + 1);
                         }

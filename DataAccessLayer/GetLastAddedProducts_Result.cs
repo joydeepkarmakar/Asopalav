@@ -20,13 +20,15 @@ namespace DataAccessLayer
         public decimal WeightInGms { get; set; }
         public string HeightInInch { get; set; }
         public string WidthInInch { get; set; }
-        public decimal Price { get; set; }
-        public Nullable<bool> IsOffer { get; set; }
+        public Nullable<decimal> Price { get; set; }
+        public bool IsOffer { get; set; }
         public Nullable<decimal> OfferPrice { get; set; }
         public bool IsActive { get; set; }
         public string Description { get; set; }
         public System.DateTime CreationDate { get; set; }
         public string ImageName { get; set; }
         public string ImagePath { get; set; }
+        public string AmazonUrl { get; set; }
+        public string eBayUrl { get; set; }
     }
 }

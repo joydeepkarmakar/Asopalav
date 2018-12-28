@@ -150,6 +150,8 @@
           <Property Name="IsMakingChargePercentage" Type="bit" Nullable="false" />
           <Property Name="MetalVariantId" Type="int" />
           <Property Name="GemVariantId" Type="int" />
+          <Property Name="AmazonUrl" Type="varchar(max)" />
+          <Property Name="eBayUrl" Type="varchar(max)" />
         </EntityType>
         <EntityType Name="ProductTypeMaster">
           <Key>
@@ -376,6 +378,8 @@
           <Parameter Name="IsMakingChargePercentage" Type="bit" Mode="In" />
           <Parameter Name="MetalVariantId" Type="int" Mode="In" />
           <Parameter Name="GemVariantId" Type="int" Mode="In" />
+          <Parameter Name="AmazonUrl" Type="varchar(max)" Mode="In" />
+          <Parameter Name="eBayUrl" Type="varchar(max)" Mode="In" />
         </Function>
         <Function Name="AddUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Primary_Email" Type="varchar" Mode="In" />
@@ -644,6 +648,8 @@
             <Parameter Name="IsMakingChargePercentage" Mode="In" Type="Boolean" />
             <Parameter Name="MetalVariantId" Mode="In" Type="Int32" />
             <Parameter Name="GemVariantId" Mode="In" Type="Int32" />
+            <Parameter Name="AmazonUrl" Mode="In" Type="String" />
+            <Parameter Name="eBayUrl" Mode="In" Type="String" />
           </FunctionImport>
           <EntitySet Name="FeedbackMasters" EntityType="AsopalavDBModel.FeedbackMaster" />
           <EntitySet Name="Images" EntityType="AsopalavDBModel.Image" />
@@ -782,6 +788,8 @@
           <NavigationProperty Name="GemVariant" Relationship="AsopalavDBModel.FK_ProductMaster_GemVariant" FromRole="ProductMaster" ToRole="GemVariant" />
           <NavigationProperty Name="MetalVariant" Relationship="AsopalavDBModel.FK_ProductMaster_MetalVariant" FromRole="ProductMaster" ToRole="MetalVariant" />
           <NavigationProperty Name="OccasionMaster" Relationship="AsopalavDBModel.FK_ProductMaster_OccasionMaster" FromRole="ProductMaster" ToRole="OccasionMaster" />
+          <Property Name="AmazonUrl" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="eBayUrl" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
         <Association Name="FK_Images_ProductMaster">
           <End Type="AsopalavDBModel.ProductMaster" Role="ProductMaster" Multiplicity="0..1" />
@@ -829,14 +837,16 @@
           <Property Type="Decimal" Name="WeightInGms" Nullable="false" Precision="18" Scale="3" />
           <Property Type="String" Name="HeightInInch" Nullable="true" MaxLength="15" />
           <Property Type="String" Name="WidthInInch" Nullable="true" MaxLength="15" />
-          <Property Type="Decimal" Name="Price" Nullable="false" Precision="18" Scale="2" />
-          <Property Type="Boolean" Name="IsOffer" Nullable="true" />
-          <Property Type="Decimal" Name="OfferPrice" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="Price" Nullable="true" Precision="37" Scale="4" />
+          <Property Type="Boolean" Name="IsOffer" Nullable="false" />
+          <Property Type="Decimal" Name="OfferPrice" Nullable="true" Precision="37" Scale="4" />
           <Property Type="Boolean" Name="IsActive" Nullable="false" />
           <Property Type="String" Name="Description" Nullable="false" />
           <Property Type="DateTime" Name="CreationDate" Nullable="false" Precision="23" />
           <Property Type="String" Name="ImageName" Nullable="false" MaxLength="500" />
           <Property Type="String" Name="ImagePath" Nullable="false" />
+          <Property Type="String" Name="AmazonUrl" Nullable="true" />
+          <Property Type="String" Name="eBayUrl" Nullable="true" />
         </ComplexType>
         <ComplexType Name="GetProductsByProductType_Result">
           <Property Type="Int64" Name="ProductID" Nullable="false" />
@@ -846,14 +856,16 @@
           <Property Type="Decimal" Name="WeightInGms" Nullable="false" Precision="18" Scale="3" />
           <Property Type="String" Name="HeightInInch" Nullable="true" MaxLength="15" />
           <Property Type="String" Name="WidthInInch" Nullable="true" MaxLength="15" />
-          <Property Type="Decimal" Name="Price" Nullable="false" Precision="18" Scale="2" />
-          <Property Type="Boolean" Name="IsOffer" Nullable="true" />
-          <Property Type="Decimal" Name="OfferPrice" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="Price" Nullable="true" Precision="37" Scale="4" />
+          <Property Type="Boolean" Name="IsOffer" Nullable="false" />
+          <Property Type="Decimal" Name="OfferPrice" Nullable="true" Precision="37" Scale="4" />
           <Property Type="Boolean" Name="IsActive" Nullable="false" />
           <Property Type="String" Name="Description" Nullable="false" />
           <Property Type="DateTime" Name="CreationDate" Nullable="false" Precision="23" />
           <Property Type="String" Name="ImageName" Nullable="false" MaxLength="500" />
           <Property Type="String" Name="ImagePath" Nullable="false" />
+          <Property Type="String" Name="AmazonUrl" Nullable="true" />
+          <Property Type="String" Name="eBayUrl" Nullable="true" />
         </ComplexType>
         <EntityType Name="OrderDetail">
           <Key>
@@ -975,6 +987,8 @@
           <Property Type="DateTime" Name="CreationDate" Nullable="false" Precision="23" />
           <Property Type="String" Name="ImageName" Nullable="false" MaxLength="500" />
           <Property Type="String" Name="ImagePath" Nullable="false" />
+          <Property Type="String" Name="AmazonUrl" Nullable="true" />
+          <Property Type="String" Name="eBayUrl" Nullable="true" />
         </ComplexType>
         <EntityType Name="GemVariant">
           <Key>
@@ -1084,6 +1098,8 @@
           <Property Type="Decimal" Name="MakingCharge" Nullable="true" Precision="18" Scale="2" />
           <Property Type="String" Name="ImageName" Nullable="false" MaxLength="500" />
           <Property Type="String" Name="ImagePath" Nullable="false" />
+          <Property Type="String" Name="AmazonUrl" Nullable="true" />
+          <Property Type="String" Name="eBayUrl" Nullable="true" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1215,6 +1231,8 @@
           <EntitySetMapping Name="ProductMasters">
             <EntityTypeMapping TypeName="AsopalavDBModel.ProductMaster">
               <MappingFragment StoreEntitySet="ProductMaster">
+                <ScalarProperty Name="eBayUrl" ColumnName="eBayUrl" />
+                <ScalarProperty Name="AmazonUrl" ColumnName="AmazonUrl" />
                 <ScalarProperty Name="GemVariantId" ColumnName="GemVariantId" />
                 <ScalarProperty Name="MetalVariantId" ColumnName="MetalVariantId" />
                 <ScalarProperty Name="IsMakingChargePercentage" ColumnName="IsMakingChargePercentage" />
@@ -1279,6 +1297,8 @@
                 <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
                 <ScalarProperty Name="ImageName" ColumnName="ImageName" />
                 <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+                <ScalarProperty Name="AmazonUrl" ColumnName="AmazonUrl" />
+                <ScalarProperty Name="eBayUrl" ColumnName="eBayUrl" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -1300,6 +1320,8 @@
                 <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
                 <ScalarProperty Name="ImageName" ColumnName="ImageName" />
                 <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+                <ScalarProperty Name="AmazonUrl" ColumnName="AmazonUrl" />
+                <ScalarProperty Name="eBayUrl" ColumnName="eBayUrl" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -1367,6 +1389,8 @@
                 <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
                 <ScalarProperty Name="ImageName" ColumnName="ImageName" />
                 <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+                <ScalarProperty Name="AmazonUrl" ColumnName="AmazonUrl" />
+                <ScalarProperty Name="eBayUrl" ColumnName="eBayUrl" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -1445,6 +1469,8 @@
                 <ScalarProperty Name="MakingCharge" ColumnName="MakingCharge" />
                 <ScalarProperty Name="ImageName" ColumnName="ImageName" />
                 <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+                <ScalarProperty Name="AmazonUrl" ColumnName="AmazonUrl" />
+                <ScalarProperty Name="eBayUrl" ColumnName="eBayUrl" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

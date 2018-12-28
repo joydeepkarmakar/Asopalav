@@ -28,5 +28,7 @@ namespace DataAccessLayer
         public System.DateTime CreationDate { get; set; }
         public string ImageName { get; set; }
         public string ImagePath { get; set; }
+        public string AmazonUrl { get; set; }
+        public string eBayUrl { get; set; }
     }
 }
