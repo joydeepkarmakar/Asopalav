@@ -205,6 +205,7 @@
     <Content Include="Areas\Admin\Views\Product\ProductList.cshtml" />
     <Content Include="Areas\Admin\Views\User\UserList.cshtml" />
     <Content Include="Areas\Admin\Views\User\_ModifyUser.cshtml" />
+    <Content Include="Areas\Admin\Views\Price\Index.cshtml" />
     <None Include="Connected Services\GetDailyGoldRateServiceReference\GetGoldPrice.disco" />
     <None Include="Connected Services\GetDailyGoldRateServiceReference\configuration91.svcinfo" />
     <None Include="Connected Services\GetDailyGoldRateServiceReference\configuration.svcinfo" />
@@ -495,6 +496,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Areas\Admin\Controllers\PriceController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductController.cs" />
     <Compile Include="Areas\Admin\Controllers\UserController.cs" />
     <Compile Include="Areas\Admin\Models\UserViewModel.cs" />

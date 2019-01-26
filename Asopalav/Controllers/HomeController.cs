@@ -34,10 +34,17 @@ namespace Asopalav.Controllers
             }
             */
 
+            if (String.IsNullOrEmpty(currentCurrency))
+                currentCurrency = "INR";
+
             Session["DollarRate"] = GetDollarToRupeeVal(ConfigurationManager.AppSettings["DollarToRupeeUrl"]) ?? "NA";
             //Session["SilverRate"] = GetSilverPrice(ConfigurationManager.AppSettings["SilverPriceUrl"]) ?? "NA";
-            Session["GoldRate"] = GetGoldPrice();//"1,197.75";
-            Session["SilverRate"] = GetSilverPrice();//"14.32";
+            Session["GoldRate"] = objAsopalavDBEntities.PriceMasters.Where(x => x.MetalVariant.Name.ToLower() == "gold" & 
+                                                                                x.CurrencyMaster.CurrencyCode.ToUpper() == currentCurrency)
+                                                                    .Select(x => x.PriceValue).FirstOrDefault(); //GetGoldPrice();//"1,197.75";
+            Session["SilverRate"] = objAsopalavDBEntities.PriceMasters.Where(x => x.MetalVariant.Name.ToLower() == "silver" &
+                                                                                x.CurrencyMaster.CurrencyCode.ToUpper() == currentCurrency)
+                                                                    .Select(x => x.PriceValue).FirstOrDefault(); //GetSilverPrice();//"14.32";
             #endregion
 
             var isAjax = Request.IsAjaxRequest();

@@ -12,27 +12,22 @@ namespace DataAccessLayer
     using System;
     using System.Collections.Generic;
     
-    public partial class GemVariant
+    public partial class CountryMaster
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public GemVariant()
+        public CountryMaster()
         {
-            this.ProductMasters = new HashSet<ProductMaster>();
+            this.CurrencyMasters = new HashSet<CurrencyMaster>();
             this.PriceMasters = new HashSet<PriceMaster>();
         }
     
-        public int GemVariantId { get; set; }
-        public string Name { get; set; }
-        public string Description { get; set; }
-        public Nullable<int> Carat { get; set; }
-        public Nullable<decimal> Weight { get; set; }
-        public Nullable<decimal> Price { get; set; }
+        public int CountryId { get; set; }
+        public string CountryName { get; set; }
+        public string CountryCode { get; set; }
         public bool IsActive { get; set; }
-        public Nullable<System.DateTime> CreatedOn { get; set; }
-        public Nullable<System.DateTime> ModifiedOn { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ProductMaster> ProductMasters { get; set; }
+        public virtual ICollection<CurrencyMaster> CurrencyMasters { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PriceMaster> PriceMasters { get; set; }
     }

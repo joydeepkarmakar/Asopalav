@@ -1,0 +1,65 @@
+﻿<div class="container">
+    <div class="form-inline">
+        <div class="form-group">
+            <select class="form-control" style="width: 115px;">
+                <option>Gold</option>
+                <option>Silver</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <select class="form-control" style="width: 115px;">
+                <option>Gold</option>
+                <option>Silver</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <select class="form-control" style="width: 100px;">
+                <option>INR</option>
+                <option>USD</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <select class="form-control" style="width: 85px;">
+                <option>g</option>
+                <option>kg</option>
+                <option>oz</option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-default" id="btnPriceSubmit">Submit</button>
+    </div>
+    <table class="display" id="priceTable">
+        <thead>
+            <tr>
+                <th>Product Price</th>
+                <th>Product Previous Price</th>
+                <th>Price Change Percentage</th>
+                <th>Product Price Per Unit</th>
+                <th>ActionPeformed</th>
+                <th>Modified On</th>
+            </tr>
+        </thead>
+    </table>
+</div>
+
+@section scripts{
+    <script type="text/javascript">
+        var priceDataTable;
+        $(document).ready(function () {
+               priceDataTable = $("#priceTable").DataTable({
+                    "ajax": {
+                        "url": "@Url.Action("GetProdPriceList", "Price")",
+                        "type": "GET",
+                        "datatype": "json"
+                     },
+                    "columns": [
+                            { "data": "ProductPrice" },
+                            { "data": "PreviousPrice" },
+                            { "data": "PriceChangePercentage" },
+                            { "data": "ProductPriceUnit" },
+                            { "data": "ActionPeformed", "autoWidth": true },
+                            { "data": "ModifiedOn" }
+                            ]
+               });
+        });
+    </script>
+}

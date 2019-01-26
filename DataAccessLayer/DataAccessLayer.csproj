@@ -69,6 +69,12 @@
     <Compile Include="CartDetail.cs">
       <DependentUpon>AsopalavDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="CountryMaster.cs">
+      <DependentUpon>AsopalavDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CurrencyMaster.cs">
+      <DependentUpon>AsopalavDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="FeedbackMaster.cs">
       <DependentUpon>AsopalavDataModel.tt</DependentUpon>
     </Compile>
@@ -112,6 +118,12 @@
       <DependentUpon>AsopalavDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="OrderDetail.cs">
+      <DependentUpon>AsopalavDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PriceMaster.cs">
+      <DependentUpon>AsopalavDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PriceVariant.cs">
       <DependentUpon>AsopalavDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="ProductMaster.cs">

@@ -18,6 +18,7 @@ namespace DataAccessLayer
         public MetalVariant()
         {
             this.ProductMasters = new HashSet<ProductMaster>();
+            this.PriceMasters = new HashSet<PriceMaster>();
         }
     
         public int MetalVariantId { get; set; }
@@ -33,5 +34,7 @@ namespace DataAccessLayer
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ProductMaster> ProductMasters { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PriceMaster> PriceMasters { get; set; }
     }
 }

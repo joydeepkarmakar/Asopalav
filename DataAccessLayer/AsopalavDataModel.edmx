@@ -18,6 +18,25 @@
           <Property Name="PrimaryEmail" Type="varchar" MaxLength="100" />
           <Property Name="CurrentSessionId" Type="varchar(max)" />
         </EntityType>
+        <EntityType Name="CountryMaster">
+          <Key>
+            <PropertyRef Name="CountryId" />
+          </Key>
+          <Property Name="CountryId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CountryName" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="CountryCode" Type="char" MaxLength="3" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CurrencyMaster">
+          <Key>
+            <PropertyRef Name="CurrencyId" />
+          </Key>
+          <Property Name="CurrencyId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CurrencyName" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="CurrencyCode" Type="char" MaxLength="3" Nullable="false" />
+          <Property Name="CountryId" Type="int" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+        </EntityType>
         <EntityType Name="FeedbackMaster">
           <Key>
             <PropertyRef Name="ID" />
@@ -124,6 +143,34 @@
           <Property Name="UserId" Type="bigint" />
           <Property Name="CreationDate" Type="datetime" />
         </EntityType>
+        <EntityType Name="PriceMaster">
+          <Key>
+            <PropertyRef Name="PriceId" />
+          </Key>
+          <Property Name="PriceId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PriceValue" Type="numeric" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="PriceMeasure" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CountryId" Type="int" />
+          <Property Name="CurrencyId" Type="int" />
+          <Property Name="MetalId" Type="int" />
+          <Property Name="GemId" Type="int" />
+          <Property Name="EffectiveFor" Type="datetime" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PriceVariant">
+          <Key>
+            <PropertyRef Name="PriceVariantId" />
+          </Key>
+          <Property Name="PriceVariantId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductPrice" Type="numeric" Precision="10" Scale="2" />
+          <Property Name="ProductPriceUnit" Type="varchar" MaxLength="50" />
+          <Property Name="PreviousPrice" Type="numeric" Precision="10" Scale="2" />
+          <Property Name="PriceMasterId" Type="int" />
+          <Property Name="PriceChangePercentage" Type="numeric" Precision="10" Scale="2" />
+          <Property Name="ActionPeformed" Type="varchar" MaxLength="500" />
+          <Property Name="ModifiedBy" Type="varchar" MaxLength="100" />
+          <Property Name="ModifiedOn" Type="datetime" />
+        </EntityType>
         <EntityType Name="ProductMaster">
           <Key>
             <PropertyRef Name="ProductID" />
@@ -225,6 +272,18 @@
           <Property Name="RoleID" Type="int" Nullable="false" />
           <Property Name="Registration_From_Device" Type="bit" Nullable="false" />
         </EntityType>
+        <Association Name="FK_CountryMaster_CurrencyMaster">
+          <End Role="CountryMaster" Type="Self.CountryMaster" Multiplicity="0..1" />
+          <End Role="CurrencyMaster" Type="Self.CurrencyMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CountryMaster">
+              <PropertyRef Name="CountryId" />
+            </Principal>
+            <Dependent Role="CurrencyMaster">
+              <PropertyRef Name="CountryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Images_ProductMaster">
           <End Role="ProductMaster" Type="Self.ProductMaster" Multiplicity="0..1" />
           <End Role="Images" Type="Self.Images" Multiplicity="*" />
@@ -282,6 +341,66 @@
             </Principal>
             <Dependent Role="Orders">
               <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PriceMaster_CountryMaster">
+          <End Role="CountryMaster" Type="Self.CountryMaster" Multiplicity="0..1" />
+          <End Role="PriceMaster" Type="Self.PriceMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CountryMaster">
+              <PropertyRef Name="CountryId" />
+            </Principal>
+            <Dependent Role="PriceMaster">
+              <PropertyRef Name="CountryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PriceMaster_CurrencyMaster">
+          <End Role="CurrencyMaster" Type="Self.CurrencyMaster" Multiplicity="0..1" />
+          <End Role="PriceMaster" Type="Self.PriceMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CurrencyMaster">
+              <PropertyRef Name="CurrencyId" />
+            </Principal>
+            <Dependent Role="PriceMaster">
+              <PropertyRef Name="CurrencyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PriceMaster_GemVariant">
+          <End Role="GemVariant" Type="Self.GemVariant" Multiplicity="0..1" />
+          <End Role="PriceMaster" Type="Self.PriceMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GemVariant">
+              <PropertyRef Name="GemVariantId" />
+            </Principal>
+            <Dependent Role="PriceMaster">
+              <PropertyRef Name="GemId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PriceMaster_MetalVariant">
+          <End Role="MetalVariant" Type="Self.MetalVariant" Multiplicity="0..1" />
+          <End Role="PriceMaster" Type="Self.PriceMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MetalVariant">
+              <PropertyRef Name="MetalVariantId" />
+            </Principal>
+            <Dependent Role="PriceMaster">
+              <PropertyRef Name="MetalId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PriceVariant_PriceMaster">
+          <End Role="PriceMaster" Type="Self.PriceMaster" Multiplicity="0..1" />
+          <End Role="PriceVariant" Type="Self.PriceVariant" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PriceMaster">
+              <PropertyRef Name="PriceId" />
+            </Principal>
+            <Dependent Role="PriceVariant">
+              <PropertyRef Name="PriceMasterId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -357,6 +476,13 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="AddUpdatePrice" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PriceValue" Type="numeric" Mode="In" />
+          <Parameter Name="PriceMeasure" Type="varchar" Mode="In" />
+          <Parameter Name="CurrencyId" Type="int" Mode="In" />
+          <Parameter Name="MetalId" Type="int" Mode="In" />
+          <Parameter Name="GemId" Type="int" Mode="In" />
+        </Function>
         <Function Name="AddUpdateProduct" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="ProductID" Type="bigint" Mode="In" />
           <Parameter Name="ProductCode" Type="varchar" Mode="In" />
@@ -433,6 +559,8 @@
         </Function>
         <EntityContainer Name="AsopalavDBModelStoreContainer">
           <EntitySet Name="CartDetails" EntityType="Self.CartDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CountryMaster" EntityType="Self.CountryMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CurrencyMaster" EntityType="Self.CurrencyMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="FeedbackMaster" EntityType="Self.FeedbackMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="GemVariant" EntityType="Self.GemVariant" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Images" EntityType="Self.Images" Schema="dbo" store:Type="Tables" />
@@ -443,12 +571,18 @@
           <EntitySet Name="OccasionMaster" EntityType="Self.OccasionMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="OrderDetails" EntityType="Self.OrderDetails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Orders" EntityType="Self.Orders" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PriceMaster" EntityType="Self.PriceMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PriceVariant" EntityType="Self.PriceVariant" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProductMaster" EntityType="Self.ProductMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProductTypeMaster" EntityType="Self.ProductTypeMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RoleMaster" EntityType="Self.RoleMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RoleMenuPermission" EntityType="Self.RoleMenuPermission" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserAddressDetails" EntityType="Self.UserAddressDetails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserProfileMaster" EntityType="Self.UserProfileMaster" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_CountryMaster_CurrencyMaster" Association="Self.FK_CountryMaster_CurrencyMaster">
+            <End Role="CountryMaster" EntitySet="CountryMaster" />
+            <End Role="CurrencyMaster" EntitySet="CurrencyMaster" />
+          </AssociationSet>
           <AssociationSet Name="FK_Images_ProductMaster" Association="Self.FK_Images_ProductMaster">
             <End Role="ProductMaster" EntitySet="ProductMaster" />
             <End Role="Images" EntitySet="Images" />
@@ -468,6 +602,26 @@
           <AssociationSet Name="FK_Orders_UserProfileMaster" Association="Self.FK_Orders_UserProfileMaster">
             <End Role="UserProfileMaster" EntitySet="UserProfileMaster" />
             <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PriceMaster_CountryMaster" Association="Self.FK_PriceMaster_CountryMaster">
+            <End Role="CountryMaster" EntitySet="CountryMaster" />
+            <End Role="PriceMaster" EntitySet="PriceMaster" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PriceMaster_CurrencyMaster" Association="Self.FK_PriceMaster_CurrencyMaster">
+            <End Role="CurrencyMaster" EntitySet="CurrencyMaster" />
+            <End Role="PriceMaster" EntitySet="PriceMaster" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PriceMaster_GemVariant" Association="Self.FK_PriceMaster_GemVariant">
+            <End Role="GemVariant" EntitySet="GemVariant" />
+            <End Role="PriceMaster" EntitySet="PriceMaster" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PriceMaster_MetalVariant" Association="Self.FK_PriceMaster_MetalVariant">
+            <End Role="MetalVariant" EntitySet="MetalVariant" />
+            <End Role="PriceMaster" EntitySet="PriceMaster" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PriceVariant_PriceMaster" Association="Self.FK_PriceVariant_PriceMaster">
+            <End Role="PriceMaster" EntitySet="PriceMaster" />
+            <End Role="PriceVariant" EntitySet="PriceVariant" />
           </AssociationSet>
           <AssociationSet Name="FK_ProductMaster_GemVariant" Association="Self.FK_ProductMaster_GemVariant">
             <End Role="GemVariant" EntitySet="GemVariant" />
@@ -727,6 +881,41 @@
           <FunctionImport Name="GetLatestOfferProducts" ReturnType="Collection(AsopalavDBModel.GetLatestOfferProducts_Result)">
             <Parameter Name="CurrentCurrency" Mode="In" Type="String" />
             <Parameter Name="ConversionRate" Mode="In" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="CountryMasters" EntityType="AsopalavDBModel.CountryMaster" />
+          <EntitySet Name="CurrencyMasters" EntityType="AsopalavDBModel.CurrencyMaster" />
+          <EntitySet Name="PriceMasters" EntityType="AsopalavDBModel.PriceMaster" />
+          <EntitySet Name="PriceVariants" EntityType="AsopalavDBModel.PriceVariant" />
+          <AssociationSet Name="FK_CountryMaster_CurrencyMaster" Association="AsopalavDBModel.FK_CountryMaster_CurrencyMaster">
+            <End Role="CountryMaster" EntitySet="CountryMasters" />
+            <End Role="CurrencyMaster" EntitySet="CurrencyMasters" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PriceMaster_CountryMaster" Association="AsopalavDBModel.FK_PriceMaster_CountryMaster">
+            <End Role="CountryMaster" EntitySet="CountryMasters" />
+            <End Role="PriceMaster" EntitySet="PriceMasters" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PriceMaster_CurrencyMaster" Association="AsopalavDBModel.FK_PriceMaster_CurrencyMaster">
+            <End Role="CurrencyMaster" EntitySet="CurrencyMasters" />
+            <End Role="PriceMaster" EntitySet="PriceMasters" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PriceMaster_GemVariant" Association="AsopalavDBModel.FK_PriceMaster_GemVariant">
+            <End Role="GemVariant" EntitySet="GemVariants" />
+            <End Role="PriceMaster" EntitySet="PriceMasters" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PriceMaster_MetalVariant" Association="AsopalavDBModel.FK_PriceMaster_MetalVariant">
+            <End Role="MetalVariant" EntitySet="MetalVariants" />
+            <End Role="PriceMaster" EntitySet="PriceMasters" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PriceVariant_PriceMaster" Association="AsopalavDBModel.FK_PriceVariant_PriceMaster">
+            <End Role="PriceMaster" EntitySet="PriceMasters" />
+            <End Role="PriceVariant" EntitySet="PriceVariants" />
+          </AssociationSet>
+          <FunctionImport Name="AddUpdatePrice">
+            <Parameter Name="PriceValue" Mode="In" Type="Decimal" />
+            <Parameter Name="PriceMeasure" Mode="In" Type="String" />
+            <Parameter Name="CurrencyId" Mode="In" Type="Int32" />
+            <Parameter Name="MetalId" Mode="In" Type="Int32" />
+            <Parameter Name="GemId" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="ValidateUserAndMenu_Result">
@@ -1004,6 +1193,7 @@
           <Property Name="CreatedOn" Type="DateTime" Precision="3" />
           <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
           <NavigationProperty Name="ProductMasters" Relationship="AsopalavDBModel.FK_ProductMaster_GemVariant" FromRole="GemVariant" ToRole="ProductMaster" />
+          <NavigationProperty Name="PriceMasters" Relationship="AsopalavDBModel.FK_PriceMaster_GemVariant" FromRole="GemVariant" ToRole="PriceMaster" />
         </EntityType>
         <EntityType Name="MetalVariant">
           <Key>
@@ -1020,6 +1210,7 @@
           <Property Name="CreatedOn" Type="DateTime" Precision="3" />
           <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
           <NavigationProperty Name="ProductMasters" Relationship="AsopalavDBModel.FK_ProductMaster_MetalVariant" FromRole="MetalVariant" ToRole="ProductMaster" />
+          <NavigationProperty Name="PriceMasters" Relationship="AsopalavDBModel.FK_PriceMaster_MetalVariant" FromRole="MetalVariant" ToRole="PriceMaster" />
         </EntityType>
         <EntityType Name="NewsLetterMaster">
           <Key>
@@ -1101,6 +1292,135 @@
           <Property Type="String" Name="AmazonUrl" Nullable="true" />
           <Property Type="String" Name="eBayUrl" Nullable="true" />
         </ComplexType>
+        <EntityType Name="CountryMaster">
+          <Key>
+            <PropertyRef Name="CountryId" />
+          </Key>
+          <Property Name="CountryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CountryName" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="CountryCode" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="CurrencyMasters" Relationship="AsopalavDBModel.FK_CountryMaster_CurrencyMaster" FromRole="CountryMaster" ToRole="CurrencyMaster" />
+          <NavigationProperty Name="PriceMasters" Relationship="AsopalavDBModel.FK_PriceMaster_CountryMaster" FromRole="CountryMaster" ToRole="PriceMaster" />
+        </EntityType>
+        <EntityType Name="CurrencyMaster">
+          <Key>
+            <PropertyRef Name="CurrencyId" />
+          </Key>
+          <Property Name="CurrencyId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CurrencyName" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="CurrencyCode" Type="String" Nullable="false" MaxLength="3" FixedLength="true" Unicode="false" />
+          <Property Name="CountryId" Type="Int32" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="CountryMaster" Relationship="AsopalavDBModel.FK_CountryMaster_CurrencyMaster" FromRole="CurrencyMaster" ToRole="CountryMaster" />
+          <NavigationProperty Name="PriceMasters" Relationship="AsopalavDBModel.FK_PriceMaster_CurrencyMaster" FromRole="CurrencyMaster" ToRole="PriceMaster" />
+        </EntityType>
+        <EntityType Name="PriceMaster">
+          <Key>
+            <PropertyRef Name="PriceId" />
+          </Key>
+          <Property Name="PriceId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PriceValue" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+          <Property Name="PriceMeasure" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CountryId" Type="Int32" />
+          <Property Name="CurrencyId" Type="Int32" />
+          <Property Name="MetalId" Type="Int32" />
+          <Property Name="GemId" Type="Int32" />
+          <Property Name="EffectiveFor" Type="DateTime" Precision="3" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="CountryMaster" Relationship="AsopalavDBModel.FK_PriceMaster_CountryMaster" FromRole="PriceMaster" ToRole="CountryMaster" />
+          <NavigationProperty Name="CurrencyMaster" Relationship="AsopalavDBModel.FK_PriceMaster_CurrencyMaster" FromRole="PriceMaster" ToRole="CurrencyMaster" />
+          <NavigationProperty Name="GemVariant" Relationship="AsopalavDBModel.FK_PriceMaster_GemVariant" FromRole="PriceMaster" ToRole="GemVariant" />
+          <NavigationProperty Name="MetalVariant" Relationship="AsopalavDBModel.FK_PriceMaster_MetalVariant" FromRole="PriceMaster" ToRole="MetalVariant" />
+          <NavigationProperty Name="PriceVariants" Relationship="AsopalavDBModel.FK_PriceVariant_PriceMaster" FromRole="PriceMaster" ToRole="PriceVariant" />
+        </EntityType>
+        <EntityType Name="PriceVariant">
+          <Key>
+            <PropertyRef Name="PriceVariantId" />
+          </Key>
+          <Property Name="PriceVariantId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductPrice" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="ProductPriceUnit" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PreviousPrice" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="PriceMasterId" Type="Int32" />
+          <Property Name="PriceChangePercentage" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="ActionPeformed" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="ModifiedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="PriceMaster" Relationship="AsopalavDBModel.FK_PriceVariant_PriceMaster" FromRole="PriceVariant" ToRole="PriceMaster" />
+        </EntityType>
+        <Association Name="FK_CountryMaster_CurrencyMaster">
+          <End Type="AsopalavDBModel.CountryMaster" Role="CountryMaster" Multiplicity="0..1" />
+          <End Type="AsopalavDBModel.CurrencyMaster" Role="CurrencyMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CountryMaster">
+              <PropertyRef Name="CountryId" />
+            </Principal>
+            <Dependent Role="CurrencyMaster">
+              <PropertyRef Name="CountryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PriceMaster_CountryMaster">
+          <End Type="AsopalavDBModel.CountryMaster" Role="CountryMaster" Multiplicity="0..1" />
+          <End Type="AsopalavDBModel.PriceMaster" Role="PriceMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CountryMaster">
+              <PropertyRef Name="CountryId" />
+            </Principal>
+            <Dependent Role="PriceMaster">
+              <PropertyRef Name="CountryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PriceMaster_CurrencyMaster">
+          <End Type="AsopalavDBModel.CurrencyMaster" Role="CurrencyMaster" Multiplicity="0..1" />
+          <End Type="AsopalavDBModel.PriceMaster" Role="PriceMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CurrencyMaster">
+              <PropertyRef Name="CurrencyId" />
+            </Principal>
+            <Dependent Role="PriceMaster">
+              <PropertyRef Name="CurrencyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PriceMaster_GemVariant">
+          <End Type="AsopalavDBModel.GemVariant" Role="GemVariant" Multiplicity="0..1" />
+          <End Type="AsopalavDBModel.PriceMaster" Role="PriceMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GemVariant">
+              <PropertyRef Name="GemVariantId" />
+            </Principal>
+            <Dependent Role="PriceMaster">
+              <PropertyRef Name="GemId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PriceMaster_MetalVariant">
+          <End Type="AsopalavDBModel.MetalVariant" Role="MetalVariant" Multiplicity="0..1" />
+          <End Type="AsopalavDBModel.PriceMaster" Role="PriceMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MetalVariant">
+              <PropertyRef Name="MetalVariantId" />
+            </Principal>
+            <Dependent Role="PriceMaster">
+              <PropertyRef Name="MetalId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PriceVariant_PriceMaster">
+          <End Type="AsopalavDBModel.PriceMaster" Role="PriceMaster" Multiplicity="0..1" />
+          <End Type="AsopalavDBModel.PriceVariant" Role="PriceVariant" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PriceMaster">
+              <PropertyRef Name="PriceId" />
+            </Principal>
+            <Dependent Role="PriceVariant">
+              <PropertyRef Name="PriceMasterId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1474,6 +1794,58 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <EntitySetMapping Name="CountryMasters">
+            <EntityTypeMapping TypeName="AsopalavDBModel.CountryMaster">
+              <MappingFragment StoreEntitySet="CountryMaster">
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CountryCode" ColumnName="CountryCode" />
+                <ScalarProperty Name="CountryName" ColumnName="CountryName" />
+                <ScalarProperty Name="CountryId" ColumnName="CountryId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CurrencyMasters">
+            <EntityTypeMapping TypeName="AsopalavDBModel.CurrencyMaster">
+              <MappingFragment StoreEntitySet="CurrencyMaster">
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CountryId" ColumnName="CountryId" />
+                <ScalarProperty Name="CurrencyCode" ColumnName="CurrencyCode" />
+                <ScalarProperty Name="CurrencyName" ColumnName="CurrencyName" />
+                <ScalarProperty Name="CurrencyId" ColumnName="CurrencyId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PriceMasters">
+            <EntityTypeMapping TypeName="AsopalavDBModel.PriceMaster">
+              <MappingFragment StoreEntitySet="PriceMaster">
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="EffectiveFor" ColumnName="EffectiveFor" />
+                <ScalarProperty Name="GemId" ColumnName="GemId" />
+                <ScalarProperty Name="MetalId" ColumnName="MetalId" />
+                <ScalarProperty Name="CurrencyId" ColumnName="CurrencyId" />
+                <ScalarProperty Name="CountryId" ColumnName="CountryId" />
+                <ScalarProperty Name="PriceMeasure" ColumnName="PriceMeasure" />
+                <ScalarProperty Name="PriceValue" ColumnName="PriceValue" />
+                <ScalarProperty Name="PriceId" ColumnName="PriceId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PriceVariants">
+            <EntityTypeMapping TypeName="AsopalavDBModel.PriceVariant">
+              <MappingFragment StoreEntitySet="PriceVariant">
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="ActionPeformed" ColumnName="ActionPeformed" />
+                <ScalarProperty Name="PriceChangePercentage" ColumnName="PriceChangePercentage" />
+                <ScalarProperty Name="PriceMasterId" ColumnName="PriceMasterId" />
+                <ScalarProperty Name="PreviousPrice" ColumnName="PreviousPrice" />
+                <ScalarProperty Name="ProductPriceUnit" ColumnName="ProductPriceUnit" />
+                <ScalarProperty Name="ProductPrice" ColumnName="ProductPrice" />
+                <ScalarProperty Name="PriceVariantId" ColumnName="PriceVariantId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="AddUpdatePrice" FunctionName="AsopalavDBModel.Store.AddUpdatePrice" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

@@ -44,6 +44,10 @@ namespace DataAccessLayer
         public virtual DbSet<MetalVariant> MetalVariants { get; set; }
         public virtual DbSet<NewsLetterMaster> NewsLetterMasters { get; set; }
         public virtual DbSet<OccasionMaster> OccasionMasters { get; set; }
+        public virtual DbSet<CountryMaster> CountryMasters { get; set; }
+        public virtual DbSet<CurrencyMaster> CurrencyMasters { get; set; }
+        public virtual DbSet<PriceMaster> PriceMasters { get; set; }
+        public virtual DbSet<PriceVariant> PriceVariants { get; set; }
     
         public virtual int AddUser(string primary_Email, string password, string user_Fname, string user_Mname, string user_Lname, string secondary_Email, string mobile, string alternate_Mobile, string gender, Nullable<System.DateTime> user_DOB, Nullable<System.DateTime> user_Anniversary)
         {
@@ -292,6 +296,31 @@ namespace DataAccessLayer
                 new ObjectParameter("ConversionRate", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetLatestOfferProducts_Result>("GetLatestOfferProducts", currentCurrencyParameter, conversionRateParameter);
+        }
+    
+        public virtual int AddUpdatePrice(Nullable<decimal> priceValue, string priceMeasure, Nullable<int> currencyId, Nullable<int> metalId, Nullable<int> gemId)
+        {
+            var priceValueParameter = priceValue.HasValue ?
+                new ObjectParameter("PriceValue", priceValue) :
+                new ObjectParameter("PriceValue", typeof(decimal));
+    
+            var priceMeasureParameter = priceMeasure != null ?
+                new ObjectParameter("PriceMeasure", priceMeasure) :
+                new ObjectParameter("PriceMeasure", typeof(string));
+    
+            var currencyIdParameter = currencyId.HasValue ?
+                new ObjectParameter("CurrencyId", currencyId) :
+                new ObjectParameter("CurrencyId", typeof(int));
+    
+            var metalIdParameter = metalId.HasValue ?
+                new ObjectParameter("MetalId", metalId) :
+                new ObjectParameter("MetalId", typeof(int));
+    
+            var gemIdParameter = gemId.HasValue ?
+                new ObjectParameter("GemId", gemId) :
+                new ObjectParameter("GemId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AddUpdatePrice", priceValueParameter, priceMeasureParameter, currencyIdParameter, metalIdParameter, gemIdParameter);
         }
     }
 }

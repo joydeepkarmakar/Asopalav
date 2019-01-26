@@ -24,23 +24,26 @@
                             </li>
                             @if (Convert.ToString(Session["UserRole"]) == "SuperAdmin")
                             {
-                                <li @((string)Session["CurrentPage"] == "Users" ? "class=nav-menu-active" : "")>
+                                <li @((string)Session["CurrentPage"] == "Users" ? "class=nav-menu-active" : "") style="margin-right:6px">
                                     <a href="@Url.Action("UserList", "User")">Users</a>
+                                </li>
+                                <li @((string)Session["CurrentPage"] == "Prices" ? "class=nav-menu-active" : "")>
+                                    <a href="@Url.Action("Index", "Price")">Prices</a>
                                 </li>
                             }
                             @*<li><a href="javascript:void(0);">Security</a></li>
-                            <li><a href="javascript:void(0);">Others</a></li>*@
+                                <li><a href="javascript:void(0);">Others</a></li>*@
                         </ul>
-                       @Html.Partial("_LoginPartial")
-                        </div>
-                    </div>
+                        @Html.Partial("_LoginPartial")
                     </div>
                 </div>
             </div>
-                <div class="container body-content">
-                    @RenderBody()
-                </div>
-                @Scripts.Render("~/Script/Common")
-                @RenderSection("scripts", required: false)
-    </body>
-    </html>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+    </div>
+    @Scripts.Render("~/Script/Common")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
