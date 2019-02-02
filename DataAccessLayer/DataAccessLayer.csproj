@@ -90,6 +90,9 @@
     <Compile Include="GetLatestOfferProducts_Result.cs">
       <DependentUpon>AsopalavDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="GetProdPriceList_Result.cs">
+      <DependentUpon>AsopalavDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="GetProductsByProductType_Result.cs">
       <DependentUpon>AsopalavDataModel.tt</DependentUpon>
     </Compile>
@@ -159,7 +162,9 @@
     </EntityDeploy>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.Config" />
+    <None Include="App.Config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="AsopalavDataModel.edmx.diagram">
       <DependentUpon>AsopalavDataModel.edmx</DependentUpon>
     </None>

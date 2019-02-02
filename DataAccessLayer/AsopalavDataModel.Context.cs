@@ -322,5 +322,10 @@ namespace DataAccessLayer
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AddUpdatePrice", priceValueParameter, priceMeasureParameter, currencyIdParameter, metalIdParameter, gemIdParameter);
         }
+    
+        public virtual ObjectResult<GetProdPriceList_Result> GetProdPriceList()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetProdPriceList_Result>("GetProdPriceList");
+        }
     }
 }

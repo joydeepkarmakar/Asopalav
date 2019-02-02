@@ -499,7 +499,7 @@ namespace Asopalav.Areas.Admin.Controllers
             return listOccasion;
         }
 
-        private List<SelectListItem> GetMetalList()
+        protected internal List<SelectListItem> GetMetalList()
         {
             List<SelectListItem> listMetal = new List<SelectListItem>();
             try
@@ -519,7 +519,7 @@ namespace Asopalav.Areas.Admin.Controllers
             return listMetal;
         }
 
-        private List<SelectListItem> GetGemList()
+        protected internal List<SelectListItem> GetGemList()
         {
             List<SelectListItem> listGem = new List<SelectListItem>();
             try

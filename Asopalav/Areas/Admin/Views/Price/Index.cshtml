@@ -1,40 +1,51 @@
-﻿<div class="container">
+﻿@model Asopalav.Areas.Admin.Models.PriceModel
+
+<div class="container">
     <div class="form-inline">
         <div class="form-group">
-            <select class="form-control" style="width: 115px;">
-                <option>Gold</option>
-                <option>Silver</option>
-            </select>
+            @*<select class="form-control" style="width: 115px;">
+                    <option>Gold</option>
+                    <option>Silver</option>
+                </select>*@
+            @Html.DropDownListFor(m => m.MetalVariantId, (SelectList)ViewBag.MetalList, "Select Metal", new { @class = "form-control gender-width", @style = "width: 170px;" })
         </div>
         <div class="form-group">
-            <select class="form-control" style="width: 115px;">
-                <option>Gold</option>
-                <option>Silver</option>
-            </select>
+            @*<select class="form-control" style="width: 115px;">
+                    <option>Gold</option>
+                    <option>Silver</option>
+                </select>*@
+            @Html.DropDownListFor(m => m.GemVariantId, (SelectList)ViewBag.GemList, "Select Gem", new { @class = "form-control gender-width", @style = "width: 160px;" })
         </div>
         <div class="form-group">
-            <select class="form-control" style="width: 100px;">
-                <option>INR</option>
-                <option>USD</option>
-            </select>
+            @*<select class="form-control" style="width: 100px;">
+                    <option>INR</option>
+                    <option>USD</option>
+                </select>*@
+            @Html.DropDownListFor(m => m.CurrencyId, (SelectList)ViewBag.CurrencyList, "Select Currency", new { @class = "form-control gender-width", @style = "width: 200px;" })
         </div>
         <div class="form-group">
-            <select class="form-control" style="width: 85px;">
+            <select class="form-control" style="width: 85px;" id="ddlPriceMeasure">
                 <option>g</option>
                 <option>kg</option>
                 <option>oz</option>
+                <option>ct</option>
             </select>
         </div>
-        <button type="submit" class="btn btn-default" id="btnPriceSubmit">Submit</button>
+        <div class="form-group">
+            <input type="number" min="1" id="txtPriceValue" class="form-control" data-val="true" data-val-required="Price is required" placeholder="Please provide Price" />
+        </div>
+        <button type="button" class="btn btn-success" id="btnPriceSubmit">Submit</button>
+        <button type="button" class="btn" id="btnPriceCancel">Cancel</button>
     </div>
     <table class="display" id="priceTable">
         <thead>
             <tr>
+                <th>Product</th>
                 <th>Product Price</th>
                 <th>Product Previous Price</th>
                 <th>Price Change Percentage</th>
                 <th>Product Price Per Unit</th>
-                <th>ActionPeformed</th>
+                <th>Action Peformed</th>
                 <th>Modified On</th>
             </tr>
         </thead>
@@ -50,16 +61,78 @@
                         "url": "@Url.Action("GetProdPriceList", "Price")",
                         "type": "GET",
                         "datatype": "json"
-                     },
-                    "columns": [
-                            { "data": "ProductPrice" },
-                            { "data": "PreviousPrice" },
-                            { "data": "PriceChangePercentage" },
+                   },
+                   "columns": [
+                            { "data": "Product"},
+                            {
+                                "data": "ProductPrice",
+                                "render": function (data, type, full) {
+                                            return parseFloat(data).toFixed(2);
+                                          }
+                            },
+                            {
+                                "data": "PreviousPrice",
+                                "render": function (data, type, full) {
+                                            return parseFloat(data).toFixed(2);
+                                          }
+                            },
+                            {
+                                "data": "PriceChangePercentage",
+                                "render": function (data, type, full) {
+                                            return parseFloat(data).toFixed(2);
+                                          }
+                            },
                             { "data": "ProductPriceUnit" },
                             { "data": "ActionPeformed", "autoWidth": true },
                             { "data": "ModifiedOn" }
                             ]
-               });
+            });
+
+            $(document).on("click", "#btnPriceCancel", function () {
+                $('.form-inline').find("select").prop("selectedIndex", 0);
+                $('.form-inline').find('input[type=number]').val('');
+            });
+
+            $(document).on("click", "#btnPriceSubmit", function () {
+                var prodPrice = new Object();
+
+                if ((($('#MetalVariantId').val() == "") && ($('#GemVariantId').val() == "")) || (($('#MetalVariantId').val() != "") && ($('#GemVariantId').val() != "")))
+                    alert("Please select Metal or Gem");
+                else if ($('#CurrencyId').val() == "")
+                    alert("Please select Currency");
+                else if ($('#txtPriceValue').val() == "")
+                    alert("Please provide Price");
+                else {
+                    prodPrice.MetalVariantId = $('#MetalVariantId').val();
+                    prodPrice.GemVariantId = $('#GemVariantId').val();
+                    prodPrice.CurrencyId = $('#CurrencyId').val();
+                    prodPrice.PriceMeasure = $("#ddlPriceMeasure option:selected").text();
+                    prodPrice.PriceValue = $('#txtPriceValue').val();
+                
+                    $.ajax({
+                        type: "POST",
+                        url: "@Url.Action("AddUpdateProdPrice", "Price")",
+                        data: JSON.stringify(prodPrice),
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        success: function (response) {
+                            if (response.IsSuccess) {
+                                priceDataTable.ajax.reload();
+                                toastr.success('Success!');
+                                $("#btnPriceCancel").trigger("click");
+                            } else {
+                                toastr.error('Something went wrong');
+                            }
+                        },
+                        failure: function (response) {
+                            toastr.error(response.responseText);
+                        },
+                        error: function (response) {
+                            toastr.error(response.responseText);
+                        }
+                    });
+                }
+            });
         });
     </script>
 }

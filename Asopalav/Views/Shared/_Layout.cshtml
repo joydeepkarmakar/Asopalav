@@ -17,69 +17,78 @@
                 <img src="~/Content/images/ShreeHari.gif" />
             </div>
             <div class="col-xs-12 col-sm-4 right-links device-price-margin" style="margin-right:10px">
-                    <div class="container">
-                        <div class="row" style="font-size:12px !important;">
-                            <div class="col-xs-12 col-sm-6 pad-left-right-0">
-                                <div class="dropdown">
-                                    <button class="btn btn-transparent-new dropdown-toggle" type="button" data-toggle="dropdown" style="width:99.4%;">
-                                        Today's Gold-Silver Rate<span class="caret"></span>
-                                    </button>
-                                    <ul class="dropdown-menu" style="width:100% !important">
+                <div class="container">
+                    <div class="row" style="font-size:12px !important;">
+                        <div class="col-xs-12 col-sm-6 pad-left-right-0">
+                            <div class="dropdown">
+                                <button class="btn btn-transparent-new dropdown-toggle" type="button" data-toggle="dropdown" style="width:99.4%;">
+                                    Today's Gold-Silver Rate<span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu" style="width:100% !important">
+                                    @if ((string)Session["CurrentCurrency"] == "USD")
+                                    {
                                         <li>Gold Price per Ounce - $@Session["GoldRate"]</li>
                                         <li>&nbsp;</li>
                                         <li>Silver Price per Ounce - $@Session["SilverRate"]</li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="col-xs-12 col-sm-4 pad-left-right-0">
-                                <div class="dropdown">
-                                    @if (Convert.ToBoolean(Session["IsLoginValid"]) == true)
-                                    {
-                                        <button class="btn btn-transparent dropdown-toggle" type="button" data-toggle="dropdown" style="width: 110%;">
-                                            Welcome @Session["UserFirstName"]!<span class="caret"></span>
-                                        </button>
-                                        <ul class="dropdown-menu">
-                                            <li><a href="#">My Profile</a></li>
-                                            <li><a href="@Url.Action("LogOff","Account")">Logout</a></li>
-                                        </ul>
                                     }
                                     else
                                     {
-                                        <button class="btn btn-transparent-new dropdown-toggle login-width" type="button" data-toggle="dropdown" onclick="location.href = '@Url.Action("Login","Account")'">Login & Signup<span class="caret"></span></button>
+                                        <li>Gold Price per Gram - ₹@Session["GoldRate"]</li>
+                                        <li>&nbsp;</li>
+                                        <li>Silver Price per Kg - ₹@Session["SilverRate"]</li>
                                     }
-                                </div>
+                                </ul>
                             </div>
-                            <div class="col-xs-12 col-sm-8 pad-left-right-0">
-                                <div role="search" method="get" class="navbar-form" style="padding-left:9px !important;">
-                                    <div class="input-group add-on search-device-width">
-                                        <div class="input-placeholder" id="srch">
-                                            <input class="col-lg-3 col-md-3 col-sm-5 col-xs-5 form-control btn-transparent search-width" style="color:#666" type="text" name="srch-term" id="txtSearch" placeholder="Search" />
-                                            <span class="fa fa-search form-control-feedback search-icon" type="submit" id="btnSearch" style="font-size: 25px;"></span>
-                                        </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-4 pad-left-right-0">
+                            <div class="dropdown">
+                                @if (Convert.ToBoolean(Session["IsLoginValid"]) == true)
+                                {
+                                    <button class="btn btn-transparent dropdown-toggle" type="button" data-toggle="dropdown" style="width: 110%;">
+                                        Welcome @Session["UserFirstName"]!<span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="#">My Profile</a></li>
+                                        <li><a href="@Url.Action("LogOff","Account")">Logout</a></li>
+                                    </ul>
+                                }
+                                else
+                                {
+                                    <button class="btn btn-transparent-new dropdown-toggle login-width" type="button" data-toggle="dropdown" onclick="location.href = '@Url.Action("Login","Account")'">Login & Signup<span class="caret"></span></button>
+                                }
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-8 pad-left-right-0">
+                            <div role="search" method="get" class="navbar-form" style="padding-left:9px !important;">
+                                <div class="input-group add-on search-device-width">
+                                    <div class="input-placeholder" id="srch">
+                                        <input class="col-lg-3 col-md-3 col-sm-5 col-xs-5 form-control btn-transparent search-width" style="color:#666" type="text" name="srch-term" id="txtSearch" placeholder="Search" />
+                                        <span class="fa fa-search form-control-feedback search-icon" type="submit" id="btnSearch" style="font-size: 25px;"></span>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-xs-4 col-sm-3 pad-left-right-0 currency-marging currency-device" style="margin-left:-10px">
-                                <div class="navbar-form dropdown pad-left-right-0">
-                                    <select class="form-control" style="border-radius:20px;">
-                                        <option>USD</option>
-                                        <option>INR</option>
-                                    </select>
-                                </div>
+                        </div>
+                        <div class="col-xs-4 col-sm-3 pad-left-right-0 currency-marging currency-device" style="margin-left:-10px">
+                            <div class="navbar-form dropdown pad-left-right-0">
+                                <select class="form-control" style="border-radius:20px;">
+                                    <option>USD</option>
+                                    <option>INR</option>
+                                </select>
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
             <div class="col-xs-12 col-sm-4 right-links pull-right">
-                    <div class="col-xs-3 col-sm-4 pull-right cart-margin">
-                        <div class="profile-container" style="float:right">
-                            @if (ViewBag.Title != "Cart Details")
-                            {
-                                @Html.Action("CartPartial", "CartDetails")
-                            }
-                        </div>
+                <div class="col-xs-3 col-sm-4 pull-right cart-margin">
+                    <div class="profile-container" style="float:right">
+                        @if (ViewBag.Title != "Cart Details")
+                        {
+                            @Html.Action("CartPartial", "CartDetails")
+                        }
                     </div>
                 </div>
+            </div>
         </div>
     </header>
     <!-- / header -->
@@ -158,102 +167,102 @@
                 </li>
                 <li @((string)Session["CurrentPage"] == "Silverware" ? "class=menu-active" : "class=menu-hover")>
                     @*<a href="@Url.Action("Silverware", "Home",new { page = "Silverware" })">Silverware</a>*@
-    <a href="javascript:void(0);">Silverware</a>
-                        <div id="submenu-sticky1" class="megamenu clearfix selectorarrow">
-                            <div class="container-fluid">
-                                <div class="row">
-                                    <ul class="col-lg-5 col-md-12 col-xs-12 link-list" style="display:grid">
-                                        <li @((string)Session["CurrentPage"] == "DinnerSet" ? "class=menu-active" : "class=menu-hover")
-                                            onmouseover="func('divImg7');"><a href="@Url.Action("DinnerSet", "Silverware",new { page = "DinnerSet" })">Dinner Set</a></li>
-                                        <li @((string)Session["CurrentPage"] == "PoojaSet" ? "class=menu-active" : "class=menu-hover")
-                                            onmouseover="func('divImg8');"><a href="@Url.Action("PoojaSet", "Silverware",new { page = "PoojaSet" })">Pooja Set</a></li>
-                                        <li @((string)Session["CurrentPage"] == "TeaSet" ? "class=menu-active" : "class=menu-hover")
-                                            onmouseover="func('divImg9');"><a href="@Url.Action("TeaSet", "Silverware",new { page = "TeaSet" })">Tea Set</a></li>
-                                        <li @((string)Session["CurrentPage"] == "LemonSet" ? "class=menu-active" : "class=menu-hover")
-                                            onmouseover="func('divImg10');"><a href="@Url.Action("LemonSet", "Silverware",new { page = "LemonSet" })">Lemon Set</a></li>
-                                        <li @((string)Session["CurrentPage"] == "BedroomSet" ? "class=menu-active" : "class=menu-hover")
-                                            onmouseover="func('divImg11');"><a href="@Url.Action("BedroomSet", "Silverware",new { page = "BedroomSet" })">Bedroom Set</a></li>
-                                        <li @((string)Session["CurrentPage"] == "FruitBowl" ? "class=menu-active" : "class=menu-hover")
-                                            onmouseover="func('divImg12');"><a href="@Url.Action("FruitBowl", "Silverware",new { page = "FruitBowl" })">Fruit Bowl</a></li>
-                                    </ul>
-                                    <div class="col-lg-6 col-md-12 col-xs-12">
-                                        <div id="divImg7" style="display:block;">
-                                            <img src="~/Content/images/category7.jpg" alt="Dinner Set">
-                                        </div>
-                                        <div id="divImg8" style="display:none;">
-                                            <img src="~/Content/images/category8.jpg" alt="Pooja Set">
-                                        </div>
-                                        <div id="divImg9" style="display:none;">
-                                            <img src="~/Content/images/category9.jpg" alt="Tea Set">
-                                        </div>
-                                        <div id="divImg10" style="display:none;">
-                                            <img src="~/Content/images/category10.jpg" alt="Lemon Set">
-                                        </div>
-                                        <div id="divImg11" style="display:none;">
-                                            <img src="~/Content/images/category11.jpg" alt="Bedroom Set">
-                                        </div>
-                                        <div id="divImg12" style="display:none;">
-                                            <img src="~/Content/images/category12.jpg" alt="Fruit Bowl">
-                                        </div>
+                    <a href="javascript:void(0);">Silverware</a>
+                    <div id="submenu-sticky1" class="megamenu clearfix selectorarrow">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <ul class="col-lg-5 col-md-12 col-xs-12 link-list" style="display:grid">
+                                    <li @((string)Session["CurrentPage"] == "DinnerSet" ? "class=menu-active" : "class=menu-hover")
+                                        onmouseover="func('divImg7');"><a href="@Url.Action("DinnerSet", "Silverware",new { page = "DinnerSet" })">Dinner Set</a></li>
+                                    <li @((string)Session["CurrentPage"] == "PoojaSet" ? "class=menu-active" : "class=menu-hover")
+                                        onmouseover="func('divImg8');"><a href="@Url.Action("PoojaSet", "Silverware",new { page = "PoojaSet" })">Pooja Set</a></li>
+                                    <li @((string)Session["CurrentPage"] == "TeaSet" ? "class=menu-active" : "class=menu-hover")
+                                        onmouseover="func('divImg9');"><a href="@Url.Action("TeaSet", "Silverware",new { page = "TeaSet" })">Tea Set</a></li>
+                                    <li @((string)Session["CurrentPage"] == "LemonSet" ? "class=menu-active" : "class=menu-hover")
+                                        onmouseover="func('divImg10');"><a href="@Url.Action("LemonSet", "Silverware",new { page = "LemonSet" })">Lemon Set</a></li>
+                                    <li @((string)Session["CurrentPage"] == "BedroomSet" ? "class=menu-active" : "class=menu-hover")
+                                        onmouseover="func('divImg11');"><a href="@Url.Action("BedroomSet", "Silverware",new { page = "BedroomSet" })">Bedroom Set</a></li>
+                                    <li @((string)Session["CurrentPage"] == "FruitBowl" ? "class=menu-active" : "class=menu-hover")
+                                        onmouseover="func('divImg12');"><a href="@Url.Action("FruitBowl", "Silverware",new { page = "FruitBowl" })">Fruit Bowl</a></li>
+                                </ul>
+                                <div class="col-lg-6 col-md-12 col-xs-12">
+                                    <div id="divImg7" style="display:block;">
+                                        <img src="~/Content/images/category7.jpg" alt="Dinner Set">
+                                    </div>
+                                    <div id="divImg8" style="display:none;">
+                                        <img src="~/Content/images/category8.jpg" alt="Pooja Set">
+                                    </div>
+                                    <div id="divImg9" style="display:none;">
+                                        <img src="~/Content/images/category9.jpg" alt="Tea Set">
+                                    </div>
+                                    <div id="divImg10" style="display:none;">
+                                        <img src="~/Content/images/category10.jpg" alt="Lemon Set">
+                                    </div>
+                                    <div id="divImg11" style="display:none;">
+                                        <img src="~/Content/images/category11.jpg" alt="Bedroom Set">
+                                    </div>
+                                    <div id="divImg12" style="display:none;">
+                                        <img src="~/Content/images/category12.jpg" alt="Fruit Bowl">
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </li>
-                    <li @((string)Session["CurrentPage"] == "Antiques" ? "class=menu-active" : "class=menu-hover")>
-                        <a href="@Url.Action("Antiques", "Home",new { page = "Antiques" })">Antiques</a>
-                    </li>
-                    <li @((string)Session["CurrentPage"] == "Gifts" ? "class=menu-active" : "class=menu-hover")>
-                        <a href="javascript:void(0);" id="mnuGifts">Gifts</a>
-                        <div id="submenu-sticky" class="megamenu clearfix selectorarrow">
-                            <div class="container-fluid">
-                                <div class="row">
-                                    <ul class="col-lg-5 col-md-12 col-xs-12 link-list" style="display:grid">
-                                        <li class="title">Gift Items</li>
-                                        <li @((string)Session["CurrentPage"] == "Personalize" ? "class=menu-active" : "class=menu-hover")
-                                            onmouseover="func('divImg1');"><a href="@Url.Action("Personalize", "Home",new { page = "Personalize" } )">Personalize</a></li>
-                                        <li @((string)Session["CurrentPage"] == "Corporate" ? "class=menu-active" : "class=menu-hover")
-                                            onmouseover="func('divImg2');"><a href="@Url.Action("Corporate", "Home",new { page = "Corporate" })">Corporate</a></li>
-                                        <li @((string)Session["CurrentPage"] == "Kids" ? "class=menu-active" : "class=menu-hover")
-                                            onmouseover="func('divImg3');"><a href="@Url.Action("Kids", "Home",new { page = "Kids" })">Kids</a></li>
-                                        <li @((string)Session["CurrentPage"] == "Festive" ? "class=menu-active" : "class=menu-hover")
-                                            onmouseover="func('divImg4');"><a href="@Url.Action("Festive", "Home",new { page = "Festive" })">Festive</a></li>
-                                        <li @((string)Session["CurrentPage"] == "Jewelery" ? "class=menu-active" : "class=menu-hover")
-                                            onmouseover="func('divImg5');"><a href="@Url.Action("Jewelery", "Home",new { page = "Jewelery" })">Jewelery</a></li>
-                                    </ul>
-                                    <div class="col-lg-6 col-md-12 col-xs-12">
-                                        <div id="divImg1" style="display:block;">
-                                            <img src="~/Content/images/category3.jpg" alt="Personalize">
-                                        </div>
-                                        <div id="divImg2" style="display:none;">
-                                            <img src="~/Content/images/category6.jpg" alt="Corporate">
-                                        </div>
-                                        <div id="divImg3" style="display:none;">
-                                            <img src="~/Content/images/category4.jpg" alt="Kids">
-                                        </div>
-                                        <div id="divImg4" style="display:none;">
-                                            <img src="~/Content/images/category2.jpg" alt="Festive">
-                                        </div>
-                                        <div id="divImg5" style="display:none;">
-                                            <img src="~/Content/images/category5.jpg" alt="Jewelery">
-                                        </div>
+                    </div>
+                </li>
+                <li @((string)Session["CurrentPage"] == "Antiques" ? "class=menu-active" : "class=menu-hover")>
+                    <a href="@Url.Action("Antiques", "Home",new { page = "Antiques" })">Antiques</a>
+                </li>
+                <li @((string)Session["CurrentPage"] == "Gifts" ? "class=menu-active" : "class=menu-hover")>
+                    <a href="javascript:void(0);" id="mnuGifts">Gifts</a>
+                    <div id="submenu-sticky" class="megamenu clearfix selectorarrow">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <ul class="col-lg-5 col-md-12 col-xs-12 link-list" style="display:grid">
+                                    <li class="title">Gift Items</li>
+                                    <li @((string)Session["CurrentPage"] == "Personalize" ? "class=menu-active" : "class=menu-hover")
+                                        onmouseover="func('divImg1');"><a href="@Url.Action("Personalize", "Home",new { page = "Personalize" } )">Personalize</a></li>
+                                    <li @((string)Session["CurrentPage"] == "Corporate" ? "class=menu-active" : "class=menu-hover")
+                                        onmouseover="func('divImg2');"><a href="@Url.Action("Corporate", "Home",new { page = "Corporate" })">Corporate</a></li>
+                                    <li @((string)Session["CurrentPage"] == "Kids" ? "class=menu-active" : "class=menu-hover")
+                                        onmouseover="func('divImg3');"><a href="@Url.Action("Kids", "Home",new { page = "Kids" })">Kids</a></li>
+                                    <li @((string)Session["CurrentPage"] == "Festive" ? "class=menu-active" : "class=menu-hover")
+                                        onmouseover="func('divImg4');"><a href="@Url.Action("Festive", "Home",new { page = "Festive" })">Festive</a></li>
+                                    <li @((string)Session["CurrentPage"] == "Jewelery" ? "class=menu-active" : "class=menu-hover")
+                                        onmouseover="func('divImg5');"><a href="@Url.Action("Jewelery", "Home",new { page = "Jewelery" })">Jewelery</a></li>
+                                </ul>
+                                <div class="col-lg-6 col-md-12 col-xs-12">
+                                    <div id="divImg1" style="display:block;">
+                                        <img src="~/Content/images/category3.jpg" alt="Personalize">
+                                    </div>
+                                    <div id="divImg2" style="display:none;">
+                                        <img src="~/Content/images/category6.jpg" alt="Corporate">
+                                    </div>
+                                    <div id="divImg3" style="display:none;">
+                                        <img src="~/Content/images/category4.jpg" alt="Kids">
+                                    </div>
+                                    <div id="divImg4" style="display:none;">
+                                        <img src="~/Content/images/category2.jpg" alt="Festive">
+                                    </div>
+                                    <div id="divImg5" style="display:none;">
+                                        <img src="~/Content/images/category5.jpg" alt="Jewelery">
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </li>
-                    <li @((string)Session["CurrentPage"] == "FineMetal" ? "class=menu-active" : "class=menu-hover")>
-                        <a href="@Url.Action("FineMetal", "Home",new { page = "FineMetal" })">Fine Metal</a>
-                    </li>
-                    <li @((string)Session["CurrentPage"] == "About" ? "class=menu-active" : "class=menu-hover")>
-                        <a href="@Url.Action("About", "Home")">About us</a>
-                    </li>
-                    <li @((string)Session["CurrentPage"] == "Contact" ? "class=menu-active" : "class=menu-hover") style="margin-right:50px">
-                        <a href="@Url.Action("Contact", "Home")">Contact us</a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
+                    </div>
+                </li>
+                <li @((string)Session["CurrentPage"] == "FineMetal" ? "class=menu-active" : "class=menu-hover")>
+                    <a href="@Url.Action("FineMetal", "Home",new { page = "FineMetal" })">Fine Metal</a>
+                </li>
+                <li @((string)Session["CurrentPage"] == "About" ? "class=menu-active" : "class=menu-hover")>
+                    <a href="@Url.Action("About", "Home")">About us</a>
+                </li>
+                <li @((string)Session["CurrentPage"] == "Contact" ? "class=menu-active" : "class=menu-hover") style="margin-right:50px">
+                    <a href="@Url.Action("Contact", "Home")">Contact us</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
     <!--</div>-->
     <!-- / navigation -->
     <div class="container body-content">
@@ -264,61 +273,61 @@
             <div class="container" style="width:100% !important; padding:20px 40px 10px 40px !important;">
                 <div class="cols">
                     <div class="col">
-                            <h1 class="footer-info-head">Our Company</h1>
+                        <h1 class="footer-info-head">Our Company</h1>
+                        <ul>
+                            <li><a href="javascript:void(0)">Brand Story</a></li>
+                            <li><a href="javascript:void(0)">Hallmarking</a></li>
+                            <li><a href="javascript:void(0)">T&C</a></li>
+                            <li><a href="javascript:void(0)">Blog</a></li>
+                        </ul>
+                    </div>
+                    <div class="col media">
+                        <h1 class="footer-info-head">Information</h1>
+                        <ul>
+                            <li><a href="javascript:void(0)">Privacy Policy</a></li>
+                            <li><a href="javascript:void(0)">Shipping Policies</a></li>
+                            <li><a href="javascript:void(0)">Terms & Condition</a></li>
+                            <li><a href="javascript:void(0)">Return, Cancellation & Exchange </a></li>
+                        </ul>
+                    </div>
+                    <div class="col contact">
+                        <h1 class="footer-info-head">Contact us</h1>
+                        <p><span class="fa fa-envelope envelope"></span><a href="#">info@asopalavjewelers.com</a></p>
+                        <p style="color:#717171"><span class="fa fa-phone envelope"></span>0265 232 5526/27</p>
+                    </div>
+                    <div class="col newsletter">
+                        <h1 class="footer-info-head">Let's stay in touch.</h1>
+                        <p>Sign up for special offers and gift ideas.</p>
+                        <form action="#">
+                            <input type="text" placeholder="Enter your email address">
+                            <button type="submit" id="btnHomePageSignup"></button>
+                        </form>
+                        <div class="footer_socialIcons">
                             <ul>
-                                <li><a href="javascript:void(0)">Brand Story</a></li>
-                                <li><a href="javascript:void(0)">Hallmarking</a></li>
-                                <li><a href="javascript:void(0)">T&C</a></li>
-                                <li><a href="javascript:void(0)">Blog</a></li>
+                                <li class="socialIcons_link bg-face">
+                                    <a class="fa fa-facebook" href="https://www.facebook.com/AsopalavJewellers/"></a>
+                                </li>
+                                <li class="socialIcons_link bg-twitter">
+                                    <a class="fa fa-twitter" href="https://twitter.com/AsopalavJ"></a>
+                                </li>
+                                <li class="socialIcons_link bg-gplus">
+                                    <a class="fa fa-youtube" href="javascript:void(0)"></a>
+                                </li>
+                                <li class="socialIcons_link bg-gplus">
+                                    <a class="fa fa-pinterest-p" href="javascript:void(0)"></a>
+                                </li>
+                                <li class="socialIcons_link bg-face">
+                                    <a class="fa fa-instagram" href="https://www.instagram.com/asopalavjewellers/"></a>
+                                </li>
+                                <li class="socialIcons_link bg-gplus">
+                                    <a class="fa fa-google-plus" href="https://plus.google.com/u/0/107143561320882485937"></a>
+                                </li>
                             </ul>
                         </div>
-                        <div class="col media">
-                            <h1 class="footer-info-head">Information</h1>
-                            <ul>
-                                <li><a href="javascript:void(0)">Privacy Policy</a></li>
-                                <li><a href="javascript:void(0)">Shipping Policies</a></li>
-                                <li><a href="javascript:void(0)">Terms & Condition</a></li>
-                                <li><a href="javascript:void(0)">Return, Cancellation & Exchange </a></li>
-                            </ul>
-                        </div>
-                        <div class="col contact">
-                            <h1 class="footer-info-head">Contact us</h1>
-                            <p><span class="fa fa-envelope envelope"></span><a href="#">info@asopalavjewelers.com</a></p>
-                            <p style="color:#717171"><span class="fa fa-phone envelope"></span>0265 232 5526/27</p>
-                        </div>
-                        <div class="col newsletter">
-                            <h1 class="footer-info-head">Let's stay in touch.</h1>
-                            <p>Sign up for special offers and gift ideas.</p>
-                            <form action="#">
-                                <input type="text" placeholder="Enter your email address">
-                                <button type="submit" id="btnHomePageSignup"></button>
-                            </form>
-                            <div class="footer_socialIcons">
-                                <ul>
-                                    <li class="socialIcons_link bg-face">
-                                        <a class="fa fa-facebook" href="https://www.facebook.com/AsopalavJewellers/"></a>
-                                    </li>
-                                    <li class="socialIcons_link bg-twitter">
-                                        <a class="fa fa-twitter" href="https://twitter.com/AsopalavJ"></a>
-                                    </li>
-                                    <li class="socialIcons_link bg-gplus">
-                                        <a class="fa fa-youtube" href="javascript:void(0)"></a>
-                                    </li>
-                                    <li class="socialIcons_link bg-gplus">
-                                        <a class="fa fa-pinterest-p" href="javascript:void(0)"></a>
-                                    </li>
-                                    <li class="socialIcons_link bg-face">
-                                        <a class="fa fa-instagram" href="https://www.instagram.com/asopalavjewellers/"></a>
-                                    </li>
-                                    <li class="socialIcons_link bg-gplus">
-                                        <a class="fa fa-google-plus" href="https://plus.google.com/u/0/107143561320882485937"></a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="pull-left device-foot">
-                            <p>&copy; @DateTime.Now.Year - Asopalav Jewellers Pvt. Ltd.</p>
-                        </div>
+                    </div>
+                    <div class="pull-left device-foot">
+                        <p>&copy; @DateTime.Now.Year - Asopalav Jewellers Pvt. Ltd.</p>
+                    </div>
                 </div>
             </div>
             <!-- / container -->
@@ -326,55 +335,55 @@
     </div>
 
     <script>
-            window.onscroll = function () {
-                menuHeaderScrollFunction()
-            };
-            var navbar = document.getElementById("menu");
-            var subnav = document.getElementById("submenu-sticky");
-            var silver = document.getElementById("submenu-sticky1");
-            //var metal = document.getElementById("submenu-sticky2");
-            //var antiques = document.getElementById("submenu-sticky3");
-            var cart = document.getElementById("cd-cart");
-            var sticky = navbar.offsetTop;
-            var desktopImg = document.getElementById("desktopImgMenuLogo");
-            var deviceImg = document.getElementById("deviceImgMenuLogo");
+        window.onscroll = function () {
+            menuHeaderScrollFunction()
+        };
+        var navbar = document.getElementById("menu");
+        var subnav = document.getElementById("submenu-sticky");
+        var silver = document.getElementById("submenu-sticky1");
+        //var metal = document.getElementById("submenu-sticky2");
+        //var antiques = document.getElementById("submenu-sticky3");
+        var cart = document.getElementById("cd-cart");
+        var sticky = navbar.offsetTop;
+        var desktopImg = document.getElementById("desktopImgMenuLogo");
+        var deviceImg = document.getElementById("deviceImgMenuLogo");
 
-            function menuHeaderScrollFunction() {
-                if (window.pageYOffset >= sticky) {
-                    //metal.classList.add("megamenu-sticky");
-                    //antiques.classList.add("megamenu-sticky");
-                    silver.classList.add("megamenu-sticky");
-                    subnav.classList.add("megamenu-sticky");
-                    navbar.classList.add("sticky");
-                    desktopImg.style.display = "inline-block";
-                    deviceImg.style.display = "inline-block";
-                } else {
-                    //metal.classList.remove("megamenu-sticky");
-                    //antiques.classList.remove("megamenu-sticky");
-                    silver.classList.remove("megamenu-sticky");
-                    subnav.classList.remove("megamenu-sticky");
-                    navbar.classList.remove("sticky");
-                    desktopImg.style.display = "none";
-                    deviceImg.style.display = "none";
-                }
+        function menuHeaderScrollFunction() {
+            if (window.pageYOffset >= sticky) {
+                //metal.classList.add("megamenu-sticky");
+                //antiques.classList.add("megamenu-sticky");
+                silver.classList.add("megamenu-sticky");
+                subnav.classList.add("megamenu-sticky");
+                navbar.classList.add("sticky");
+                desktopImg.style.display = "inline-block";
+                deviceImg.style.display = "inline-block";
+            } else {
+                //metal.classList.remove("megamenu-sticky");
+                //antiques.classList.remove("megamenu-sticky");
+                silver.classList.remove("megamenu-sticky");
+                subnav.classList.remove("megamenu-sticky");
+                navbar.classList.remove("sticky");
+                desktopImg.style.display = "none";
+                deviceImg.style.display = "none";
             }
+        }
 
-            func = function (id) {
-                document.getElementById('divImg1').style.display = "none";
-                document.getElementById('divImg2').style.display = "none";
-                document.getElementById('divImg3').style.display = "none";
-                document.getElementById('divImg4').style.display = "none";
-                document.getElementById('divImg5').style.display = "none";
-                document.getElementById('divImg7').style.display = "none";
-                document.getElementById('divImg8').style.display = "none";
-                document.getElementById('divImg9').style.display = "none";
-                document.getElementById('divImg10').style.display = "none";
-                document.getElementById('divImg11').style.display = "none";
-                document.getElementById('divImg12').style.display = "none";
-                //document.getElementById('divImg13').style.display = "none";
-                document.getElementById(id).style.display = "block";
-            }
-        </script>
+        func = function (id) {
+            document.getElementById('divImg1').style.display = "none";
+            document.getElementById('divImg2').style.display = "none";
+            document.getElementById('divImg3').style.display = "none";
+            document.getElementById('divImg4').style.display = "none";
+            document.getElementById('divImg5').style.display = "none";
+            document.getElementById('divImg7').style.display = "none";
+            document.getElementById('divImg8').style.display = "none";
+            document.getElementById('divImg9').style.display = "none";
+            document.getElementById('divImg10').style.display = "none";
+            document.getElementById('divImg11').style.display = "none";
+            document.getElementById('divImg12').style.display = "none";
+            //document.getElementById('divImg13').style.display = "none";
+            document.getElementById(id).style.display = "block";
+        }
+    </script>
 
     @Scripts.Render("~/Script/Common")
     @RenderSection("scripts", required: false)
