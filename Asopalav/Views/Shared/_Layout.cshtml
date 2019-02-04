@@ -27,15 +27,15 @@
                                 <ul class="dropdown-menu" style="width:100% !important">
                                     @if ((string)Session["CurrentCurrency"] == "USD")
                                     {
-                                        <li>Gold Price per Ounce - $@Session["GoldRate"]</li>
+                                        <li>Gold Price per Ounce - &#x24;@Session["GoldRate"]</li>
                                         <li>&nbsp;</li>
-                                        <li>Silver Price per Ounce - $@Session["SilverRate"]</li>
+                                        <li>Silver Price per Ounce - &#x24;@Session["SilverRate"]</li>
                                     }
                                     else
                                     {
-                                        <li>Gold Price per Gram - ₹@Session["GoldRate"]</li>
+                                        <li>Gold Price per Gram - &#x20B9;@Session["GoldRate"]</li>
                                         <li>&nbsp;</li>
-                                        <li>Silver Price per Kg - ₹@Session["SilverRate"]</li>
+                                        <li>Silver Price per Kg - &#x20B9;@Session["SilverRate"]</li>
                                     }
                                 </ul>
                             </div>
@@ -70,9 +70,9 @@
                         </div>
                         <div class="col-xs-4 col-sm-3 pad-left-right-0 currency-marging currency-device" style="margin-left:-10px">
                             <div class="navbar-form dropdown pad-left-right-0">
-                                <select class="form-control" style="border-radius:20px;">
-                                    <option>USD</option>
-                                    <option>INR</option>
+                                <select class="form-control" style="border-radius:20px;" id="ddlHomeCurrency">
+                                    @*<option>USD</option>
+                                        <option>INR</option>*@
                                 </select>
                             </div>
                         </div>

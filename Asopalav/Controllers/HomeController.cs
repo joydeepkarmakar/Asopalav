@@ -1,15 +1,15 @@
-﻿using Asopalav.Models;
+﻿using Asopalav.GetDailyGoldRateServiceReference;
+using Asopalav.GetDailySilverRateServiceReference;
+using Asopalav.Helpers;
+using Asopalav.Models;
 using DataAccessLayer;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using System.Net;
-using Asopalav.Helpers;
 using System.Configuration;
-using Asopalav.GetDailyGoldRateServiceReference;
-using Asopalav.GetDailySilverRateServiceReference;
+using System.Linq;
+using System.Net;
+using System.Text;
+using System.Web.Mvc;
 
 namespace Asopalav.Controllers
 {
@@ -35,11 +35,13 @@ namespace Asopalav.Controllers
             */
 
             if (String.IsNullOrEmpty(currentCurrency))
+                currentCurrency = "USD";
+            else
                 currentCurrency = "INR";
 
             Session["DollarRate"] = GetDollarToRupeeVal(ConfigurationManager.AppSettings["DollarToRupeeUrl"]) ?? "NA";
             //Session["SilverRate"] = GetSilverPrice(ConfigurationManager.AppSettings["SilverPriceUrl"]) ?? "NA";
-            Session["GoldRate"] = objAsopalavDBEntities.PriceMasters.Where(x => x.MetalVariant.Name.ToLower() == "gold" & 
+            Session["GoldRate"] = objAsopalavDBEntities.PriceMasters.Where(x => x.MetalVariant.Name.ToLower() == "gold" &
                                                                                 x.CurrencyMaster.CurrencyCode.ToUpper() == currentCurrency)
                                                                     .Select(x => x.PriceValue).FirstOrDefault(); //GetGoldPrice();//"1,197.75";
             Session["SilverRate"] = objAsopalavDBEntities.PriceMasters.Where(x => x.MetalVariant.Name.ToLower() == "silver" &
@@ -184,6 +186,17 @@ namespace Asopalav.Controllers
             objDashboardModel.objSearchProducts_Result = objAsopalavDBEntities.SearchProducts(prefix, (string)Session["CurrentCurrency"] ?? "", (string)Session["DollarRate"] ?? "").ToList();
             objDashboardModel.ProductListPage = "SearchResult";
             return View(objDashboardModel);
+        }
+
+        public JsonResult GetMainCurrencyList()
+        {
+            StringBuilder mainCurrencyList = new StringBuilder();
+            if ((string)Session["CurrentCurrency"] == "USD")
+                mainCurrencyList.Append("<option selected>USD</option><option>INR</option>");
+            else
+                mainCurrencyList.Append("<option>USD</option><option selected>INR</option>");
+
+            return Json(mainCurrencyList.ToString(), JsonRequestBehavior.AllowGet);
         }
 
         #region MailHelperMethods

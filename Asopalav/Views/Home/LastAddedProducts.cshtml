@@ -22,7 +22,22 @@
                     </div>
                 </div>
                 <h3>@item.ProductName</h3>
-                <h4>$@(item.Price.ToString("0.00"))</h4>
+                @*<h4>$@(item.Price.ToString("0.00"))</h4>*@
+
+                @if ((string)Session["CurrentCurrency"] == "INR")
+                {
+                    System.Globalization.CultureInfo ci = new System.Globalization.CultureInfo("en-IN");
+
+                    <h4>@string.Format(ci, "{0:C}", item.Price)</h4>
+                    
+                    @*<h4>&#8377;@(item.Price.ToString("#,##0.00"))</h4>*@
+                }
+                else
+                {
+                    <h4>@string.Format("{0:C}", item.Price)</h4>
+                }
+
+
                 @*<ul style="display:flex;">
                         <li><a href="javascript:void(0);" class="btn-add">BUY NOW</a></li>
                         <li><a href="javascript:void(0);" class="btn-add">Add to cart</a></li>

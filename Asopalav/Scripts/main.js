@@ -185,7 +185,7 @@ $(document).ready(function () {
         }
     });
 
-    
+
 
     /*Success & Error Message After Product Save*/
     /*
@@ -363,6 +363,32 @@ $(document).ready(function () {
     /*Newsletter*/
     $('#btnHomePageSignup').click(function () {
         alert("hi");
+    });
+
+    /*Home Page Currency Dropdown*/
+    $.get('/Home/GetMainCurrencyList', function (data) {
+        //console.log(data);
+        $('#ddlHomeCurrency').append(data);
+    });
+
+    $('#ddlHomeCurrency').change(function () {
+        //alert($('#ddlHomeCurrency option:selected').text());
+        $.ajax({
+            url: "/Home/Index",
+            type: "POST",
+            data: { currentCurrency: $('#ddlHomeCurrency option:selected').text() }
+            //,
+            //dataType: "json",
+            //success: function (response) {
+            //    if (response.IsSuccess)
+            //        toastr.success('Success!');
+            //    else
+            //        toastr.error(response.errorMsg);
+            //},
+            //error: function (response) {
+            //    toastr.error(response.errorMsg);
+            //}
+        })
     });
 
 });
