@@ -24,7 +24,7 @@
                                 <button class="btn btn-transparent-new dropdown-toggle" type="button" data-toggle="dropdown" style="width:99.4%;">
                                     Today's Gold-Silver Rate<span class="caret"></span>
                                 </button>
-                                <ul class="dropdown-menu" style="width:100% !important">
+                                <ul class="dropdown-menu" style="width:100% !important" id="ddlMetalRate">
                                     @if ((string)Session["CurrentCurrency"] == "USD")
                                     {
                                         <li>Gold Price per Ounce - &#x24;@Session["GoldRate"]</li>
@@ -383,6 +383,10 @@
             //document.getElementById('divImg13').style.display = "none";
             document.getElementById(id).style.display = "block";
         }
+
+        var currentCurrency = '@Session["CurrentCurrency"]';
+        var currentGoldRate = '@Session["GoldRate"]';
+        var currentSilverRate = '@Session["SilverRate"]';
     </script>
 
     @Scripts.Render("~/Script/Common")

@@ -39,7 +39,7 @@ namespace Asopalav.Controllers
             else
                 currentCurrency = "INR";
 
-            Session["DollarRate"] = GetDollarToRupeeVal(ConfigurationManager.AppSettings["DollarToRupeeUrl"]) ?? "NA";
+            Session["DollarRate"] = "71.61";//GetDollarToRupeeVal(ConfigurationManager.AppSettings["DollarToRupeeUrl"]) ?? "NA";
             //Session["SilverRate"] = GetSilverPrice(ConfigurationManager.AppSettings["SilverPriceUrl"]) ?? "NA";
             Session["GoldRate"] = objAsopalavDBEntities.PriceMasters.Where(x => x.MetalVariant.Name.ToLower() == "gold" &
                                                                                 x.CurrencyMaster.CurrencyCode.ToUpper() == currentCurrency)

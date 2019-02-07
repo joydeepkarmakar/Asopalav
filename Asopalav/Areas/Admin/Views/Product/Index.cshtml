@@ -108,7 +108,20 @@
                         @Html.TextBoxFor(m => m.GemPrice, new { @class = "form-control", @placeholder = "Gem Price" })
                         @Html.TextBoxFor(m => m.MakingCharge, new { @class = "form-control", @placeholder = "Put Making Charge Price", @onchange = "SetProductPrice()" })
                         @Html.TextBoxFor(m => m.Price, new { @class = "form-control", @readonly = "readonly" })
-                        <ul><li>Gold Price per Ounce - $@Session["GoldRate"]  <br /> Silver Price per Ounce - $@Session["SilverRate"]</li></ul>
+                        <ul>
+                            @if ((string)Session["CurrentCurrency"] == "USD")
+                            {
+                                <li>Gold Price per Ounce - &#x24;@Session["GoldRate"]</li>
+                                <li>&nbsp;</li>
+                                <li>Silver Price per Ounce - &#x24;@Session["SilverRate"]</li>
+                            }
+                            else
+                            {
+                                <li>Gold Price per Gram - &#x20B9;@Session["GoldRate"]</li>
+                                <li>&nbsp;</li>
+                                <li>Silver Price per Kg - &#x20B9;@Session["SilverRate"]</li>
+                            }
+                        </ul>
                         @Html.ValidationMessageFor(m => m.Price, "", new { @style = "color:red" })
                     </div>
                 </div>

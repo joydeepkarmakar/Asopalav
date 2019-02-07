@@ -388,7 +388,31 @@ $(document).ready(function () {
             //error: function (response) {
             //    toastr.error(response.errorMsg);
             //}
-        })
+        });
+        //$('.last-products').load('.last-products > *');
+        $('#ddlMetalRate').html('');
+        if (currentCurrency == "USD") {
+            $('#ddlMetalRate').append('<li>Gold Price per Ounce - &#x24;1316.57</li><li>&nbsp;</li ><li>Silver Price per Ounce - $15.89</li>');
+        }
+        else
+            $('#ddlMetalRate').append('<li>Gold Price per Gram - &#x24;3428.00</li><li>&nbsp;</li ><li>Silver Price per Kg - ₹41,300.00</li>');
+            /*
+             * <li>Gold Price per Ounce - $1316.57</li>
+                                        <li>&nbsp;</li>
+                                        <li>Silver Price per Ounce - $15.89</li>
+                                        if ((string)Session["CurrentCurrency"] == "USD")
+                                    {
+                                        <li>Gold Price per Ounce - &#x24;@Session["GoldRate"]</li>
+                                        <li>&nbsp;</li>
+                                        <li>Silver Price per Ounce - &#x24;@Session["SilverRate"]</li>
+                                    }
+                                    else
+                                    {
+                                        <li>Gold Price per Gram - &#x20B9;@Session["GoldRate"]</li>
+                                        <li>&nbsp;</li>
+                                        <li>Silver Price per Kg - &#x20B9;@Session["SilverRate"]</li>
+                                    }
+             */
     });
 
 });
