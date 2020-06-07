@@ -530,7 +530,6 @@
           <Parameter Name="CurrentCurrency" Type="char" Mode="In" />
           <Parameter Name="ConversionRate" Type="varchar" Mode="In" />
         </Function>
-        <Function Name="GetProdPriceList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="GetProductsByProductType" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="ProductType" Type="nvarchar" Mode="In" />
           <Parameter Name="CurrentCurrency" Type="char" Mode="In" />
@@ -1857,19 +1856,6 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="AddUpdatePrice" FunctionName="AsopalavDBModel.Store.AddUpdatePrice" />
-          <FunctionImportMapping FunctionImportName="GetProdPriceList" FunctionName="AsopalavDBModel.Store.GetProdPriceList">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="AsopalavDBModel.GetProdPriceList_Result">
-                <ScalarProperty Name="Product" ColumnName="Product" />
-                <ScalarProperty Name="ProductPrice" ColumnName="ProductPrice" />
-                <ScalarProperty Name="PreviousPrice" ColumnName="PreviousPrice" />
-                <ScalarProperty Name="PriceChangePercentage" ColumnName="PriceChangePercentage" />
-                <ScalarProperty Name="ProductPriceUnit" ColumnName="ProductPriceUnit" />
-                <ScalarProperty Name="ActionPeformed" ColumnName="ActionPeformed" />
-                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
